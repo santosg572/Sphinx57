@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>How to use the grep command in Linux + examples &#8212; Calculo 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="RESUMEN DE FORMULAS" href="../Calculo_Diferencia_Integral/cap01.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="how-to-use-the-grep-command-in-linux-examples">
+<h1>How to use the grep command in Linux + examples<a class="headerlink" href="#how-to-use-the-grep-command-in-linux-examples" title="Link to this heading">¶</a></h1>
+<p>The Global Regular Expression Print or grep command searches specific lines containing a particular pattern in a file. It is useful for quickly checking if
+an entry exists, especially for large items like log files.</p>
+<p>You can add various options to modify the command behavior for specific tasks, like inverse search and multi-keyword lookup. Due to its flexibility, grep is
+an essential tool for managing your Linux virtual private server (VPS).</p>
+<p>This article will explain how to use the grep command in Linux, including its syntax and options. You will also learn some of its real-world applications for
+managing files in your system.</p>
+<div class="toctree-wrapper compound">
+</div>
+<p>Using the Linux grep command
+Basic search
+Recursive search</p>
+<p>Print entries around the matching line
+Case-insensitive search
+Inverted search
+Display line numbers
+Using grep with regular expressions
+Search multiple patterns
+Count matches
+Combine grep with other commands
+Redirect output
+How to use the grep command FAQ
+What is the grep command used for?
+What are the most common options used with grep?
+Can I search for a pattern in multiple files or directories using grep?
+How do I search for lines that do not match a pattern?</p>
+<section id="grep-command-syntax">
+<h2>Grep command syntax<a class="headerlink" href="#grep-command-syntax" title="Link to this heading">¶</a></h2>
+<p>The basic grep syntax looks as follows:</p>
+<p>grep [options] pattern [FILE]
+Here is the explanation of what each element means:</p>
+<p>grep – the utility name.
+options – arguments that modify the grep command’s behavior.
+pattern – the keyword you want to look up.
+file – the item whose content you want to search.
+In the later section, we will explain the most commonly used options and their real-world usage examples.</p>
+<p>Read the grep manual to learn more about all the options. Alternatively, check this utility guide in your command-line interface by entering:</p>
+<p>grep –help
+grep command guide in Terminal
+Remember that you must have the “read” privilege of the file you want to check with grep. Read our tutorial on how to change permissions in Linux.</p>
+<p>Using the Linux grep command
+In this section, we will discuss common usage of the grep utility. If you are using a VPS, run the command via an SSH client like PuTTY. For desktops, open
+the Linux Terminal by pressing Ctrl + Alt + T.</p>
+<p>Basic search
+The most basic usage of grep is to filter text files, outputting lines that contain a particular word. To do so, run this command without an option like this
+syntax:</p>
+<p>grep keyword file
+You can also list multiple file names like so:</p>
+<p>grep pattern file1 file2 file3
+If you want to use a phrase as the search string, enclose the pattern using a quotation mark. For example, this command will find lines containing Linux
+distro in the hostinger.txt sample file:</p>
+<p>grep “Linux distro” hostinger.txt
+grep outputs matching lines from a file
+Note that the syntax only works if the input file is within your current directory. If it is in another location, specify the full path like so:</p>
+<p>grep pattern /path/to/the/file.txt
+Important! Since Linux commands like grep are case-sensitive, pay attention to capitalization in your search pattern and file name.</p>
+<p>Recursive search
+You can recursively search all the files and subdirectories within a folder using the -r option. Here is the syntax:</p>
+<p>grep -r keyword path/to/a/folder
+For example, we have a tutorial/content/linux directory containing two folders called commands and utilities. To search the word VPS in all files within
+these folders, simply run grep on the parent path:</p>
+<p>grep -r VPS tutorial/content/linux
+The grep command will list matched lines from any file and folder within the tutorial/content/linux directory.</p>
+<p>grep recursively searches files within different subfolders
+Print entries around the matching line
+Grep lets you output lines after and before the matching entry to provide you with more context. To do so, add these options followed by the number of
+neighboring lines you want to print:</p>
+<p>A – prints the line after the matching entry.
+B – outputs the line before the matching entry.
+C – displays lines both after and before the entry.
+For example, run the following grep syntax to print an entry after the matching lines:</p>
+<p>grep -A1 pattern file
+grep prints a line after the matching entry
+Case-insensitive search
+By default, grep will treat patterns with different letter cases as a different string. For example, you can’t search Grep and GREP using the keyword grep.
+You can disable this behavior by adding the -i option:</p>
+<p>grep -i keyword file
+If we want to search for the word vps and ignore case distinctions, run the following command:</p>
+<p>grep -i vps hostinger.txt
+Grep finds the pattern VPS ignoring case distinctions
+Inverted search
+Add the -v option to your grep command like this syntax to enable the reverse lookup, printing non-matching lines:</p>
+<p>grep -v keyword file
+For example, this command displays only those lines without the word VPS from the hostinger.txt file:</p>
+<p>grep -v VPS hostinger.txt
+Grep prints lines that don’t match the searched pattern
+Display line numbers
+If you are working with large files like a log, the output data can be very long. It makes checking the location of the pattern difficult. To simplify the
+task, you can display the line numbers with the -n option like so:</p>
+<p>grep -n keyword file
+For example, this command will print the lines from auth.log containing the word unknown user and their numbers:</p>
+<p>grep -n “unknown user” auth.log
+The line that begins with the number one means it is the first entry from the auth.log file, and so on.</p>
+<p>Grep command shows the line numbers
+Pro Tip
+You can combine grep options to refine the search. For example, run grep -nv pattern file to display the line number of entries that dont contain the
+specified pattern.</p>
+<p>Using grep with regular expressions
+Regular expressions, or regex, are strings of characters that define a search pattern. It is useful for finding a very specific query without having to list
+the keywords individually. Here are several regex symbols and their signifiers:</p>
+<p>. – matches any single character.
+* – represents zero or more of the preceding character.
++ – signifies one or more of the preceding characters.
+? – indicates zero or one of the preceding characters.
+^ – indicates the start of a regex pattern.
+$ – represents the end of a regex pattern.
+() – groups patterns.
+These regular expressions behave differently whether you use the extended regular expression (ERE) with the -E option or the default basic regular expression
+(BRE). For more information, read about the differences between BRE and ERE.</p>
+<p>For example, if you want to search patterns like abc and acc, run the following command. The dot (.) symbol will match any character:</p>
+<p>grep -E ‘a.c’ file
+The ^ and $ symbols let you search for lines that begin or end with a specific pattern. Consider this grep command example:</p>
+<p>grep -E ‘^pattern’ file
+The above command will match lines that begin with pattern, like pattern is a string of text. Meanwhile, the following will search for entries that end with
+pattern:</p>
+<p>grep -E ‘pattern$’ file
+You can also combine multiple regex symbols to refine your search for a more specific result. For example, this command will look for lines containing any
+word that begins with an H and ends with R:</p>
+<p>grep ‘^H.*R$’ 1.txt
+Grep searches patterns using regex
+Search multiple patterns
+You can search multiple keywords using a single grep command. The simplest way to do so is by listing the keywords within quotation marks (‘) separated by
+backslashes () and pipes (|). Here is how the syntax looks:</p>
+<p>grep ‘pattern1|pattern2|pattern3’ file
+In this command, grep uses BRE since we are not adding any options. To prevent it from interpreting the pipe as the queried pattern, we escape it using the
+backslash.</p>
+<p>Grep searches two patterns from a file
+You can also search multiple patterns without a backslash by adding the -E option to enable the pipe’s special function like so:</p>
+<p>grep -E ‘pattern1|pattern2|pattern3’ file
+Instead of the -E option, you can do so using the egrep command:</p>
+<p>egrep ‘pattern1|pattern2|pattern3’ file
+If you want to specify the patterns separately, use the -e option for each search query. Here is the command syntax:</p>
+<p>grep -e pattern1 -e pattern2 -e pattern3 file
+All these grep command variations output the same result. So, choose one based on your preferences.</p>
+<p>Count matches
+Several system administration tasks might require you to check how many lines in a file have a matching pattern. For example, this is useful for counting
+login attempts from a specific IP address in a log file.</p>
+<p>To check how many lines contain a pattern, use the -c or –count option like so:</p>
+<p>grep -c pattern file
+However, the -c option counts the matching lines, not the pattern occurrence. If you want to check it, use the -o option and pass it to the wc command like
+so:</p>
+<p>grep -o pattern file | wc -l
+Instead of displaying the entire line, the -o option prints only the pattern occurrences, which the wc command count. We will discuss using a pipe (|) in the
+later section.</p>
+<p>grep counts the number of pattern occurrences
+Note that this command also counts other variants of the keyword. For example, if you use the pattern connect, grep will check for the likes of reconnect,
+connected, connecting, and disconnected.</p>
+<p>If you want to count the exact matching word, add the word boundaries at the beginning and the end of your keyword. Here’s an example:</p>
+<p>grep -o ‘bpatternb’ file
+Combine grep with other commands
+In addition to files and directories, you can filter input data from another command using grep. To do so, combine them using a pipe (|) like so:</p>
+<p>command | grep pattern
+In the snippet, the pipe redirects the output from the first command to grep, filtering the result based on the keyword. Here is a real-world usage example:</p>
+<p>ls | grep ‘.txt$’
+The ls command lists the content of your current directory. Then, the grep command filters the output, printing TXT files within the folder. Here is another
+example:</p>
+<p>ps aux | grep “process_name”
+The ps aux command lists all running processes in your system. Then, the grep utility searches for a particular one from the list based on its name.</p>
+<p>Depending on your task, you can combine grep with other tools. Hostinger VPS hosting users who are unsure which utilities to use can use our AI assistant,
+Kodee, to help explain and generate the complete command.</p>
+<p>For example, ask Kodee, “I want to list all services in my Ubuntu VPS and use the grep utility to filter the output, printing only ones related to NGINX.
+Generate the full command.”</p>
+<p>grep command generated by Kodee AI assistant
+It will then write the appropriate command for your system and needs.</p>
+<p>Redirect output
+System administrators might need to save the grep command results for further processing or an archive. An easy way to do so is by redirecting the output to
+a text file using the greater than (&gt;) symbol. Here is the syntax:</p>
+<p>grep pattern file &gt; target_file.txt
+If the target file doesn’t exist, the grep command will automatically create it in your current working directory.</p>
+<p>To check if grep saves the output correctly, print the content of the target file using the cat command like so:</p>
+<p>cat target_file.txt
+Want to learn more about Linux Commands?
+Check out our Linux commands tutorial to learn more about other commonly used server management utilities.</p>
+<p>Conclusion
+The grep command lets you use a pattern to find lines from a file. Its basic syntax is grep pattern file, but you can add various options to modify the
+search based on your needs.</p>
+<p>For example, add the -r option to recursively search patterns from files and subdirectories within a folder. While grep is case-sensitive by default, you can
+disable this setting using the -i flag to find a matched pattern regardless of its capitalization.</p>
+<p>You can also print non-matching lines using the -v option and add the -n option to show their sequence number. For more complex search patterns, you can use
+regular expression symbols.</p>
+<p>In real world usage, you might need to combine grep with other commands and redirect the search results to a file for backup. Since this utility is very
+versatile, use Kodee to write the full command.</p>
+<p>How to use the grep command FAQ
+What is the grep command used for?
+The grep command is commonly used to search lines containing a specific keyword in a file. It is also useful for filtering another utility’s output, printing
+only ones with a particular pattern. You can do so by piping the command to grep.</p>
+<p>What are the most common options used with grep?
+One of the most common options in grep includes -i, which ignores the case sensitivity in your search query. Another popular option is -r, enabling you to
+search all files and folders within a directory.</p>
+<p>Can I search for a pattern in multiple files or directories using grep?
+Yes, you can search a keyword in multiple files or directories by listing them. Enter grep pattern file1.txt file2.txt to find a pattern in files. To check
+keywords from multiple directories, use the -r option followed by their parent’s path.</p>
+<p>How do I search for lines that do not match a pattern?
+To print lines that don’t match a pattern, add the -v option to your grep command. It will enable the reverse search functionality, outputting all entries
+from a file that doesn’t contain the keyword.</p>
+<p><a class="reference external" href="https://www.hostinger.com/tutorials/grep-command-in-linux?utm_campaign=Generic-Tutorials">https://www.hostinger.com/tutorials/grep-command-in-linux?utm_campaign=Generic-Tutorials</a>-DSA|NT:Se|LO:MX-EN&amp;utm_medium=ppc&amp;gad_source=1&amp;gclid=CjwKCAjw–K_BhB5EiwAuwYoyvF06cyEJoV0cwR87nqhjjKMliEt0HtK8anvzAa3rtRiiNRYN0Qe4hoCfOMQAvD_BwE</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Calculo</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../distribucion-normal.html">Distribución normal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelos-mixtos.html">Modelos mixtos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Calculo_Diferencia_Integral/cap01.html">RESUMEN DE FORMULAS</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to use the grep command in Linux + examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#grep-command-syntax">Grep command syntax</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../Calculo_Diferencia_Integral/cap01.html" title="previous chapter">RESUMEN DE FORMULAS</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, santosg57.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/Linux/grep01.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
