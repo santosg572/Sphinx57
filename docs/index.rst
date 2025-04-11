@@ -19,4 +19,5 @@ documentation for details.
    modelos-mixtos
    Calculo_Diferencia_Integral/cap01
    Linux/grep01
+   Managing_People_in_Projects_for_High_Performance_Upasna/Managing_People_in_Projects_c01
 
