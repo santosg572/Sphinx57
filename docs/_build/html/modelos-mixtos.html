@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Modelos mixtos &#8212; Calculo 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Distribución normal" href="distribucion-normal.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="modelos-mixtos">
+<h1>Modelos mixtos<a class="headerlink" href="#modelos-mixtos" title="Link to this heading">¶</a></h1>
+<section id="modelos-lineales-mixtos">
+<h2>Modelos lineales mixtos<a class="headerlink" href="#modelos-lineales-mixtos" title="Link to this heading">¶</a></h2>
+<p>Un modelo mixto, o de efectos mixtos, incorpora efectos fijos y aleatorios, y normalmente se usa cuando se manejan datos que tiene varibilidad dentro de cada
+grupo y entre grupos. Los efectos fijos son los tratamientos que son de interés para el estudio. Los efectos aleatorios por su parte, están asociados con la
+variabilidad de cada grupo o sujeto del estudio. Estos últimos se modelan como variables aleatorias de las cuales se asume que siguen una distribución
+específica.</p>
+<p>El objetivo de este cuaderno es observar como funcionaría un modelo mixto para diseño de experimentos, a través de un ejemplo obtenido de una base de datos
+predeterminada.</p>
+</section>
+<section id="configuracion">
+<h2>Configuración<a class="headerlink" href="#configuracion" title="Link to this heading">¶</a></h2>
+<p>Estas son las librerias que deben instalarse y cargarse en R</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">broom.mixed</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">lme4</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Desarrollo ejercicio</strong></p>
+<p>Primeramente ocuparemos una base de datos para el ejercicio</p>
+<p># Ruido para la base de datos</p>
+<p>noise&lt;-runif(nrow(CO2),0.02,0.04)</p>
+<p># Base de datos más ruido</p>
+<p>uptake2&lt;- CO2$uptake + noise</p>
+<p>uptake2
+##  [1] 16.028542 30.429763 34.833841 37.222192 35.320159 39.238784 39.733426
+##  [8] 13.635089 27.334503 37.127938 41.829647 40.639994 41.420936 44.324154
+## [15] 16.228967 32.431712 40.330743 42.129278 42.920861 43.936347 45.535669
+## [22] 14.236289 24.138387 30.332193 34.634185 32.524150 35.431055 38.720801
+## [29]  9.322912 27.338010 35.038831 38.825681 38.639570 37.526774 42.432711
+## [36] 15.133382 21.030181 38.133903 34.026261 38.934921 39.628965 41.431029
+## [43] 10.626055 19.232669 26.234233 30.025636 30.920889 32.423421 35.524818
+## [50] 12.030849 22.038299 30.626218 31.837472 32.426859 31.136529 31.529198
+## [57] 11.323558 19.421681 25.836283 27.925025 28.534267 28.134692 27.834886
+## [64] 10.520106 14.934465 18.123816 18.929069 19.525283 22.222333 21.922777
+## [71]  7.720290 11.439958 12.322747 13.033510 12.525799 13.729721 14.430997
+## [78] 10.637362 18.022512 17.923257 17.937666 17.928468 18.930770 19.925331
+En la primera columna se encuentran las especies o variedades de plantas usadas para el experimento. En la columna “Type” se observa el lugar de
+experimentación. En la columna “Treatment” se encuentran los dos tipos de tratamiento usado, que son con enfriamento o sin el. La columna “conc” corresponde
+con la concentración de dióxido de carbono que se le aplicó a las plantas con su respectivo tratamiento, y por último “uptake” son los resultados de cuánto
+dióxido de carbono se absorbió en realidad.</p>
+<p>Con el fin de observar los datos se hace una gráfica</p>
+<dl class="simple">
+<dt>ggplot(CO2, aes(x = conc, y = uptake2, color = Type))+ geom_point(aes(shape = Treatment)) + geom_path(aes(group = Plant, lty = Treatment)) +</dt><dd><p>theme_bw()</p>
+</dd>
+</dl>
+<p>Se observa aparentemente que los tratamientos de Quebec presentaron mayor absorción de CO2. Cabe resaltar que la planta no tendría que ver con los resultados
+de absorción puesto que se considera que si bien son individuos difentes, al fin y al cabo son la misma especie o variedad de planta y por tanto, no debería
+haber variación, es decir, es la variable aleatoria.</p>
+<p>Modelo para variables aleatorias
+Se comparan dos modelos; lineal y aleatorio</p>
+<p># Modelo lineal</p>
+<p>MOD1&lt;-lm(uptake2 ~ conc + Type:Treatment, data = CO2)</p>
+<p># Modelo aleatorio</p>
+<p>MOD2&lt;-lmer(uptake2 ~ conc + Type:Treatment + (1|Plant), data = CO2)
+## fixed-effect model matrix is rank deficient so dropping 1 column / coefficient
+## boundary (singular) fit: see help(‘isSingular’)
+Para poder observar los modelos utilizamos el paquete broom</p>
+<p># Para el modelo lineal</p>
+<p>broom::glance(MOD1)
+## # A tibble: 1 × 12
+##   r.squared adj.r.squa…¹ sigma stati…²  p.value    df logLik   AIC   BIC devia…³
+##       &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+## 1     0.707        0.692  6.00    47.7 2.47e-20     4  -267.  546.  561.   2843.
+## # … with 2 more variables: df.residual &lt;int&gt;, nobs &lt;int&gt;, and abbreviated
+## #   variable names ¹​adj.r.squared, ²​statistic, ³​deviance
+broom::tidy(MOD1)
+## # A tibble: 6 × 5
+##   term                                estimate std.error statistic   p.value
+##   &lt;chr&gt;                                  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)                           8.13     1.63         4.99  3.46e- 6
+## 2 conc                                  0.0177   0.00223      7.97  1.01e-11
+## 3 TypeQuebec:Treatmentnonchilled       19.5      1.85        10.5   9.82e-17
+## 4 TypeMississippi:Treatmentnonchilled  10.1      1.85         5.48  4.97e- 7
+## 5 TypeQuebec:Treatmentchilled          15.9      1.85         8.61  5.59e-13
+## 6 TypeMississippi:Treatmentchilled     NA       NA           NA    NA
+# Para el modelo lineal</p>
+<p>broom.mixed::glance(MOD2)
+## # A tibble: 1 × 7
+##    nobs sigma logLik   AIC   BIC REMLcrit df.residual
+##   &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;
+## 1    84  6.00  -268.  549.  566.     535.          77
+broom.mixed::tidy(MOD2)
+## # A tibble: 7 × 6
+##   effect   group    term                                estim…¹ std.er…² stati…³
+##   &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;                                 &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+## 1 fixed    &lt;NA&gt;     (Intercept)                          8.13    1.63       4.99
+## 2 fixed    &lt;NA&gt;     conc                                 0.0177  0.00223    7.97
+## 3 fixed    &lt;NA&gt;     TypeQuebec:Treatmentnonchilled      19.5     1.85      10.5
+## 4 fixed    &lt;NA&gt;     TypeMississippi:Treatmentnonchilled 10.1     1.85       5.48
+## 5 fixed    &lt;NA&gt;     TypeQuebec:Treatmentchilled         15.9     1.85       8.61
+## 6 ran_pars Plant    sd__(Intercept)                      0      NA         NA
+## 7 ran_pars Residual sd__Observation                      6.00   NA         NA
+## # … with abbreviated variable names ¹​estimate, ²​std.error, ³​statistic
+De aquí se puede concluir, que el tratamiento que mejor resultados tuvo fue el no enfriado en Quebec, aspecto que se tenía previsto desde el análisis
+descriptivo a partir de la gráfica. Esto es así porque tuvo la mayor pendiente 19,52, indicando de este modo una absorción.de 19.52 en la unida de tiempo
+estándar para el estudio. Por otro lado, se observa que en el modelo lineal si incluye el tratamiento de enfriado junto con el tipo Mississippi, aunque no le
+asigna ningún valor, mientras que en el modelo aleatorio lo elimina.</p>
+<p>Ventajas de este modelo en agronomía
+Puede ser utilizado cuando hay que hacer repeticiones en una misma unidad de experimentación, siendo esto una planta, cultivo, algún tipo de agroinsumo, etc.
+Esto con el fin de tener en cuenta tanto la variación entre las repeticiones como los efectos de los diferentes tratamientos a aplicar, de esta manera se
+podría obtener resultados más precisos</p>
+<p><a class="reference external" href="https://rpubs.com/marlozanoca/1057556">https://rpubs.com/marlozanoca/1057556</a></p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Calculo</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="distribucion-normal.html">Distribución normal</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Modelos mixtos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#modelos-lineales-mixtos">Modelos lineales mixtos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuracion">Configuración</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="distribucion-normal.html" title="previous chapter">Distribución normal</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, santosg57.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/modelos-mixtos.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
