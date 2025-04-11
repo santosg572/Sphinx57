@@ -17,3 +17,5 @@ documentation for details.
 
    distribucion-normal
    modelos-mixtos
+   Calculo_Diferencia_Integral/cap01
+
