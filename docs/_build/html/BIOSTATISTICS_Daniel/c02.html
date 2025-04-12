@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>C06. ESTIMACION &#8212; Calculo 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="c06-estimacion">
+<h1>C06. ESTIMACION<a class="headerlink" href="#c06-estimacion" title="Link to this heading">¶</a></h1>
+<section id="chapter-overview">
+<h2>CHAPTER OVERVIEW<a class="headerlink" href="#chapter-overview" title="Link to this heading">¶</a></h2>
+<p>This chapter covers estimation, one of the two types of statistical inference.
+As discussed in earlier chapters, statistics, such as means and variances, can
+be calculated from samples drawn from populations. These statistics serve as
+estimates of the corresponding population parameters. We expect these esti-
+mates to differ by some amount from the parameters they estimate. This
+chapter introduces estimation procedures that take these differences into ac-
+count, thereby providing a foundation for statistical inference procedures
+discussed in the remaining chapters of the book.</p>
+</section>
+<section id="topics">
+<h2>TOPICS<a class="headerlink" href="#topics" title="Link to this heading">¶</a></h2>
+<p>6.1 INTRODUCTION</p>
+<p>6.2 CONFIDENCE INTERVAL FOR A POPULATION MEAN</p>
+<p>6.3 THE t DISTRIBUTION</p>
+<p>6.4 CONFIDENCE INTERVAL FOR THE DIFFERENCE BETWEEN TWO POPULATION MEANS</p>
+<p>6.5 CONFIDENCE INTERVAL FOR A POPULATION PROPORTION</p>
+<p>6.6 CONFIDENCE INTERVAL FOR THE DIFFERENCE BETWEEN TWO POPULATION PROPORTIONS</p>
+<p>6.7 DETERMINATION OF SAMPLE SIZE FOR ESTIMATING MEANS</p>
+<p>6.8 DETERMINATION OF SAMPLE SIZE FOR ESTIMATING PROPORTIONS</p>
+<p>6.9 CONFIDENCE INTERVAL FOR THE VARIANCE OF A NORMALLY DISTRIBUTED POPULATION</p>
+<p>6.10 CONFIDENCE INTERVAL FOR THE RATIO OF THE VARIANCES OF TWO NORMALLY DISTRIBUTED POPULATIONS</p>
+<p>6.11 SUMMARY</p>
+</section>
+<section id="learning-outcomes">
+<h2>LEARNING OUTCOMES<a class="headerlink" href="#learning-outcomes" title="Link to this heading">¶</a></h2>
+<p>After studying this chapter, the student will</p>
+<ol class="arabic simple">
+<li><p>understand the importance and basic principles of estimation.</p></li>
+<li><p>be able to calculate interval estimates for a variety of parameters.</p></li>
+<li><p>be able to interpret a confidence interval from both a practical and a probabilistic viewpoint.</p></li>
+<li><p>understand the basic properties and uses of the t distribution, chi-square distribution, and F distribution.</p></li>
+</ol>
+</section>
+<section id="introduction">
+<h2>6.1 INTRODUCTION<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<p>We come now to a consideration of estimation, the first of the two general areas of statisti-
+cal inference. The second general area, hypothesis testing, is examined in the next chapter.
+We learned in Chapter 1 that inferential statistics is defined as follows.
+DEFINITION
+Statistical inference is the procedure by which we reach a conclusion
+about a population on the basis of the information contained in a
+sample drawn from that population.
+The process of estimation entails calculating, from the data of a sample, some sta-
+tistic that is offered as an approximation of the corresponding parameter of the popula-
+tion from which the sample was drawn.
+The rationale behind estimation in the health sciences field rests on the assump-
+tion that workers in this field have an interest in the parameters, such as means and pro-
+portions, of various populations. If this is the case, there is a good reason why one must
+rely on estimating procedures to obtain information regarding these parameters. Many
+populations of interest, although finite, are so large that a 100 percent examination would
+be prohibitive from the standpoint of cost.
+Suppose the administrator of a large hospital is interested in the mean age of patients
+admitted to his hospital during a given year. He may consider it too expensive to go
+through the records of all patients admitted during that particular year and, consequently,
+elect to examine a sample of the records from which he can compute an estimate of the
+mean age of patients admitted that year.
+A physician in general practice may be interested in knowing what proportion of
+a certain type of individual, treated with a particular drug, suffers undesirable side effects.
+No doubt, her concept of the population consists of all those persons who ever have been
+or ever will be treated with this drug. Deferring a conclusion until the entire population
+has been observed could have an adverse effect on her practice.
+These two examples have implied an interest in estimating, respectively, a popula-
+tion mean and a population proportion. Other parameters, the estimation of which we
+will cover in this chapter, are the difference between two means, the difference between
+two proportions, the population variance, and the ratio of two variances.</p>
+<p>164 CHAPTER 6 ESTIMATION
+We will find that for each of the parameters we discuss, we can compute two types
+of estimate: a point estimate and an interval estimate.
+DEFINITION
+A point estimate is a single numerical value used to estimate the
+corresponding population parameter.
+DEFINITION
+An interval estimate consists of two numerical values defining a range
+of values that, with a specified degree of confidence, most likely
+includes the parameter being estimated.
+These concepts will be elaborated on in the succeeding sections.
+Choosing an Appropriate Estimator Note that a single computed value
+has been referred to as an estimate. The rule that tells us how to compute this value, or
+estimate, is referred to as an estimator. Estimators are usually presented as formulas. For
+example,
+is an estimator of the population mean, The single numerical value that results from
+evaluating this formula is called an estimate of the parameter
+In many cases, a parameter may be estimated by more than one estimator. For
+example, we could use the sample median to estimate the population mean. How then
+do we decide which estimator to use for estimating a given parameter? The decision is
+based on an objective measure or set of criteria that reflect some desired property of a par-
+ticular estimator. When measured against these criteria, some estimators are better than oth-
+ers. One of these criteria is the property of unbiasedness.
+DEFINITION
+An estimator, say, T, of the parameter is said to be an unbiased
+estimator of if
+is read, “the expected value of T.” For a finite population, is obtained
+by taking the average value of T computed from all possible samples of a given size that
+may be drawn from the population. That is, For an infinite population,
+is defined in terms of calculus.
+In the previous chapter we have seen that the sample mean, the sample proportion,
+the difference between two sample means, and the difference between two sample
+proportions are each unbiased estimates of their corresponding parameters. This prop-
+erty was implied when the parameters were said to be the means of the respective sam-
+pling distributions. For example, since the mean of the sampling distribution of is equalx</p>
+<p>to we know that is an unbiased estimator of The other criteria of good estima-
+tors will not be discussed in this book. The interested reader will find them covered in
+detail in most mathematical statistics texts.
+Sampled Populations and Target Populations The health researcher
+who uses statistical inference procedures must be aware of the difference between two
+kinds of population—the sampled population and the target population.
+DEFINITION
+The sampled population is the population from which one actually
+draws a sample.
+DEFINITION
+The target population is the population about which one wishes to
+make an inference.
+These two populations may or may not be the same. Statistical inference procedures
+allow one to make inferences about sampled populations (provided proper sampling meth-
+ods have been employed). Only when the target population and the sampled population
+are the same is it possible for one to use statistical inference procedures to reach conclu-
+sions about the target population. If the sampled population and the target population are
+different, the researcher can reach conclusions about the target population only on the
+basis of nonstatistical considerations.
+Suppose, for example, that a researcher wishes to assess the effectiveness of some
+method for treating rheumatoid arthritis. The target population consists of all patients
+suffering from the disease. It is not practical to draw a sample from this population. The
+researcher may, however, select a sample from all rheumatoid arthritis patients seen in
+some specific clinic. These patients constitute the sampled population, and, if proper sam-
+pling methods are used, inferences about this sampled population may be drawn on the
+basis of the information in the sample. If the researcher wishes to make inferences about
+all rheumatoid arthritis sufferers, he or she must rely on nonstatistical means to do so.
+Perhaps the researcher knows that the sampled population is similar, with respect to all
+important characteristics, to the target population. That is, the researcher may know that
+the age, sex, severity of illness, duration of illness, and so on are similar in both popu-
+lations. And on the strength of this knowledge, the researcher may be willing to extrap-
+olate his or her findings to the target population.
+In many situations the sampled population and the target population are identical;
+when this is the case, inferences about the target population are straightforward. The
+researcher, however, should be aware that this is not always the case and not fall into
+the trap of drawing unwarranted inferences about a population that is different from the
+one that is sampled.
+Random and Nonrandom Samples In the examples and exercises of this
+book, we assume that the data available for analysis have come from random samples.
+The strict validity of the statistical procedures discussed depends on this assumption. In</p>
+<p>166 CHAPTER 6 ESTIMATION
+many instances in real-world applications it is impossible or impractical to use truly ran-
+dom samples. In animal experiments, for example, researchers usually use whatever ani-
+mals are available from suppliers or their own breeding stock. If the researchers had to
+depend on randomly selected material, very little research of this type would be conducted.
+Again, nonstatistical considerations must play a part in the generalization process.
+Researchers may contend that the samples actually used are equivalent to simple random
+samples, since there is no reason to believe that the material actually used is not represen-
+tative of the population about which inferences are desired.
+In many health research projects, samples of convenience, rather than random sam-
+ples, are employed. Researchers may have to rely on volunteer subjects or on readily avail-
+able subjects such as students in their classes. Samples obtained from such sources are exam-
+ples of convenience samples. Again, generalizations must be made on the basis of
+nonstatistical considerations. The consequences of such generalizations, however, may be
+useful or they may range from misleading to disastrous.
+In some situations it is possible to introduce randomization into an experiment even
+though available subjects are not randomly selected from some well-defined population. In
+comparing two treatments, for example, each subject may be randomly assigned to one or
+the other of the treatments. Inferences in such cases apply to the treatments and not the sub-
+jects, and hence the inferences are valid.
+6.2 CONFIDENCE INTERVAL
+FOR A POPULATION MEAN
+Suppose researchers wish to estimate the mean of some normally distributed population.
+They draw a random sample of size n from the population and compute which they use
+as a point estimate of Although this estimator of possesses all the qualities of a
+good estimator, we know that because random sampling inherently involves chance,
+cannot be expected to be equal to
+It would be much more meaningful, therefore, to estimate by an interval that
+somehow communicates information regarding the probable magnitude of
+Sampling Distributions and Estimation To obtain an interval estimate,
+we must draw on our knowledge of sampling distributions. In the present case, because we
+are concerned with the sample mean as an estimator of a population mean, we must recall
+what we know about the sampling distribution of the sample mean.
+In the previous chapter we learned that if sampling is from a normally distributed
+population, the sampling distribution of the sample mean will be normally distributed with
+a mean equal to the population mean and a variance equal to We could
+plot the sampling distribution if we only knew where to locate it on the -axis. From our
+knowledge of normal distributions, in general, we know even more about the distribution
+of in this case. We know, for example, that regardless of where the distribution of is
+located, approximately 95 percent of the possible values of constituting the distribution
+are within two standard deviations of the mean. The two points that are two standard devi-
+ations from the mean are and so that the interval will con-
+tain approximately 95 percent of the possible values of We know that and, hence
+are unknown, but we may arbitrarily place the sampling distribution of on the -axis.xx
+mx</p>
+<p>Since we do not know the value of not a great deal is accomplished by the expres-
+sion We do, however, have a point estimate of which is Would it be use-
+ful to construct an interval about this point estimate of The answer is yes. Suppose
+we constructed intervals about every possible value of computed from all possible sam-
+ples of size n from the population of interest. We would have a large number of intervals
+of the form with widths all equal to the width of the interval about the unknown
+Approximately 95 percent of these intervals would have centers falling within the
+interval about Each of the intervals whose centers fall within of would contain
+These concepts are illustrated in Figure 6.2.1, in which we see that , and all
+fall within the interval about and, consequently, the intervals about these sample
+means include the value of The sample means and do not fall within the
+interval about and the intervals about them do not include
+EXAMPLE 6.2.1
+Suppose a researcher, interested in obtaining an estimate of the average level of some
+enzyme in a certain human population, takes a sample of 10 individuals, determines the
+level of the enzyme in each, and computes a sample mean of Suppose further
+it is known that the variable of interest is approximately normally distributed with a vari-
+ance of 45. We wish to estimate
+Solution: An approximate 95 percent confidence interval for is given by
+!17.76, 26.24
+22 ; 212.12132
+22 ; 2245
+10
+x ; 2s</p>
+<p>nterval Estimate Components Let us examine the composition of the
+interval estimate constructed in Example 6.2.1. It contains in its center the point esti-
+mate of The 2 we recognize as a value from the standard normal distribution that tells
+us within how many standard errors lie approximately 95 percent of the possible values
+of This value of z is referred to as the reliability coefficient. The last component,
+is the standard error, or standard deviation of the sampling distribution of In general,
+then, an interval estimate may be expressed as follows:
+reliability coefficient (6.2.1)
+In particular, when sampling is from a normal distribution with known variance,
+an interval estimate for may be expressed as
+(6.2.2)
+where is the value of z to the left of which lies and to the right of
+which lies of the area under its curve.
+Interpreting Confidence Intervals How do we interpret the interval given
+by Expression 6.2.2? In the present example, where the reliability coefficient is equal to
+2, we say that in repeated sampling approximately 95 percent of the intervals constructed
+by Expression 6.2.2 will include the population mean. This interpretation is based on the
+probability of occurrence of different values of We may generalize this interpretation
+if we designate the total area under the curve of that is outside the interval
+as and the area within the interval as and give the following probabilistic inter-
+pretation of Expression 6.2.2.
+Probabilistic Interpretation
+In repeated sampling, from a normally distributed population with a known standard
+deviation, percent of all intervals of the form will in
+the long run include the population mean
+The quantity in this case .95, is called the confidence coefficient (or confi-
+dence level), and the interval is called a confidence interval for When
+the interval is called the 95 percent confidence interval for In the present
+example we say that we are 95 percent confident that the population mean is between 17.76
+and 26.24. This is called the practical interpretation of Expression 6.2.2. In general, it may
+be expressed as follows.
+Practical Interpretation
+When sampling is from a normally distributed population with known standard
+deviation, we are percent confident that the single computed interval,
+, contains the population mean
+In the example given here we might prefer, rather than 2, the more exact value of
+z, 1.96, corresponding to a confidence coefficient of .95. Researchers may use any con-
+fidence coefficient they wish; the most frequently used values are .90, .95, and .99, which
+have associated reliability factors, respectively, of 1.645, 1.96, and 2.58.</p>
+<p>Precision The quantity obtained by multiplying the reliability factor by the stan-
+dard error of the mean is called the precision of the estimate. This quantity is also called
+the margin of error.
+EXAMPLE 6.2.2
+A physical therapist wished to estimate, with 99 percent confidence, the mean maximal
+strength of a particular muscle in a certain group of individuals. He is willing to assume
+that strength scores are approximately normally distributed with a variance of 144. A
+sample of 15 subjects who participated in the experiment yielded a mean of 84.3.
+Solution: The z value corresponding to a confidence coefficient of .99 is found in Appen-
+dix Table D to be 2.58. This is our reliability coefficient. The standard error is
+Our 99 percent confidence interval for then, is
+We say we are 99 percent confident that the population mean is between
+76.3 and 92.3 since, in repeated sampling, 99 percent of all intervals that
+could be constructed in the manner just described would include the popu-
+lation mean. !
+Situations in which the variable of interest is approximately normally distributed with a
+known variance are so rare as to be almost nonexistent. The purpose of the preceding
+examples, which assumed that these ideal conditions existed, was to establish the theo-
+retical background for constructing confidence intervals for population means. In most
+practical situations either the variables are not approximately normally distributed or the
+population variances are not known or both. Example 6.2.3 and Section 6.3 explain the
+procedures that are available for use in the less than ideal, but more common, situations.
+Sampling from Nonnormal Populations As noted, it will not always
+be possible or prudent to assume that the population of interest is normally distributed.
+Thanks to the central limit theorem, this will not deter us if we are able to select a
+large enough sample. We have learned that for large samples, the sampling distribu-
+tion of is approximately normally distributed regardless of how the parent popula-
+tion is distributed.
+EXAMPLE 6.2.3
+Punctuality of patients in keeping appointments is of interest to a research team. In a
+study of patient flow through the offices of general practitioners, it was found that a sam-
+ple of 35 patients were 17.2 minutes late for appointments, on the average. Previous
+research had shown the standard deviation to be about 8 minutes. The population distri-
+bution was felt to be nonnormal. What is the 90 percent confidence interval for the
+true mean amount of time late for appointments?</p>
+<p>EXAMPLE 6.2.4
+The following are the activity values (micromoles per minute per gram of tissue) of a cer-
+tain enzyme measured in normal gastric tissue of 35 patients with gastric carcinoma.
+.360 1.189 .614 .788 .273 2.464 .571
+1.827 .537 .374 .449 .262 .448 .971
+.372 .898 .411 .348 1.925 .550 .622
+.610 .319 .406 .413 .767 .385 .674
+.521 .603 .533 .662 1.177 .307 1.499
+We wish to use the MINITAB computer software package to construct a 95 percent confi-
+dence interval for the population mean. Suppose we know that the population variance is
+.36. It is not necessary to assume that the sampled population of values is normally distrib-
+uted since the sample size is sufficiently large for application of the central limit theorem.</p>
+<p>We are 95 percent confident that the population mean is somewhere between .519
+and .917. Confidence intervals may be obtained through the use of many other software
+packages. Users of SAS®, for example, may wish to use the output from PROC MEANS
+or PROC UNIVARIATE to construct confidence intervals</p>
+<p>Alternative Estimates of Central Tendency As noted previously, the
+mean is sensitive to extreme values—those values that deviate appreciably from most of
+the measurements in a data set. They are sometimes referred to as outliers. We also noted
+earlier that the median, because it is not so sensitive to extreme measurements, is some-
+times preferred over the mean as a measure of central tendency when outliers are pres-
+ent. For the same reason, we may prefer to use the sample median as an estimator of
+the population median when we wish to make an inference about the central tendency
+of a population. Not only may we use the sample median as a point estimate of the pop-
+ulation median, we also may construct a confidence interval for the population median.
+The formula is not given here but may be found in the book by Rice (1).
+Trimmed Mean Estimators that are insensitive to outliers are called robust esti-
+mators. Another robust measure and estimator of central tendency is the trimmed mean.
+For a set of sample data containing n measurements we calculate the percent
+trimmed mean as follows:
+1. Order the measurements.
+2. Discard the smallest percent and the largest percent of the mea-
+surements. The recommended value of is something between .1 and .2.
+3. Compute the arithmetic mean of the remaining measurements.
+Note that the median may be regarded as a 50 percent trimmed mean.</p>
+<p>6.3 THE
+t DISTRIBUTION
+In Section 6.2, a procedure was outlined for constructing a confidence interval for a pop-
+ulation mean. The procedure requires knowledge of the variance of the population from
+which the sample is drawn. It may seem somewhat strange that one can have knowledge
+of the population variance and not know the value of the population mean. Indeed, it is
+the usual case, in situations such as have been presented, that the population variance,
+as well as the population mean, is unknown. This condition presents a problem with
+respect to constructing confidence intervals. Although, for example, the statistic
+is normally distributed when the population is normally distributed and is at least approx-
+imately normally distributed when n is large, regardless of the functional form of the
+population, we cannot make use of this fact because is unknown. However, all is not
+lost, and the most logical solution to the problem is the one followed. We use the sam-
+ple standard deviation
+s = 2g1xi - x 22&gt;1n - 12</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Calculo</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../distribucion-normal.html">Distribución normal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelos-mixtos.html">Modelos mixtos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Calculo_Diferencia_Integral/cap01.html">RESUMEN DE FORMULAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Linux/grep01.html">How to use the grep command in Linux + examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Managing_People_in_Projects_for_High_Performance_Upasna/Managing_People_in_Projects_c01.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Temarios/r01.html">T01- Understanding Statistics Using R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Temarios/e01.html">T02 - An Introduction to Generalized Linear Models Fourth Edition Annette</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Temarios/e02.html">T03 - BIOSTATISTICS A Foundation for Analysis in the Health Sciences - Daniel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c06.html">C06. ESTIMACION</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, santosg57.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/BIOSTATISTICS_Daniel/c02.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

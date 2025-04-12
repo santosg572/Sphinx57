@@ -1,5 +1,8 @@
-T01: Understanding Statistics Using R 
-================================
+T01- Understanding Statistics Using R 
+====================================
+
+A Detailed Example: :download:`pdf /home/santosg/Desktop/Libros_TODOS_antonieta/AAA_libros/Analisis_Numerico_libros/978-3-031-08720-2.pdf`
+
 
 Randall
 

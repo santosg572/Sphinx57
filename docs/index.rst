@@ -21,3 +21,8 @@ documentation for details.
    Linux/grep01
    Managing_People_in_Projects_for_High_Performance_Upasna/Managing_People_in_Projects_c01
    Temarios/r01
+   Temarios/e01
+   Temarios/e02
+   BIOSTATISTICS_Daniel/c06
+
+

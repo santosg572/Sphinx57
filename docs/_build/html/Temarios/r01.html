@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Understanding Statistics Using R &#8212; Calculo 1.0 documentation</title>
+    <title>T01- Understanding Statistics Using R &#8212; Calculo 1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
@@ -14,6 +14,7 @@
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="T02 - An Introduction to Generalized Linear Models Fourth Edition Annette" href="e01.html" />
     <link rel="prev" title="Preface" href="../Managing_People_in_Projects_for_High_Performance_Upasna/Managing_People_in_Projects_c01.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -32,240 +33,268 @@
 
           <div class="body" role="main">
             
-  <section id="understanding-statistics-using-r">
-<h1>Understanding Statistics Using R<a class="headerlink" href="#understanding-statistics-using-r" title="Link to this heading">¶</a></h1>
+  <section id="t01-understanding-statistics-using-r">
+<h1>T01- Understanding Statistics Using R<a class="headerlink" href="#t01-understanding-statistics-using-r" title="Link to this heading">¶</a></h1>
+<p>A Detailed Example: <code class="xref download docutils literal notranslate"><span class="pre">pdf</span> <span class="pre">/home/santosg/Desktop/Libros_TODOS_antonieta/AAA_libros/Analisis_Numerico_libros/978-3-031-08720-2.pdf</span></code></p>
 <p>Randall</p>
-<p>1R Fundamentals
-Install R .
-Install R Studio .
-Getting Help
-Load R Packages .
-Running R Programs .
-Accessing Data and R Script Programs
-Summary .
-** WARNING **
-R Fundamentals Exercises
-True or False Questions 1
-2Probability .
-Finite and Infinite Probability .
-PROBABILITY R Program
-PROBABILITY R Program Output
-Finite and Infinite Exercises
-Joint Probability
-JOINT PROBABILITY Exercises
-Addition Law of Probability .
-ADDITION Program Output
-ADDITION Law Exercises .
-Multiplication Law of Probability
-Multiplication Law Exercises .
-Conditional Probability .
-CONDITIONAL Probability Exercises
-Combinations and Permutations .
-Combination and Permutation Exercises
-True or False Questions
-Finite and Infinite Probability .11
-Joint Probability
-Addition Law of Probability .
-Multiplication Law of Probability
-Conditional Probability .
-Combination and Permutation 40
-3Statistical Theory
-Sample Versus Population.
-STATISTICS R Program .
-STATISTICS Program Output
-Statistics Exercises
-Generating Random Numbers.
-RANDOM R Program
-RANDOM Program Output
-Random Exercises .
-True and False Questions
-Sample versus Population .
-Generating Random Numbers.43
-4Frequency Distributions .
-Histograms and Ogives .
-FREQUENCY R Program
-FREQUENCY Program Output
-Histogram and Ogive Exercises
-Population Distributions .
-COMBINATION Exercises
-Stem and Leaf Graph
-STEM-LEAF Exercises
-True or False Questions
-Histograms and Ogives .
-Population Distributions .
-Stem and Leaf Graphs .55
-5Central Tendency and Dispersion .
-Central Tendency
-MEAN-MEDIAN R Program .
-MEAN-MEDIAN Program Output.
-MEAN-MEDIAN Exercises .
-Dispersion
-DISPERSION Exercises .
-Sample Size Effects
-SAMPLE Exercises
-Tchebysheff Inequality Theorem
-TCHEBYSHEFF Exercises
-Normal Distribution 75
-Normal Distribution Exercises
-Central Limit Theorem .
-Central Limit Theorem Exercises .
-True or False Questions
-Central Tendency
-Dispersion
-Sample Size Effects
-Tchebysheff Inequality Theorem
-Normal Distribution
-Central Limit Theorem .93
-6Statistical Distributions
-Binomial
-BINOMIAL R Program
-BINOMIAL Program Output
-BINOMIAL Exercises
-Normal Distribution
-NORMAL R Program .
-NORMAL Program Output
-NORMAL Distribution Exercises .
-Chi-Square Distribution
-CHISQUARE R Program .
-CHISQUARE Program Output .
-CHISQUARE Exercises
-t-Distribution .
-t-DISTRIBUTION R Program
-t-DISTRIBUTION Program Output .
-t-DISTRIBUTION Exercises
-F-Distribution
-F-DISTRIBUTION R Programs .
-F-Curve Program Output
-F-Ratio Program Output .
-F-DISTRIBUTION Exercises .
-True or False Questions
-Binomial Distribution .
-Normal Distribution
-Chi-Square Distribution
-t-Distribution .
-F-Distribution 107
-7Hypothesis Testing
-Sampling Distribution .
-DEVIATION R Program.
-DEVIATION Program Output 137
-Deviation Exercises.
-Confidence Intervals .
-CONFIDENCE R Program .
-CONFIDENCE Program Output
-Confidence Interval Exercises .
-Statistical Hypothesis
-HYPOTHESIS TEST R Program .
-HYPOTHESIS TEST Program Output .
-Hypothesis Testing Exercises
-TYPE I Error .
-TYPE I ERROR R Program
-TYPE I ERROR Program Output .
-TYPE I Error Exercises.
-TYPE II Error .
-TYPE II ERROR R Program
-TYPE II ERROR Program Output
-TYPE II Error Exercises .
-True or False Questions
-Sampling Distributions .
-Confidence Interval .
-Statistical Hypothesis
-TYPE I Error .
-TYPE II Error .141
-8Chi-Square Test .
-CROSSTAB R Program
-CROSSTAB Program Output
-Example 1
-Example 2
-Chi-Square Exercises
-True or False Questions
-Chi-Square 169
-9z-Test
-Independent Samples
-Dependent Samples.
-ZTEST R Programs.
-ZTEST-IND Program Output
-ZTEST-DEP Program Output .
-z Exercises
-True or False Questions
-z-Test .177
-10t-Test . 187
-One Sample t-Test . 187
-Independent t-Test . 189Contents
-Dependent t-Test .
-STUDENT R Program
-STUDENT Program Output .
-t Exercises .
-True or False Questions
-t-Test .190
-11F-Test
-Analysis of Variance .
-One-Way Analysis of Variance .
-Multiple Comparison Tests .
-Repeated Measures Analysis of Variance .
-Analysis of Variance R Programs .
-ONEWAY Program .
-ONEWAY Program Output .
-Scheffe Program Output
-REPEATED Program Output
-F Exercises
-True or False Questions
-F Test .197
-12Correlation.
-Pearson Correlation.
-Interpretation of Pearson Correlation
-CORRELATION R Program
-CORRELATION Program Output
-Correlation Exercises
-True or False Questions
-Pearson Correlation.209
-13Linear Regression .
-Regression Equation .
-Regression Line and Errors of Prediction .
-Standard Scores.
-REGRESSION R Program .
-REGRESSION Program Output .
-REGRESSION Exercises
-True or False Questions
-Linear Regression .219
-14Replication of Results .
-Cross Validation
-CROSS VALIDATION Programs .
-CROSS VALIDATION Program Output
-Cross Validation Exercises 229
-Jackknife .
-JACKKNIFE R Program .
-JACKKNIFE Program Output
-Jackknife Exercises .
-Bootstrap .
-BOOTSTRAP R Program .
-BOOTSTRAP Program Output
-Bootstrap Exercises .
-True or False Questions
-Cross Validation
-Jackknife .
-Bootstrap .234
-Synthesis of Findings
-Meta-Analysis .
-A Comparison of Fisher and Gordon Chi-Square Approaches
-Converting Various Statistics to a Common Metric
-Converting Various Statistics to Effect Size Measures .
-Comparison and Interpretation of Effect Size Measures
-Sample Size Considerations in Meta-Analysis .
-META-ANALYSIS R Programs .
-Meta-Analysis Program Output
-Effect Size Program Output
-Meta-Analysis Exercises .
-Statistical Versus Practical Significance .
-PRACTICAL R Program
-PRACTICAL Program Output
-PRACTICAL Exercises
-True or False Questions
-Meta-Analysis .
-Statistical Versus Practical Significance .247
-Glossary of Terms . 263
-Appendix  271
-Author Index 279
-Subject Index .</p>
+<section id="c01-r-fundamentals">
+<h2>c01 R Fundamentals<a class="headerlink" href="#c01-r-fundamentals" title="Link to this heading">¶</a></h2>
+<p>Install R .</p>
+<p>Install R Studio .</p>
+<p>Getting Help</p>
+<p>Load R Packages .</p>
+<p>Running R Programs .</p>
+<p>Accessing Data and R Script Programs</p>
+<p>Summary .</p>
+<p>R Fundamentals Exercises</p>
+<p>True or False Questions 1</p>
+</section>
+<section id="c02-probability">
+<h2>c02 Probability .<a class="headerlink" href="#c02-probability" title="Link to this heading">¶</a></h2>
+<p>Finite and Infinite Probability .</p>
+<p>PROBABILITY R Program</p>
+<p>PROBABILITY R Program Output</p>
+<p>Finite and Infinite Exercises</p>
+<p>Joint Probability</p>
+<p>JOINT PROBABILITY Exercises</p>
+<p>Addition Law of Probability .</p>
+<p>ADDITION Program Output</p>
+<p>ADDITION Law Exercises .</p>
+<p>Multiplication Law of Probability</p>
+<p>Multiplication Law Exercises .</p>
+<p>Conditional Probability .</p>
+<p>CONDITIONAL Probability Exercises</p>
+<p>Combinations and Permutations .</p>
+<p>Combination and Permutation Exercises</p>
+<p>True or False Questions</p>
+<p>Finite and Infinite Probability .11</p>
+<p>Joint Probability</p>
+<p>Addition Law of Probability .</p>
+<p>Multiplication Law of Probability</p>
+<p>Conditional Probability .</p>
+<p>Combination and Permutation 40</p>
+</section>
+<section id="c03-statistical-theory">
+<h2>C03 Statistical Theory<a class="headerlink" href="#c03-statistical-theory" title="Link to this heading">¶</a></h2>
+<p>Sample Versus Population.</p>
+<p>STATISTICS R Program .</p>
+<p>STATISTICS Program Output</p>
+<p>Statistics Exercises</p>
+<p>Generating Random Numbers.</p>
+<p>RANDOM R Program</p>
+<p>RANDOM Program Output</p>
+<p>Random Exercises .</p>
+<p>True and False Questions</p>
+<p>Sample versus Population .</p>
+<p>Generating Random Numbers.43</p>
+</section>
+<section id="c04-frequency-distributions">
+<h2>C04 Frequency Distributions .<a class="headerlink" href="#c04-frequency-distributions" title="Link to this heading">¶</a></h2>
+<p>Histograms and Ogives .</p>
+<p>FREQUENCY R Program</p>
+<p>FREQUENCY Program Output</p>
+<p>Histogram and Ogive Exercises</p>
+<p>Population Distributions .</p>
+<p>COMBINATION Exercises</p>
+<p>Stem and Leaf Graph</p>
+<p>STEM-LEAF Exercises</p>
+<p>True or False Questions</p>
+<p>Histograms and Ogives .</p>
+<p>Population Distributions .</p>
+<p>Stem and Leaf Graphs .55</p>
+</section>
+<section id="c05-central-tendency-and-dispersion">
+<h2>C05 Central Tendency and Dispersion .<a class="headerlink" href="#c05-central-tendency-and-dispersion" title="Link to this heading">¶</a></h2>
+<p>Central Tendency</p>
+<p>MEAN-MEDIAN R Program .</p>
+<p>MEAN-MEDIAN Program Output.</p>
+<p>MEAN-MEDIAN Exercises .</p>
+<p>Dispersion</p>
+<p>DISPERSION Exercises .</p>
+<p>Sample Size Effects</p>
+<p>SAMPLE Exercises</p>
+<p>Tchebysheff Inequality Theorem</p>
+<p>TCHEBYSHEFF Exercises</p>
+<p>Normal Distribution 75</p>
+<p>Normal Distribution Exercises</p>
+<p>Central Limit Theorem .</p>
+<p>Central Limit Theorem Exercises .</p>
+<p>True or False Questions</p>
+<p>Central Tendency</p>
+<p>Dispersion</p>
+<p>Sample Size Effects</p>
+<p>Tchebysheff Inequality Theorem</p>
+<p>Normal Distribution</p>
+<p>Central Limit Theorem .93</p>
+</section>
+<section id="c06-statistical-distributions">
+<h2>C06 Statistical Distributions<a class="headerlink" href="#c06-statistical-distributions" title="Link to this heading">¶</a></h2>
+<p>Binomial</p>
+<p>BINOMIAL R Program</p>
+<p>BINOMIAL Program Output</p>
+<p>BINOMIAL Exercises</p>
+<p>Normal Distribution</p>
+<p>NORMAL R Program .</p>
+<p>NORMAL Program Output</p>
+<p>NORMAL Distribution Exercises .</p>
+<p>Chi-Square Distribution</p>
+<p>CHISQUARE R Program .</p>
+<p>CHISQUARE Program Output .</p>
+<p>CHISQUARE Exercises</p>
+<p>t-Distribution .</p>
+<p>t-DISTRIBUTION R Program</p>
+<p>t-DISTRIBUTION Program Output .</p>
+<p>t-DISTRIBUTION Exercises</p>
+<p>F-Distribution</p>
+<p>F-DISTRIBUTION R Programs .</p>
+<p>F-Curve Program Output</p>
+<p>F-Ratio Program Output .</p>
+<p>F-DISTRIBUTION Exercises .</p>
+<p>True or False Questions</p>
+<p>Binomial Distribution .</p>
+<p>Normal Distribution</p>
+<p>Chi-Square Distribution</p>
+<p>t-Distribution .</p>
+<p>F-Distribution 107</p>
+</section>
+<section id="c07-hypothesis-testing">
+<h2>C07 Hypothesis Testing<a class="headerlink" href="#c07-hypothesis-testing" title="Link to this heading">¶</a></h2>
+<p>Sampling Distribution .</p>
+<p>DEVIATION R Program.</p>
+<p>DEVIATION Program Output 137</p>
+<p>Deviation Exercises.</p>
+<p>Confidence Intervals .</p>
+<p>CONFIDENCE R Program .</p>
+<p>CONFIDENCE Program Output</p>
+<p>Confidence Interval Exercises .</p>
+<p>Statistical Hypothesis</p>
+<p>HYPOTHESIS TEST R Program .</p>
+<p>HYPOTHESIS TEST Program Output .</p>
+<p>Hypothesis Testing Exercises</p>
+<p>TYPE I Error .</p>
+<p>TYPE I ERROR R Program</p>
+<p>TYPE I ERROR Program Output .</p>
+<p>TYPE I Error Exercises.</p>
+<p>TYPE II Error .</p>
+<p>TYPE II ERROR R Program</p>
+<p>TYPE II ERROR Program Output</p>
+<p>TYPE II Error Exercises .</p>
+<p>True or False Questions</p>
+<p>Sampling Distributions .</p>
+<p>Confidence Interval .</p>
+<p>Statistical Hypothesis</p>
+<p>TYPE I Error .</p>
+<p>TYPE II Error .141</p>
+</section>
+<section id="c08-chi-square-test">
+<h2>C08 Chi-Square Test .<a class="headerlink" href="#c08-chi-square-test" title="Link to this heading">¶</a></h2>
+<p>CROSSTAB R Program</p>
+<p>CROSSTAB Program Output</p>
+<p>Example 1</p>
+<p>Example 2</p>
+<p>Chi-Square Exercises</p>
+<p>True or False Questions</p>
+<p>Chi-Square 169</p>
+</section>
+<section id="c09-z-test">
+<h2>c09 z-Test<a class="headerlink" href="#c09-z-test" title="Link to this heading">¶</a></h2>
+<p>Independent Samples</p>
+<p>Dependent Samples.</p>
+<p>ZTEST R Programs.</p>
+<p>ZTEST-IND Program Output</p>
+<p>ZTEST-DEP Program Output .</p>
+<p>z Exercises</p>
+<p>True or False Questions</p>
+<p>z-Test .177</p>
+</section>
+<section id="c10-t-test-187">
+<h2>C10 t-Test . 187<a class="headerlink" href="#c10-t-test-187" title="Link to this heading">¶</a></h2>
+<p>One Sample t-Test . 187</p>
+<p>Independent t-Test . 189Contents</p>
+<p>Dependent t-Test .</p>
+<p>STUDENT R Program</p>
+<p>STUDENT Program Output .</p>
+<p>t Exercises .</p>
+<p>True or False Questions</p>
+<p>t-Test .190</p>
+</section>
+<section id="c11-f-test">
+<h2>C11 F-Test<a class="headerlink" href="#c11-f-test" title="Link to this heading">¶</a></h2>
+<p>Analysis of Variance .</p>
+<p>One-Way Analysis of Variance .</p>
+<p>Multiple Comparison Tests .</p>
+<p>Repeated Measures Analysis of Variance .</p>
+<p>Analysis of Variance R Programs .</p>
+<p>ONEWAY Program .</p>
+<p>ONEWAY Program Output .</p>
+<p>Scheffe Program Output</p>
+<p>REPEATED Program Output</p>
+<p>F Exercises</p>
+<p>True or False Questions</p>
+<p>F Test .197</p>
+</section>
+<section id="c12-correlation">
+<h2>C12 Correlation.<a class="headerlink" href="#c12-correlation" title="Link to this heading">¶</a></h2>
+<p>Pearson Correlation.</p>
+<p>Interpretation of Pearson Correlation</p>
+<p>CORRELATION R Program</p>
+<p>CORRELATION Program Output</p>
+<p>Correlation Exercises</p>
+<p>True or False Questions</p>
+<p>Pearson Correlation.209</p>
+</section>
+<section id="c13-linear-regression">
+<h2>C13 Linear Regression .<a class="headerlink" href="#c13-linear-regression" title="Link to this heading">¶</a></h2>
+<p>Regression Equation .</p>
+<p>Regression Line and Errors of Prediction .</p>
+<p>Standard Scores.</p>
+<p>REGRESSION R Program .</p>
+<p>REGRESSION Program Output .</p>
+<p>REGRESSION Exercises</p>
+<p>True or False Questions</p>
+<p>Linear Regression .219</p>
+</section>
+<section id="c14-replication-of-results">
+<h2>C14 Replication of Results .<a class="headerlink" href="#c14-replication-of-results" title="Link to this heading">¶</a></h2>
+<p>Cross Validation</p>
+<p>CROSS VALIDATION Programs .</p>
+<p>CROSS VALIDATION Program Output</p>
+<p>Cross Validation Exercises 229</p>
+<p>Jackknife .</p>
+<p>JACKKNIFE R Program .</p>
+<p>JACKKNIFE Program Output</p>
+<p>Jackknife Exercises .</p>
+<p>Bootstrap .</p>
+<p>BOOTSTRAP R Program .</p>
+<p>BOOTSTRAP Program Output</p>
+<p>Bootstrap Exercises .</p>
+<p>True or False Questions</p>
+<p>Cross Validation</p>
+<p>Jackknife .</p>
+<p>Bootstrap .234</p>
+<p>Synthesis of Findings</p>
+<p>Meta-Analysis .</p>
+<p>A Comparison of Fisher and Gordon Chi-Square Approaches</p>
+<p>Converting Various Statistics to a Common Metric</p>
+<p>Converting Various Statistics to Effect Size Measures .</p>
+<p>Comparison and Interpretation of Effect Size Measures</p>
+<p>Sample Size Considerations in Meta-Analysis .</p>
+<p>META-ANALYSIS R Programs .</p>
+<p>Meta-Analysis Program Output</p>
+<p>Effect Size Program Output</p>
+<p>Meta-Analysis Exercises .</p>
+<p>Statistical Versus Practical Significance .</p>
+<p>PRACTICAL R Program</p>
+<p>PRACTICAL Program Output</p>
+<p>PRACTICAL Exercises</p>
+<p>True or False Questions</p>
+<p>Meta-Analysis .</p>
+<p>Statistical Versus Practical Significance .247</p>
+<p>Glossary of Terms . 263</p>
+<p>Appendix  271</p>
+<p>Author Index 279</p>
+<p>Subject Index .</p>
+</section>
 </section>
 
 
@@ -301,7 +330,29 @@ Subject Index .</p>
 <li class="toctree-l1"><a class="reference internal" href="../Calculo_Diferencia_Integral/cap01.html">RESUMEN DE FORMULAS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Linux/grep01.html">How to use the grep command in Linux + examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Managing_People_in_Projects_for_High_Performance_Upasna/Managing_People_in_Projects_c01.html">Preface</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Understanding Statistics Using R</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">T01- Understanding Statistics Using R</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#c01-r-fundamentals">c01 R Fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#c02-probability">c02 Probability .</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#c03-statistical-theory">C03 Statistical Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#c04-frequency-distributions">C04 Frequency Distributions .</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#c05-central-tendency-and-dispersion">C05 Central Tendency and Dispersion .</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#c06-statistical-distributions">C06 Statistical Distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#c07-hypothesis-testing">C07 Hypothesis Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#c08-chi-square-test">C08 Chi-Square Test .</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#c09-z-test">c09 z-Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#c10-t-test-187">C10 t-Test . 187</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#c11-f-test">C11 F-Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#c12-correlation">C12 Correlation.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#c13-linear-regression">C13 Linear Regression .</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#c14-replication-of-results">C14 Replication of Results .</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="e01.html">T02 - An Introduction to Generalized Linear Models Fourth Edition Annette</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e02.html">T03 - BIOSTATISTICS A Foundation for Analysis in the Health Sciences - Daniel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../BIOSTATISTICS_Daniel/c06.html">CHAPTER OVERVIEW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../BIOSTATISTICS_Daniel/c06.html#topics">TOPICS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../BIOSTATISTICS_Daniel/c06.html#learning-outcomes">LEARNING OUTCOMES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../BIOSTATISTICS_Daniel/c06.html#introduction">6.1 INTRODUCTION</a></li>
 </ul>
 
 <div class="relations">
@@ -309,6 +360,7 @@ Subject Index .</p>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
       <li>Previous: <a href="../Managing_People_in_Projects_for_High_Performance_Upasna/Managing_People_in_Projects_c01.html" title="previous chapter">Preface</a></li>
+      <li>Next: <a href="e01.html" title="next chapter">T02 - An Introduction to Generalized Linear Models Fourth Edition Annette</a></li>
   </ul></li>
 </ul>
 </div>
