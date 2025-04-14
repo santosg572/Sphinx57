@@ -1,6 +1,8 @@
 c02 Angulos
 ===========
 
+.. image:: geometria-baldor.png
+
 **26. ANGULO** Angulo es la abertura formada por dos semirrectas con un mismo origen llamado
 ``vertice``. Las semirrectas se llaman ``lados``.
 
