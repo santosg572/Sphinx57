@@ -1,4 +1,3 @@
 #!/bin/bash
 
-open docs/_build/html/index.html
-
+open docs/build/html/index.html
