@@ -1,0 +1,399 @@
+BIOSTATISTICS A Foundation for Analysis in the Health Sciences, 9E, Daniel
+==========================================================================
+
+1 INTRODUCTION TO BIOSTATISTICS
+-------------------------------
+
+1.1 Introduction
+
+1.2  Some Basic Concepts
+
+1.3 Measurement and Measurement Scales
+
+1.4 Sampling and Statistical Inference
+
+1.5 The Scientific Method and the Design of Experiments
+
+1.6 Computers and Biostatistical Analysis
+
+1.7 Summary
+
+Review Questions and Exercises
+
+References
+
+
+2 DESCRIPTIVE STATISTICS
+------------------------
+
+2.1 Introduction 20
+
+2.2 The Ordered Array
+
+2.3 Grouped Data: The Frequency Distribution
+
+2.4 Descriptive Statistics: Measures of Central Tendency
+
+2.5 Descriptive Statistics: Measures of Dispersion
+
+2.6 Summary
+
+Review Questions and Exercises
+
+References
+
+
+3 SOME BASIC PROBABILITY CONCEPTS
+---------------------------------
+
+3.1 Introduction
+
+3.2 Two Views of Probability: Objective and Subjective
+
+3.3 Elementary Properties of Probability
+
+3.4 Calculating the Probability of an Event
+
+3.5 Bayes’ Theorem, Screening Tests, Sensitivity, Specificity, and Predictive Value Positive and Negative
+
+3.6 Summary
+
+Review Questions and Exercises
+
+References
+
+
+4 PROBABILITY DISTRIBUTIONS
+
+Introduction
+94
+Probability Distributions of Discrete
+Variables
+94
+The Binomial Distribution
+100
+The Poisson Distribution
+109
+Continuous Probability Distributions
+114
+The Normal Distribution
+117
+Normal Distribution Applications
+123
+Summary
+129
+Review Questions and Exercises
+131
+References
+134
+
+
+5 SOME IMPORTANT SAMPLING
+DISTRIBUTIONS
+
+Introduction
+136
+Sampling Distributions
+136
+Distribution of the Sample Mean
+137
+Distribution of the Difference Between
+Two Sample Means
+146
+Distribution of the Sample Proportion
+151
+Distribution of the Difference Between Two
+Sample Proportions
+155
+Summary
+158
+Review Questions and Exercises
+159
+References
+161
+
+6 ESTIMATION
+
+Introduction
+163
+Confidence Interval for a Population
+Mean
+166
+
+The t Distribution
+172
+Confidence Interval for the Difference
+Between Two Population Means
+178
+Confidence Interval for a Population
+Proportion
+185
+Confidence Interval for the Difference
+Between Two Population Proportions
+187
+Determination of Sample Size for
+Estimating Means
+189
+Determination of Sample Size for
+Estimating Proportions
+192
+Confidence Interval for the Variance of a
+Normally Distributed Population
+194
+Confidence Interval for the Ratio
+of the Variances of Two Normally
+Distributed Populations
+199
+Summary
+203
+Review Questions and Exercises
+206
+References
+212
+
+7 HYPOTHESIS TESTING
+
+Introduction
+216
+Hypothesis Testing: A Single Population
+Mean
+223
+Hypothesis Testing: The Difference Between
+Two Population Means
+237
+Paired Comparisons
+250
+Hypothesis Testing: A Single Population
+Proportion
+258
+Hypothesis Testing: The Difference Between
+Two Population Proportions
+262
+Hypothesis Testing: A Single Population
+Variance
+265
+Hypothesis Testing: The Ratio of Two
+Population Variances
+268
+The Type II Error and the
+Power of a Test
+273
+Determining Sample Size to Control
+Type II Errors
+278
+Summary
+281
+Review Questions and Exercises
+283
+References
+301
+
+8 ANALYSIS OF VARIANCE
+
+Introduction
+306
+The Completely Randomized Design
+
+The Randomized Complete Block
+Design
+334
+The Repeated Measures Design
+346
+The Factorial Experiment
+353
+Summary
+368
+Review Questions and Exercises
+371
+References
+404
+
+9 SIMPLE LINEAR REGRESSION
+AND CORRELATION
+
+Introduction
+410
+The Regression Model
+410
+The Sample Regression Equation
+413
+Evaluating the Regression Equation
+423
+Using the Regression Equation
+437
+The Correlation Model
+441
+The Correlation Coefficient
+442
+Some Precautions
+455
+Summary
+456
+Review Questions and Exercises
+460
+References
+482
+
+0 MULTIPLE REGRESSION AND
+CORRELATION
+10.1
+10.2
+10.3
+10.4
+10.5
+10.6
+10.7
+308
+11.1
+11.2
+11.3
+485
+Introduction
+486
+The Multiple Linear Regression
+Model
+486
+Obtaining the Multiple Regression
+Equation
+488
+Evaluating the Multiple Regression
+Equation
+497
+Using the Multiple Regression
+Equation
+503
+The Multiple Correlation Model
+506
+Summary
+519
+Review Questions and Exercises
+521
+References
+533
+
+11 REGRESSION ANALYSIS: SOME ADDITIONAL TECHNIQUES
+
+Introduction
+536
+Qualitative Independent Variables
+539
+Variable Selection Procedures
+556
+
+Logistic Regression
+565
+Summary
+575
+Review Questions and Exercises
+References
+590
+13.5
+13.6
+13.7
+576
+12 THE CHI-SQUARE DISTRIBUTION
+AND THE ANALYSIS OF
+FREQUENCIES
+12.1
+12.2
+12.3
+12.4
+12.5
+12.6
+12.7
+12.8
+12.9
+DISTRIBUTION-FREE STATISTICS
+13.1
+13.2
+13.3
+13.4
+593
+Introduction
+594
+The Mathematical Properties of the
+Chi-Square Distribution
+594
+Tests of Goodness-of-Fit
+597
+Tests of Independence
+612
+Tests of Homogeneity
+623
+The Fisher Exact Test
+629
+Relative Risk, Odds Ratio, and the
+Mantel–Haenszel Statistic
+634
+Survival Analysis
+648
+Summary
+664
+Review Questions and Exercises
+666
+References
+678
+13 NONPARAMETRIC AND
+Introduction
+684
+Measurement Scales
+685
+The Sign Test
+686
+The Wilcoxon Signed-Rank Test for
+Location
+694
+
+The Median Test
+699
+The Mann–Whitney Test
+703
+The Kolmogorov–Smirnov Goodness-of-Fit
+Test
+711
+13.8 The Kruskal–Wallis One-Way Analysis of
+Variance by Ranks
+717
+13.9 The Friedman Two-Way Analysis of
+Variance by Ranks
+725
+13.10 The Spearman Rank Correlation
+Coefficient
+731
+13.11 Nonparametric Regression Analysis
+740
+13.12 Summary
+743
+Review Questions and Exercises
+745
+References
+760
+14 VITAL STATISTICS
+14.1
+14.2
+14.3
+14.4
+14.5
+683
+Introduction
+764
+Death Rates and Ratios
+765
+Measures of Fertility
+772
+Measures of Morbidity
+776
+Summary
+777
+Review Questions and Exercises
+References
+782
+763
+779
+APPENDIX: STATISTICAL TABLESA-1
+ANSWERS TO ODD-NUMBERED
+EXERCISESA-106
+INDEX
+I-1
+
+

@@ -19,4 +19,11 @@ documentation for details.
    :caption: Contents:
 
    Geometria_Trigonometria/c02
+   Temarios/t01
+   Temarios/t02
+   Temarios/t03
+   Temarios/t04
+   Temarios/t05
+
+
 
