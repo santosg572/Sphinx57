@@ -1,0 +1,726 @@
+Chapter 3 Two-Sample Proportions
+================================
+
+In the last Chapter we focused on estimating and conducting a hypothesis
+test on a proportion from a single group. In practice, we are often interested
+in comparing proportions from two separate groups, and as such we would
+perform a hypothesis test comparing the proportions from those two different
+samples. The process for the two-sample case is similar to that for the one-
+sample case, in that we will go through the same general steps, though the
+details of those steps will be different. Further, there are additional statistical
+techniques that we perform, depending upon the status of our assumptions.
+
+3.1 Summarizing Categorical Data with Contingency Tables (with R Code)
+
+In this chapter we still focus on the case where our outcome measure – in
+both samples – is dichotomous, meaning that those sample measures are
+best represented by sample proportions. As always for dichotomous data, we
+want to report the frequency, sample size and sample proportion for each of
+our two groups; note that you want to calculate (but not report) the overall
+sample proportion (i.e. pool the data from both groups) for reasons that will
+become clear later.
+
+For the two-sample case, the data summaries can be efficiently presented
+in what is called a contingency table. In its simplest form, a 2 × 2 (read:
+“two-by-two”) contingency table lists the frequencies of each outcome for
+each treatment in tabular form, where the rows represent group membership
+and the columns represent outcome membership. An example is presented in
+Table 3.1 below. In this case, the two groups consist of n1 and n2 subjects,
+respectively, for a total of n1 + n2 = n total subjects. Note that in the first
+group, a of the n1 subjects take the outcome “Yes”, while b subjects take
+the outcome “No”, and that a + b = n1. Likewise, in the second group there
+are c “Yes” outcomes and d “No” outcomes, such that c + d = n2. The total
+number of subjects taking a particular outcome across group membership is
+generally not of interest.
+
+Table 3.1: Example 2 × 2 Contingency Table.
+
+Outcome
+Group Yes No Group Sample Size
+1 ab n1 = a + b
+2 cd n2 = c + d
+Total a + c b + d n = n1 + n2
+
+In practice, we will expand upon the simple 2 × 2 contingency table to
+also include the sample proportions and 95 % CI confidence intervals for the
+proportions in each group. Returning to the example used in Chapter 2,
+where 33 out of 200 patients reported little or no side-effects associated with
+a particular treatment, let us now assume that 8 of 100 patients on a control
+treatment reported little or no side-effects. Thus, there is a 0.165 success
+rate for the treatment group, and a 8/100 = 0.080 success rate in the control
+group. To compare these two groups we look at the data summary presented
+in the contingency table found in Table 3.2.
+
+Table 3.2: Contingency Table for Symptom-Relief Example.
+
+Proportion Reporting Little or Outcome No Symptoms
+Group Yes No Sample Size Observed 95 % CI
+Treatment 33 167 200 0.165 0.114, 0.216
+Control 8 92 100 0.080 0.027, 0.133
+Total 41 259 300
+
+Note that the confidence intervals for the proportion of “Yes” outcomes in
+each treatment group were calculated using the methods provided in Chapter 2. We could have used R to produce confidence intervals, but – as men-
+tioned in Chapter 2 – they are not going to be the same, since R calculates
+these intervals using an alternative method. Using the prop.test() function in R, we obtain a (0.120, 0.223) 95 % CI for the treatment group and a
+(0.041, 0.150) 95 % CI in the control group. Again, note that these intervals
+are similar but not equal to the confidence intervals provided in Table 3.2.
+
+Before continuing with the hypothesis testing process, we must take time
+to discuss what can and cannot be compared in this table. Let us consider
+the frequency of “Yes” outcomes in the two groups. One might be tempted
+to conclude – since there are 33 “Yes” outcomes in the Treatment group
+and only 8 “Yes” outcomes in the Control group – that the treatment works
+better than the control at reducing side-effects. However, this is not a fair
+comparison since the sample sizes for the two groups are not equal. Rather,
+we look to the sample proportions for comparisons between the two groups,
+since the sample proportion adjusts the sample frequency by the sample size
+to give an average response rate. In our example, we can see that the rate of
+those reporting little or no side effects is higher (0.165) in the treatment group
+than the corresponding rate (0.080) in the control group. This is indeed a
+fair comparison to make, though we came to the same conclusion reached by
+looking at the sample frequencies. So consider another example, where 20 out
+of 200 subjects in the first group responded “Yes”, and 10 out of 100 subjects
+in the second group responded “Yes”. Here, we would erroneously claim that
+the first group has a higher rate of “Yes” respondents than the second group
+(even though it actually does have more “Yes” responses: 20 compared to
+10), since once we adjust for sample size, both sample proportions are 0.10.
+In summary, do not compare frequencies, even if the sample sizes are the
+same. Rather, look to the sample proportions and conduct a hypothesis test.
+
+To create a contingency table in R, we need to organize the data in “matrix” form. This is done by entering the number of successes and failures for
+each group into the c() (see below). By also specifying the desired number
+of rows and columns (using the nrow and ncol commands, we can create the
+table using the matrix() function in the following coding.
+
+.. code:: R
+
+   Table1 <- matrix(c( 33, 8, 167, 92 ),
+      nrow=2, ncol=2)
+
+This R code above creates our table, which we have named Table1. After the
+matrix() statement we list values for the table using the c() function, and
+then the numbers of rows and columns. Note that if the number of items in
+the list (i.e. the c() function) do not match the specified number of elements
+in the matrix (i.e. the product of the numbers of rows and columns), then R
+will not produce the table. Of course, it is often a simple process to create a
+contingency table using word processing software (e.g. Microsoft Word), and
+we recommend doing so, as it encourages you to check your work.
+
+3.2 Hypothesis Test for Comparing Two Population Proportions
+
+3.2.1 Generating Hypotheses About Two Proportions
+
+Like we did in Chapter 2, we need to turn a research question into a set of
+testable hypotheses (a null and alternative) that will allow for statistical application. Unlike the last Chapter, we now have two proportions in which we
+are interested, so hypotheses we wish to test must arise from a single statement of both proportions. We now are concerned with population proportion
+p1 for group 1 and population proportion p2 for group 2, and to make matters simple we will take their difference p1 − p2. Focusing on the difference
+between the two group proportions will allow us to phrase our research
+statements in the same way as we had previously, and even use the same
+symbols. For instance, if our research statement is that the proportion in
+group 1 is larger than in group 2 (or p1 > p2), we get the following statement
+by focusing on the difference (p1 − p2 > 0). Likewise, if our research statment is that the group 1 proportion is smaller than the group 2 proportion
+(or p1 < p2), then we get (p1 − p2 < 0) by focusing on the difference, and if
+we state that the proportions are equal (or p1 = p2), we could equivalently
+focus on (p1 − p2 = 0). This logic follows for statements that include ≤, ≥
+or =. The process for turning a research statement into a set of hypotheses
+is similar to that covered in Chapter 2, and Table 3.3 contains the three
+different null and alternative hypotheses that can arise from certain types of
+research questions for comparing two proportions.
+
+Table 3.3: Possible Sets of Hypotheses for Comparing Two Population
+Proportions Based Upon Key Phrases in Research Question.
+Key Phrases of p1 relative to p2
+“less than” “greater than” “equal to”
+“greater than “less than or “not equal to”
+
+Hypothesis or equal to” “at least” equal to” “at most”
+Null H0 : p1 − p2 = 0 H0 : p1 − p2 = 0 H0 : p1 − p2 = 0
+Alternative HA : p1 − p2 < 0 HA : p1 − p2 > 0 HA : p1 − p2 = 0
+
+3.2.2 Statistical Assumptions
+
+Before proceeding with the hypothesis test, we need to ascertain whether
+the assumptions necessary to conduct that test are met. Since there are two
+samples under consideration in this case, we need to be certain that both
+samples are representative of the populations from which they are drawn.
+In this textbook we generally assume that the samples we work with are
+representative, though in practice this depends upon the sampling methods
+used by the researchers who collected the data. The subjects within these
+two samples (and between) also need to be independent of one another, in
+the sense that the value one subject takes for a particular outcome cannot
+depend upon the value that any other subject takes. We generally assume
+that subjects (and thus the samples) are independent if we know that they
+were collected randomly. In the two-sample case, it may also be necessary
+for subjects to be allocated randomly into one of the two groups (such as in a
+clinical trial with competing treatments), though this would not be necessary
+if the groups are based on fixed concepts (such as gender or ethnicity).
+
+Determining adequate sample size is a little more complicated than it
+was in the one-sample case. Again, we need to expect at least five subjects to
+take both values of the dichotomous outcome, though now we need to expect
+this for both groups of subjects, and we will again base our expectations
+on the null hypothesis. Regardless of our research question and alternative
+hypothesis, the null states that p1 and p2 are equal. Our best guess of what
+the population proportion would look like if there was actually no difference
+between the two groups is to pool the data from those two groups together
+to form a grand proportion p ̄ = (a + c)/(n1 + n2). If this value  ̄p was truly
+the population proportion, then we can determine what we would expect to
+observe in each group by multiplying  ̄p by the sample size in each group.
+These resulting values are our expected frequencies of successes, and the expected frequencies of failures can be calculated by using the compliment rule
+(i.e. subtracting) for each group.
+
+The expected frequencies for our example are listed in Table 3.4. The
+grand proportion obtained by pooling the outcomes from the treatment and
+control groups is  ̄p = 0.137, which – as one might expect – is somewhere
+between the Treatment group proportion of 0.165 and the Control group
+proportion of 0.080 (it is closer to 0.165 because the treatment group has
+more subjects than the control group). Based on this grand proportion, we
+see that the expected frequencies of “Yes” outcomes for both groups (27.3 and
+13.7, respectively) are greater than 5, as are the expected frequencies of “No”
+outcomes (172.7 and 86.3, respectively). Thus, we have adequate sample size
+to conduct the hypothesis test. Note, however, that we would claim that we
+do not have adequate sample size if any of our expected frequencies (for both
+outcomes in either group) were less than 5. We will develop a more general
+rule in Chapter 4.
+
+Table 3.4: Observed and Expected Frequencies for Two-Sample Symptom
+Relief Example.
+
+Observed Expected
+Group Yes No Sample Size Yes No
+Treatment 33 167 200 27.3 172.7
+Control 8 92 100 13.7 86.3
+Total 41 259 300  ̄p = 41/300 = 0.137
+
+If we do not wish to calculate these values by hand, we can ask R to do
+the calculations for us. After entering the cell frequencies in matrix form (as
+table1) in Program 4 below), we need to call the chisq.test() function,
+which under normal circumstances produces results from the chi-square test
+(more on this below). For our purposes, we name this function (here we chose
+expval1), and then ask for the expected values using the expval1$expected
+line; note here that the key is adding the function $expected to our named
+output expval1. We then see that the resulting output matches what we
+calculated by hand.
+
+3.3 Performing the Test and Decision Making (with R Code)
+
+Since our hypotheses are in terms of the difference p1−p2, our sample estimate
+of that difference (ˆp1 − pˆ2) will be the focus of our test statistic. We also
+need a statistic to measure the variability of our sample estimate under the
+condition that the null hypothesis is true. Since we do not have specific
+hypothesized values for p1 or p2, we again make use of the grand proportion
+p ̄ in the calculation of our standard error. In the case of comparing two
+sample proportions, we use the following test statistic
+
+.. math::
+
+  z = \frac(\hat{p}_1 −\hat{p}_22) − (p1 − }{\sqrt{\hat{p}_1p ̄(1−p ̄)
+n1 + p ̄(1−p ̄)
+n2
+= pˆ1 − pˆ2
+p ̄(1−p ̄)
+n1 + p ̄(1−p ̄)
+n2
+. (3.1)
+
+Note that under the null hypothesis the difference p1 − p2 is equal to zero.
+Using the data from our current example, we get the following value for our
+test statistic
+
+z = 0.165 − 0.080
+0.137(1−0.137)
+200 + 0.137(1−0.137)
+100
+= 0.085
+0.043
+= 2.02, (3.2)
+
+which implies that the difference in the sample proportions (0.085) is slightly
+more than two standard deviations above the hypothesized difference of zero.
+Whether or not two standard deviations is a lot is unclear at this point, so
+we need to look at the critical value and p-value methods to make a more
+informed comparison of these two proportions. As always, we round the test
+statistic z to two decimal places.
+
+3.3.1 Critical Value Method
+
+For reasons similar to those covered in the single-proportion case of Chapter 2,
+the test statistic in the 2-sample case will also follow a standard normal
+distribution if our assumptions are met (especially that of sample size). Note
+that we could show that the test statistic has a standard normal distribution
+by conducting another simulation study, but at this point it should suffice
+to simply state that the result holds. This means that the critical values
+used for choosing between our competing hypotheses are the same as they
+were before and depend only upon our choice of significance level and the
+direction of the inequality found in the alternative hypothesis. These values
+are presented for the two-sample case in Table 3.5 below. Note that the
+only differences from this table and Table 2.3 are the parameters found in
+the alternative hypothesis; everything else, including our decision making
+process, is the same.
+
+For our example, let’s say we had the following research statement: the
+success rate for the treatment group is greater than the success rate for the
+control group. Based on the phrasing of this statement (notably the words
+“greater than”), our null and alternative hypotheses are H0 : p1 −p2 = 0 and
+HA : p1 − p2 > 0, and our critical value is 1.645. This means that we will
+reject H0 if our test statistic is greater than 1.645, and we will fail to reject
+H0 if our test statistic is less than or equal to 1.645. We have previously
+seen that our test statistic is 2.02, which is greater than our critical value
+of 1.645, so we reject the null hypothesis in favor of the alternative. Thus,
+the data suggest that the difference in success rates (p1 − p2) is greater than
+zero, which is another way of saying that the data suggests that p1 is greater
+than p2.
+
+3.3.2 p-Value Method
+
+Like the critical value method just covered, the p-value method is mostly
+the same in both the one- and two-sample proportion cases. The calculation
+of a p-value again depends upon the magnitude (numbers) and direction
+(+ or − sign) of the test statistic, as well as the alternative hypothesis. If we
+have a left-tailed test, we calculate the probability that a standard normal
+random variable Z is less than our observed test statistic z given that the
+null hypothesis is true (or P(Z<z|H0)). If we have a right-tailed test,
+we calculate the probability that Z is greater than z (or P(Z>z|H0)).
+If we have a two-tailed test, then we can either calculate the two-times
+the probability that Z is less than −|z| (or 2P(Z < −|z| |H0,z < 0)), or
+two-times the probability that Z is greater than |z| (or 2P(Z > |z||H0,z >
+0)). As always, we reject the null hypothesis if the p-value is less than the
+significance level, and we fail to reject the null hypothesis if the p-value
+is greater than or equal to the significance level. Note that the p-value and
+critical value methods will always give the same conclusion for the two-sample
+proportion case.
+
+Returning to our example, note that we have a right-tailed alternative
+hypothesis HA : p1 − p2 > 0, so we calculate our p-value as the probability
+of having a test-statistic greater than or equal to our observed test statistic,
+assuming that the null hypothesis is true (equal proportions). Thus, our p-
+value is 0.0217 (rounded to four decimal places), which is less than α = 0.05,
+so we reject H0 in favor of HA, and conclude that the data suggests that
+the success rate in the treatment group is larger than the success rate in the
+control group. Using the prop.test() function in R – learned in Chapter 2 –
+provides us with the p-value for this test (but unfortunately not the critical
+value). Here we need to organize the information by the number of successes
+and the sample size for each group. Since there are 33 successes in the
+treatment group (out of n1 = 200)and 8 successes in the control group (out
+of n2 = 100), we will create two “vectors” of this information using the
+c() function, which in our example would be c(33, 8) for the successes and
+c(200, 100) for the sample sizes. Program 5 shows the code and the resulting
+output for our test.
+
+We specified the appropriate right-tailed alternative hypothesis by including the alternative="greater" command; we also could have selected
+from "two.sided" or "less" which would have provided the two-tailed and
+left-tailed tests, respectively. Here we wee that the p-value we obtained is
+0.02167, which matches what we obtained by hand – once we round appro-
+priately. However, notice that this test does not provide the observed test
+statistic for the z-test and instead provides a value called X-squared; we will
+talk about the source of this value momentarily. Also notice in the first line
+of the output it says “. . . without continuity correction”. The continuity correction is an alternative approach that adjusts the specified rates (successes
+and failures) to better match the normal distribution.
+
+3.3.3 Confidence Intervals
+
+In an effort to further summarize our data, we can produce a confidence interval on the observed difference between the two sample proportions (ˆp1 − pˆ2).
+As explained in Chapter 2, the confidence interval combines our estimator
+(in this case the difference in sample proportions) with a measure of the
+variability of that estimator (the standard error) and a probabilistic measure
+indicating reasonable likelihood (critical value). As in Chapter 2, the standard error takes the form of the denominator of the test statistic used for
+hypothesis testing, where we now use the actual sample proportions rather
+than a hypothesized value or the grand proportion, and takes the form
+
+SE =
+
+pˆ1(1 − pˆ1)
+n1
++ pˆ2(1 − pˆ2)
+n2
+. (3.3)
+
+The probabilistic measure is the same as the critical value we would use for
+a two-sided alternative hypothesis, and depends upon the significance level.
+If α = 0.05, then we use 1.96; if α = 0.01, then we use 2.575.
+
+For our example, based on the observed sample proportions and sample
+sizes, we get the following 95 % confidence interval for the difference in sample
+proportions
+
+
+((ˆp1 − pˆ2) ± 1.96 × SE) = ((0.165 − 0.08) ± 1.96 × 0.038) = (0.011, 0.159). (3.4)
+
+So the 95 % CI for the difference in success rates between the treatment and
+control groups is (0.011, 0.159). While we use this CI for data summary purposes – as we would with the 95 % CIs for the treatment group (0.114, 0.216)
+and the control group (0.027, 0.133) – note that it corroborates our result
+from the hypothesis test since 0 is not contained within the interval. Again, since our standard error expression is 
+different for CIs than it is for hypothesis testing, these results are not necessarily the same over all examples, and
+as such we will not use confidence intervals to make inference on the two
+population proportions. To calculate the confidence interval on the difference between two proportions in R, we again make use of the prop.test()
+function. Being sure to specify the alternative="two.sided" option, Pro-
+gram 6 shows the code and the resulting output for our test. Here we see
+that Program 6 produces both the hypothesis test and the confidence interval
+on the difference. In this case the 95 % confidence interval is (0.01101623,
+0.15898377), which we round to (0.011, 0.159) and exactly matches what we
+obtained by hand. If we were to incorporate the continuity correction, we
+would obtain (0.004, 0.166), which is slightly wider than our original confidence interval.
+
+3.3.4 Chi-Square Test
+
+If our assumptions are met (especially a large enough sample size), then we
+can use an alternative method for conducting a two-tailed hypothesis test
+(i.e. HA : p1 − p2 = 0). This test is based upon the chi-square probability
+distribution, and is actually a special case of the more general test we will
+learn in Chapter 4. To conduct this test, we must revisit the contingency
+table, where here we focus on the number of success and failures in both
+groups. This revisited contingency table is found in Table 3.6. Here we note
+
+Table 3.6: Contingency Table for Chi-Square Test.
+
+Observed
+Group Yes No Total
+1 ab a + b
+2 cd c + d
+Total a + c b + d n = a + b + c + d
+
+that the marginal column and row totals (i.e. the sums we obtain by adding
+all values down one column or across one row) are just as important as the
+observed values, as noted in the following test statistic
+
+χ2 = n(ad − bc)2
+
+(a + c)(b + d)(a + b)(c + d)
+
+. (3.5)
+
+We will expect this test statistic to take small values if ad is close in value to
+bc, which happens when the number of successes in Group 1 is close (relative
+to sample size) to the number of successes in Group 2. If the relative numbers
+of successes in the two groups are not close, then the test statistic χ2 will
+take larger values.
+
+From our example, we get
+
+χ2 = 300((33)(92) − (167)(8))2
+(41)(259)(200)(100) = 4.08. (3.6)
+
+Note that the square root of this value is our test statistic z from earlier
+(i.e. χ2 = √4.0823 = 2.02047 = z). This result will always hold for the
+two-sample/two-outcome case, and implies that both the z-test and the chi-
+square test will always give the same result. Note that this test statistic is
+automatically produced in R (see Program 6 above).
+
+We now need to determine how to make a decision for the chi-square test
+based on the observed test statistic χ2. As stated earlier, this test statistic
+will follow the chi-square probability distribution, which is a probability distribution for certain random variables that only take positive values. Since
+we can view the chi-square test statistic as the square of the standard normal
+test statistic z, we know that χ2 will always take positive values and the
+use of the chi-square probability distribution makes sense. However, because
+of this relationship, we can only use the chi-square test when we have two-
+sided alternative hypotheses, since the test would not be able to distinguish
+between positive and negative test statistics for one-sided alternatives.
+
+The chi-square distribution is parametrically dependent upon the so-called
+degrees of freedom, which can be thought of as the number of independent
+pieces of information we have available in our contingency table. To illustrate the concept of degrees of freedom, imagine we had a contingency table
+(Figure 3.1) where we knew the marginal totals of the columns and rows, but
+not the particular numbers within the table. Based on only the marginal column and row totals, we do not have enough information to fill in the rest of
+the table. However, observe what happens when we fill in any one of the four
+interior parts: the rest of the table must take certain values due to the complement rule. So by knowing just one of those four pieces (along with the
+marginal totals), we can figure out the remaining three. By no coincidence,
+our chi-square test has 1 degree of freedom.
+
+As mentioned earlier, the chi-square distribution is characterized solely by
+the degrees of freedom, which take positive values (usually integers). Various
+plots of this distribution for degrees of freedom 1 through 5 are provided in
+Figure 3.2. For small degrees of freedom (less than 2), the curve is highest at
+0 and slowly tapers off (indicating that values slightly above 0 are more likely
+than larger values). For larger degrees of freedom (3 and above), the center
+of the curve is removed from zero, implying that values under that center
+are more likely than smaller or larger values (from that center). Of special
+importance is noting what happens to the curve as the degrees of freedom increases: as the degrees of freedom changes from 3 to 4 to 5, the central mound
+of the curve (indicating the mode, or most likely value) is shifting to the right,
+and the curve more closely resembles a symmetrical curve. In fact, for large
+enough degrees of freedom (k), the chi-square curve is indistinguishable from
+a normal curve with mean k − 2 and variance 2k.
+
+For the chi-square test, we can obtain a critical value or use the p-value
+method, though we will rely upon statistical software for the calculations.
+When we have one-degree of freedom and significance level α = 0.05, the
+critical value for a chi-square distribution is 3.841 (note that (1.96)2 = 3.841).
+From our example, since our test statistic χ21 = 4.08 is greater than 3.84, we
+reject the null hypothesis in favor of the alternative (the two proportions
+are most likely not equal). To obtain the p-value, we would calculate the
+probability that a chi-square random variable with 1 degree of freedom takes
+a value greater than or equal to our test statistic. For our example, we get a
+p-value = P(χ2 > 4.08) = 0.0433, which is less than our significance level, so
+we again reject the null hypothesis in favor of the alternative. Note that for
+the chi-square test we most often use the p-value method, and report the test
+statistic, degrees off freedom and p-value in the following manner: χ2
+1 = 4.08, p-value = 0.0433.
+
+Note also that this is the same p-value we would get form a two-sample
+z-test with a two-sided hypothesis, and it is also 2-times the p-value we would
+obtain from a right-tailed z-test. Thus, if we wanted to turn the p-value from
+a chi-square test into the p-value from either the left-tailed or right-tailed
+z-test (but not both), we simply divide by 2. However it is not always clear
+to which test (the left- or right-tailed z-test) this halved p-value will apply.
+If we have a right-tailed alternative and our z-test statistic is positive, then
+the chi-square p-value will be two-times the z-test p-value. Likewise, if we
+have a left-tailed alternative and our z-test statistic is negative, then the
+chi-square p-value will again be two-times the z-test p-value. However, if
+we have a right-tailed alternative and a negative z-test statistic, or a left-tailed alternative and a positive z-test 
+statistic, then the two p-values do not coincide.
+
+In our previous use of the prop.test function (which earlier provided us
+with the chi-square test statistic, degrees of freedom, and p-value), we can
+also use the chisq.test() function to obtain the relevant information. Using
+the same definitions used in creating the contingency table (i.e. table1), we
+simply place table1 in the chisq.test() function, as shown in Program 7
+below.
+
+
+The output for the test conducted in Program 7 gives the basic information for the chi-square test: the test statistics X-squared; the degrees of
+freedom df associated with the test; and the p-value. Notice that the result
+from the p-value method (reject H0 since 0.04333 < 0.05) matches what we
+observed earlier using the critical value method, and also indicates a significant
+result. Note that – as was the case with the prop.test function – we need to
+“turn off” the continuity correction by specifying the correct=FALSE option.
+Had we failed to do so, R would have provided a slightly different result.
+
+3.4 Contingency Methods (with R Code)
+
+Occasionally we will experience the situation where we wish to compare the
+proportions from two groups of subjects, but (at least) one of our expected
+frequencies is less than 5, meaning we do not have a large enough sample
+size to use either the z-test or the χ2-test. In that case, we must instead use
+Fisher’s exact test, which is a test that compares the two proportions and
+is valid for any sample size. Fisher’s exact test works for any sample size
+because – like the binomial test from Chapter 2 – it is based on the concept
+of counting all possible outcomes that could be observed between two groups
+of categorical data. In this instance enumerating all possible outcomes is not
+difficult, and can be done by hand when the sample sizes are small enough;
+unlike in Chapter 2, we will not show how Fisher’s exact test works.
+
+In practice, computer software will do these types of enumerations for
+us. To calculate Fisher’s exact test in R we use the fisher.test() function by specifying the contingency table (e.g. table1 above). The output
+for the two-tailed test is provided bellow in Output 8, where the two-tailed
+hypothesis p-value is 0.049886, which we round to 0.0499. We could obtain
+p-values for the left-tailed or right-tailed alternative hypotheses by specifying alternative="less" or alternative="greater", which would have
+provided p-value = 0.9887 for the left-tailed hypothesis and p-value = 0.02945
+for the right-tailed hypothesis. If we stick with our original right-tailed alternative hypothesis, since the p-value = 0.0295 is less than our significanclevel α = 0.05, we reject the null hypothesis in favor of the alternative hy-
+pothesis that the treatment success rate is most likely larger than the control
+success rate. Note that since this method counts all possible outcomes, it
+may take a considerable amount of time for enumeration when sample sizes
+are large, and may require a computer with a sufficient amount of RAM in
+order to complete all enumerations.
+
+3.5 Odds Ratio (with R Code)
+
+An alternative measure used to compare the relative success of some measurement between two groups is the odds ratio. This measure – while ubiquitously
+used in the health sciences – can be somewhat challenging to fully understand,
+as it is based on the probabilistic concept of odds. Most of us use the idea
+of odds qualitatively (e.g. the odds of a team winning a game are high), but
+we may be less familiar with how to use them quantitatively. Probabilistically, the odds of some event are defined as the ratio of the frequency (a)
+with which some event did occur to the frequency (b) with which some event
+did not occur, such that the odds are listed as a : b or a/b (read “a-to-b”).
+For example, if we are to flip a coin and are interested in the likelihood of
+having a “head” landing facing up, then there are two possible outcomes we
+could observe (i.e. heads or tails). Of these, heads is the outcome where our
+event occurs, and tails is the outcome where our event does not occur. Thus,
+the odds for a “head” are 1:1 or 1/1 (read “1-to-1”). These are even odds,
+meaning that a heads is equally likely to occur or not occur (we know this
+because the numbers on either side of the colon “:” are equal). If the number
+to the left of the colon is larger than the number to the right, then the event
+is more likely to occur than to not occur, and if the number to the right of
+the colon is larger than the number to the left, then the event is more likely
+to not occur than to occur. Note that the odds for some event (a : b) are
+directly tied to the probability of that event (a/(a+b)). In our coin example,
+the 1:1 odds for a head translates into a 1/(1+ 1) = 1/2 probability of having
+a head land up.
+
+Turning to our example, the number of successes in the treatment group
+was 33 (out of 200). Thus, the odds of success in the treatment group
+are 33:167; the odds of success in the control group are 8:92. These odds
+imply that a success is less probable than a failure in both groups. While
+unfortunate, these values do not answer our question of whether the treatment reduces symptoms compared to the control. This is where the odds
+ratio becomes useful. Evaluating the fractions implied in each of the odds
+(33/167 = 0.1976; 8/92 = 0.0870) and – as the name implies – taking their
+ratio gives the odds ratio (OR = 0.1976/0.0870 = 2.27246), which we round
+to at most two decimal places (OR = 2.27).
+
+Note that if the odds of success in each group were equal, the odds ratio
+would be 1; conversely, an odds ratio of 1 implies that the odds of some event
+are equal between two groups. If the odds ratio is less than one, than the
+odds of the event are greater in the second group than in the first, and an
+odds ratio greater than one implies that the odds of the event are greater in
+the first group than in the second. For our example, OR = 2.27 implies that
+the odds of reduced symptoms are greater in the treatment group than in
+the control group. Specifically, we can state that the odds of having reduced
+symptoms in the treatment group are 2.27 times the odds of having reduced
+symptoms in the control group (try it: 2.27246 ∗ 0.0870 = 0.1976). Or for
+those with more confidence in their quantitative skills, we could say that
+the odds of reduced symptoms are 127 % larger in the treatment group than
+in the control group. To calculate this difference, turn the odds ratio into a
+percentage by moving the decimal two places to the right, add a percent sign,
+and then subtract 100 %. For example, if the OR = 2.0, then 2.0 turns into
+200 %, and after subtracting 100 % we are left with 100 % (i.e. the odds in
+the first group are 100 % larger than the odds in the second group, or twice
+as large). In our example, since the OR = 2.27, then 2.27 turns into 227 %,
+and after subtracting 100 % gives us 127 % (i.e. the odds in the treatment
+group are 127 % larger than the odds in the control group). This process
+can also be used when an odds ratio is less than one to determine by what
+percentage that the odds in one group are smaller than the odds in another
+group.
+
+There are several methods for generating the confidence interval of an
+odds ratio, each of which is somewhat involved. We will thus report the
+confidence interval without explaining its derivation. Recall that R provided
+the odds ratio in the output for Fisher’s Exact Test in Program 8. This
+value was listed as 2.266913, which – after rounding to 2.27 – we see is nearly
+identical to what we calculated by hand. Rather than rely upon this output,
+we will use the Oddsratio function, as shown in Program 9 below. In this
+output we see the estimated odds ratio is 2.272455 (which we round to 2.27),
+and the 95 % confidence interval for the odds ratio is (1.007657, 5.124812)
+(which we round to (1.01, 5.12). Note that this interval lies completely above
+1, which implies that the odds of success in the treatment group are larger
+than that in the control group. Note that we specify method="Wald" in the
+oddsratio function to use the same method of calculating the odds ratio as
+when done by hand, though others can be specified.
+
+3.6 Communicating the Results (IMRaD Write-Up)
+
+The following is an example of the IMRaD write-up for our two-sample
+example.
+
+Introduction: Treatments designed to treat certain diseases or conditions
+often have adverse side-effects that can complicate a patient’s reaction to
+the treatment, and can ultimately affect the disease or condition prognosis.
+Clinicians and practitioners are interested in treatments that have no or
+minimal side-effects. It was of interest to determine whether the proportion
+of patients reporting reduced side-effects from a particular treatment was
+greater than the proportion of patients reporting reduced side-effects from a
+control treatment.
+
+Methods: The frequency of subjects reporting reduced side-effects as well
+as the total sample size are reported for both the treatment (n = 200) and
+control (n = 100) groups, and the proportions of subjects reporting reduced
+side-effects in both groups are summarized with sample proportions and 95 %
+confidence intervals. The difference in sample proportions is also presented,
+as is a 95 % confidence interval on the difference between the two group
+proportions. (If z-test is used:) We test the null hypothesis of no difference in
+success rates (H0 : p1−p2 = 0) against a one-sided alternative hypothesis that
+the difference in success rates is greater than 0 (HA : p1 − p2 > 0) by using a
+two-sample z-test with significance level α = 0.05. (If chi-square test is used:)
+We test the null hypothesis of no difference in success rates (H0 : p1 −p2 = 0)
+against a two-sided alternative hypothesis that the difference in success rates
+differs from 0 (HA : p1 − p2 = 0) by using a chi-square test with significance
+level α = 0.05. We will reject the null hypothesis in favor of the alternative
+hypothesis if the p-value is less than α; otherwise we will not reject the null
+hypothesis. The R statistical software was used for all statistical analyses.
+
+Results: The data are summarized in Table 3.7 below. Assuming that the
+two samples are representative and subjects are independent, the two samples
+are large enough to conduct the statistical analysis. The observed success rate
+in the treatment group (0.165, 95 %CI : 0.114, 0.216) is significantly larger
+than that in the control group (0.080, 95 %CI : 0.027, 0.133), with an observed
+difference of 0.085(95 %CI : 0.011, 0.159). (If z-test is used:) The two-sample
+z-test yielded p-value = 0.0217, so we thus reject the null hypothesis in favor
+of the alternative hypothesis. (If chi-square test is used:) The chi-square test
+(χ2 1 = 4.1, df = 1, p-value = 0.0433) yielded a small p-value, so we thus reject
+the null hypothesis in favor of the alternative hypothesis
+
+
+Table 3.7: Data Summary.
+Outcome Proportion Reporting Little
+or No Symptoms
+Group Yes No Sample Size Observed 95 % CI
+Treatment 33 167 200 0.165 0.114, 0.216
+Control 8 92 100 0.080 0.027, 0.133
+Diff 0.085 0.011, 0.159
+
+Discussion: The sample data suggest that the proportion of patients who
+reported reduced side-effects using the treatment is greater than the proportion who reported reduced side-effects using the control. Thus, clinicians and
+practitioners interested in treating patients with reduced side-effects due to
+the treatment may wish to consider this treatment.
+
+3.7 Process
+
+1. State research question in form of testable hypotheses.
+
+2. Determine whether assumptions are met.
+(a) Representative
+(b) Independence
+(c) Sample size: calculate grand proportion and expected frequencies
+3. Summarize data with contingency table.
+(a) If sample size is adequate: summarize groups with frequencies,
+sample sizes, proportions and CIs, and report difference in sample
+proportions and CI for difference.
+(b) If sample size is inadequate: report frequencies and samples sizes
+for each group.
+
+4. Perform Test.
+(a) If sample size is adequate: calculate z-test or chi-square test
+statistic.
+(b) If sample size is inadequate: perform Fisher’s Exact test.
+5. Compare test statistic to critical value or calculate p-value.
+6. Make decision (reject H0 or fail to reject H0).
+7. Summarize with IMRaD write-up.
+
+3.8 Exercises
+
+1. Police officer fitness is important for the ability for the police force
+to complete its mission. A researcher is interested in determining if
+differences exist between the fitness levels of female and male officers.
+He collects a sample of 212 female officers and 316 male officers. For
+each of the officers a fitness test is given and it is recorded whether or
+not the officer passed the test. The results of the tests were as follows:
+162 females passed the test and 222 males passed the test. Determine
+if there is difference in the proportion who pass the fitness test across
+gender.
+
+2. In October 2012 Gallup Poll conducted a survey comparing rates of
+exercise between Britons and Germans. The survey consisted of 7,786
+Germans and 7,941 Britons aged 18 or older. The participants were
+asked if they exercised at least 30 min three times a week or more.
+This showed that 4,288 Britons and 5,840 Germans reported that they
+exercise at least 30 min three or more times per week. Conduct a test
+to determine if Germans exercise more than Britons.
+
+3. Justesen et al. (2003) conducted a retrospective pharmacokinetic study
+to determine the long-term efficacy in HIV patients of a combination of
+indinavir and ritonavir. Of partial interest was the number of patients
+who remained in the treatment regimen for the entire 120 weeks, as
+per the study design. Compare the rate of patients who remained on
+treatment for the entire duration between patients who had or who had
+not previously experienced protease inhibitors. The data are provided
+in the following table.
+
+4. In a study by Engs and Hanson (1988), college students were asked
+whether they had ever driven an automobile after having consumed
+alcoholic beverages. One goal of this study was to determine if the percentage of students responding “yes” had changed after a law (students
+were originally assessed in 1983, and the law passed in 1987) raised the
+minimum age permitting the purchase of alcohol. Using the data provided in the following table, compare the rates of students who stated
+that they did not drive after consuming alcohol.
+
+Drove after Year
+drinking 1983 1987
+Yes 1,250 991
+No 1,387 1,666
+
+5. Flynn and Allen (2004) are interested in the reporting deficiencies in
+documentation from operating rooms. When a surgeon performs and
+operation a comprehensive operative note should be generated to document the procedure, give indication for why the procedure was needed
+and to have a record for billing and reporting purposes. Certified professional coders reviewed 550 operative notes from a multi-specialty
+academic practice to determine the proportion of reporting deficiencies.
+Of the 550 records reviewed 213 were dictated by a faculty member and
+337 were dictated by residents. Faculty member reports contained 107
+deficiencies and resident reports contained 201 deficiencies. Determine
+if there is a difference in the proportion of operative note deficiencies
+between faculty members and residents.
+
+6. Salerno et al. (2013) is interested in determining the current infection
+rate of Chlamydia and Gonorrhea infections. They obtained a sample
+of 508 high school students (226 males and 282 females) who consented
+to a urine test for the two diseases. Of the participants 14 males and
+32 females tested positive at the screening for at least one of the diseases. Based on this information can we say that the infection rate
+differs across genders?
+
+

@@ -24,4 +24,5 @@ documentation for details.
    A_First_Course_Design_Analysis_Experiments_Gary/index2
    An_Introduction_Dynmical_Systems_Chaos_2E/index2
    calculo_diferencial_integral/index2
+   Statistical_Research_Methods_Roy/index2
 
