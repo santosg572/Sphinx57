@@ -1,0 +1,316 @@
+A_First_Course_Design_Analysis_Experiments_Gary_C01
+===================================================
+					
+Gary W. Oehlert University of Minnesota	
+
+Chapter 1
+Introduction
+
+Researchers use experiments to answer questions. Typical questions might be:
+
+Is a drug a safe, effective cure for a disease? This could be a test of how AZT affects the progress of AIDS.
+
+¿Es un medicamento una cura segura y eficaz para una enfermedad? Esto podría ser una prueba de cómo el AZT afecta el progreso del SIDA.
+
+Which combination of protein and carbohydrate sources provides the best nutrition for growing lambs?
+
+¿Qué combinación de fuentes de proteínas y carbohidratos proporciona la mejor nutrición para los corderos en crecimiento?
+
+How will long-distance telephone usage change if our company offers a different rate structure to our customers?
+
+¿Cómo cambiará el uso de la telefonía de larga distancia si nuestra empresa ofrece una estructura de tarifas diferente a nuestros clientes?
+
+Will an ice cream manufactured with a new kind of stabilizer be as palatable as our current ice cream?
+
+¿Un helado elaborado con un nuevo tipo de estabilizante será tan apetecible como el helado actual?
+
+Does short-term incarceration of spouse abusers deter future assaults?
+
+¿El encarcelamiento a corto plazo de los cónyuges abusadores disuade futuras agresiones?
+
+Under what conditions should I operate my chemical refinery, given this month’s grade of raw material?
+
+¿En qué condiciones debo operar mi refinería química, dada la calidad de la materia prima de este mes?
+
+This book is meant to help decision makers and researchers design good experiments, analyze them properly, and answer their questions.
+
+Este libro está destinado a ayudar a los investigadores y a los responsables de la toma de decisiones a diseñar buenos experimentos, analizarlos adecuadamente y responder a sus preguntas.
+
+1.1 Why Experiment?
+
+Consider the spousal assault example mentioned above. Justice officials need to know how they can reduce or delay the recurrence of spousal assault. They are investigating three different actions in response to spousal assaults. The assailant could be warned, sent to counseling but not booked on charges, or arrested for assault. Which of these actions works best? How can they compare the effects of the three actions?
+
+Considere el ejemplo de agresión conyugal mencionado anteriormente. Los funcionarios de justicia necesitan saber cómo pueden reducir o retrasar la recurrencia de la agresión conyugal. Están investigando tres acciones diferentes en respuesta a agresiones conyugales. El agresor podría ser advertido, enviado a terapia pero no acusado o arrestado por agresión. ¿Cuál de estas acciones funciona mejor? ¿Cómo pueden comparar los efectos de las tres acciones?
+
+This book deals with comparative experiments. We wish to compare some treatments. For the spousal assault example, the treatments are the three actions by the police. We compare treatments by using them and comparing the outcomes. Specifically, we apply the treatments to experimental units and then measure one or more responses. In our example, individuals who assault their spouses could be the experimental units, and the response could be the length of time until recurrence of assault. We compare treatments by comparing the responses obtained from the experimental units in the different treatment groups. This could tell us if there are any differences in responses between the treatments, what the estimated sizes of those differences are, which treatment has the greatest estimated delay until recurrence, and so on.
+
+Este libro trata de experimentos comparativos. Deseamos comparar algunos tratamientos. Para el ejemplo de agresión conyugal, los tratamientos son las tres acciones de la policía. Comparamos tratamientos usándolos y comparando los resultados. Específicamente, aplicamos los tratamientos a unidades experimentales y luego medimos una o más respuestas. En nuestro ejemplo, los individuos que agreden a sus cónyuges podrían ser las unidades experimentales, y la respuesta podría ser el tiempo hasta que se repita la agresión. Comparamos tratamientos comparando las respuestas obtenidas de las unidades experimentales en los diferentes grupos de tratamiento. Esto podría decirnos si hay diferencias en las respuestas entre los tratamientos, cuáles son los tamaños estimados de esas diferencias, qué tratamiento tiene el mayor retraso estimado hasta la recurrencia, etc.
+
+An experiment is characterized by the treatments and experimental units to be used, the way treatments are assigned to units, and the responses that are measured.
+
+Un experimento se caracteriza por los tratamientos y las unidades experimentales que se utilizarán, la forma en que se asignan los tratamientos a las unidades y las respuestas que se miden.
+
+Experiments help us answer questions, but there are also nonexperimental techniques. What is so special about experiments? Consider that:
+
+Los experimentos nos ayudan a responder preguntas, pero también existen técnicas no experimentales. ¿Qué tienen de especial los experimentos? Considere eso:
+
+1. Experiments allow us to set up a direct comparison between the treatments of interest.
+
+Los experimentos nos permiten establecer una comparación directa entre los tratamientos de interés.
+
+2. We can design experiments to minimize any bias in the comparison.
+
+Podemos diseñar experimentos para minimizar cualquier sesgo en la comparación.
+
+3. We can design experiments so that the error in the comparison is small.
+
+Podemos diseñar experimentos para que el error en la comparación sea pequeño.
+
+4. Most important, we are in control of experiments, and having that control allows us to make stronger inferences about the nature of differences that we see in the experiment. Specifically, we may make inferences about causation.
+
+Lo más importante es que tenemos el control de los experimentos, y tener ese control nos permite hacer inferencias más sólidas sobre la naturaleza de las diferencias que vemos en el experimento. Específicamente, podemos hacer inferencias sobre la causalidad.
+
+This last point distinguishes an experiment from an observational study. An observational study also has treatments, units, and responses. However, in the observational study we merely observe which units are in which treatment groups; we don’t get to control that assignment.
+
+Este último punto distingue un experimento de un estudio observacional. Un estudio observacional también tiene tratamientos, unidades y respuestas. Sin embargo, en el estudio observacional simplemente observamos qué unidades están en qué grupos de tratamiento; no podemos controlar esa asignación.
+
+Example 1.1Does spanking hurt?
+
+¿Las nalgadas duelen?
+
+Let’s contrast an experiment with an observational study described in Straus, Sugarman, and Giles-Sims (1997). A large survey of women aged 14 to 21 years was begun in 1979; by 1988 these same women had 1239 children between the ages of 6 and 9 years. The women and children were interviewed and tested in 1988 and again in 1990. Two of the items measured were the level of antisocial behavior in the children and the frequency of spanking. Results showed that children who were spanked more frequently in 1988 showed larger increases in antisocial behavior in 1990 than those who were spanked less frequently. Does spanking cause antisocial behavior? Perhaps it does, but there are other possible explanations. Perhaps children who were becoming more troublesome in 1988 may have been spanked more frequently, while children who were becoming less troublesome may have been spanked less frequently in 1988.
+
+Comparemos un experimento con un estudio observacional descrito en Straus, Sugarman y Giles-Sims (1997). En 1979 se inició una gran encuesta entre mujeres de 14 a 21 años; en 1988 estas mismas mujeres tenían 1239 hijos entre las edades de 6 y 9 años. Las mujeres y los niños fueron entrevistados y evaluados en 1988 y nuevamente en 1990. Dos de los elementos medidos fueron el nivel de conducta antisocial en los niños y la frecuencia de los azotes. Los resultados mostraron que los niños que recibieron azotes con más frecuencia en 1988 mostraron mayores aumentos en el comportamiento antisocial en 1990 que aquellos que recibieron azotes con menos frecuencia. ¿Las nalgadas provocan un comportamiento antisocial? Quizás sea así, pero hay otras explicaciones posibles. Quizás los niños que se estaban volviendo más problemáticos en 1988 hayan recibido azotes con más frecuencia, mientras que los niños que se estaban volviendo menos problemáticos hayan recibido azotes con menos frecuencia en 1988.
+
+The drawback of observational studies is that the grouping into “treatments” is not under the control of the experimenter and its mechanism is usually unknown. Thus observed differences in responses between treatment groups could very well be due to these other hidden mechanisms, rather than the treatments themselves.
+
+El inconveniente de los estudios observacionales es que la agrupación en “tratamientos” no está bajo el control del experimentador y su mecanismo suele ser desconocido. Por lo tanto, las diferencias observadas en las respuestas entre los grupos de tratamiento bien podrían deberse a estos otros mecanismos ocultos, más que a los tratamientos en sí.
+
+It is important to say that while experiments have some advantages, observational studies are also useful and can produce important results. For example, studies of smoking and human health are observational, but the link that they have established is one of the most important public health issues today. Similarly, observational studies established an association between heart valve disease and the diet drug fen-phen that led to the withdrawal of the drugs fenfluramine and dexfenfluramine from the market (Connolloy et al. 1997 and US FDA 1997).
+
+Es importante decir que si bien los experimentos tienen algunas ventajas, los estudios observacionales también son útiles y pueden producir resultados importantes. Por ejemplo, los estudios sobre el tabaquismo y la salud humana son observacionales, pero el vínculo que han establecido es uno de los problemas de salud pública más importantes en la actualidad. De manera similar, los estudios observacionales establecieron una asociación entre la enfermedad de las válvulas cardíacas y el fármaco dietético fen-phen, lo que llevó a la retirada del mercado de los fármacos fenfluramina y dexfenfluramina (Connolloy et al. 1997 y US FDA 1997).
+
+Mosteller and Tukey (1977) list three concepts associated with causation and state that two or three are needed to support a causal relationship:
+Mosteller y Tukey (1977) enumeran tres conceptos asociados con la causalidad y afirman que se necesitan dos o tres para respaldar una relación causal:
+
+• Consistency
+
+• Responsiveness - Sensibilidad
+
+• Mechanism.
+
+Consistency means that, all other things being equal, the relationship between two variables is consistent across populations in direction and maybe in amount. Responsiveness means that we can go into a system, change the causal variable, and watch the response variable change accordingly. Mechanism means that we have a step-by-step mechanism leading from cause to effect.
+
+Consistencia significa que, en igualdad de condiciones, la relación entre dos variables es consistente en todas las poblaciones en dirección y tal vez en cantidad. Capacidad de respuesta significa que podemos entrar en un sistema, cambiar la variable causal y observar cómo la variable de respuesta cambia en consecuencia. Mecanismo significa que tenemos un mecanismo paso a paso que va de la causa al efecto.
+
+In an experiment, we are in control, so we can achieve responsiveness. Thus, if we see a consistent difference in observed response between the various treatments, we can infer that the treatments caused the differences in response. We don’t need to know the mechanism—we can demonstrate causation by experiment. (This is not to say that we shouldn’t try to learn mechanisms—we should. It’s just that we don’t need mechanism to infer causation.)
+
+En un experimento, tenemos el control, por lo que podemos lograr capacidad de respuesta. Por lo tanto, si vemos una diferencia consistente en la respuesta observada entre los distintos tratamientos, podemos inferir que los tratamientos causaron las diferencias en la respuesta. No necesitamos conocer el mecanismo; podemos demostrar la causalidad mediante experimentos. (Esto no quiere decir que no debamos intentar aprender mecanismos; deberíamos hacerlo. Es sólo que no necesitamos mecanismos para inferir la causalidad).
+
+We should note that there are times when experiments are not feasible, even when the knowledge gained would be extremely valuable. For example, we can’t perform an experiment proving once and for all that smoking causes cancer in humans. We can observe that smoking is associated with cancer in humans; we have mechanisms for this and can thus infer causation. But we cannot demonstrate responsiveness, since that would involve making some people smoke, and making others not smoke. It is simply unethical.
+
+Debemos señalar que hay ocasiones en las que los experimentos no son factibles, incluso cuando el conocimiento adquirido sería extremadamente valioso. Por ejemplo, no podemos realizar un experimento que demuestre de una vez por todas que fumar causa cáncer en los humanos. Podemos observar que fumar está asociado con el cáncer en humanos; tenemos mecanismos para esto y, por lo tanto, podemos inferir la causalidad. Pero no podemos demostrar capacidad de respuesta, ya que eso implicaría hacer que algunas personas fumen y otras no fumen. Es simplemente poco ético.
+
+1.2 Components of an Experiment
+
+An experiment has treatments, experimental units, responses, and a method to assign treatments to units. 
+
+Un experimento tiene tratamientos, unidades experimentales, respuestas y un método para asignar tratamientos a las unidades.
+
+Treatments, units, and assignment method specify the experimental design.
+
+Los tratamientos, las unidades y el método de asignación especifican el diseño experimental.
+
+Some authors make a distinction between the selection of treatments to be used, called “treatment design,” and the selection of units and assignment of treatments, called “experiment design.”
+
+Algunos autores distinguen entre la selección de tratamientos a utilizar, denominada “diseño de tratamiento”, y la selección de unidades y asignación de tratamientos, denominada “diseño de experimento”.
+ 
+Note that there is no mention of a method for analyzing the results. Strictly speaking, the analysis is not part of the design, though a wise experimenter will consider the analysis when planning an experiment. Whereas the design determines the proper analysis to a great extent, we will see that two experiments with similar designs may be analyzed differently, and two experiments with different designs may be analyzed similarly. Proper analysis depends on the design and the kinds of statistical model assumptions we believe are correct and are willing to assume.
+
+Tenga en cuenta que no se menciona ningún método para analizar los resultados. Estrictamente hablando, el análisis no es parte del diseño, aunque un experimentador inteligente lo considerará al planificar un experimento. Mientras que el diseño determina en gran medida el análisis adecuado, veremos que dos experimentos con diseños similares pueden analizarse de manera diferente, y dos experimentos con diseños diferentes pueden analizarse de manera similar. El análisis adecuado depende del diseño y del tipo de supuestos del modelo estadístico que creemos que son correctos y que estamos dispuestos a asumir.
+
+Not all experimental designs are created equal. A good experimental design must
+
+No todos los diseños experimentales son iguales. Un buen diseño experimental debe
+
+• Avoid systematic error - Evite el error sistemático
+
+• Be precise - Se preciso
+
+• Allow estimation of error - Permitir la estimación del error.
+
+• Have broad validity. - Tener amplia validez.
+
+We consider these in turn.1.3 Terms and Concepts
+
+Comparative experiments estimate differences in response between treatments. If our experiment has systematic error, then our comparisons will be biased, no matter how precise our measurements are or how many experimental units we use. For example, if responses for units receiving treatment one are measured with instrument A, and responses for treatment two are measured with instrument B, then we don’t know if any observed differences are due to treatment effects or instrument miscalibrations. Randomization, as will be discussed in Chapter 2, is our main tool to combat systematic error.
+
+Los experimentos comparativos estiman diferencias en la respuesta entre tratamientos. Si nuestro experimento tiene un error sistemático, entonces nuestras comparaciones estarán sesgadas, sin importar cuán precisas sean nuestras mediciones o cuántas unidades experimentales usemos. Por ejemplo, si las respuestas de las unidades que reciben el tratamiento uno se miden con el instrumento A y las respuestas del tratamiento dos se miden con el instrumento B, entonces no sabemos si las diferencias observadas se deben a efectos del tratamiento o a malas calibraciones del instrumento. La aleatorización, como se analizará en el capítulo 2, es nuestra principal herramienta para combatir el error sistemático.
+
+Even without systematic error, there will be random error in the responses, and this will lead to random error in the treatment comparisons. Experiments are precise when this random error in treatment comparisons is small. Precision depends on the size of the random errors in the responses, the number of units used, and the experimental design used. Several chapters of this book deal with designs to improve precision.
+
+Incluso sin error sistemático, habrá error aleatorio en las respuestas, y esto conducirá a error aleatorio en las comparaciones de tratamientos. Los experimentos son precisos cuando este error aleatorio en las comparaciones de tratamientos es pequeño. La precisión depende del tamaño de los errores aleatorios en las respuestas, el número de unidades utilizadas y el diseño experimental utilizado. Varios capítulos de este libro tratan de diseños para mejorar la precisión.
+
+Experiments must be designed so that we have an estimate of the size of random error. This permits statistical inference: for example, confidence intervals or tests of significance. We cannot do inference without an estimate of error. Sadly, experiments that cannot estimate error continue to be run.
+
+Los experimentos deben diseñarse de manera que tengamos una estimación del tamaño del error aleatorio. Esto permite la inferencia estadística: por ejemplo, intervalos de confianza o pruebas de significancia. No podemos hacer inferencias sin una estimación del error. Lamentablemente, se siguen realizando experimentos que no pueden estimar el error.
+
+The conclusions we draw from an experiment are applicable to the experimental units we used in the experiment. If the units are actually a statistical sample from some population of units, then the conclusions are also valid for the population. Beyond this, we are extrapolating, and the extrapolation might or might not be successful. For example, suppose we compare two different drugs for treating attention deficit disorder. Our subjects are preadolescent boys from our clinic. We might have a fair case that our results would hold for preadolescent boys elsewhere, but even that might not be true if our clinic’s population of subjects is unusual in some way. The results are even less compelling for older boys or for girls. Thus if we wish to have wide validity—for example, broad age range and both genders—then our experimental units should reflect the population about which we wish to draw inference.
+
+Las conclusiones que sacamos de un experimento son aplicables a las unidades experimentales que utilizamos en el experimento. Si las unidades son en realidad una muestra estadística de alguna población de unidades, entonces las conclusiones también son válidas para la población. Más allá de esto, estamos extrapolando, y la extrapolación podría tener éxito o no. Por ejemplo, supongamos que comparamos dos fármacos diferentes para tratar el trastorno por déficit de atención. Nuestros sujetos son niños preadolescentes de nuestra clínica. Podríamos tener argumentos razonables para afirmar que nuestros resultados serían válidos para niños preadolescentes en otros lugares, pero incluso eso podría no ser cierto si la población de sujetos de nuestra clínica es inusual de alguna manera. Los resultados son aún menos convincentes para los niños mayores o para las niñas. Por lo tanto, si deseamos tener una validez amplia (por ejemplo, un amplio rango de edad y ambos sexos), entonces nuestras unidades experimentales deben reflejar la población sobre la cual deseamos hacer inferencias.
+
+We need to realize that some compromise will probably be needed between these goals. For example, broadening the scope of validity by using a variety of experimental units may decrease the precision of the responses.
+
+Necesitamos darnos cuenta de que probablemente será necesario llegar a un acuerdo entre estos objetivos. Por ejemplo, ampliar el alcance de la validez mediante el uso de una variedad de unidades experimentales puede disminuir la precisión de las respuestas.
+
+1.3 Terms and Concepts
+
+
+Let’s define some of the important terms and concepts in design of experiments. We have already seen the terms treatment, experimental unit, and response, but we define them again here for completeness.
+
+Definamos algunos de los términos y conceptos importantes en el diseño de experimentos. Ya hemos visto los términos tratamiento, unidad experimental y respuesta, pero los definimos nuevamente aquí para que estén completos.
+
+Treatments are the different procedures we want to compare. These could be different kinds or amounts of fertilizer in agronomy, different long-distance rate structures in marketing, or different temperatures in a reactor vessel in chemical engineering.
+
+Los ``tratamientos`` son los diferentes procedimientos que queremos comparar. Estos podrían ser diferentes tipos o cantidades de fertilizantes en agronomía, diferentes estructuras de tarifas a larga distancia en marketing o diferentes temperaturas en la vasija de un reactor en ingeniería química.
+
+Experimental units are the things to which we apply the treatments. These could be plots of land receiving fertilizer, groups of customers receiving different rate structures, or batches of feedstock processing at different temperatures.
+
+Las unidades experimentales son las cosas a las que aplicamos los tratamientos. Podrían ser parcelas de tierra que reciben fertilizantes, grupos de clientes que reciben diferentes estructuras de tarifas o lotes de materia prima procesada a diferentes temperaturas.
+
+Responses are outcomes that we observe after applying a treatment to an experimental unit. That is, the response is what we measure to judge what happened in the experiment; we often have more than one response. Responses for the above examples might be nitrogen content or biomass of corn plants, profit by customer group, or yield and quality of the product per ton of raw material.
+
+Las respuestas son resultados que observamos después de aplicar un tratamiento a una unidad experimental. Es decir, la respuesta es lo que medimos para juzgar lo ocurrido en el experimento; A menudo tenemos más de una respuesta. Las respuestas a los ejemplos anteriores podrían ser el contenido de nitrógeno o la biomasa de las plantas de maíz, las ganancias por grupo de clientes o el rendimiento y la calidad del producto por tonelada de materia prima.
+
+Randomization is the use of a known, understood probabilistic mechanism for the assignment of treatments to units. Other aspects of an experiment can also be randomized: for example, the order in which units are evaluated for their responses.
+
+La aleatorización es el uso de un mecanismo probabilístico conocido y comprendido para la asignación de tratamientos a unidades. Otros aspectos de un experimento también pueden ser aleatorios: por ejemplo, el orden en que se evalúan las respuestas de las unidades.
+
+Experimental Error is the random variation present in all experimental results. Different experimental units will give different responses to the same treatment, and it is often true that applying the same treatment over and over again to the same unit will result in different responses in different trials. Experimental error does not refer to conducting the wrong experiment or dropping test tubes.
+
+El error experimental es la variación aleatoria presente en todos los resultados experimentales. Diferentes unidades experimentales darán diferentes respuestas al mismo tratamiento y, a menudo, es cierto que aplicar el mismo tratamiento una y otra vez a la misma unidad dará como resultado diferentes respuestas en diferentes ensayos. El error experimental no se refiere a realizar un experimento incorrecto o dejar caer los tubos de ensayo.
+
+Measurement units (or response units) are the actual objects on which the response is measured. These may differ from the experimental units. For example, consider the effect of different fertilizers on the nitrogen content of corn plants. Different field plots are the experimental units, but the measurement units might be a subset of the corn plants on the field plot, or a sample of leaves, stalks, and roots from the field plot.
+
+Las unidades de medida (o unidades de respuesta) son los objetos reales en los que se mide la respuesta. Estas pueden diferir de las unidades experimentales. Por ejemplo, consideremos el efecto de diferentes fertilizantes sobre el contenido de nitrógeno de las plantas de maíz. Las unidades experimentales son diferentes parcelas de campo, pero las unidades de medida pueden ser un subconjunto de las plantas de maíz en la parcela de campo, o una muestra de hojas, tallos y raíces de la parcela de campo.
+
+Blinding occurs when the evaluators of a response do not know which treatment was given to which unit. Blinding helps prevent bias in the evaluation, even unconscious bias from well-intentioned evaluators. Double blinding occurs when both the evaluators of the response and the (human subject) experimental units do not know the assignment of treatments to units. Blinding the subjects can also prevent bias, because subject responses can change when subjects have expectations for certain treatments.
+
+El cegamiento ocurre cuando los evaluadores de una respuesta no saben qué tratamiento se administró a qué unidad. El cegamiento ayuda a prevenir sesgos en la evaluación, incluso sesgos inconscientes de evaluadores bien intencionados. El doble ciego ocurre cuando tanto los evaluadores de la respuesta como las unidades experimentales (sujetos humanos) desconocen la asignación de tratamientos a las unidades. Cegar a los sujetos también puede evitar sesgos, porque las respuestas de los sujetos pueden cambiar cuando los sujetos tienen expectativas sobre ciertos tratamientos.
+
+Control has several different uses in design. First, an experiment is controlled because we as experimenters assign treatments to experimental units. Otherwise, we would have an observational study. Second, a control treatment is a “standard” treatment that is used as a baseline or basis of comparison for the other treatments. This control treatment might be the treatment in common use, or it might be a null treatment (no treatment at all). For example, a study of new pain killing drugs could use a standard pain killer as a control treatment, or a study on the efficacy of fertilizer could give some fields no fertilizer at all. This would control for average soil fertility or weather conditions.
+
+El control tiene varios usos diferentes en el diseño. Primero, un experimento está controlado porque nosotros, como experimentadores, asignamos tratamientos a unidades experimentales. En caso contrario, tendríamos un estudio observacional. En segundo lugar, un tratamiento de control es un tratamiento “estándar” que se utiliza como punto de referencia o base de comparación para los otros tratamientos. Este tratamiento de control podría ser el tratamiento de uso común o podría ser un tratamiento nulo (ningún tratamiento en absoluto). Por ejemplo, un estudio sobre nuevos analgésicos podría utilizar un analgésico estándar como tratamiento de control, o un estudio sobre la eficacia de los fertilizantes podría no dar fertilizante alguno a algunos campos. Esto controlaría la fertilidad promedio del suelo o las condiciones climáticas.
+
+Placebo is a null treatment that is used when the act of applying a treatment— any treatment—has an effect. Placebos are often used with human subjects, because people often respond to any treatment: for example, reduction in headache pain when given a sugar pill. Blinding is important when placebos are used with human subjects. Placebos are also useful for nonhuman subjects. The apparatus for spraying a field with a pesticide may compact the soil. Thus we drive the apparatus over the field, without actually spraying, as a placebo treatment.
+
+El placebo es un tratamiento nulo que se utiliza cuando el acto de aplicar un tratamiento (cualquier tratamiento) tiene un efecto. Los placebos se utilizan a menudo en seres humanos, porque las personas suelen responder a cualquier tratamiento: por ejemplo, la reducción del dolor de cabeza cuando se les administra una pastilla de azúcar. El cegamiento es importante cuando se utilizan placebos en sujetos humanos. Los placebos también son útiles para sujetos no humanos. El aparato para fumigar un campo con un pesticida puede compactar el suelo. Así, como tratamiento placebo, conducimos el aparato por el campo sin rociar.
+
+Factors combine to form treatments. For example, the baking treatment for a cake involves a given time at a given temperature. The treatment is the combination of time and temperature, but we can vary the time and temperature separately. Thus we speak of a time factor and a temperature factor. Individual settings for each factor are called levels of the factor.
+
+Los factores se combinan para formar tratamientos. Por ejemplo, el tratamiento de horneado de un pastel implica un tiempo determinado a una temperatura determinada. El tratamiento es la combinación de tiempo y temperatura, pero podemos variar el tiempo y la temperatura por separado. Así hablamos de un factor tiempo y un factor temperatura. Los ajustes individuales para cada factor se denominan niveles del factor.
+
+Confounding occurs when the effect of one factor or treatment cannot be distinguished from that of another factor or treatment. The two factors or treatments are said to be confounded. Except in very special circumstances, confounding should be avoided. Consider planting corn variety A in Minnesota and corn variety B in Iowa. In this experiment, we cannot distinguish location effects from variety effects—the variety factor and the location factor are confounded.
+
+La confusión ocurre cuando el efecto de un factor o tratamiento no se puede distinguir del de otro factor o tratamiento. Se dice que los dos factores o tratamientos están confundidos. Excepto en circunstancias muy especiales, se debe evitar la confusión. Considere plantar la variedad de maíz A en Minnesota y la variedad de maíz B en Iowa. En este experimento, no podemos distinguir los efectos de ubicación de los efectos de variedad: el factor de variedad y el factor de ubicación están confundidos.
+
+1.4 Outline
+
+Here is a road map for this book, so that you can see how it is organized. The remainder of this chapter gives more detail on experimental units and responses. Chapter 2 elaborates on the important concept of randomization. Chapters 3 through 7 introduce the basic experimental design, called the Completely Randomized Design (CRD), and describe its analysis in considerable detail. Chapters 8 through 10 add factorial treatment structure to the CRD, and Chapters 11 and 12 add random effects to the CRD. The idea is that we learn these different treatment structures and analyses in the simplest design setting, the CRD. These structures and analysis techniques can then be used almost without change in the more complicated designs that follow.
+
+Aquí tienes una hoja de ruta para este libro, para que puedas ver cómo está organizado. El resto de este capítulo brinda más detalles sobre las unidades experimentales y las respuestas. El capítulo 2 profundiza en el importante concepto de aleatorización. Los capítulos 3 a 7 presentan el diseño experimental básico, llamado Diseño Completamente Aleatorio (CRD), y describen su análisis con considerable detalle. Los capítulos 8 a 10 añaden una estructura de tratamiento factorial al CRD, y los capítulos 11 y 12 añaden efectos aleatorios al CRD. La idea es que aprendamos estas diferentes estructuras de tratamiento y análisis en el entorno de diseño más simple, el CRD. Estas estructuras y técnicas de análisis se pueden utilizar casi sin cambios en los diseños más complicados que siguen.
+
+We begin learning new experimental designs in Chapter 13, which introduces complete block designs. Chapter 14 introduces general incomplete blocks, and Chapters 15 and 16 deal with incomplete blocks for treatments with factorial structure. Chapter 17 introduces covariates. Chapters 18 and 19 deal with special treatment structures, including fractional factorials and response surfaces. Finally, Chapter 20 provides a framework for planning an experiment.
+
+Comenzamos a aprender nuevos diseños experimentales en el Capítulo 13, que presenta diseños de bloques completos. El Capítulo 14 presenta bloques incompletos generales, y los Capítulos 15 y 16 tratan de bloques incompletos para tratamientos con estructura factorial. El capítulo 17 presenta las covariables. Los capítulos 18 y 19 tratan de estructuras de tratamiento especiales, incluidos factoriales fraccionarios y superficies de respuesta. Finalmente, el Capítulo 20 proporciona un marco para planificar un experimento.
+
+1.5 More About Experimental Units
+
+Experimentation is so diverse that there are relatively few general statements that can be made about experimental units. A common source of difficulty is the distinction between experimental units and measurement units. Consider an educational study, where six classrooms of 25 first graders each are assigned at random to two different reading programs, with all the first graders evaluated via a common reading exam at the end of the school year. Are there six experimental units (the classrooms) or 150 (the students)?
+
+La experimentación es tan diversa que se pueden hacer relativamente pocas afirmaciones generales sobre las unidades experimentales. Una fuente común de dificultad es la distinción entre unidades experimentales y unidades de medida. Consideremos un estudio educativo en el que seis aulas de 25 alumnos de primer grado cada una son asignadas al azar a dos programas de lectura diferentes, y todos los alumnos de primer grado son evaluados mediante un examen de lectura común al final del año escolar. ¿Hay seis unidades experimentales (las aulas) o 150 (los estudiantes)?
+
+One way to determine the experimental unit is via the consideration that an experimental unit should be able to receive any treatment. Thus if students were the experimental units, we could see more than one reading program in each classroom. However, the nature of the experiment makes it clear that all the students in the classroom receive the same program, so the classroom as a whole is the experimental unit. We don’t measure how a classroom reads, though; we measure how students read. Thus students are the measurement units for this experiment.
+
+Una forma de determinar la unidad experimental es considerando que una unidad experimental debería poder recibir cualquier tratamiento. Así, si los estudiantes fueran las unidades experimentales, podríamos ver más de un programa de lectura en cada aula. Sin embargo, la naturaleza del experimento deja claro que todos los estudiantes del aula reciben el mismo programa, por lo que el aula en su conjunto es la unidad experimental. Sin embargo, no medimos cómo se lee en un salón de clases; medimos cómo leen los estudiantes. Por tanto, los estudiantes son las unidades de medida de este experimento.
+
+There are many situations where a treatment is applied to group of objects, some of which are later measured for a response. For example,
+
+Hay muchas situaciones en las que se aplica un tratamiento a un grupo de objetos, algunos de los cuales luego se miden para determinar una respuesta. Por ejemplo,
+
+• Fertilizer is applied to a plot of land containing corn plants, some of which will be harvested and measured. The plot is the experimental unit and the plants are the measurement units
+
+• Se aplica fertilizante a un terreno que contiene plantas de maíz, algunas de las cuales serán cosechadas y medidas. La parcela es la unidad experimental y las plantas son las unidades de medida..
+
+• Ingots of steel are given different heat treatments, and each ingot is punched in four locations to measure its hardness. Ingots are the experimental units and locations on the ingot are measurement units.
+
+• Los lingotes de acero reciben diferentes tratamientos térmicos y cada lingote se perfora en cuatro lugares para medir su dureza. Los lingotes son las unidades experimentales y las ubicaciones del lingote son unidades de medida.
+
+• Mice are caged together, with different cages receiving different nutritional supplements. The cage is the experimental unit, and the mice are the measurement units.
+
+• Los ratones están enjaulados juntos, y cada jaula recibe distintos suplementos nutricionales. La jaula es la unidad experimental y los ratones son las unidades de medida.
+
+Treating measurement units as experimental usually leads to overoptimistic analysis more—we will reject null hypotheses more often than we should, and our confidence intervals will be too short and will not have their claimed coverage rates. The usual way around this is to determine a single response for each experimental unit. This single response is typically the average or total of the responses for the measurement units within an experimental unit, but the median, maximum, minimum, variance or some other summary statistic could also be appropriate depending on the goals of the experiment.
+
+Tratar las unidades de medida como experimentales generalmente conduce a un análisis demasiado optimista: rechazaremos hipótesis nulas con más frecuencia de lo que deberíamos, y nuestros intervalos de confianza serán demasiado cortos y no tendrán las tasas de cobertura declaradas. La forma habitual de solucionar este problema es determinar una única respuesta para cada unidad experimental. Esta respuesta única suele ser el promedio o el total de las respuestas para las unidades de medida dentro de una unidad experimental, pero la mediana, el máximo, el mínimo, la varianza o alguna otra estadística resumida también podrían ser apropiadas según los objetivos del experimento.
+
+A second issue with units is determining their “size” or “shape.” For agricultural experiments, a unit is generally a plot of land, so size and shape have an obvious meaning. For an animal feeding study, size could be the number of animals per cage. For an ice cream formulation study, size could be the number of liters in a batch of ice cream. For a computer network configuration study, size could be the length of time the network is observed under load conditions.
+
+Un segundo problema con las unidades es determinar su “tamaño” o “forma”. Para los experimentos agrícolas, una unidad es generalmente una parcela de tierra, por lo que el tamaño y la forma tienen un significado obvio. Para un estudio de alimentación animal, el tamaño podría ser la cantidad de animales por jaula. Para un estudio de formulación de helado, el tamaño podría ser la cantidad de litros en un lote de helado. Para un estudio de configuración de una red informática, el tamaño podría ser el período de tiempo que se observa la red en condiciones de carga.
+
+Not all measurement units in an experimental unit will be equivalent. For the ice cream, samples taken near the edge of a carton (unit) may have more ice crystals than samples taken near the center. Thus it may make sense to plan the units so that the ratio of edge to center is similar to that in the product’s intended packaging. Similarly, in agricultural trials, guard rows are often planted to reduce the effect of being on the edge of a plot. You don’t want to construct plots that are all edge, and thus all guard row. For experiments that occur over time, such as the computer network study, there may be a transient period at the beginning before the network moves to steady state. You don’t want units so small that all you measure is transient.
+
+No todas las unidades de medida de una unidad experimental serán equivalentes. Para el helado, las muestras tomadas cerca del borde de una caja (unidad) pueden tener más cristales de hielo que las muestras tomadas cerca del centro. Por lo tanto, puede tener sentido planificar las unidades de modo que la relación entre el borde y el centro sea similar a la del embalaje previsto para el producto. De manera similar, en ensayos agrícolas, a menudo se plantan hileras de guardia para reducir el efecto de estar en el borde de una parcela. No conviene construir parcelas que sean todas de borde y, por lo tanto, todas de guardia. Para experimentos que ocurren a lo largo del tiempo, como el estudio de redes informáticas, puede haber un período transitorio al principio antes de que la red pase a un estado estable. No desea unidades tan pequeñas que todo lo que mida sea transitorio.
+
+One common situation is that there is a fixed resource available, such as a fixed area, a fixed amount of time, or a fixed number of measurements. This fixed resource needs to be divided into units (and perhaps measurement units). How should the split be made? In general, more experimental units with fewer measurement units per experimental unit works better (see, for example, Fairfield Smith 1938). However, smaller experimental units are inclined to have greater edge effect problems than are larger units, so this recommendation needs to be moderated by consideration of the actual units.
+
+Una situación común es que hay un recurso fijo disponible, como un área fija, una cantidad de tiempo fija o un número fijo de mediciones. Este recurso fijo debe dividirse en unidades (y quizás en unidades de medida). ¿Cómo debería hacerse la división? En general, más unidades experimentales con menos unidades de medida por unidad experimental funcionan mejor (ver, por ejemplo, Fairfield Smith 1938). Sin embargo, las unidades experimentales más pequeñas tienden a tener mayores problemas de efecto de borde que las unidades más grandes, por lo que esta recomendación debe moderarse teniendo en cuenta las unidades reales.
+
+A third important issue is that the response of a given unit should not depend on or be influenced by the treatments given other units or the responses of other units. This is usually ensured through some kind of separation of the units, either in space or time. For example, a forestry experiment would provide separation between units, so that a fast-growing tree does not shade trees in adjacent units and thus make them grow more slowly; and a drug trial giving the same patient different drugs in sequence would include a washout period between treatments, so that a drug would be completely out of a patient’s system before the next drug is administered.
+
+Una tercera cuestión importante es que la respuesta de una unidad determinada no debe depender ni verse influenciada por los tratamientos dados a otras unidades o por las respuestas de otras unidades. Esto suele garantizarse mediante algún tipo de separación de las unidades, ya sea en el espacio o en el tiempo. Por ejemplo, un experimento forestal proporcionaría separación entre unidades, de modo que un árbol de rápido crecimiento no dé sombra a los árboles en unidades adyacentes y, por lo tanto, los haga crecer más lentamente; y un ensayo farmacológico que administre al mismo paciente diferentes medicamentos en secuencia incluiría un período de lavado entre tratamientos, de modo que un medicamento quedaría completamente fuera del organismo del paciente antes de que se le administre el siguiente.
+
+When the response of a unit is influenced by the treatment given to other units, we get confounding between the treatments, because we cannot estimate treatment response differences unambiguously. When the response of a unit is influenced by the response of another unit, we get a poor estimate of the precision of our experiment. In particular, we usually overestimate the precision. Failure to achieve this independence can seriously affect the quality of any inferences we might make.
+
+Cuando la respuesta de una unidad se ve influenciada por el tratamiento dado a otras unidades, se produce confusión entre los tratamientos, porque no podemos estimar las diferencias en las respuestas al tratamiento sin ambigüedades. Cuando la respuesta de una unidad se ve influenciada por la respuesta de otra unidad, obtenemos una estimación deficiente de la precisión de nuestro experimento. En particular, solemos sobreestimar la precisión. No lograr esta independencia puede afectar seriamente la calidad de cualquier inferencia que podamos hacer.
+
+A final issue with units is determining how many units are required. We consider this in detail in Chapter 7.
+
+Una última cuestión con las unidades es determinar cuántas unidades se necesitan. Consideramos esto en detalle en el Capítulo 7.
+
+1.6 More About Responses
+
+We have been discussing “the” response, but it is a rare experiment that measures only a single response. Experiments often address several questions, and we may need a different response for each question. Responses such as these are often called primary responses, since they measure the quantity of primary interest for a unit.
+
+Hemos estado discutiendo "la" respuesta, pero es un experimento raro que mide solo una respuesta. Los experimentos suelen abordar varias preguntas y es posible que necesitemos una respuesta diferente para cada pregunta. Respuestas como éstas a menudo se denominan respuestas primarias, ya que miden la cantidad de interés primario para una unidad.
+
+We cannot always measure the primary response. For example, a drug trial might be used to find drugs that increase life expectancy after initial heart attack: thus the primary response is years of life after heart attack. This response is not likely to be used, however, because it may be decades before the patients in the study die, and thus decades before the study is completed. For this reason, experimenters use surrogate responses. (It isn’t only impatience; it becomes more and more difficult to keep in contact with subjects as time goes on.)
+
+No siempre podemos medir la respuesta primaria. Por ejemplo, se podría utilizar un ensayo farmacológico para encontrar fármacos que aumenten la esperanza de vida después de un ataque cardíaco inicial: por lo tanto, la respuesta principal son años de vida después del ataque cardíaco. Sin embargo, no es probable que se utilice esta respuesta porque pueden pasar décadas antes de que los pacientes del estudio mueran y, por lo tanto, décadas antes de que se complete el estudio. Por esta razón, los experimentadores utilizan respuestas sustitutas. (No es sólo impaciencia; se vuelve cada vez más difícil mantenerse en contacto con los sujetos a medida que pasa el tiempo).
+
+Surrogate responses are responses that are supposed to be related to— and predictive for—the primary response. For example, we might measure the fraction of patients still alive after five years, rather than wait for their actual lifespans. Or we might have an instrumental reading of ice crystals in ice cream, rather than use a human panel and get their subjective assessment of product graininess.
+
+Las respuestas sustitutas son respuestas que se supone están relacionadas con la respuesta primaria y predictivas de ella. Por ejemplo, podríamos medir la fracción de pacientes que siguen vivos después de cinco años, en lugar de esperar a conocer su esperanza de vida real. O podríamos tener una lectura instrumental de los cristales de hielo en el helado, en lugar de utilizar un panel humano y obtener su evaluación subjetiva de la granulosidad del producto.
+
+Surrogate responses are common, but not without risks. In particular, we may find that the surrogate response turns out not to be a good predictor of the primary response.
+
+Las respuestas sustitutas son comunes, pero no están exentas de riesgos. En particular, podemos encontrar que la respuesta sustituta no es un buen predictor de la respuesta primaria.
+
+**Cardiac arrhythmias**
+
+Acute cardiac arrhythmias can cause death. Encainide and flecanide acetate are two drugs that were known to suppress acute cardiac arrhythmias and stabilize the heartbeat. Chronic arrhythmias are also associated with sudden death, so perhaps these drugs could also work for nonacute cases. The Cardiac Arrhythmia Suppression Trial (CAST) tested these two drugs and a placebo (CAST Investigators 1989). The real response of interest is survival, but regularity of the heartbeat was used as a surrogate response. Both of these drugs were shown to regularize the heartbeat better than the placebo did. Unfortunately, the real response of interest (survival) indicated that the regularized pulse was too often 0. These drugs did improve the surrogate response, but they were actually worse than placebo for the primary response of survival.
+
+Las arritmias cardíacas agudas pueden causar la muerte. La encainida y el acetato de flecainida son dos fármacos conocidos por suprimir las arritmias cardíacas agudas y estabilizar los latidos del corazón. Las arritmias crónicas también se asocian con la muerte súbita, por lo que quizás estos medicamentos también podrían funcionar en casos no agudos. El Cardiac Arrhythmia Suppression Trial (CAST) probó estos dos fármacos y un placebo (CAST Investigators 1989). La verdadera respuesta de interés es la supervivencia, pero se utilizó la regularidad de los latidos del corazón como respuesta sustituta. Se demostró que ambos medicamentos regularizan los latidos del corazón mejor que el placebo. Desafortunadamente, la verdadera respuesta de interés (supervivencia) indicó que el pulso regularizado era con demasiada frecuencia 0. Estos medicamentos mejoraron la respuesta sustituta, pero en realidad fueron peores que el placebo para la respuesta primaria de supervivencia.
+
+By the way, the investigators were originally criticized for including a placebo in this trial. After all, the drugs were known to work. It was only the placebo that allowed them to discover that these drugs should not be used for chronic arrhythmias.
+
+Por cierto, inicialmente los investigadores fueron criticados por incluir un placebo en este ensayo. Después de todo, se sabía que las drogas funcionaban. Sólo el placebo les permitió descubrir que estos fármacos no debían utilizarse para las arritmias crónicas.
+
+In addition to responses that relate directly to the questions of interest, some experiments collect predictive responses. We use predictive responses to model theprimary response. The modeling is done for two reasons. First, such modeling can be used to increase the precision of the experiment and the comparisons of interest. In this case, we call the predictive responses covariates (see Chapter 17). Second, the predictive responses may help us understand the mechanism by which the treatment is affecting the primary response. Note, however, that since we observed the predictive responses rather than setting them experimentally, the mechanistic models built using predictive responses are observational.
+
+Además de las respuestas que se relacionan directamente con las preguntas de interés, algunos experimentos recopilan respuestas predictivas. Usamos respuestas predictivas para modelar la respuesta primaria. El modelado se realiza por dos motivos. En primer lugar, dichos modelos se pueden utilizar para aumentar la precisión del experimento y las comparaciones de interés. En este caso, llamamos covariables a las respuestas predictivas (consulte el Capítulo 17). En segundo lugar, las respuestas predictivas pueden ayudarnos a comprender el mecanismo por el cual el tratamiento afecta la respuesta primaria. Sin embargo, tenga en cuenta que, dado que observamos las respuestas predictivas en lugar de establecerlas experimentalmente, los modelos mecanicistas construidos utilizando respuestas predictivas son observacionales.
+
+A final class of responses is audit responses. We use audit responses to ensure that treatments were applied as intended and to check that environmental conditions have not changed. Thus in a study looking at nitrogen fertilizers, we might measure soil nitrogen as a check on proper treatment application, and we might monitor soil moisture to check on the uniformity of our irrigation system.
+
+Una última clase de respuestas son las respuestas de auditoría. Utilizamos respuestas de auditoría para garantizar que los tratamientos se aplicaron según lo previsto y para verificar que las condiciones ambientales no hayan cambiado. Por lo tanto, en un estudio que analice los fertilizantes nitrogenados, podríamos medir el nitrógeno del suelo como control de la aplicación adecuada del tratamiento, y podríamos monitorear la humedad del suelo para verificar la uniformidad de nuestro sistema de riego.
+

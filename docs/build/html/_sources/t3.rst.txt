@@ -1,0 +1,120 @@
+An Introduction to Statistical Data Science-Giorgio
+==================================================
+
+Contents
+1 Introduction                                 . 1
+1.1 Statistical Learning, Data Science, and System Identification   . 1
+1.2 About the Ground Philosophy of Modeling
+from Observed Data                          4
+References                                   7
+2 A Review of Classical Statistical Inference                9
+2.1 Introduction                              . 9
+2.2 Random Variables                           11
+2.3 Classical Theory of Parameter Estimation              18
+2.4 Maximum Likelihood                         31
+2.5 Hypothesis Testing                          . 45
+2.6 Composite Hypotheses                        . 62
+2.7 Problems                                70
+References                                   73
+3 Parameter Estimation for Linear Models                75
+3.1 Deterministic Least Squares                     . 75
+3.2 Linear Statistical Models                      . 79
+3.3 Maximum Likelihood Estimation of the Linear Model       87
+3.4 Statistical Least Squares with Partial Information          92
+3.5 The Case of Vector-Valued Data                  . 96
+3.6 Empirical Prediction Error Minimization              . 99
+3.7 Recursive Estimators                         . 100
+3.8 Examples                               . 104
+3.9 Problems                                111
+References                                   112
+4 Conditioning and Regularization                     . 113
+4.1 Numerical Conditioning                       . 113
+4.2 Introduction to Linear Inverse Problems               127
+4.3 Regularized Least-Squares Problems                . 130
+4.4 The LASSO                             . 134
+4.5 Regression and Smoothing Splines                  140
+4.6 Problems                                152
+References                                   153
+ix
+x Contents
+5 Linear Hypotheses and Linear Discriminant Analysis         . 155
+5.1 Hypothesis Testing on the Linear Model               155
+5.2 Examples                               . 167
+5.3 Pattern Recognition and Linear Discriminant Analysis       173
+5.4 Two Classes Separating Hyperplanes and the Perceptron      176
+5.5 Maximum Margin Hyperplanes and Support Vectors        183
+5.6 Deciding the Complexity of a Linear Model            188
+5.7 Stagewise Linear Regression                     189
+5.8 The FPE Criterion and Cross Validation               199
+5.9 Problems                                202
+References                                   202
+6 Bayesian Statistics                              205
+6.1 Introduction to Bayesian Estimation                 205
+6.2 The MAP Estimator                          212
+6.3 Conditional Expectation of Gaussian Random Vectors       213
+6.4 Linear Minimum Variance Estimators                218
+6.5 Geometric Formulation and the Orthogonal Projection Lemma  . 219
+6.6 The Linear Model                           229
+6.7 Linear Models and Marginal Gaussians               . 231
+6.8 Factor Analysis Models                        232
+6.9 Comparison of the Bayesian and the ML Estimators        . 238
+6.10 Examples                               . 241
+6.11 Bayesian Linear Algebra                       . 248
+6.12 Bayesian Hypothesis Testing                     259
+6.13 Classification by Logistic Regression                . 264
+6.14 Problems                                268
+References                                   271
+7 Principal Component Analysis                       273
+7.1 Introduction to Data Compression                 . 273
+7.2 Principal Component Analysis (PCA)                273
+7.3 Application of PCA to Feature Extraction              280
+7.4 Canonical Correlation Analysis                   . 284
+7.5 Continuous Parameter: The Karhunen-Loève Expansion      295
+7.6 Reproducing Kernel Hilbert Spaces                 . 299
+7.7 Problems                                304
+References                                   304
+8 Some Nonlinear Inference Problems                   . 307
+8.1 Introduction                              . 307
+8.2 Direction Estimation on the Unit Sphere               307
+8.3 The Langevin Distribution                      . 308
+8.4 MAP Estimation of Directions                    317
+8.5 Nonlinear Support Vector Machines                 320
+8.6 Introduction to Neural Networks                   329
+Contents xi
+8.7 Static Neural Networks                        330
+8.8 Gradient Descent and Back Propagation               334
+8.9 Bayesian Neural Networks                     . 338
+8.10 Problems                                342
+References                                   343
+9 ARX Modeling of Time Series                       345
+9.1 Introduction: Discrete-Time Signals                 345
+9.2 Stationary Time Series                        . 347
+9.3 PEM Identification of Time Series                  350
+9.4 The Prediction of Stationary Random Processes          . 354
+9.5 Prediction of Stationary Processes with Finite Data         355
+9.6 A Glimpse on Linear Difference Equations             . 361
+9.7 Prediction and Innovation for ARX Processes            370
+9.8 Strong Consistency of the Least Squares ARX Estimator     372
+9.9 Bayesian Recursive Estimators for ARX Models         . 377
+9.10 Problems                                382
+References                                   383
+10 Appendix A: Some Facts from Probability Theory           . 385
+10.1 A Quick Review of Probability Theory               . 385
+10.2 The χ2 and Related Distributions                  . 390
+10.3 Stochastic Processes: Stationarity and Ergodicity          397
+10.4 Some Purely Deterministic Processes                400
+References                                   404
+11 Appendix B: Some Facts from Matrix Algebra             . 405
+11.1 Inner Products and Adjoints in Finite-Dimensional
+Vector Spaces                             . 405
+11.2 The Singular Value Decomposition (SVD)             . 407
+11.3 Constrained Optimization                       415
+References                                   418
+12 Appendix C: Facts from Hilbert Space Theory             . 419
+References                                   428
+Index                                        . 429
+1Introduction
+1.1 Statistical Learning, Data S
+
+
+

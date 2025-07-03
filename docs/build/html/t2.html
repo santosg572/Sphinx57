@@ -1,0 +1,461 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Applied Multivariate Statistical Analysis, 6E, Wolfgang &#8212; Calculo 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="applied-multivariate-statistical-analysis-6e-wolfgang">
+<h1>Applied Multivariate Statistical Analysis, 6E, Wolfgang<a class="headerlink" href="#applied-multivariate-statistical-analysis-6e-wolfgang" title="Permalink to this headline">¶</a></h1>
+<p>Contents</p>
+<p>Part I Descriptive Techniques</p>
+<p>1 Comparison of Batches                           3
+1.1 Boxplots                               . 4
+1.1.1 Construction of the Boxplot                7
+1.2 Histograms                              10
+1.3 Kernel Densities                           13
+1.4 Scatterplots                              17
+1.5 Chernoff-Flury Faces                        . 20
+1.6 Andrews’ Curves                          24
+1.7 Parallel Coordinate Plots                      . 27
+1.8 Hexagon Plots                            . 31
+1.9 Boston Housing                           . 34
+1.9.1 Aim of the Analysis                    . 34
+1.9.2 What Can Be Seen from the PCPs            . 34
+1.9.3 The Scatterplot Matrix                   35
+1.9.4 Transformations                      . 40
+1.10 Exercises                               41
+References                                   42</p>
+<p>Part II Multivariate Random Variables
+2 A Short Excursion into Matrix Algebra                 . 45
+2.1 Elementary Operations                       . 45
+2.1.1 Matrix Operations                     . 47
+2.1.2 Properties of Matrix Operations              47
+2.1.3 Matrix Characteristics                  . 47
+2.1.4 Rank                            . 47
+2.1.5 Trace                            . 48
+2.1.6 Determinant                        . 48
+2.1.7 Transpose                          48
+2.1.8 Inverse                           . 49
+viii Contents
+2.1.9 G-inverse                         . 49
+2.1.10 Eigenvalues, Eigenvectors                 50
+2.1.11 Properties of Matrix Characteristics            51
+2.2 Spectral Decompositions                      . 52
+2.3 Quadratic Forms                           54
+2.3.1 Deﬁniteness of Quadratic Forms and Matrices      54
+2.4 Derivatives                              57
+2.5 Partitioned Matrices                         58
+2.6 Geometrical Aspects                         61
+2.6.1 Distance                          61
+2.6.2 Remark: Usefulness of Theorem 2.7           . 63
+2.6.3 Norm of a Vector                      64
+2.6.4 Angle Between Two Vectors               64
+2.6.5 Rotations                          . 66
+2.6.6 Column Space and Null Space of a Matrix        66
+2.6.7 Projection Matrix                      67
+2.6.8 Projection on C(X )                    . 67
+2.7 Exercises                               68
+3 Moving to Higher Dimensions                      . 71
+3.1 Covariance                              72
+3.2 Correlation                              76
+3.3 Summary Statistics                         . 81
+3.3.1 Linear Transformation                   83
+3.3.2 Mahalanobis Transformation               . 84
+3.4 Linear Model for Two Variables                  . 85
+3.5 Simple Analysis of Variance                    . 91
+3.5.1 The F -Test in a Linear Regression Model        . 94
+3.6 Multiple Linear Model                       96
+3.6.1 Properties of ˆβ                       . 98
+3.6.2 The ANOVA Model in Matrix Notation         . 99
+3.7 Boston Housing                           . 100
+3.8 Exercises                               103
+References                                   106
+4 Multivariate Distributions                         . 107
+4.1 Distribution and Density Function                 . 108
+4.2 Moments and Characteristic Functions               113
+4.2.1 Moments: Expectation and Covariance Matrix      113
+4.2.2 Properties of the Covariance Matrix Σ = Var(X)   . 114
+4.2.3 Properties of Variances and Covariances        . 114
+4.2.4 Conditional Expectations                 . 116
+4.2.5 Properties of Conditional Expectations          118
+4.2.6 Characteristic Functions                  119
+4.2.7 Cumulant Functions                    . 122
+4.3 Transformations                           . 124
+Contents ix
+4.4 The Multinormal Distribution                    126
+4.4.1 Geometry of the Np (μ, Σ) Distribution         . 128
+4.4.2 Singular Normal Distribution               . 130
+4.4.3 Gaussian Copula                      130
+4.5 Sampling Distributions and Limit Theorems            131
+4.5.1 Transformation of Statistics                136
+4.6 Heavy-Tailed Distributions                     . 138
+4.6.1 Generalized Hyperbolic Distribution           . 139
+4.6.2 Student’s T-Distribution                 . 141
+4.6.3 Laplace Distribution                    142
+4.6.4 Cauchy Distribution                    . 143
+4.6.5 Mixture Model                       146
+4.6.6 Multivariate Generalized Hyperbolic Distribution    149
+4.6.7 Multivariate T-Distribution                . 152
+4.6.8 Multivariate Laplace Distribution             152
+4.6.9 Multivariate Mixture Model                153
+4.6.10 Generalized Hyperbolic Distribution           . 153
+4.7 Copulae                                155
+4.8 Bootstrap                               165
+4.9 Exercises                               168
+References                                   170
+5 Theory of the Multinormal                         171
+5.1 Elementary Properties of the Multinormal            . 171
+5.1.1 Conditional Approximations               . 176
+5.2 The Wishart Distribution                      . 178
+5.3 Hotelling’s T 2 -Distribution                     180
+5.4 Spherical and Elliptical Distributions                183
+5.5 Exercises                               185
+References                                   187
+6 Theory of Estimation                            . 189
+6.1 The Likelihood Function                      . 190
+6.2 The Cramer-Rao Lower Bound                   194
+6.3 Exercises                               198
+Reference                                   . 199
+7 Hypothesis Testing                              201
+7.1 Likelihood Ratio Test                        . 202
+7.1.1 Testing for the Mean                    203
+7.1.2 Conﬁdence Region for μ                 . 207
+7.2 Linear Hypothesis                         . 212
+7.2.1 General Framework                    . 212
+7.2.2 Repeated Measurements                  214
+7.2.3 Comparison of Two Mean Vectors            . 219
+7.2.4 Proﬁle Analysis                      . 226
+x Contents
+7.3 Boston Housing                           . 230
+7.3.1 Testing the Equality in Means               231
+7.3.2 Testing Linear Restrictions                . 232
+7.4 Exercises                               234
+References                                   237
+Part III Multivariate Techniques
+8 Regression Models                             . 241
+8.1 General ANOVA and ANCOVA Models              243
+8.1.1 ANOVA Models                      . 243
+8.1.2 ANCOVA Models                     . 248
+8.1.3 Boston Housing                      . 250
+8.2 Categorical Responses                        250
+8.2.1 Multinomial Sampling and Contingency Tables     . 250
+8.2.2 Log-Linear Models for Contingency Tables       . 252
+8.2.3 Testing Issues with Count Data              . 256
+8.2.4 Logit Models                        259
+8.3 Exercises                               266
+Reference                                   . 267
+9 Variable Selection                             . 269
+9.1 Lasso                                . 270
+9.1.1 Lasso in the Linear Regression Model          . 270
+9.1.2 Lasso in High Dimensions                 280
+9.1.3 Lasso in Logit Model                   . 282
+9.2 Elastic Net                              . 285
+9.2.1 Elastic Net in the Linear Regression Model       . 286
+9.2.2 Elastic Net in the Logit Model              288
+9.3 Group Lasso                             . 289
+9.4 Exercises                               292
+References                                   292
+10 Decomposition of Data Matrices by Factors               . 295
+10.1 The Geometric Point of View                    296
+10.2 Fitting the p-Dimensional Point Cloud               297
+10.2.1 Subspaces of Dimension 1                 297
+10.2.2 Representation of the Cloud on F1            . 298
+10.2.3 Subspaces of Dimension 2                 299
+10.2.4 Subspaces of Dimension q (q≤ p)            299
+10.3 Fitting the n-Dimensional Point Cloud               300
+10.3.1 Subspaces of Dimension 1                 300
+10.3.2 Representation of the Cloud on G1            . 301
+10.3.3 Subspaces of Dimension q (q≤ n)            301
+10.4 Relations Between Subspaces                    302
+10.5 Practical Computation                        304
+10.6 Exercises                               307
+Contents xi
+11 Principal Component Analysis                       309
+11.1 Standardized Linear Combination                 . 310
+11.2 Principal Components in Practice                  314
+11.3 Interpretation of the PCs                       316
+11.4 Asymptotic Properties of the PCs                  320
+11.4.1 Variance Explained by the First q PCs          . 321
+11.5 Normalized Principal Component Analysis            . 323
+11.6 Principal Components as a Factorial Method           325
+11.6.1 Quality of the Representations              327
+11.7 Common Principal Components                  . 331
+11.8 Boston Housing                           . 334
+11.9 More Examples                           . 337
+11.10 Exercises                               343
+References                                   345
+12 Factor Analysis                               . 347
+12.1 The Orthogonal Factor Model                    348
+12.1.1 Interpretation of the Factors                351
+12.1.2 Invariance of Scale                     352
+12.1.3 Nonuniqueness of Factor Loadings            352
+12.2 Estimation of the Factor Model                   355
+12.2.1 The Maximum Likelihood Method           . 357
+12.2.2 The Method of Principal Factors             . 358
+12.2.3 The Principal Component Method            . 360
+12.2.4 Rotation                           362
+12.3 Factor Scores and Strategies                    363
+12.3.1 Practical Suggestions                   365
+12.3.2 Factor Analysis Versus PCA                365
+12.4 Boston Housing                           . 366
+12.5 Exercises                               368
+References                                   372
+13 Cluster Analysis                               373
+13.1 The Problem                            . 374
+13.2 The Proximity Between Objects                  . 375
+13.2.1 Similarity of Objects with Binary Structure       . 375
+13.2.2 Distance Measures for Continuous Variables       377
+13.3 Cluster Algorithms                          381
+13.3.1 Partitioning Algorithms                  . 381
+13.3.2 Hierarchical Algorithms, Agglomerative Techniques  . 385
+13.4 Adaptive Weights Clustering                    . 392
+13.4.1 Sequence of Radii                     . 393
+13.4.2 Initialization of Weights                  393
+13.4.3 Updates at Step k                      393
+13.4.4 Parameter Tuning                     396
+13.5 Spectral Clustering                          397
+xii Contents
+13.5.1 Relation to the Graph Cut Problem           . 399
+13.6 Boston Housing                           . 401
+13.7 Exercises                               403
+References                                   406
+14 Discriminant Analysis                           . 407
+14.1 Allocation Rules for Known Distributions             407
+14.1.1 Maximum Likelihood Discriminant Rule         408
+14.1.2 Bayes Discriminant Rule                 . 412
+14.1.3 Probability of Misclassiﬁcation for the ML
+Rule (J = 2)                       . 413
+14.1.4 Classiﬁcation with Different Covariance Matrices    414
+14.2 Discrimination Rules in Practice                  . 415
+14.2.1 Estimation of the Probabilities of Misclassiﬁcations   416
+14.2.2 Fisher’s Linear Discrimination Function         . 417
+14.3 Boston Housing                           . 421
+14.4 Exercises                               422
+References                                   423
+15 Correspondence Analysis                         . 425
+15.1 Motivation                              . 426
+15.2 Chi-Square Decomposition                     . 428
+15.3 Correspondence Analysis in Practice                432
+15.3.1 Biplots                           . 439
+15.4 Exercises                               441
+16 Canonical Correlation Analysis                      443
+16.1 Most Interesting Linear Combination                443
+16.2 Canonical Correlation in Practice                  448
+16.2.1 Testing the Canonical Correlation Coefﬁcients      450
+16.2.2 Canonical Correlation Analysis with
+Qualitative Data                      . 451
+16.3 Exercises                               454
+References                                   454
+17 Multidimensional Scaling                         . 455
+17.1 The Problem                            . 455
+17.2 Metric Multidimensional Scaling                  459
+17.2.1 The Classical Solution                   460
+17.3 Nonmetric Multidimensional Scaling                464
+17.3.1 Shepard-Kruskal Algorithm                465
+17.4 Exercises                               470
+References                                   471
+18 Conjoint Measurement Analysis                     . 473
+18.1 Introduction                             . 473
+18.2 Design of Data Generation                     . 475
+Contents xiii
+18.3 Estimation of Preference Orderings                 477
+18.3.1 Metric Solution                       479
+18.3.2 Nonmetric Solution                    . 482
+18.4 Exercises                               484
+References                                   486
+19 Applications in Finance                          . 487
+19.1 Portfolio Choice                          . 487
+19.2 Efﬁcient Portfolio                          . 488
+19.2.1 Nonexistence of a Riskless Asset            . 490
+19.2.2 Existence of a Riskless Asset               . 492
+19.3 Efﬁcient Portfolios in Practice                   . 495
+19.4 The Capital Asset Pricing Model (CAPM)             497
+19.5 Exercises                               498
+Reference                                   . 499
+20 Computationally Intensive Techniques                 . 501
+20.1 Simplicial Depth                           502
+20.2 Projection Pursuit                          . 505
+20.2.1 Exploratory Projection Pursuit              . 506
+20.2.2 Projection Pursuit Regression               508
+20.3 Sliced Inverse Regression                      510
+20.3.1 The SIR Algorithm                     512
+20.3.2 SIR II                            513
+20.3.3 The SIR II Algorithm                   . 514
+20.4 Support Vector Machines                      . 518
+20.4.1 Classiﬁcation Methodology               . 519
+20.4.2 Expected vs. Empirical Risk Minimization        520
+20.4.3 The SVM in the Linearly Separable Case        523
+20.4.4 SVMs in the Linearly Nonseparable Case        . 525
+20.4.5 Nonlinear Classiﬁcation                  528
+20.4.6 SVMs for Simulated Data                 529
+20.4.7 Solution of the SVM Classiﬁcation Problem       530
+20.4.8 Scoring Companies                    . 531
+20.5 Classiﬁcation and Regression Trees                . 534
+20.5.1 How Does CART Work?                  534
+20.5.2 Impurity Measures                     535
+20.5.3 Gini Index and Twoing Rule in Practice         . 539
+20.5.4 Optimal Size of a Decision Tree             540
+20.5.5 Cross-Validation for Tree Pruning            541
+20.5.6 Cost-Complexity Function and Cross-Validation     542
+20.5.7 Regression Trees                      547
+20.5.8 Bankruptcy Analysis                    548
+20.6 Boston Housing                           . 553
+20.7 Exercises                               554
+References                                   555
+xiv Contents
+21 Locally Linear Embedding                         557
+21.1 Introduction                             . 558
+21.2 The Basic Ideas of LLE                      . 559
+21.3 The LLE Algorithm Step by Step                  561
+21.3.1 Step 1: k-Nearest Neighbors                561
+21.3.2 Step 2: Linear Approximation by the Nearest
+Neighbors                          561
+21.3.3 Step 3: The Linear Embedding              . 562
+21.3.4 Graph-Theoretic Interpretation of the LLE Solution   564
+21.4 Swiss Roll Data                           . 565
+21.5 Boston Housing Data                        . 566
+21.6 Exercises                               568
+References                                   568
+22 Stochastic Neighborhood Embedding                   569
+22.1 Introduction                             . 570
+22.2 Modeling Neighborhood                      570
+22.2.1 The Input Space Relies on the Gaussian Law      570
+22.2.2 The Embedding Space Employs the t-Distribution    571
+22.3 Finding the t-SNE Embedding                   . 573
+22.4 Applications of t-SNE                        575
+22.4.1 The Trefoil Knot                      575
+22.4.2 Quantlet Clustering                    . 575
+22.5 Exercises                               580
+References                                   580
+23 Uniform Manifold Approximation and Projection           . 581
+23.1 Introduction                             . 581
+23.2 The Basic Ideas of UMAP                     582
+23.3 The Computational Details of UMAP               . 587
+23.3.1 The Fuzzy Topological Representation in the
+Input Space                         587
+23.3.2 Representation in the Embedding Space         . 589
+23.3.3 Computing the Embedding                . 589
+23.4 Examples                               592
+23.4.1 Banknotes Data                       592
+23.4.2 The Trefoil Knot                      593
+23.5 Exercises                               594
+References                                   595
+A Symbols and Notations                           . 597
+B Data                                      601
+B.1 Boston Housing Data                        . 601
+B.2 Swiss Bank Notes                          . 602
+B.3 Car Data                               . 602
+Contents xv
+B.4 Classic Blue Pullovers Data                     602
+B.5 U.S. Companies Data                        . 603
+B.6 French Food Data                          . 603
+B.7 Car Marks                              . 603
+B.8 U.S. Crime Data                          . 604
+B.9 Bankruptcy Data I                         . 604
+B.10 Bankruptcy Data II                         605
+B.11 Journaux Data                            . 605
+B.12 Timebudget Data                           605
+B.13 Vocabulary Data                          . 607
+B.14 French Baccalauréat Frequencies                  607
+References                                   607
+Index                                        . 609
+Part I
+Descriptive Techniques</p>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Calculo</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Geometria_Trigonometria/c02.html">c02 Angulos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Temarios/index2.html">Temarios</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2025, santosg57.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/t2.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

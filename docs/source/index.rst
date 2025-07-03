@@ -18,12 +18,10 @@ documentation for details.
    :maxdepth: 2
    :caption: Contents:
 
+   Introductor_Statistics_with_R_2E/index2
    Geometria_Trigonometria/c02
-   Temarios/t01
-   Temarios/t02
-   Temarios/t03
-   Temarios/t04
-   Temarios/t05
-
-
+   Temarios/index2
+   A_First_Course_Design_Analysis_Experiments_Gary/index2
+   An_Introduction_Dynmical_Systems_Chaos_2E/index2
+   calculo_diferencial_integral/index2
 

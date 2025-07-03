@@ -1,0 +1,11 @@
+Ecuaciones:
+==========
+
+.. math::
+
+   y = \frac{1}{2}
+
+.. video:: movie.mp4
+
+   video01.webm
+
