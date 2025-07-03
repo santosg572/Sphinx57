@@ -1,4 +1,5 @@
 CHAPTER 1 HTML5 and JavaScript Essentials
+=========================================
 
 HTML5, the latest version of the HTML standard, provides us with many new features for improved
 interactivity and media support. These new features (such as canvas, audio, and video) have made it
@@ -8,6 +9,7 @@ ins such as Flash.
 Even though the HTML5 standard continues to grow and improve as a “living standard,” all the
 elements that we need for building some very amazing games are already supported by all modern browsers
 (Google Chrome, Mozilla Firefox, Internet Explorer 9+, Microsoft Edge, Safari, and Opera).
+
 Over the past half-decade (since I wrote the first edition of this book), HTML5 support has become a
 standard across all modern browsers, both desktop and mobile. This means we now can make games in
 HTML5 that can be easily extended to work on both mobile and desktop across a wide variety of operating
@@ -19,6 +21,7 @@ a modern, HTML5-compatible browser (I primarily use Google Chrome). Once you hav
 preferred text editor and HTML5-compatible browser, you are ready to create your first HTML5 page.
 
 A Basic HTML5 Page
+------------------
 
 The structure of an HTML5 document is very similar to the structure in previous versions, except that
 HTML5 has a much simpler DOCTYPE tag at the beginning of the document. This simpler DOCTYPE tag
@@ -30,22 +33,24 @@ browser. If you do everything correctly, the browser should pop up the message �
 
 Listing 1-1. Basic HTML5 File Skeleton
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-<title>Sample HTML5 File</title>
-<script type="text/javascript">
-// This function will be called once the page loads completely
-function pageLoaded(){
-alert("Hello World!");
-}
+.. code:: HTML
 
-</script>
-</head>
-<body onload="pageLoaded();">
-</body>
-</html>
+   <!DOCTYPE html>
+   <html>
+   <head>
+   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+   <title>Sample HTML5 File</title>
+   <script type="text/javascript">
+   // This function will be called once the page loads completely
+   function pageLoaded(){
+      alert("Hello World!");
+   }
+
+   </script>
+   </head>
+   <body onload="pageLoaded();">
+   </body>
+   </html>
 
 ■ Note We use the body’s onload event to call our pageLoaded() function so that we can be sure that
 our page has completely loaded before we start working with it. this will become important when we start
@@ -61,6 +66,7 @@ using to create our games. The most important ones that we need are
 • The browser timer functions, and game loops to handle animation
 
 The canvas Element
+------------------
 
 The most important element for use in our games is the new canvas element. As per the HTML5 standard
 specification, “The canvas element provides scripts with a resolution-dependent bitmap canvas, which
@@ -77,11 +83,13 @@ created earlier, as shown in Listing 1-2.
 
 Listing 1-2. Creating a Canvas Element
 
-<body onload="pageLoaded();">
-<canvas width="640" height="480" id="testcanvas" style="border: 1px solid black;">
-Your browser does not support HTML5 Canvas. Please shift to a newer browser.
-</canvas>
-</body>
+.. code:: Python
+
+   <body onload="pageLoaded();">
+      <canvas width="640" height="480" id="testcanvas" style="border: 1px solid black;">
+         Your browser does not support HTML5 Canvas. Please shift to a newer browser.
+      </canvas>
+   </body>
 
 The code in Listing 1-2 creates a canvas that is 640 pixels wide and 480 pixels high. By itself, the canvas
 shows up as a blank area (with a black border that we specified in the style). We can now start drawing inside
@@ -94,20 +102,23 @@ message directing them to a more modern browser.
 We draw on the canvas using what is known as its primary rendering context. We can access this context
 with the getContext() method of the canvas object. The getContext() method takes one parameter: the
 type of context that we need. We will be using the 2d context for our games.
+
 Listing 1-3 shows how we can access the canvas and its context once the page has loaded by modifying
 the pageLoaded() method.
 
 Listing 1-3. Accessing the Canvas Context
 
-<script type="text/javascript">
-function pageLoaded(){
-// Get a handle to the canvas object
-var canvas = document.getElementById("testcanvas");
-// Get the 2d context for this canvas
-var context = canvas.getContext("2d");
-// Our drawing code here...
-}
-</script>
+.. code:: Python
+
+   <script type="text/javascript">
+      function pageLoaded(){
+         // Get a handle to the canvas object
+         var canvas = document.getElementById("testcanvas");
+         // Get the 2d context for this canvas
+         var context = canvas.getContext("2d");
+         // Our drawing code here...
+      }
+   </script>
 
 ■ Note all browsers support the 2d context that we need for 2d graphics. Most browsers also implement
 other contexts with names such as webgl or experimental-webgl for 3d graphics.
@@ -126,6 +137,7 @@ the screen. This includes methods for the following:
 We will look at each of these methods in more detail in the following sections
 
 Drawing Rectangles
+------------------
 
 Before you can start drawing on the canvas, you need to understand how to reference coordinates on it. The
 canvas uses a coordinate system with the origin (0, 0) at the top-left corner of the canvas, x increasing toward
@@ -140,27 +152,30 @@ it fully transparent
 
 Listing 1-4. Drawing Rectangles Inside the Canvas
 
-// FILLED RECTANGLES
-// Draw a solid square with width and height of 100 pixels at (200,10)
-context.fillRect(200, 10, 100, 100);
-// Draw a solid square with width of 90 pixels and height of 30 pixels at (50,70)
-context.fillRect(50, 70, 90, 30);
-// STROKED RECTANGLES
-// Draw a rectangular outline with width and height of 50 pixels at (110, 10)
-context.strokeRect(110, 10, 50, 50);
-// Draw a rectangular outline with width and height of 50 pixels at (30, 10)
-context.strokeRect(30, 10, 50, 50);
-// CLEARING RECTANGLES
-// Clear a rectangle with width of 30 pixels and height of 20 pixels at (210, 20)
-context.clearRect(210, 20, 30, 20);
-// Clear a rectangle with width of 30 pixels and height of 20 pixels at (260, 20)
-context.clearRect(260, 20, 30, 20);
+.. code:: Python
+
+   // FILLED RECTANGLES
+   // Draw a solid square with width and height of 100 pixels at (200,10)
+   context.fillRect(200, 10, 100, 100);
+   // Draw a solid square with width of 90 pixels and height of 30 pixels at (50,70)
+   context.fillRect(50, 70, 90, 30);
+   // STROKED RECTANGLES
+   // Draw a rectangular outline with width and height of 50 pixels at (110, 10)
+   context.strokeRect(110, 10, 50, 50);
+   // Draw a rectangular outline with width and height of 50 pixels at (30, 10)
+   context.strokeRect(30, 10, 50, 50);
+   // CLEARING RECTANGLES
+   // Clear a rectangle with width of 30 pixels and height of 20 pixels at (210, 20)
+   context.clearRect(210, 20, 30, 20);
+   // Clear a rectangle with width of 30 pixels and height of 20 pixels at (260, 20)
+   context.clearRect(260, 20, 30, 20);
 
 The code in Listing 1-4 will draw multiple rectangles on the top-left corner of the canvas, as shown in
 Figure 1-2. Add the code to the bottom of the pageLoaded() method, save the file, and refresh the browser to
 see the result of these changes.
 
 Drawing Complex Paths
+---------------------
 
 The context has several methods that allow us to draw complex shapes when simple boxes aren’t enough:
 
@@ -175,59 +190,62 @@ with specified radius
 
 Using these methods, drawing a complex path involves the following steps:
 
-1. Use beginPath() to start recording the new shape.
-2. Use moveTo(), lineTo(), and arc() to create the shape.
-3. Optionally, close the shape using closePath().
-4. Use either stroke() or fill() to draw an outline or filled shape. Using fill()
-automatically closes any open paths
+* 1. Use beginPath() to start recording the new shape.
+* 2. Use moveTo(), lineTo(), and arc() to create the shape.
+* 3. Optionally, close the shape using closePath().
+* 4. Use either stroke() or fill() to draw an outline or filled shape. Using fill() automatically closes any open paths
 
 Listing 1-5 will create the triangles, arcs, and shapes shown in Figure 1-3.
 
 Listing 1-5. Drawing Complex Shapes Inside the Canvas
-// DRAWING COMPLEX SHAPES
-// Draw a filled triangle
-context.beginPath();
-context.moveTo(10, 120); // Start drawing at 10, 120
-context.lineTo(10, 180);
-context.lineTo(110, 150);
-context.fill(); // Close the shape and fill it out
-// Draw a stroked triangle
-context.beginPath();
-context.moveTo(140, 160); // Start drawing at 140, 160
-context.lineTo(140, 220);
-context.lineTo(40, 190);
-context.closePath();
-context.stroke();
-// Draw a more complex set of lines
-context.beginPath();
-context.moveTo(160, 160); // Start drawing at 160, 160
-context.lineTo(170, 220);
-context.lineTo(240, 210);
-context.lineTo(260, 170);
-context.lineTo(190, 140);
-context.closePath();
-context.stroke();
-// DRAWING ARCS & CIRCLES
-// Draw a semicircle
-context.beginPath();
-// Draw an arc at (400, 50) with radius 40 from 0 to 180 degrees, anticlockwise
-// PI radians = 180 degrees
-context.arc(100, 300, 40, 0, Math.PI, true);
-context.stroke();
-// Draw a full circle
-context.beginPath();
-// Draw an arc at (500, 50) with radius 30 from 0 to 360 degrees, anticlockwise
-// 2*PI radians = 360 degrees
-context.arc(100, 300, 30, 0, 2 * Math.PI, true);
-context.fill();
-// Draw a three-quarter arc
-context.beginPath();
-// Draw an arc at (400, 100) with radius 25 from 0 to 270 degrees, clockwise
-// (3/2*PI radians = 270 degrees)
-context.arc(200, 300, 25, 0, 3 / 2 * Math.PI, false);
-context.stroke();
+
+.. code:: Python
+
+   // DRAWING COMPLEX SHAPES
+   // Draw a filled triangle
+   context.beginPath();
+   context.moveTo(10, 120); // Start drawing at 10, 120
+   context.lineTo(10, 180);
+   context.lineTo(110, 150);
+   context.fill(); // Close the shape and fill it out
+   // Draw a stroked triangle
+   context.beginPath();
+   context.moveTo(140, 160); // Start drawing at 140, 160
+   context.lineTo(140, 220);
+   context.lineTo(40, 190);
+   context.closePath();
+   context.stroke();
+   // Draw a more complex set of lines
+   context.beginPath();
+   context.moveTo(160, 160); // Start drawing at 160, 160
+   context.lineTo(170, 220);
+   context.lineTo(240, 210);
+   context.lineTo(260, 170);
+   context.lineTo(190, 140);
+   context.closePath();
+   context.stroke();
+   // DRAWING ARCS & CIRCLES
+   // Draw a semicircle
+   context.beginPath();
+   // Draw an arc at (400, 50) with radius 40 from 0 to 180 degrees, anticlockwise
+   // PI radians = 180 degrees
+   context.arc(100, 300, 40, 0, Math.PI, true);
+   context.stroke();
+   // Draw a full circle
+   context.beginPath();
+   // Draw an arc at (500, 50) with radius 30 from 0 to 360 degrees, anticlockwise
+   // 2*PI radians = 360 degrees
+   context.arc(100, 300, 30, 0, 2 * Math.PI, true);
+   context.fill();
+   // Draw a three-quarter arc
+   context.beginPath();
+   // Draw an arc at (400, 100) with radius 25 from 0 to 270 degrees, clockwise
+   // (3/2*PI radians = 270 degrees)
+   context.arc(200, 300, 25, 0, 3 / 2 * Math.PI, false);
+   context.stroke();
 
 Drawing Text
+------------
 
 The context also provides us with two methods for drawing text on the canvas:
 
@@ -240,14 +258,16 @@ stroke, and fill style properties, as shown in Listing 1-6.
 
 Listing 1-6. Drawing Text Inside the Canvas
 
-// DRAWING TEXT
-context.fillText("This is some text...", 330, 40);
-// Modify the font
-context.font = "10pt Arial";
-context.fillText("This is in 10pt Arial...", 330, 60);
-// Draw stroked text
-context.font = "16pt Arial";
-context.strokeText("This is stroked in 16pt Arial...", 330, 80);
+.. code:: Python
+
+   // DRAWING TEXT
+   context.fillText("This is some text...", 330, 40);
+   // Modify the font
+   context.font = "10pt Arial";
+   context.fillText("This is in 10pt Arial...", 330, 60);
+   // Draw stroked text
+   context.font = "16pt Arial";
+   context.strokeText("This is stroked in 16pt Arial...", 330, 80);
 
 The code in Listing 1-6 will draw the text shown in Figure 1-4.
 
@@ -257,6 +277,7 @@ provide, you can still do a lot with the canvas text methods. Of course, this wo
 add some color.
 
 Customizing Drawing Styles (Colors and Textures)
+------------------------------------------------
 
 So far, everything we have drawn has been in black, but only because the canvas default drawing color is
 black. We have other options. We can style and customize the lines, shapes, and text on a canvas. We can
@@ -275,44 +296,49 @@ In addition, the context object’s createTexture() method creates a texture fro
 also be used as a fill style. Before we can use an image, we need to load the image into the browser. For now,
 we will just add an <img> tag after the <canvas> tag in our HTML file:
 
-<img src="fire.png" id="fire">
+.. code:: Python
+
+   <img src="fire.png" id="fire">
 
 The code in Listing 1-7 will draw colored and textured rectangles, as shown in Figure 1-5.
 
 Listing 1-7. Drawing with Colors and Textures
 
-// FILL STYLES AND COLORS
-// Set fill color to red
-context.fillStyle = "red";
-// Draw a red filled rectangle
-context.fillRect(310, 160, 100, 50);
-// Set stroke color to green
-context.strokeStyle = "green";
-// Draw a green stroked rectangle
-context.strokeRect(310, 240, 100, 50);
+.. code:: Python
 
-// Set fill color to yellow using rgb()
-context.fillStyle = "rgb(255, 255, 0)";
-// Draw a yellow filled rectangle
-context.fillRect(420, 160, 100, 50);
-// Set fill color to green with an alpha of 0.6
-context.fillStyle = "rgba(0, 255, 0, 0.6)";
-// Draw a semi-transparent green filled rectangle
-context.fillRect(450, 180, 100, 50);
-// TEXTURES
-// Get a handle to the Image object
-var fireImage = document.getElementById("fire");
-var pattern = context.createPattern(fireImage, "repeat");
-// Set fill style to newly created pattern
-context.fillStyle = pattern;
-// Draw a pattern filled rectangle
-context.fillRect(420, 240, 130, 50);
+   // FILL STYLES AND COLORS
+   // Set fill color to red
+   context.fillStyle = "red";
+   // Draw a red filled rectangle
+   context.fillRect(310, 160, 100, 50);
+   // Set stroke color to green
+   context.strokeStyle = "green";
+   // Draw a green stroked rectangle
+   context.strokeRect(310, 240, 100, 50);
+
+   // Set fill color to yellow using rgb()
+   context.fillStyle = "rgb(255, 255, 0)";
+   // Draw a yellow filled rectangle
+   context.fillRect(420, 160, 100, 50);
+   // Set fill color to green with an alpha of 0.6
+   context.fillStyle = "rgba(0, 255, 0, 0.6)";
+   // Draw a semi-transparent green filled rectangle
+   context.fillRect(450, 180, 100, 50);
+   // TEXTURES
+   // Get a handle to the Image object
+   var fireImage = document.getElementById("fire");
+   var pattern = context.createPattern(fireImage, "repeat");
+   // Set fill style to newly created pattern
+   context.fillStyle = pattern;
+   // Draw a pattern filled rectangle
+   context.fillRect(420, 240, 130, 50);
 
 In addition to these methods, the canvas also provides several methods to use color gradients, shadows,
 and patterns while drawing. I encourage you to take the time to explore the canvas and context API more
 thoroughly when you get the chance.
 
 Drawing Images
+--------------
 
 Although we can achieve quite a lot using just the drawing methods we have covered so far, we still need
 to explore how to use images. Learning how to draw images will enable you to draw game backgrounds,
@@ -332,27 +358,32 @@ and draws it on the canvas at (x, y)
 Before we start drawing images, we need to load another image into the browser. We will add one more
 <img> tag after the <canvas> tag in our HTML file:
 
-<img src="spaceship.png" id="spaceship">
+.. code:: Python
+
+   <img src="spaceship.png" id="spaceship">
 
 Once the image has been loaded, we can draw it using the code shown in Listing 1-8.
 
 Listing 1-8. Drawing Images
 
-// DRAWING IMAGES
-// Get a handle to the Image object
-var image = document.getElementById("spaceship");
-// Draw the image at (0, 350)
-context.drawImage(image, 0, 350);
-// Scale the image to half the original size
-context.drawImage(image, 0, 400, 100, 25);
-// Draw part of the image
-context.drawImage(image, 0, 0, 60, 50, 0, 420, 60, 50);
+.. code:: Python
+
+   // DRAWING IMAGES
+   // Get a handle to the Image object
+   var image = document.getElementById("spaceship");
+   // Draw the image at (0, 350)
+   context.drawImage(image, 0, 350);
+   // Scale the image to half the original size
+   context.drawImage(image, 0, 400, 100, 25);
+   // Draw part of the image
+   context.drawImage(image, 0, 0, 60, 50, 0, 420, 60, 50);
 
 The code in Listing 1-8 will draw the images shown in Figure 1-6. The last example in Listing 1-8, where
 we draw only a part of the image, will become especially useful when we start using sprite sheets to combine
 our game assets and store multiple sprites in a single large image
 
 Transforming and Rotating
+-------------------------
 
 The context object has several methods for transforming the coordinate system used for drawing elements.
 These methods are
@@ -374,24 +405,26 @@ Let’s look at rotating objects before drawing them, as shown in Listing 1-9.
 
 Listing 1-9. Rotating Objects Before Drawing Them
 
-// ROTATION AND TRANSLATION
-//Translate origin to location of object
-context.translate(250, 370);
-//Rotate about the new origin by 60 degrees
-context.rotate(Math.PI / 3);
-context.drawImage(image, 0, 0, 60, 50, -30, -25, 60, 50);
-//Restore to original state by rotating and translating back
-context.rotate(-Math.PI / 3);
-context.translate(-240, -370);
+.. code:: Python
+ 
+   // ROTATION AND TRANSLATION
+   //Translate origin to location of object
+   context.translate(250, 370);
+   //Rotate about the new origin by 60 degrees
+   context.rotate(Math.PI / 3);
+   context.drawImage(image, 0, 0, 60, 50, -30, -25, 60, 50);
+   //Restore to original state by rotating and translating back
+   context.rotate(-Math.PI / 3);
+   context.translate(-240, -370);
 
-//Translate origin to location of object
-context.translate(300, 370);
-//Rotate about the new origin
-context.rotate(3 * Math.PI / 4);
-context.drawImage(image, 0, 0, 60, 50, -30, -25, 60, 50);
-//Restore to original state by rotating and translating back
-context.rotate(-3 * Math.PI / 4);
-context.translate(-300, -370);
+   //Translate origin to location of object
+   context.translate(300, 370);
+   //Rotate about the new origin
+   context.rotate(3 * Math.PI / 4);
+   context.drawImage(image, 0, 0, 60, 50, -30, -25, 60, 50);
+   //Restore to original state by rotating and translating back
+   context.rotate(-3 * Math.PI / 4);
+   context.translate(-300, -370);
 
 The code in Listing 1-9 will draw the two rotated ship images shown in Figure 1-7.
 
@@ -404,6 +437,7 @@ games. There is still a lot of the API that we have not covered here. You can re
 at https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API.
 
 The audio Element
+-----------------
 
 Using the HTML5 audio element is the new standard way to embed an audio file into a web page. Until this
 element came along, most pages played audio files using embedded plug-ins (such as Flash).
@@ -413,9 +447,11 @@ object. An example is shown in Listing 1-10.
 
 Listing 1-10. The HTML5 <audio> Tag
 
-<audio src="music.mp3" controls="controls">
-Your browser does not support HTML5 Audio. Please shift to a newer browser.
-</audio>
+.. code:: Python
+
+   <audio src="music.mp3" controls="controls">
+      Your browser does not support HTML5 Audio. Please shift to a newer browser.
+   </audio>
 
  Note Browsers that do not support audio will ignore the <audio> tag and render anything inside the
 <audio> tag. You can use this feature to show users on older browsers alternative fallback content or a
@@ -423,6 +459,7 @@ message directing them to a more modern browser.
 
 The controls attribute included in Listing 1-10 makes the browser display a simple browser-specific
 interface for playing the audio file (such as a play/pause button and volume controls).
+
 The audio element has several other attributes, such as the following:
 
 • preload: Specifies whether or not the audio should be preloaded
@@ -443,26 +480,30 @@ the first recognized format (see Listing 1-11).
 
 Listing 1-11. The <audio> Tag with Multiple Sources
 
-<audio controls="controls">
-<source src="music.ogg" type="audio/ogg" />
-<source src="music.mp3" type="audio/mpeg" />
-Your browser does not support HTML5 Audio. Please shift to a newer browser.
-</audio>
+.. code:: Python
+
+   <audio controls="controls">
+      <source src="music.ogg" type="audio/ogg" />
+      <source src="music.mp3" type="audio/mpeg" />
+         Your browser does not support HTML5 Audio. Please shift to a newer browser.
+   </audio>
 
 Audio can also be loaded dynamically by using the Audio object in JavaScript. The Audio object allows
 us to load, play, and pause sound files as needed, which is what will be used for games (see Listing 1-12).
 
 Listing 1-12. Dynamically Loading an Audio File
 
-<script>
-//Create a new Audio object
-var sound = new Audio();
-// Select the source of the sound
-sound.src = "music.ogg";
-// This will only work on browsers that support OGG
-// Play the sound
-// sound.play();
-</script>
+.. code:: Python
+
+   <script>
+      //Create a new Audio object
+      var sound = new Audio();
+      // Select the source of the sound
+      sound.src = "music.ogg";
+      // This will only work on browsers that support OGG
+      // Play the sound
+      // sound.play();
+   </script>
 
 Unlike with the <audio> HTML tag, where we could easily specify multiple formats, when using
 JavaScript we need a way to detect the formats supported by the browser so we can load the appropriate
@@ -472,35 +513,36 @@ appropriate audio format, as shown in Listing 1-13.
 
 Listing 1-13. Testing for Audio Support
 
-<script>
-var audio = document.createElement("audio");
-var mp3Support, oggSupport;
-if (audio.canPlayType) {
-// Currently canPlayType() returns: "", "maybe", or "probably"
-mp3Support = "" !== audio.canPlayType("audio/mpeg");
-oggSupport = "" !== audio.canPlayType("audio/ogg; codecs=\"vorbis\"");
-} else {
-// The audio tag is not supported
-mp3Support = false;
-oggSupport = false;
-}
+.. code:: Python
 
-// Check for ogg, then mp3, and finally set soundFileExtn to undefined
+   <script>
+   var audio = document.createElement("audio");
+   var mp3Support, oggSupport;
+   if (audio.canPlayType) {
+   // Currently canPlayType() returns: "", "maybe", or "probably"
+   mp3Support = "" !== audio.canPlayType("audio/mpeg");
+   oggSupport = "" !== audio.canPlayType("audio/ogg; codecs=\"vorbis\"");
+   } else {
+   // The audio tag is not supported
+   mp3Support = false;
+   oggSupport = false;
+   }
 
-var soundFileExtn = oggSupport ? ".ogg" : mp3Support ? ".mp3" : undefined;
-if (soundFileExtn) {
-var sound = new Audio();
-// Load sound file with the detected extension
-sound.src = "music" + soundFileExtn;
-sound.play();
-}
-</script>
+   // Check for ogg, then mp3, and finally set soundFileExtn to undefined
+
+   var soundFileExtn = oggSupport ? ".ogg" : mp3Support ? ".mp3" : undefined;
+   if (soundFileExtn) {
+   var sound = new Audio();
+   // Load sound file with the detected extension
+   sound.src = "music" + soundFileExtn;
+   sound.play();
+   }
+   </script>
 
 
-Chapter 1 ■ htML5 and JavaSCript eSSentiaLS
-15
 Listing 1-13 uses canPlayType() to set a soundFileExtn property, which we can then use to load future
 audio files. We will use this idea when we build audio into our games in later chapters.
+
 The Audio object triggers several different events to help us know when the sound has been loaded and
 is ready for playing. The loadedmetadata event is fired when the initial audio file metadata has been loaded
 by the browser. The canplay event is fired once enough of the audio file has been downloaded
@@ -508,18 +550,24 @@ to start playing, and the canplaythrough event is fired when the browser can pla
 without needing to pause and buffer the file. We can use the canplaythrough event to keep track of when
 the sound file has been loaded sufficiently for our purposes. Listing 1-14 shows an example of how the
 canplaythrough event can be used to play a sound once it has been loaded.
+
 Listing 1-14. Waiting for an Audio File to Load
-<script>
-// Play the sound after waiting for it to load
-if (soundFileExtn) {
-var sound = new Audio();
-sound.addEventListener("canplaythrough", function() {
-sound.play();
-});
-// Load sound file with the detected extension
-sound.src = "music" + soundFileExtn;
-}
-</script>
+
+.. code:: Python
+
+   <script>
+   // Play the sound after waiting for it to load
+   if (soundFileExtn) {
+   var sound = new Audio();
+   sound.addEventListener("canplaythrough", function() {
+   sound.play();
+   });
+   // Load sound file with the detected extension
+   sound.src = "music" + soundFileExtn;
+   }
+   </script>
+
+9999
 Now that we have looked at how to check for supported audio formats, dynamically load audio, and
 detect when an audio file has loaded, we can combine these concepts to design an audio preloader that will
 dynamically load all the game audio resources before starting the game. We will look at this idea in more
