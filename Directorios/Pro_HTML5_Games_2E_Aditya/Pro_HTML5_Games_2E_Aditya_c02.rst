@@ -1,5 +1,6 @@
-CHAPTER 2
-Creating a Basic Game World
+CHAPTER 2 Creating a Basic Game World
+=====================================
+
 The arrival of smartphones and handheld devices that support gaming has created a renewed interest in
 simple puzzle and physics-based games that can be played for short periods of time. Most of these games
 have a simple concept, small levels, and are easy to learn. One of the most popular and famous games in
@@ -7,16 +8,23 @@ this genre is Angry Birds (by Rovio Entertainment), a puzzle/strategy game where
 shoot birds at enemy pigs. Despite a fairly simple premise, the game has been downloaded and installed on
 over two billion devices around the world. The game uses a physics engine to realistically model the slinging,
 collisions, and breaking of objects inside its game world.
+
 Over the next four chapters, we are going to build our own physics-based puzzle game with complete
 playable levels. Our game, Froot Wars, will have fruits as protagonists, junk food as the enemy, and some
 breakable structures within the level.
+
 We will be implementing all the essential components you will need in your own games—splash
 screens, loading screens and preloaders, menu screens, parallax scrolling, sound, realistic physics with the
 Box2D physics engine, and a scoreboard. Once you have this basic framework, you should be able to reuse
 these ideas in your own puzzle games.
+
 So let’s get started.
+
 Basic HTML Layout
+-----------------
+
 The first thing we need to do is to create the basic game layout. This will consist of several layers:
+
 • Splash screen: Shown when the game page is loaded
 • Game start screen: A menu that allows the player to start the game or modify settings
 • Loading/progress screen: Shown whenever the game is loading assets (such as
@@ -24,103 +32,114 @@ images and sound files)
 • Game canvas: The actual game layer
 • Scoreboard: An overlay above the game canvas to show a few buttons and the score
 • Ending screen: A screen displayed at the end of each level
+
 Each of these layers will be either a div element or a canvas element that we will display or hide as
-needed. The code will be laid out with separate folders for images and JavaScript code
+needed. The code will be laid out with separate folders for images and JavaScript code.
 
 Creating the Splash Screen and Main Menu
+----------------------------------------
+
 We start with a skeleton HTML file, similar to the first chapter, and add the markup for our containers, as
 shown in Listing 2-1.
-Listing 2-1. Basic Skeleton (index.html) with the Layers Added
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-<title>Froot Wars</title>
-<script src="js/game.js" type="text/javascript"></script>
-<link rel="stylesheet" href="styles.css" type="text/css" media="screen">
-</head>
-<body>
-<div id="wrapper">
-<div id="gamecontainer">
-<canvas id="gamecanvas" width="640" height="480" class="gamelayer">
-</canvas>
-<div id="scorescreen" class="gamelayer">
-<img id="togglemusic" src="images/icons/sound.png" alt="Toggle Music">
-<img src="images/icons/prev.png" alt="Restart Level ">
-<span id="score">Score: 0</span>
-</div>
-<div id="gamestartscreen" class="gamelayer">
-<img src="images/icons/play.png" alt="Play Game"><br>
-<img src="images/icons/settings.png" alt="Settings">
-</div>
-<div id="levelselectscreen" class="gamelayer">
-</div>
-<div id="loadingscreen" class="gamelayer">
-<div id="loadingmessage"></div>
-</div>
-<div id="endingscreen" class="gamelayer">
-<div>
-<p id="endingmessage">The Level Is Over Message</p>
-<p id="playcurrentlevel" class="endingoption"><img src="images/
-icons/prev.png" alt="Replay">Replay Current Level</p>
 
-Chapter 2 ■ Creating a BasiC game World
-23
-<p id="playnextlevel" class="endingoption"><img src="images/icons/
-next.png" alt="Next">Play Next Level</p>
-<p id="returntolevelscreen" class="endingoption"><img src="images/
-icons/return.png" alt="Return">Return to Level Screen</p>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
+Listing 2-1. Basic Skeleton (index.html) with the Layers Added
+
+.. code:: Python
+
+   <!DOCTYPE html>
+   <html>
+   <head>
+   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+   <title>Froot Wars</title>
+   <script src="js/game.js" type="text/javascript"></script>
+   <link rel="stylesheet" href="styles.css" type="text/css" media="screen">
+   </head>
+   <body>
+   <div id="wrapper">
+   <div id="gamecontainer">
+   <canvas id="gamecanvas" width="640" height="480" class="gamelayer">
+   </canvas>
+   <div id="scorescreen" class="gamelayer">
+   <img id="togglemusic" src="images/icons/sound.png" alt="Toggle Music">
+   <img src="images/icons/prev.png" alt="Restart Level ">
+   <span id="score">Score: 0</span>
+   </div>
+   <div id="gamestartscreen" class="gamelayer">
+   <img src="images/icons/play.png" alt="Play Game"><br>
+   <img src="images/icons/settings.png" alt="Settings">
+   </div>
+   <div id="levelselectscreen" class="gamelayer">
+   </div>
+   <div id="loadingscreen" class="gamelayer">
+   <div id="loadingmessage"></div>
+   </div>
+   <div id="endingscreen" class="gamelayer">
+   <div>
+   <p id="endingmessage">The Level Is Over Message</p>
+   <p id="playcurrentlevel" class="endingoption"><img src="images/
+   icons/prev.png" alt="Replay">Replay Current Level</p>
+   <p id="playnextlevel" class="endingoption"><img src="images/icons/
+   next.png" alt="Next">Play Next Level</p>
+   <p id="returntolevelscreen" class="endingoption"><img src="images/
+   icons/return.png" alt="Return">Return to Level Screen</p>
+   </div>
+   </div>
+   </div>
+   </div>
+   </body>
+   </html>
+
 As you can see, we defined a main gamecontainer div element that contains each of the game
 layers: gamestartscreen, levelselectscreen, loadingscreen, scorescreen, endingscreen, and finally
 gamecanvas. All of these are placed inside a wrapper div, which we can later use for positioning and resizing
 the game around the page as needed.
+
 We also link to two external files: game.js for JavaScript and styles.css for CSS. Keeping the JavaScript
 and CSS as separate files makes the code easier to maintain. In larger projects, it is common to break out
 the CSS and JavaScript into multiple files, and very large projects often use a dependency loading system
 to automatically load all the distinct JavaScript files. For this game, single files for JavaScript and CSS will
 suffice.
+
 We will start by creating the styles.css file and adding styles for the game container and the starting
 menu screen, as shown in Listing 2-2.
-Listing 2-2. CSS Styles for the Container and Start Screen (styles.css)
-body {
-background: #000900;
-/* Prevent the ugly blue highlighting from accidental selection of text */
-user-select: none;
-}
-#wrapper {
-position: absolute;
-}
-#gamecontainer {
-/* Set game container width, height, and background */
-width: 640px;
-height: 480px;
-background: url("images/splashscreen.png");
-}
-.gamelayer {
-width: 100%;
-height: 100%;
-position: absolute;
-display: none;
-}
 
-Chapter 2 ■ Creating a BasiC game World
-24
-/* Game Starting Menu Screen */
-#gamestartscreen {
-padding-top: 250px;
-text-align: center;
-}
-#gamestartscreen img {
-margin: 10px;
-cursor: pointer;
-}
+Listing 2-2. CSS Styles for the Container and Start Screen (styles.css)
+
+.. code:: Python
+
+   body {
+   background: #000900;
+   /* Prevent the ugly blue highlighting from accidental selection of text */
+   user-select: none;
+   }
+   #wrapper {
+   position: absolute;
+   }
+   #gamecontainer {
+   /* Set game container width, height, and background */
+   width: 640px;
+   height: 480px;
+   background: url("images/splashscreen.png");
+   }
+   .gamelayer {
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   display: none;
+   }
+
+   /* Game Starting Menu Screen */
+   #gamestartscreen {
+   padding-top: 250px;
+   text-align: center;
+   }
+   #gamestartscreen img {
+   margin: 10px;
+   cursor: pointer;
+   }
+
 We have done the following in this CSS style sheet so far:
+
 • Set the default page background color to almost black with a slight tinge of green and
 disabled highlighting of text or elements by dragging the mouse.
 • Defined our game container with a size of 640px by 480px.
@@ -132,6 +151,9 @@ default.
 thing a player sees when the page loads.
 • Added some styling for our game start screen (the starting menu), which has options
 such as starting a new game and changing game settings.
+
+9999
+
 ■ Note all the images and source code are available from this book’s product page on the apress website
 (www.apress.com/9781484229095) by clicking the download source Code button. if you would like to follow
 along, you can copy all the asset files into a fresh folder and build the game on your own.

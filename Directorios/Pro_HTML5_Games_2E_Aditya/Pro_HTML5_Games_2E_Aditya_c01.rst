@@ -567,76 +567,103 @@ Listing 1-14. Waiting for an Audio File to Load
    }
    </script>
 
-9999
 Now that we have looked at how to check for supported audio formats, dynamically load audio, and
 detect when an audio file has loaded, we can combine these concepts to design an audio preloader that will
 dynamically load all the game audio resources before starting the game. We will look at this idea in more
 detail in the next few chapters when we build an asset loader for our games.
+
 The image Element
+-----------------
+
 The image element allows us to display images inside an HTML file. The simplest way to do this is by using
 the <image> tag and specifying an src attribute, as shown earlier and again here in Listing 1-15.
 Listing 1-15. The <image> Tag
-<img src="spaceship.png" id="spaceship">
+
+.. code:: Python
+
+   <img src="spaceship.png" id="spaceship">
+
 You can also load an image dynamically using JavaScript by instantiating a new Image object and setting
 its src property, as shown in Listing 1-16.
+
 Listing 1-16. Dynamically Loading an Image
-var image = new Image();
-image.src = "spaceship.png";
+
+.. code:: Python
+
+   var image = new Image();
+   image.src = "spaceship.png";
+
 You can use either of these methods to get an image for drawing on a canvas
 
-Chapter 1 ■ htML5 and JavaSCript eSSentiaLS
-16
 Image Loading
+-------------
+
 Games are usually designed to wait for all the images to load completely before they start so as to avoid
 errors due to partly loaded images. While the images are being loaded, programmers commonly display a
 progress bar or status indicator that shows the percentage of images loaded.
+
 The Image object provides us with an onload event that gets fired as soon as the browser finishes
 loading the image file. Using this event, we can keep track of when the image has loaded, as shown in the
 example in Listing 1-17.
+
 Listing 1-17. Waiting for an Image to Load
-image.onload = function() {
-alert("Image finished loading");
-};
+
+.. code:: Python
+
+   image.onload = function() {
+      alert("Image finished loading");
+   };
+
 Using the onload event, we can create a simple image loader that tracks images loaded so far
 (see Listing 1-18).
+
 Listing 1-18. Simple Image Loader
-var imageLoader = {
-loaded: true,
-loadedImages: 0,
-totalImages: 0,
-load: function(url) {
-this.totalImages++;
-this.loaded = false;
-var image = new Image();
-image.src = url;
-image.onload = function() {
-imageLoader.loadedImages++;
-if (imageLoader.loadedImages === imageLoader.totalImages) {
-imageLoader.loaded = true;
-}
-image.onload = undefined;
-}
-return image;
-}
-}
+
+.. code:: Python
+
+   var imageLoader = {
+   loaded: true,
+   loadedImages: 0,
+   totalImages: 0,
+   load: function(url) {
+   this.totalImages++;
+   this.loaded = false;
+   var image = new Image();
+   image.src = url;
+   image.onload = function() {
+   imageLoader.loadedImages++;
+   if (imageLoader.loadedImages === imageLoader.totalImages) {
+   imageLoader.loaded = true;
+   }
+   image.onload = undefined;
+   }
+   return image;
+   }
+   }
+
 In this code, we create an imageLoader object with a load() method. This load() method takes an
 image URL, and increases the totalImages counter each time it is called. It then dynamically creates
 an Image object and sets the object’s src property. Finally, it uses the object’s onload event handler to
 increment the loadedImages counter, and once the counter reaches totalImages, it sets the loaded variable
 back to true.
+
 This image loader can be invoked to load a large number of images (say in a loop). We can check to see
 if all the images are loaded by using imageLoader.loaded, and we can draw a percentage/progress bar by
 using loadedImages/totalImages.
+
 Don’t worry about actually using this loader yet. This is just a partial code snippet to help illustrate the
 basic idea for an image loader. We will be building a more complete version of an asset loader for our games
 in the coming chapters.
 
 Sprite Sheets
+-------------
+
 Another concern when your game has a lot of images is how to optimize the way the server loads these
 images. Games can require anything from tens to hundreds of images. Even a simple real-time strategy (RTS)
 game will need images for different units, buildings, maps, backgrounds, and effects. In the case of units and
 buildings, you might need multiple versions of images to represent different directions and states, and in the
 case of animations, you might need an image for each frame of the animation.
+
 In one of my earlier RTS game projects, I used individual images for each animation frame and state
 for every unit and building, ending up with over 1,000 images. Since most browsers make only a few
 simultaneous requests at a time, downloading all these images took a lot of time, with an overload of HTTP
@@ -644,38 +671,51 @@ requests on the server. While this wasn’t a problem when I was testing the cod
 when the code went onto the server. Players ended up waiting 5 to 10 minutes (sometimes longer) for the
 game to load before they could actually start playing. All the concurrent requests also caused considerable
 load on my web server.
+
 Luckily for us, there is a simple way to fix this problem of too many images and HTTP requests, and this
 is where sprite sheets come in. Sprite sheets store all the sprites (images) for a game entity in a single large
 image file. When displaying the images, we calculate the offset of the sprite we want to show and use the
 ability of the drawImage() method to draw only a part of an image. The spaceship.png image we have been
 using in this chapter is an example of a sprite sheet since it contains multiple spaceship sprites within the
 same file.
+
 Looking at the code fragments in Listings 1-19 and 1-20, you can see examples of drawing an image
 loaded individually versus drawing an image loaded in a sprite sheet.
+
 Listing 1-19. Drawing an Image Loaded Individually
-// First: (Load individual images and store in a big array)
-// Three arguments: the element, and destination (x, y) coordinates
-var image = imageArray[imageNumber];
-context.drawImage(image, x, y);
+
+.. code:: Python
+
+   // First: (Load individual images and store in a big array)
+   // Three arguments: the element, and destination (x, y) coordinates
+   var image = imageArray[imageNumber];
+   context.drawImage(image, x, y);
+
 Listing 1-20. Drawing an Image Loaded in a Sprite Sheet
-// First: (Load single sprite sheet image)
-// Nine arguments: the element, source (x, y) coordinates,
-// source width and height (for cropping),
-// destination (x, y) coordinates, and
-// destination width and height (resize)
-context.drawImage (this.spriteImage, this.imageWidth*(imageNumber), 0, this.imageWidth,
-this.imageHeight, x, y, this.imageWidth, this.imageHeight);
+
+.. code:: Python
+
+   // First: (Load single sprite sheet image)
+   // Nine arguments: the element, source (x, y) coordinates,
+   // source width and height (for cropping),
+   // destination (x, y) coordinates, and
+   // destination width and height (resize)
+   context.drawImage (this.spriteImage, this.imageWidth*(imageNumber), 0, this.imageWidth,
+   this.imageHeight, x, y, this.imageWidth, this.imageHeight);
+
 In the first example, we store each individual sprite as a separate Image object in an array, and then
 draw a specific sprite by accessing the Image object. This method would require as many Image objects as
-sprites, and just as many HTTP requests to the server to fetch each image
+sprites, and just as many HTTP requests to the server to fetch each image.
 
 In the second example, we load a single large sprite sheet where all the sprites are placed side by side.
 Drawing the sprite involves calculating the x and y offset of the sprite within the image and then drawing
 just the appropriate portion of the image. This method involves only a single HTTP request and only a single
 Image object per sprite sheet, along with a little more complexity in computing the sprite location within the
 image. In terms of utilization of network resources, this is significantly better.
+
 The following are some of the advantages of using a sprite sheet, which make using sprite sheets for any
 kind of complex game a no-brainer:
+
 • Fewer HTTP requests: A unit that has 80 images (and so 80 requests) will now be
 downloaded in a single HTTP request.
 • Better compression: Storing the images in a single file means that the header
@@ -684,28 +724,38 @@ smaller than all the individual files.
 • Faster load times: With significantly lower HTTP requests and file sizes, the
 bandwidth usage and load times for the game drop as well, which means users won’t
 have to wait for as long a time for the game to load.
+
 Animation: Timer and Game Loops
+-------------------------------
+
 The last thing you need to understand before you get started with actually building games is animation.
 Animating is just a matter of drawing an object, erasing it, and drawing it again at a new position, fast
 enough that the human eye only sees it as smooth movement.
+
 The most common way to handle animation is by keeping a drawing function that gets called several
 times a second. Within this function, we iterate through all the game entities and draw them one by one.
+
 Simpler games typically handle both animating or moving the entities and drawing them within the
 same drawing function. However, some games have a separate control/animation function that updates
 movement of the entities within the game, while the drawing function handles only the actual drawing of the
 entities on the screen. The animation function, since it is independent of the drawing function, can be called
 less often than the drawing function. Listing 1-21 contains skeleton code illustrating a typical animation and
 drawing routine.
+
 Listing 1-21. Typical Animation and Drawing Loop
-function animationLoop(){
-// Iterate through all the items in the game
-//And move them
-}
-function drawingLoop(){
-//1. Clear the canvas
-//2. Iterate through all the items
-//3. And draw each item
-}
+
+.. code:: Python
+
+   function animationLoop(){
+   // Iterate through all the items in the game
+   //And move them
+   }
+   function drawingLoop(){
+   //1. Clear the canvas
+   //2. Iterate through all the items
+   //3. And draw each item
+   }
+
 Assuming we built a working drawingLoop() method for our game, we need to figure out a way to call
 drawingLoop() repeatedly at regular intervals. The simplest way of achieving this is to use the two timer
 methods setInterval() and setTimeout(). setInterval(functionName, timeInterval) tells the browser
@@ -713,41 +763,56 @@ to keep calling a given function repeatedly at fixed time intervals until the cl
 called. When we need to stop animating (when the game is paused, or has ended), we use clearInterval().
 Listing 1-22 shows an example of how this would work
 
-Chapter 1 ■ htML5 and JavaSCript eSSentiaLS
-19
 Listing 1-22. Calling Drawing Loop with setInterval()
-// Call drawingLoop() every 20 milliseconds
-var gameLoop = setInterval(drawingLoop, 20);
-// Stop calling drawingLoop() and clear the gameLoop variable
-clearInterval(gameLoop);
-setTimeout(functionName, timeInterval) tells the browser to call a given function one single time
-after a given time interval, as shown in the example in Listing 1-23.
+
+.. code:: Python
+
+   // Call drawingLoop() every 20 milliseconds
+   var gameLoop = setInterval(drawingLoop, 20);
+   // Stop calling drawingLoop() and clear the gameLoop variable
+   clearInterval(gameLoop);
+   setTimeout(functionName, timeInterval) tells the browser to call a given function one single time
+   after a given time interval, as shown in the example in Listing 1-23.
+
 Listing 1-23. Calling Drawing Loop with setTimeout()
-function drawingLoop(){
-// 1. Call the drawingLoop() method once after 20 milliseconds
-var gameLoop = setTimeout(drawingLoop,20);
-// 2. Clear the canvas
-// 3. Iterate through all the items
-// 4. And draw them
-}
+
+.. code:: Python
+
+   function drawingLoop(){
+   // 1. Call the drawingLoop() method once after 20 milliseconds
+   var gameLoop = setTimeout(drawingLoop,20);
+   // 2. Clear the canvas
+   // 3. Iterate through all the items
+   // 4. And draw them
+   }
+
 Unlike with setInterval(), when using setTimeout() we need to make a new call each time since
 setTimeout() only calls the drawingLoop() method once. When we need to stop animating (when the game
 is paused, or has ended), we can use clearTimeout():
-// Stop calling drawingLoop() and clear the gameLoop variable
-clearTimeout(gameLoop);
+
+.. code:: Python
+
+   // Stop calling drawingLoop() and clear the gameLoop variable
+   clearTimeout(gameLoop);
+
 Now, don’t get too worried if some of this seems a little confusing or abstract at this point. This chapter
 is only meant to be a quick crash course, and I just want you to get a general overview of how this works. We
 will be looking at detailed working examples of all of these functions when we start building our games in
 later chapters, at which point everything should start making a lot more sense.
+
 requestAnimationFrame
+---------------------
+
 While using setInterval() or setTimeout() as a way to animate frames does work, browser vendors have
 come up with a new API specifically for handling animation. Some of the advantages of using this API
 instead of setInterval() are that the browser can do the following:
+
 • Optimize the animation code into a single reflow-and-repaint cycle, resulting in
 smoother animation
 • Pause the animation when the tab is not visible, leading to less CPU and GPU usage
 • Automatically cap the frame rate on machines that do not support higher frame
 rates, or increase the frame rate on machines that are capable of processing them
+
 Around the time that I was writing the first edition of this book, browser vendors had their own
 proprietary names for the methods in the API (such as Microsoft’s msrequestAnimationFrame() method and
 Mozilla’s mozRequestAnimationFrame() method). Since then, however, all browsers have standardized this
@@ -759,35 +824,51 @@ drawing loop), we need to ensure that animated objects move at the same speed on
 the actual frame rate. We do this either by animating objects in a separate setTimeout() or setInterval()
 loop, or by calculating the time since the previous drawing cycle and using it to interpolate the location of the
 object being animated.
+
 The requestAnimationFrame() method can be called from within the drawingLoop() method similar to
 setTimeout(), as shown in Listing 1-24.
+
 Listing 1-24. Calling Drawing Loop with requestAnimationFrame()
-function drawingLoop(nowTime){
-// 1. Call the drawingLoop() method whenever the browser is ready to draw again
-var gameLoop = requestAnimationFrame(drawingLoop);
-// 2. Clear the canvas
-// 3. Iterate through all the items
-// 4. Optionally use nowTime and the last nowTime to interpolate frames
-// 5. And draw the items
-}
+
+.. code:: Python
+
+   function drawingLoop(nowTime){
+   // 1. Call the drawingLoop() method whenever the browser is ready to draw again
+   var gameLoop = requestAnimationFrame(drawingLoop);
+   // 2. Clear the canvas
+   // 3. Iterate through all the items
+   // 4. Optionally use nowTime and the last nowTime to interpolate frames
+   // 5. And draw the items
+   }
+
 When we need to stop animating (when the game is paused, or has ended), we can use
 cancelAnimationFrame():
-// Stop calling drawingLoop() and clear the gameLoop variable
-cancelAnimationFrame(gameLoop);
+
+.. code:: Python
+
+   // Stop calling drawingLoop() and clear the gameLoop variable
+   cancelAnimationFrame(gameLoop);
+
 This section has covered the primary ways to add animation to your games. We will be looking at actual
 implementations of these animation loops in the coming chapters.
+
 Summary
+-------
+
 In this chapter, we looked at the basic elements of HTML5 that are needed for building games. We covered
 how to use the canvas element to draw shapes, write text, and manipulate images. We examined how to use
 the audio element to load and play sounds across different browsers. We also briefly covered the basics of
 animation, preloading objects and using sprite sheets.
+
 The topics we covered here are just a starting point and not exhaustive by any means. This chapter was
 meant to be a quick crash course or refresher on HTML5 and a handy reference for easily looking up syntax
 or code examples whenever needed. As I mentioned earlier, we will be going into these topics in more detail,
 along with complete implementations, as we build our games in the coming chapters.
+
 If you had trouble keeping up and would like a more detailed explanation of the basics of JavaScript and
 HTML5, I would recommend reading introductory books on JavaScript and HTML5, such as JavaScript for
 Absolute Beginners by Terry McNavage and The Essential Guide to HTML5 by Jeanine Meyer.
+
 Now that we have the basics out of the way, let’s get started building our first game.
 
 
