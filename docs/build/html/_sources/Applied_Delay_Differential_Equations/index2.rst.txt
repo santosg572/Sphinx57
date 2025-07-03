@@ -1,4 +1,4 @@
- Quantum_Computing_Himanshu
+Applied_Delay_Differential_Equations
 =====================
 
 .. note::
@@ -9,7 +9,8 @@
    :maxdepth: 2
    :caption: Contents:
 
-   Quantum_Computing_Himanshu_c01
+   Applied_Delay_Differential_Equations_c01
+
 
 
 

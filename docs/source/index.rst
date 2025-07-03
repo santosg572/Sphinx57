@@ -16,13 +16,35 @@ documentation for details.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Introductor_Statistics_with_R_2E
 
    Introductor_Statistics_with_R_2E/index2
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Geometria_Trigonometria
+
    Geometria_Trigonometria/c02
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Temarios
+
    Temarios/index2
+
+.. toctree::
+   :maxdepth: 2
+   :caption: A_First_Course_Design_Analysis_Experiments_Gary
+
    A_First_Course_Design_Analysis_Experiments_Gary/index2
+
+.. toctree::
+   :maxdepth: 2
+   :caption: An_Introduction_Dynmical_Systems_Chaos_2E
+
    An_Introduction_Dynmical_Systems_Chaos_2E/index2
    calculo_diferencial_integral/index2
    Statistical_Research_Methods_Roy/index2
+   Quantum_Computing_Himanshu/index2
+   Applied_Delay_Differential_Equations/index2
 

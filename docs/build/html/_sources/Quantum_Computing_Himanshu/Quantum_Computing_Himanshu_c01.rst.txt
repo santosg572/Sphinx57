@@ -17,22 +17,33 @@ development, the current state-of-the-art quantum computers mainly contain a sma
 number of quantum bits (qubits) with a noise level called the noisy intermediate-
 scale quantum devices (NISQ) that prevents them from being practical [3].
 
+La computación cuántica es una elegante fusión entre la ciencia de la computación y los principios de la física cuántica 
+para facilitar los cálculos [1]. Promete una excelente capacidad computacional que es intratable para las computadoras 
+clásicas para resolver problemas desafiantes, incluyendo la ciencia de los materiales, la ciencia de la información, la 
+ciencia de la computación, la ciencia matemática y otras. Sin embargo, resulta que las computadoras cuánticas tolerantes 
+a fallas son difíciles de implementar debido a: (i) la dificultad de acceder a información completa de sistemas 
+entrelazados debido al colapso del estado en las mediciones, y (ii) la dificultad de construir, controlar y medir estados 
+cuánticos con una precisión arbitrariamente alta [2]. En este sentido, a pesar del tremendo ritmo de desarrollo, las 
+computadoras cuánticas de última generación actuales contienen principalmente una pequeña cantidad de bits cuánticos 
+(qubits) con un nivel de ruido llamado dispositivos cuánticos de escala intermedia ruidosos (NISQ) que les impide ser 
+prácticos [3].
+
 Variational quantum algorithms (VQAs) are promising to speed up the computing capacity in the NISQ computers [4]. Massive applications of the VQAs
 were extensively reported, from dynamic simulation to condensed matter physics,
-machine learning, mathematical applications, and new frontiers quantum founda-
-
-Fig. 1 A variational quantum algorithm consists of a quantum and a classical part. In the quantum
-part, let |ψ> be the initial quantum state, it evolves under a parameterized ansatz U(θ) before being
-subject to measurement. The cost function C(θ) is defined and optimized in the classical part. The
-new parameters θ are derived and updated for each iteration to the quantum part. The scheme is
-repeated until it converts
-
-
-tions [4]. The main task of VQAs is to optimize a trainable parameterized circuit by
+machine learning, mathematical applications, and new frontiers quantum foundations [4]. The main task of VQAs is to optimize a trainable parameterized circuit by
 using a hybrid quantum-classical scheme, as shown in Fig. 1. Here, one measures
 the cost function of interest C(θ) in the quantum part and iteratively optimize it in
 the classical part until it converts. The optimization can use either gradient-free or
 gradient-based methods.
+
+Los algoritmos cuánticos variacionales (VQA) prometen acelerar la capacidad de cómputo de los ordenadores NISQ [4]. Se 
+han reportado extensas aplicaciones de los VQA, desde simulación dinámica hasta física de la materia condensada, 
+aprendizaje automático, aplicaciones matemáticas y fundamentos cuánticos de nuevas fronteras [4]. La tarea principal de 
+los VQA es optimizar un circuito parametrizado y entrenable mediante un esquema híbrido cuántico-clásico, como se muestra 
+en la Fig. 1. En este caso, se mide la función de coste de interés C(θ) en la parte cuántica y se optimiza iterativamente 
+en la parte clásica hasta que se convierte. La optimización puede utilizar métodos sin gradiente o basados ​​en gradiente.
+
+
 
 A critical technique for the VQAs to compute analytic derivatives of the cost
 function is known as the “parameter-shift rule” [5, 6], which is often required for
@@ -54,8 +65,24 @@ Fourier coefficients. So far, higher-order parameter-shift rule is also derived 
 such as the second-order derivative can reduce to the Hessian formula of the finite
 differential.
 
-In this work, we introduce the Lagrange interpolation approach [14, 15] to derive
-the general parameter-shift rule. We expand a quantum gate having a generator
+Una técnica crítica para que los VQA calculen las derivadas analíticas de la función de coste se conoce como la "regla de 
+desplazamiento de parámetros" [5, 6], que a menudo se requiere para la optimización basada en gradientes. El método fue 
+introducido por primera vez por Mitarai et al. [5] y luego se extendió a la llamada regla de desplazamiento de parámetros 
+de dos términos [6]. Este enfoque proporciona el gradiente exacto (derivada de primer orden) de la función de coste 
+restando las dos funciones de coste con diferentes desplazamientos. Sin embargo, solo es aplicable para puertas cuánticas 
+de un solo cúbit, cuyos generadores tienen dos valores propios distinguidos, como las puertas de rotación [7, 8]. Hasta 
+ahora, Anselmetti et al. introdujeron una regla de desplazamiento de parámetros de cuatro términos que se aplica a 
+generadores con tres valores propios distinguidos {−1, 0, 1}, como las puertas de rotación controlada [9]. En este caso, 
+la derivada se da en la combinación lineal de cuatro funciones de coste con diferentes desplazamientos. Recientemente, se 
+han realizado varios intentos para generalizar la regla de desplazamiento de parámetros para cualquier puerta cuántica 
+asignada [10–12]. Cabe destacar que se propusieron estrategias de generalización mediante expansión polinómica [11, 12]. 
+Además, Wierichs et al. introdujeron una regla general de desplazamiento de parámetros basada en la serie finita de 
+Fourier de la función de coste [10]. Sin embargo, este método requiere un alto coste computacional para evaluar todos los 
+coeficientes de Fourier. Hasta la fecha, también se ha derivado una regla de desplazamiento de parámetros de orden 
+superior [13], como la reducción de la derivada de segundo orden a la fórmula hessiana de la diferencial finita.
+
+In this work, we introduce the Lagrange 
+interpolation approach [14, 15] to derive the general parameter-shift rule. We expand a quantum gate having a generator
 G into a polynomial P (G) of degree n − 1, where n is the number of distinct
 eigenvalues of G. Our approach is similar to the polynomial expansion Refs.
 [11, 12]. However, here, we provide a general procedure to derive the parameter-
@@ -69,47 +96,61 @@ So far, our approach can be applied to trapped atomic ions quantum gates, such a
 collective quantum gates, whose generators have linear eigenvalues as number of
 particles [16, 17].
 
+En este trabajo, introducimos el enfoque de interpolación de Lagrange [14, 15] para derivar la regla general de 
+desplazamiento de parámetros. Expandimos una compuerta cuántica que tiene un generador G en un polinomio P (G) de grado n 
+− 1, donde n es el número de autovalores distintos de G. Nuestro enfoque es similar a la expansión polinómica Refs. [11, 
+12]. Sin embargo, aquí, proporcionamos un procedimiento general para derivar automáticamente la regla de desplazamiento 
+de parámetros para autovalores distintos arbitrarios. Solo requiere menos evaluaciones para calcular la derivada. 
+Ilustramos el enfoque para las bien conocidas reglas de desplazamiento de parámetros de dos y cuatro términos, y lo 
+generalizamos a la regla de desplazamiento de parámetros de múltiples términos. También se discuten las derivadas de 
+orden superior de la función de costo. Finalmente, evaluamos numéricamente la precisión del método a través del error 
+cuadrático medio y demostramos el solucionador de autovalores cuánticos variacional para un sistema de muchos cuerpos. 
+Hasta ahora, nuestro enfoque se puede aplicar a puertas cuánticas de iones atómicos atrapados, como las puertas cuánticas 
+colectivas, cuyos generadores tienen valores propios lineales como número de partículas [16, 17].
+
+
 For convenience, in Table 1, we present the major symbols used in this work.
 
 2 Preliminary
+-------------
 
 Let us consider a parameterized quantum gate with a general form U(x) = e−i x
 2 G where G is the generator and assume the cost function of interest is the expectation
 value of a measured observable B as 
 
-C(x) = <ψ|U†(x)BU(x)|ψ>, (1)
+Consideremos una puerta cuántica parametrizada con una forma general :math:`U(x) = e^{−i \frac{x}{2} G}` donde G es el 
+generador y 
+supongamos que la función de costo de interés es el valor esperado de un observable medido B como
+
+.. math::
+
+   C(x) = <ψ|U^†(x)BU(x)|ψ>, 
+
+(1)
 
 where |ψ> is the initial circuit’s state. The derivative w.r.t the parameter x yields
 
-∂
-∂x
-C(x) = − i
-2
-<ψ|U†(x)[
-B, G]
-U(x)|ψ>. (2)
+.. math::
 
-For generators that obey G2 = I , such as the standard rotation gates based on Pauli
-matrices G = {σx , σy , σz} or G2 = G, such as projective operators, we have
+   \frac{\partial}{∂} C(x) = −\frac{i}{2}<ψ|U^†(x)[B, G]U(x)|ψ>. 
 
-[
-B, G]
-= i
-sin(α)
-[
-U†(α)BU(α) − U†(−α)BU(−α)]
+(2)
+
+For generators that obey :math:`G^2 = I` , such as the standard rotation gates based on Pauli
+matrices :math:`G = \{σ_x , σ_y , σ_z\}` or :math:`G^2 = G`, such as projective operators, we have
+
+.. math::
+
+   [B, G] = \frac{i}{\sin(α)}[U^†(α)BU(α) -U^†(−α)BU(−α)]
 
 , (3)
 
 where α is an arbitrary shift. Substituting (3) to (2) results in a two-term parameter-
 shift rule as [6]
 
-∂
-∂x
-C(x) = 1
-2 sin(α)
-[
-C(x + α) − C(x − α)]
+.. math::
+
+   \frac{∂}{∂} C(x) = \frac{1{\\2 sin(α)}[C(x + α) − C(x − α)]
 
 , (4)
 
@@ -121,6 +162,7 @@ the following, we derive the parameter-shift rule for general quantum gates by u
 the Lagrange interpolation.
 
 3 General Parameter-Shift Rule with the Lagrange Interpolation Approach
+------------------------------------------------------------------------
 
 The Lagrange interpolation is a calculus method that decomposes a quantum gate
 in terms of the polynomials generator. It thus supports deriving the parameter-shift
@@ -131,28 +173,23 @@ shift rule using the Lagrange interpolation and apply it to the first-order deri
 3.1 Lagrange Interpolation Approach
 -----------------------------------
 
-We begin with a general quantum gate represented by U(x) = e−i x
-2 G, where E the Hermitian generator G has n distinguished eigenvalues {λk}, i.e., G = n−1
-k=0 λk|φk><φk|. The Lagrange interpolation of the unitary U(x) is given by
-[14, 15]
+We begin with a general quantum gate represented by :math:`U(x) = e^{−i\frac{x}{2} G`, where the Hermitian generator 
+G has n distinguished eigenvalues :math:`\{ \lambda_k \}`, i.e., :math:`G = \sum^{n−}_{k=0} \lambda_k |φ_k><φ_k|`. The 
+Lagrange interpolation of the unitary U(x) is given by [14, 15]
 
-e−i x
-2 G = En−1
-k=0
-e−i x
-2 λk
-n
-| |−1
-l=0,l/=k
-G − λlI
-λk − λl
-, (5)
+.. math::
+
+   e^{− \frac{ x}{2} G} = \sum^{n−}_{k=0} e^{−i \frac{ x}{2} \lambda_k} \PI_{l=0,l \neq k}^{n-1} \frac{G - 
+\lambda_lI}{\lambda_k - \lambda_l}
+
 
 where I is an identity matrix having the same dimension as G. In the following, we
 explicitly derive the general two-term, four-term, and multiple-term parameter-shift
 rule from Eq. (5).
 
 3.2 Two-Term Parameter-Shift Rule
+---------------------------------
+
 
 We first consider case n = 2. Let λ0 and λ1 be two distinguished eigenvalues of G.
 Equation (5) explicitly yields
