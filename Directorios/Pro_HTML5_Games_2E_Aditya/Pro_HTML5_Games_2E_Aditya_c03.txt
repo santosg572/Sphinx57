@@ -1,0 +1,478 @@
+47© Aditya Ravi Shankar 2017
+A. R. Shankar, Pro HTML5 Games, DOI 10.1007/978-1-4842-2910-1_3
+CHAPTER 3
+Physics Engine Basics
+A physics engine is a program that provides an approximate simulation of a game world by creating
+a mathematical model for all the object interactions and collisions within the game. It accounts for
+gravity, elasticity, friction, and conservation of momentum between colliding objects so that the objects
+move in a believable way. For our game, we are going to be using an existing and very popular physics
+engine called Box2D.
+The Box2D engine is a free, open source physics engine that was originally written in C++ by Erin Catto.
+It has been used in a lot of popular physics-based games, including Crayon Physics Deluxe, Rolando, and
+Angry Birds. The engine has since been ported to several other languages, including Java, ActionScript, C#,
+and JavaScript. We will be using a JavaScript port of Box2D known as Box2dWeb. You can find the latest
+source code and documentation for Box2dWeb at https://github.com/hecht-software/box2dweb.
+Before we start integrating the engine into our own game, let’s go over some of the basic components of
+Box2D for creating and simulating worlds.
+Box2D Fundamentals
+Box2D uses a few basic objects to define and simulate the game world. The most important of these objects
+are as follows:
+• World: The main Box2D object that contains all the world objects and simulates the
+game physics.
+• Body: A rigid body that may consist of one or more shapes attached to the body
+via fixtures.
+• Shape: A two-dimensional shape such as a circle or a polygon, which are the
+fundamental shapes used within Box2D.
+• Fixture: Used to attach a shape to a body for collision detection. Fixtures hold
+additional, non-geometric data such as friction, collision, and filters.
+• Joint: Used to constrain two bodies together in different ways. For example, a
+revolute joint constrains two bodies to share a common point while they are free to
+rotate about the point.
+When using Box2D in our game, we first need to define the game world. We then add bodies and their
+corresponding shapes using fixtures. Once this is done, we step through the world and let Box2D move the
+bodies around. Finally, we draw the bodies after each step. Most of the heavy lifting is done by the Box2D
+world object.
+Now let’s look at these steps in more detail as we use Box2D to create a simple world.
+
+Setting Up Box2D
+We will start with a simple HTML file just like in the previous chapters (box2d-demo.html). The first thing we
+need to do is include a reference to the Box2dWeb library (Box2d.min.js) in the head section of the HTML
+file (see Listing 3-1).
+Listing 3-1. Basic HTML5 File for Box2D (box2d-demo.html)
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<title>Box2d Demo</title>
+<script src="Box2d.min.js" type="text/javascript"></script>
+<script src="box2d-demo.js" type="text/javascript"></script>
+</head>
+<body onload="init();">
+<canvas id="canvas" width="640" height="480" style="border: 1px solid black;">
+Your browser does not support HTML5 Canvas
+</canvas>
+</body>
+</html>
+As you see in Listing 3-1, the box2d.html file consists of only a single canvas element that we will be
+drawing on. We refer to two JavaScript files: the Box2dWeb library file and a second file that we will use to
+store all our JavaScript code (box2d-demo.js). Once the HTML file has loaded completely, it will call an
+init() function that we will use to initialize the Box2D world and start animating.
+Referencing the Box2dWeb JavaScript file gives us access to the Box2D object in our JavaScript code.
+This object contains all the objects that we will need, including the world (Box2D.Dynamics.b2World) and
+the body (Box2D.Dynamics.b2Body).
+It is convenient to define the commonly used objects as variables to save us some typing effort when we
+reference them. The first thing we will do in our JavaScript file (box2d-demo.js) is to declare these variables
+(see Listing 3-2).
+Listing 3-2. Defining Commonly Used Objects as Variables
+// Declare all the commonly used objects as variables for convenience
+var b2Vec2 = Box2D.Common.Math.b2Vec2;
+var b2BodyDef = Box2D.Dynamics.b2BodyDef;
+var b2Body = Box2D.Dynamics.b2Body;
+var b2FixtureDef = Box2D.Dynamics.b2FixtureDef;
+var b2World = Box2D.Dynamics.b2World;
+var b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
+var b2CircleShape = Box2D.Collision.Shapes.b2CircleShape;
+var b2DebugDraw = Box2D.Dynamics.b2DebugDraw;
+var b2RevoluteJointDef = Box2D.Dynamics.Joints.b2RevoluteJointDef;
+Once we define these variables as shortcuts, we can access the Box2D.Dynamics.b2World object by
+using the b2World variable. Now, let’s start defining our world
+
+Defining the World
+The Box2D.Dynamics.b2World object is the heart of Box2D. It contains methods for adding and removing
+objects, methods for simulating physics in incremental steps, and even an option for drawing the world on
+a canvas. Before we can start using Box2D, we need to create the b2World object. We do this in an init()
+function that we create inside our JavaScript file (box2d-demo.js), as shown in Listing 3-3.
+Listing 3-3. Creating the b2World Object
+var world;
+//30 pixels on our canvas correspond to 1 meter in the box2d world
+var scale = 30;
+function init() {
+// Setup the box2d World that will do most of the physics calculation
+var gravity = new b2Vec2(0, 9.8); // Declare gravity as 9.8 m/s^2 downwards
+// Allow objects that are at rest to fall asleep and be excluded from calculations
+var allowSleep = true;
+world = new b2World(gravity, allowSleep);
+}
+The init() function starts by defining b2World and passing the following two parameters to its
+constructor:
+• gravity: Defined as a vector using a b2Vec2 object, which takes two parameters, the
+x and y components. We set the world’s gravity to be 9.8 meters per square second
+in the downward direction. The ability to set a custom gravity lets us simulate
+environments with different gravity fields, such as the moon or fantasy worlds with
+very low or very high gravity. We can also set gravity to 0 and use only the collision
+detection features of Box2D for games in which we don’t need gravity (space-based
+games or top-down view games like racing games).
+• allowSleep: Used by b2World to decide whether or not to include objects that are
+at rest during its simulation calculations. Allowing objects that are at rest to be
+excluded from calculations reduces the number of unnecessary calculations and
+thus helps improve performance. Even if an object is asleep, it will wake up if a
+moving body collides with it.
+One other thing that we do within our code is define a scale variable that we will use to convert
+between Box2D units (meters) and our game units (pixels).
+■ Note Box2D uses the metric system for all its calculations. it works best with objects that are between 0.1
+meter and 10 meters large. since we use pixels when drawing on our canvas, we will need to convert between
+pixels and meters. a commonly used scale is 30 pixels to 1 meter.
+Now that we have a basic world, we need to start adding bodies to it. The first body we will create is a
+static floor at the bottom of our world.
+
+Adding Our First Body: The Floor
+Creating a body in Box2D involves the following steps:
+1. Declare a body definition in a b2BodyDef object. The b2BodyDef object contains
+details such as the position of the body (x and y coordinates) and the type of body
+(static or dynamic). Static bodies are not affected by gravity and collisions with
+other bodies and remain static, while dynamic bodies are affected by interactions
+with external forces and will fall, bounce, roll, and behave like typical objects in
+the real world.
+2. Pass the body definition object to the createBody() method of the world and get
+back a body object.
+3. Declare a fixture definition in a b2FixtureDef object. This is used to attach a
+shape to the body. A fixture definition also contains additional information such
+as density, friction coefficient, and the coefficient of restitution for the attached
+shape.
+4. Set the shape of the fixture definition. The two types of shapes that are used in
+Box2D are polygons (b2PolygonShape) and circles (b2CircleShape). Pass the
+fixture definition to the createFixture() method of the body object and attach
+the shape to the body.
+Now that we know these basic steps, we will create our first body inside the world: the floor. We will do
+this by creating a createFloor() method right below the init() function we created earlier. This is shown
+in Listing 3-4.
+Listing 3-4. Creating the Floor
+function createFloor() {
+// A body definition holds all the data needed to construct a rigid body
+var bodyDef = new b2BodyDef;
+bodyDef.type = b2Body.b2_staticBody;
+bodyDef.position.x = 640 / 2 / scale;
+bodyDef.position.y = 450 / scale;
+// A fixture is used to attach a shape to a body for collision detection
+// A fixture definition is used to create a fixture
+var fixtureDef = new b2FixtureDef;
+fixtureDef.density = 1.0;
+fixtureDef.friction = 0.5;
+fixtureDef.restitution = 0.2;
+fixtureDef.shape = new b2PolygonShape;
+fixtureDef.shape.SetAsBox(320 / scale, 10 / scale); // 640 pixels wide and 20 pixels tall
+var body = world.CreateBody(bodyDef);
+var fixture = body.CreateFixture(fixtureDef);
+}
+
+Chapter 3 ■ physiCs engine BasiCs
+51
+The first thing we do is define a bodyDef object. We set its type to be static (b2Body.b2_staticBody)
+since we want our floor to stay in the same place and not be affected by gravity or collisions with other
+bodies. We then set the position of the body near the bottom of our canvas (x = 320 pixels, y = 450 pixels) and
+use the scale variable to convert the pixels to meters for Box2D.
+■ Note Unlike the canvas, where the position of rectangles is based on the top-left corner, the Box2D body
+position is based on the origin of the object. in the case of boxes created using SetAsBox(), this origin is at the
+center of the box.
+The next thing we do is define the fixture definition (fixtureDef). The fixture definition contains values
+like the density, the frictional coefficient, and the coefficient of restitution of its attached shape. The density
+is used to calculate the weight of the body, the frictional coefficient is used to make sure the body slides
+realistically, and the restitution is used to make the body bounce.
+■ Note the higher the coefficient of restitution, the more “bouncy” the object becomes. Values close to
+0 mean that the body will not bounce and will lose most of its momentum in a collision (called an inelastic
+collision). Values close to 1 mean that the body retains most of its momentum and will bounce back as fast as it
+came (called an elastic collision).
+We then set the shape for the fixture as a b2PolygonShape object. The b2PolygonShape object has a
+helper method called SetAsBox() that sets the polygon as a box which is centered on the origin of the parent
+body. The SetAsBox() method takes the half-width and half-height (the extents) of the box as parameters.
+Again, we use the scale variable to define a box that is 640 pixels wide and 20 pixels high.
+Finally, we create the body by passing bodyDef to world.CreateBody() and create the fixture by passing
+the fixtureDef to body.CreateFixture().
+One other thing we need to do is call this newly created method from inside the init() function we
+declared earlier so that this body is created when the init() function is called, as shown in Listing 3-5.
+Listing 3-5. Calling createFloor() from init()
+function init() {
+// Setup the box2d World that will do most of the physics calculation
+var gravity = new b2Vec2(0, 9.8); // Declare gravity as 9.8 m/s^2 downwards
+// Allow objects that are at rest to fall asleep and be excluded from calculations
+var allowSleep = true;
+world = new b2World(gravity, allowSleep);
+createFloor();
+}
+Now that we have added our first body to the world, we need to learn how to draw the world so that we
+can see what we have created so far
+
+Drawing the World: Setting Up Debug Drawing
+Box2D is primarily meant to be an engine that handles physics calculations, while we are expected to handle
+drawing all the objects in the world ourselves. However, the Box2D world object provides us with a simple
+DrawDebugData() method that we can use to draw the world on a given canvas for debugging and testing
+purposes.
+The DrawDebugData() method draws a very simple representation of the bodies inside the world and is
+best used for helping us visualize the world while we are creating it.
+Before we can use DrawDebugData(), we need to set up debug drawing by defining a b2DebugDraw()
+object and passing it to the world.SetDebugDraw() method. We do this in a setupDebugDraw() method that
+we will place below the createFloor() method inside box2d-demo.js (see Listing 3-6).
+Listing 3-6. Setting Up Debug Drawing
+var context;
+function setupDebugDraw() {
+context = document.getElementById("canvas").getContext("2d");
+var debugDraw = new b2DebugDraw();
+// Use this canvas context for drawing the debugging screen
+debugDraw.SetSprite(context);
+// Set the scale
+debugDraw.SetDrawScale(scale);
+// Fill boxes with an alpha transparency of 0.3
+debugDraw.SetFillAlpha(0.3);
+// Draw lines with a thickness of 1
+debugDraw.SetLineThickness(1.0);
+// Display all shapes and joints
+debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
+// Start using debug draw in our world
+world.SetDebugDraw(debugDraw);
+}
+We first define a handle to the canvas context using the getContext() method that you have previously
+seen.
+We then create a new b2DebugDraw object and set a few attributes using its Set methods:
+• SetSprite(): Used to provide a canvas context for the drawing.
+• SetDrawScale(): Used to set the scale to convert between Box2D units and pixels.
+• SetFillAlpha() and SetLineThickness(): Used to set drawing styles.
+• SetFlags(): Used to choose which Box2D entities to draw. We have selected flags
+for drawing all shapes and joints, and we use logical OR operators to combine the
+two flags. Some of the other entities we can ask Box2D to draw are the center of mass
+(e_centerOfMassBit) and axis-aligned bounding boxes (e_aabbBit).
+
+Chapter 3 ■ physiCs engine BasiCs
+53
+Finally, we pass the debugDraw object to the world.SetDebugDraw() method. After creating the
+function, we need to call it from inside the init() function as shown in Listing 3-7.
+Listing 3-7. Calling setupDebugDraw() from init()
+var allowSleep = true;
+world = new b2World(gravity, allowSleep);
+createFloor();
+setupDebugDraw();
+Now that debug drawing is set up, we can use the world.DrawDebugData() method to draw the current
+state of our Box2D world onto the canvas.
+Animating the World
+Animating a world using Box2D involves the following steps that we repeat within an animation loop:
+1. Tell Box2D to run the simulation for a small time step (typically 1/60th of a
+second). We do this by using the world.Step() function.
+2. Draw all the objects in their new positions using either world.DrawDebugData()
+or our own drawing functions.
+3. Clear any forces that we have applied using world.ClearForces().
+We can implement these steps in our own animate() function that we create inside box2d-demo.js after
+init(), shown in Listing 3-8.
+Listing 3-8. Setting Up a Box2D Animation Loop
+var timeStep = 1 / 60;
+//As per the Box2d manual, the suggested iteration count for Box2D is 8 for velocity and 3
+for position
+var velocityIterations = 8;
+var positionIterations = 3;
+function animate() {
+world.Step(timeStep, velocityIterations, positionIterations);
+world.ClearForces();
+world.DrawDebugData();
+setTimeout(animate, timeStep);
+}
+We first call world.Step() and pass it three parameters: time step, velocity iterations, and position
+iterations.
+
+Chapter 3 ■ physiCs engine BasiCs
+54
+Box2D uses a computational algorithm called an integrator. Integrators simulate the physics equations
+at discrete points of time. The time step is the amount of time we want Box2D to simulate. We set this to a
+value of 1/60th of a second.
+In addition to the integrator, Box2D also uses a larger bit of code called a constraint solver. The
+constraint solver solves all the constraints in the simulation, one at a time. To get a good solution, we need
+to iterate over all constraints a number of times. There are two phases in the constraint solver: a velocity
+phase and a position phase. Each phase has a separate iteration count, and we set these two values to 8 and
+3, respectively.
+■ Note generally, physics engines for games work well with a time step at least as fast as 60hz or 1/60
+second. as per erin Catto’s original C++ Box2D v2.2.0 User Manual (available at http://box2d.org/manual.
+pdf), it is preferable to keep the time step constant and not vary it with frame rate, as a variable time step
+produces variable results, which makes it difficult to debug.
+also as per the Box2d C++ manual, the suggested iteration count for Box2D is 8 for velocity and 3 for position.
+you can tune these numbers to your liking, but keep in mind that this has a trade-off between speed and
+accuracy. Using a lower iteration count increases performance but reduces accuracy. Likewise, using a higher
+iteration count decreases performance but improves the quality of your simulation.
+After stepping through the simulation, we call world.ClearForces() to clear any forces that are applied
+to the bodies. We then call world.DrawDebugData() to draw the world on the canvas.
+Finally, we use setTimeout() to call our animation loop again after the timeout for the next time step.
+We use setTimeout() for now because it is simpler for us to use the Box2d.Step() function with a constant
+frame rate. In the next chapter, we will look at how to use requestAnimationFrame() and a variable frame
+rate when integrating Box2D with our game.
+Now that the animation loop is complete, we can see the world we have created so far by calling
+animate() from the init() function to start the animation loop, as shown in Listing 3-9.
+Listing 3-9. Calling animate() from the init() Function
+world = new b2World(gravity, allowSleep);
+createFloor();
+setupDebugDraw();
+// Start the Box2D animation loop
+animate();
+When we open box2d.html in the browser, we should see our world with the floor drawn, as shown in
+Figure 3-1.
+
+This doesn’t look like much yet. The floor is a static body that just stays floating at the bottom of the
+canvas. However, now that we have set up everything to create our basic world and display it on the screen,
+we can start adding some more Box2D elements to our world.
+Adding More Box2D Elements
+Box2D allows us to add different types of elements to our world, including the following:
+• Simple bodies that are rectangular, circular, or polygon shaped
+• Complex bodies that combine multiple shapes
+• Joints such as revolute joints that connect multiple bodies
+• Contact listeners that allow us to handle collision events
+We will now look at each of these elements in turn in more detail.
+Creating a Rectangular Body
+We can create a rectangular body just like we created our floor—by defining a b2PolygonShape and using its
+SetAsBox() method. We will do this within a new method called createRectangularBody() that we will add
+to box2d-demo.js (see Listing 3-10).
+
+
+Chapter 3 ■ physiCs engine BasiCs
+56
+Listing 3-10. Creating a Rectangular Body
+function createRectangularBody() {
+var bodyDef = new b2BodyDef;
+bodyDef.type = b2Body.b2_dynamicBody;
+bodyDef.position.x = 40 / scale;
+bodyDef.position.y = 100 / scale;
+var fixtureDef = new b2FixtureDef;
+fixtureDef.density = 1.0;
+fixtureDef.friction = 0.5;
+fixtureDef.restitution = 0.3;
+fixtureDef.shape = new b2PolygonShape;
+fixtureDef.shape.SetAsBox(30 / scale, 50 / scale);
+var body = world.CreateBody(bodyDef);
+var fixture = body.CreateFixture(fixtureDef);
+}
+We create a body definition and place it near the top of the canvas at x = 40 pixels and y = 100 pixels. The
+one difference this time is that we define the body type as dynamic (b2Body.b2_dynamicBody). This means
+that the body will be affected by gravity and collisions. We then define the fixture with a polygon shape that is
+set as a box that is 60 pixels wide and 100 pixels tall. Again, note that we specify half-values, 30 and 50, in the
+SetAsBox() method. Finally, we add the body to our world.
+We will need to add a call to createRectangularBody() inside the init() function so that it is called
+when the page loads. The init() function will now look like Listing 3-11.
+Listing 3-11. Calling createRectangularBody() from init()
+function init() {
+// Setup the box2d World that will do most of the physics calculation
+var gravity = new b2Vec2(0, 9.8); // Declare gravity as 9.8 m/s^2 downwards
+// Allow objects that are at rest to fall asleep and be excluded from calculations
+var allowSleep = true;
+world = new b2World(gravity, allowSleep);
+createFloor();
+// Create some bodies with simple shapes
+createRectangularBody();
+setupDebugDraw();
+// Start the Box2D animation loop
+animate();
+}
+
+When we run the code in the browser, we should see the new body that we just created, as shown in
+Figure 3-2.
+Since this body is dynamic, it will fall downward because of gravity until it hits the floor, and then
+it will bounce off the floor. The body rises to a lower height after each bounce until it finally settles
+down on the floor. If we want, we can change the coefficient of restitution to decide how bouncy
+the object is.
+■ Note Once the body comes to rest, Box2D changes the color of the body and makes it darker. this
+is how Box2D tells us that the object is considered asleep. Box2D will wake up a body if another body
+collides with it
+
+Chapter 3 ■ physiCs engine BasiCs
+58
+Creating a Circular Body
+The next body we will create is a simple circular body. We can define a circular shape by setting the shape
+property to a b2CircleShape object. We will do this within a new method called createCircularBody() that
+we will add to box2d-demo.js, as shown in Listing 3-12.
+Listing 3-12. Creating a Circular Shape
+function createCircularBody() {
+var bodyDef = new b2BodyDef;
+bodyDef.type = b2Body.b2_dynamicBody;
+bodyDef.position.x = 130 / scale;
+bodyDef.position.y = 100 / scale;
+var fixtureDef = new b2FixtureDef;
+fixtureDef.density = 1.0;
+fixtureDef.friction = 0.5;
+fixtureDef.restitution = 0.7;
+fixtureDef.shape = new b2CircleShape(30 / scale);
+var body = world.CreateBody(bodyDef);
+var fixture = body.CreateFixture(fixtureDef);
+}
+The b2CircleShape constructor takes one parameter, the radius of the circle. The rest of the code,
+defining a body, defining the fixture, and creating the body, remains very similar to the code for the
+rectangular body.
+One change we have made is to increase the restitution value to 0.7, which is much higher than the
+value we used for our previous rectangular body. We need to call createCircularBody() from inside the
+init() function, right after createRectangularBody() as shown in Listing 3-13.
+Listing 3-13. Calling createCircularBody() from init()
+// Create some bodies with simple shapes
+createRectangularBody();
+createCircularBody();
+Once we do this and run the code, we should see the new circular body that we just created (as shown
+in Figure 3-3)
+
+Chapter 3 ■ physiCs engine BasiCs
+59
+You will notice that the circular body bounces much higher than the rectangular one, and takes a longer
+time to come to rest. This is because of the larger coefficient of restitution. If you set this value to 1, the ball
+will bounce back to the same height and never stop bouncing. If you choose a value greater than 1, the ball
+will go higher after each bounce, and eventually fly outside the screen.
+Typically, a higher coefficient of restitution and lower gravity gives the game a spacey, sci-fi feel, while
+going in the opposite direction makes the game feel more realistic and grounded.
+When creating your own game, you should play around with these values and tweak them until they feel
+right for your game.
+Creating a Polygon-Shaped Body
+The last simple shape we will create is the polygon. Box2D allows us to create any polygon we want by
+defining the coordinates of each of the points. The only restriction is that polygons need to be convex
+polygons (that is, no internal angle can be more than 180 degrees).
+To create a polygon, we first need to create an array of b2Vec2 objects with the coordinates of each of its
+points, and then we need to pass the array to the shape.SetAsArray() method. We will do this within a new
+method called createSimplePolygonBody() that we will add to box2d-demo.js (see Listing 3-14).
+
+Chapter 3 ■ physiCs engine BasiCs
+60
+Listing 3-14. Defining a Polygon Shape with Points
+function createSimplePolygonBody() {
+var bodyDef = new b2BodyDef;
+bodyDef.type = b2Body.b2_dynamicBody;
+bodyDef.position.x = 230 / scale;
+bodyDef.position.y = 50 / scale;
+var fixtureDef = new b2FixtureDef;
+fixtureDef.density = 1.0;
+fixtureDef.friction = 0.5;
+fixtureDef.restitution = 0.6;
+fixtureDef.shape = new b2PolygonShape;
+// Create an array of b2Vec2 points in clockwise direction
+var points = [
+new b2Vec2(0, 0),
+new b2Vec2(40 / scale, 50 / scale),
+new b2Vec2(50 / scale, 100 / scale),
+new b2Vec2(-50 / scale, 100 / scale),
+new b2Vec2(-40 / scale, 50 / scale),
+];
+// Use SetAsArray() to define the shape using the points array
+fixtureDef.shape.SetAsArray(points, points.length);
+var body = world.CreateBody(bodyDef);
+var fixture = body.CreateFixture(fixtureDef);
+}
+We defined a points array that contains the coordinates for each of the polygon points inside b2Vec2
+objects. The following are a few things to note:
+• All the coordinates are relative to the body origin. The first point (0,0) starts at the
+origin of the body and will be placed at the body position (230,50).
+• We do not need to close out the polygon. Box2D will take care of this for us.
+• All points must be defined in a clockwise direction.
+■ Tip if we define the coordinates in the counter-clockwise direction, Box2D will not be able to handle
+collisions correctly. if you find objects passing through each other, check to see whether you have defined
+points in the clockwise direction.
+We then call the SetAsArray() method and pass it two parameters: the points array and the number of
+points. The rest of the code remains the same as it was for the previous shapes we covered.
+
+Chapter 3 ■ physiCs engine BasiCs
+61
+Now we need to call createSimplePolygonBody() from the init() function as shown in Listing 3-15.
+Listing 3-15. Calling createSimplePolygonBody() from init()
+// Create some bodies with simple shapes
+createRectangularBody();
+createCircularBody();
+createSimplePolygonBody();
+If we run this code, we should see our new polygon-shaped body (see Figure 3-4).
+We now have created three simple bodies, with different shapes and properties. These simple shapes
+are usually enough to model a wide array of objects within our games (fruits, tires, crates, and so forth).
+Sometimes, however, these shapes are not enough. There are times when we need to create more complex
+objects that combine more than one shape.
+Creating Complex Bodies with Multiple Shapes
+So far we have been creating simple bodies with a single shape. However, as previously mentioned, Box2D
+lets us create bodies that contain multiple shapes.
+To create a complex shape, all we need to do is attach multiple fixtures (each with its own shape) to the same
+body. Let’s try to combine two of the shapes we just covered into a single body: a circle and a polygon. We will do
+this within a new method called createComplexBody() that we will add to box2d-demo.js (see Listing 3-16).
+
+

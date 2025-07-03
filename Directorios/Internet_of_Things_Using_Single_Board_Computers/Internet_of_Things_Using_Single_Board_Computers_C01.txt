@@ -1,0 +1,781 @@
+Preface
+=======
+
+The rapid growth of technology and new smart, sustainable development
+initiatives has made the Internet of Things (IoT) and edge analytics an
+inevitable platform for all engineering domains. The need for a sophisticated
+and ambient environment has resulted in an exponential growth in
+automation and artificial intelligence. The right sensor or actuator, a specific
+processor, and the correct transmission unit can offer the best solution to
+any IoT problem. Lightweight machine learning or mathematical logic can
+bring a good solution to existing smart-city problems.
+This book provides detailed information on sensors, their interfacing
+connections, programming with single-board computers, and creating
+integrated projects with a combination of sensors, processors, and actuators.
+A detailed introduction to Python and Arduino-based programming is also
+discussed to kindle interest in IoT programming. IoT products’ wired and
+wireless connections are discussed, and programming examples are provided.
+This is a completely new textbook that reflects recent developments
+
+while providing a comprehensive introduction to the fields of IoT, single-
+board computers, and Python programming. It is aimed at advanced
+
+undergraduates as well as researchers and practitioners. This book deals more
+
+with electronics and programming than simple text. It best suits outcome-
+based education systems and can aid industry-ready IoT engineers.
+
+Funding Information
+The part of this book is supported by the Department of Biotechnology
+funding information (BT/PR38273/AAQ/3/980/2020).
+The original version of this book was revised. A correction to this book is available
+at https://doi.org/10.1007/978-1-4842-8108-6_11
+
+1
+
+CHAPTER 1
+
+An Overview of the
+Internet of Things
+(IoT) and Sensors
+
+Recent advancements in single-board computers (SBCs) [16] and boards
+have made the Internet of Things (IoT) more accessible and easier to use.
+The complete automation, information analysis from sensor data, and
+integration of individual components with IoT systems helps to build new
+Smart environment solutions. The scope of the areas is broadened with
+IoT components and sensors.
+IoT uses existing and emerging technology for event detection and
+automation. IoT has the advantages of recent software advancements,
+reducing hardware prices and available technology options. It created a
+great change in product delivery and services and a major revolution in
+Industry 4.0. Figure 1-1 illustrates the key features of IoT.
+
+© G. R. Kanagachidambaresan 2022
+G. R. Kanagachidambaresan, Internet of Things Using Single Board Computers,
+Maker Innovations Series, https://doi.org/10.1007/978-1-4842-8108-6_1
+
+2
+Figure 1-1. IoT feature and data flow
+
+Sensors
+Sensors are the main data acquisition and detection system, which
+converts any physical quantity (i.e., event) into a signal. In some sensors,
+direct conversion takes place; in others, multiple conversions take place
+to attain accuracy and quantification. Some of the sensors used in IoT and
+prototyping are shown in Figure 1-2. Sensors are collectively connected
+with an A/D converter to convert their signals to digital forms so that a
+processor understands and can program effectively. Figure 1-2 illustrates
+sensor classification (mode of operation, signal output, and energy-based).
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+3
+
+Figure 1-2. Sensor type classification
+Next, let’s further discuss sensor type classification.
+Energy-based
+Generator
+Energy generation–based sensors provides conversion energy conversion,
+like voltage and current, on any physical event. For example, a
+piezoelectric sensor converts vibration energy to a proportional voltage.
+The seebeck metal junction converts the change in temperature to
+proportional energy conversion.
+
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+4
+Conversion
+Sensors convert one mode of physical quantity to another; for example,
+an anemometer converts air velocity to rotational motion, which is further
+converted to electrical voltage for measurement. These sensors are
+operated in a proportional zone for calibration and stable operation. Most
+sensors provide linear data conversion.
+Signal Output
+Analog
+Sensors such as anemometers provide analog conversion of data. Analog
+signal from annemometer is converted to digital data with the help of an
+analog-to-digital converter. The sensor’s frequency of operation should
+be far greater than the frequency of the physical quantity to get clear
+information after digital conversion.
+Discrete
+Cameras and tile-based sensors provide discrete and digital information
+directly to the processor. This makes the sensor easy to integrate with any
+digital processor.
+Mode of Operation
+Sensors are deflection- or comparison-based. Deflection happens when
+sensing a physical event. This is normally an angular-based movement
+between two points. Comparison-based meters normally work with
+standard available data. GPS sensors provide comparison-based sensing.
+• Deflection (e.g., voltage meters and current meters)
+• Comparison (e.g., GPS sensors)
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+5
+
+Electronic Sensors
+Figure 1-3 illustrates sensor classification based on the field of operation,
+such as mechanical, optical, electrical, acoustic, thermal, chemical,
+radiation, biological, and magnetic.
+
+Mechanical
+• Linear and angular position
+• Velocity of the subject
+• Acceleration
+Figure 1-3. Sensor classification based on measurand
+
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+6
+• Force
+• Viscosity, rigidness, and roughness
+• Pressure and stress
+• Strain
+• Mass and density measurement
+Optical
+• Wave velocity
+• Polarization and spectrum
+• Wave amplitude
+Electrical
+• Conductivity
+• Potential difference
+• Charge and current density
+• Field
+Thermal
+• Heat flux
+• Thermal conductivity
+Chemical
+• States and identifies
+• Color change
+• Change in voltage
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+7
+
+Radiation
+• Energy
+• Intensity
+Biological
+• Mass
+• Concentration
+• States
+• Magnetic
+• Magnetic field
+• Magnetic flux
+• Permeability
+
+Connectivity
+Figure 1-4 illustrates the connectivity features of IoT communication.
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+8
+Figure 1-4. IoT connectivity features
+Bluetooth Low Energy, Zigbee, LoRa, and Wi-Fi are the most common
+types of connectivity in an IoT environment. I2C, SPI, and Rx-Tx serial
+communication protocols are examples of wired connectivity.
+Bluetooth
+Bluetooth network technology creates a personal area network (PAN) by
+wirelessly connecting mobile devices over a short distance. The Bluetooth
+architecture has its own independent model with a stack of protocols; it
+does not follow the standard OSI or TCP/IP models.
+Zigbee
+The Zigbee 3.0 protocol [1] is an IEEE 802.15.4 specification that supports
+a 2.4 GHz frequency band. The following are some of the features of
+Zigbee 3.0.
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+9
+
+• Low power: Devices that comply with Zigbee 3.0
+consume less power and transmit data at a slower rate.
+For IoT devices, long-lasting batteries are required. As a
+result, the Internet of Things (IoT) network extensively
+uses this standard.
+• Reliable and robust: The mesh topology of the Zigbee
+3.0 network eliminates single points of failure and
+ensures packet delivery reliability.
+• Scalable: Devices can be added to a Zigbee 3.0 network
+anytime.
+• It is a secure network because it employs AES-128
+encryption.
+• Global standard: Zigbee 3.0 devices use the 2.4 GHz
+frequency band, which is widely used worldwide. As
+a result, it has become the industry standard around
+the world.
+Wi-Fi
+Wi-Fi [2] is a technology that transfers data through radio waves that can
+make small gadgets exchange data connected within a small router. Wi-Fi
+uses the Institute of Electrical and Electronics Engineers’ (IEEE) 802.11
+standards for effective data transmission.
+IEEE 802.11 devices have the primary benefit of making it easier to
+deploy local area networks (LANs) at a lower cost. They can host wireless
+LANs in outdoor areas and airports, where running cables to every device
+isn’t practical.
+
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+10
+LoRa
+LoRa [3] is a long-range wireless communication technology derived from
+the CSS chirp-based spread spectrum. The chirp pulses communicate
+information, similar to BATS communication.
+Wired Communication
+I
+2
+C
+I
+2
+C (Inter-Integrated Circuit) [4] is a two-wired communication protocol
+(see Figure 1-5). It is a bus interface, serial communication protocol built
+into devices. It has recently become a popular protocol for short-distance
+communication.
+Only two bidirectional open-drain lines—SDA (Serial Data) and SCL
+(Serial Clock)—are used for data communication. Both lines are cranked
+up. The SDA pin sends and receives data. SCL carries the clock signal.
+I2C has two modes of operation: master and slave. Master mode is the
+most advanced mode.
+Slave mode obeys the command from the master and transmits or
+receives data accordingly.
+Each clock’s high to low pulse on the SCL line synchronizes each data
+bit transferred on the SDA line. Figure 1-5 shows I2
+
+C communication
+
+protocols.
+
+Figure 1-5. I2
+
+C communication protocols
+
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+11
+
+SPI
+The data communication module uses SDA and SCL dual connection
+lines. SDA receives and transmits data. Serial Peripheral Interface (SPI)
+communication is mainly used by components such as RTC, A-to-D
+converters, and other computer peripherals. SPI [5] communication uses
+a full duplex synchronous communication protocol that works in serial
+mode between the master and slave devices. Figure 1-6 illustrates SPI
+communication protocols.
+
+Serial Communication
+Serial communication is a straightforward and dependable way to send
+data over long distances. RS-232 is a widely used serial communication
+protocol. The data in this standard is sent in serial format at a preset
+speed (called a baud rate/number) of bits communicated between
+the sender and receiver. Common baud rates are 4800, 9600, 19200,
+and 38400. Figure 1-7 shows the connection diagram for the UART
+communication scheme.
+Figure 1-6. SPI communication protocols
+
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+12
+Figure 1-7. UART data communication
+Machine Intelligence
+Machine intelligence [14] attempts to program a computer to perform
+previously human-only tasks. In general, the learning process in intelligent
+machines entails gathering information about their environment,
+deploying that information to build knowledge about it, and then
+generalizing that knowledge base to deal with environmental uncertainty.
+Two machine intelligence techniques—imitation learning and
+reinforcement learning—have been developed to help machines learn.
+The learning algorithms are opted based on consideration of tasks and
+their characteristics. Intelligent systems are an option to collect data
+from the agents and acquire knowledge about its surrounding, and the
+computation is adapted for the environment. To maintain control over
+a society of autonomous agents, the agents’ learning process requires a
+self-organizing mechanism. It should be noted that imbuing intelligent
+machines with the capacity to learn is a difficult task; however, the capacity
+to learn is what defines a machine as intelligent. Figure 1-8 illustrates
+machine learning classification based on input data.
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+13
+
+Figure 1-8. Classical machine learning domains
+The supervised learning module predicts category (classification
+module) and number (regression module). Unsupervised learning
+provides clustering, dimension reduction, and association modules.
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+14
+Active Management
+The main components and operation of a closed-loop sensor management
+system are depicted in Figure 1-9. The raw sensor data is processed for
+information relevant to the sensing objective when the sensor is chosen,
+and a measurement is taken. This usually requires the fusion of data from
+several sensing modalities (e.g., optical and acoustic) and other properties,
+as well as the addition of information from earlier measurements and
+possibly other sources. Auxiliary information, such as target tracks or
+choices about non-sensor manager-related concerns, may be generated by
+the loop’s fusion and signal processing. For sensor management reasons,
+they must generate a state of information that allows quantification
+of the benefits of each feasible sensor selection in the following time
+epoch. Currently, accessible quantification methodologies range from
+statistical (e.g., mean risk or knowledge gain) to entirely heuristic. The
+sensor management must then optimize which sensor to use for the next
+measurement.
+
+Figure 1-9. Data processing in IoT architecture
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+15
+The sensor selector provides information from a particular sensor
+module. Once data from a particular sensor is received, data fusion is
+done through a sensor data fusion algorithm. The signal is processed using
+algorithms. The data is corrected through closed-loop control system
+algorithms.
+Sensor Fusion
+Sensor fusion is a technique for reducing the amount of uncertainty in a
+robot’s navigation or task performance by combining data from multiple
+sensors, as shown in Figure 1-10. Sensor fusion helps the robot create a
+more accurate world model, which allows it to navigate and behave better.
+There are three main methods for combining sensor data.
+• Redundant sensors collect repeated information that is
+permanently fit in sources like heaters, gates, and other
+locations.
+• Complementary sensors collect different information
+on events happening inside the monitoring
+environment.
+• Coordinated sensors are logically operating sensor that
+collects information about the environment.
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+16
+Figure 1-10. Sensor data aggregation and fusion process
+To obtain high-quality, relevant measurement data, data fusion
+combines several sources of information utilizing mathematical methods
+and technical tools. Improved detectability and reliability, expanded range
+of spatial-temporal perception, reduced degree of inference ambiguity,
+improved detection accuracy, increased dimension of target features,
+improved resolution of spatial questions, and enhanced fault-tolerant
+fusion are all advantages of data fusion over independent processing of a
+single source.
+
+Smart Devices
+Human-Computer Interaction
+Human-computer interaction (HCI) [6] is a subfield of computer science
+that investigates how people (users) interact with computers, as well
+as the design, evaluation, and implementation of user interfaces for
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+17
+computer systems that are responsive to the user’s needs and habits.
+This multidisciplinary field incorporates computer science, behavioral
+sciences, and design. One of the primary goals of HCI is to make
+computer systems more accessible and useable. A user interface consists
+of hardware and software that allows users to modify the system while
+allowing the system to communicate with the user. HCI focuses on the
+design, implementation, and evaluation of user interfaces. In its broadest
+sense, HCI occurs when a human user and a computer system collaborate
+to achieve a goal. Usability is the part of human-computer interaction
+concerned with making it, among other things, successful, efficient, and
+enjoyable for the user. Usability entails usability, productivity, efficiency,
+effectiveness, learnability, retention, and user interest.
+
+Context Awareness
+Figure 1-11 depicts sensor data context awareness [7]. The sensor data and
+context awareness provide better infrastructure and ambiance.
+
+Figure 1-11. Data awareness schemes in IoT
+
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+18
+Actuators
+The applications in a smart city [10]—such as health care, smart
+agriculture, and other industrial applications—use actuators [8], such
+as drives, motors, and other physical signal converters. A wireless sensor
+and actuator network (WSAN) [9] comprises automated actuators.
+
+Microcomputers normally link directly to tiny actuators; however, heavy-
+load actuators are coupled via driver circuits. Linear and rotational moving
+
+actuators are the two types of actuators that move. A huge number of our
+daily demands, such as fans and escalators, are met by these actuators.
+Electric, pneumatic, and hydraulic power sources are also used to
+classify them. Electric actuators are the most frequent, and PWM signals
+are generated by the system control actuators like servo and stepper
+motors. The significant change in the pulse width, time, and change in
+frequency is reflected in the actuator’s velocity, rotational direction, and
+amount of torque exerted. Most actuators in the industry are actuated
+through PLC boards. This chapter showcases building prototypes with
+small servos and steppers, which are often accomplished using SBCs like
+Arduino and Raspberry Pi.
+Table 1-1 describes the actuator types mentioned in this book,
+including micro steppers, SG90, and infrared. To keep things simple,
+these actuators are primarily programmed using Arduino and Raspberry
+Pi ideas.
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+19
+
+Table 1-1. Actuator Types
+S.No Actuator type Output Operating
+range
+Power
+required
+Number
+of wire
+connection
+External
+battery source
+required
+Connectivity type
+Analog/i2c/spi, digital/
+driver requirement
+
+1 Servo motor
+Angular
+motion
+0-5 v Less than
+1W
+3 Not necessary
+for low power
+PW
+M
+
+2 Stepper motor
+Angular
+position
+2.55 v-2.8 v 1.68
+Amps
+4 Yes
+Drivers or DPDT relay
+
+3 Oled display
+Digital
+display
+3.3
+V-5
+V
+20m
+A max
+3.3v 12C pins yes IIC & SPI
+
+(continued)
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+20Table 1-1. (continued)
+
+4 Relay Mechanical
+contacts and
+solid state
+5ms-20ms 5V 3 No
+(unless it’s12
+V
+
+relay)
+Both digital and analog
+
+5 Solenoid Mechanical
+energy
+angular
+motion
+5-10ms
+15-150ms
+9-65
+W 2 terminals
+each
+External
+regulator or
+separate power
+supply
+Both digital and analog
+
+6 IR led Light 760-1nm
+Max = 780-
+50nm
+1.2-3.4
+V 2 pins for
+each
+no Both digital and analog
+
+S.No Actuator type Output Operating
+range
+Power
+required
+Number
+of wire
+connection
+External
+battery source
+required
+Connectivity type
+Analog/i2c/spi, digital/
+driver requirement
+
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+21
+
+7 Heat
+exchanger
+Thermal 1000°C and
+1000 bars
+Not
+needed
+Wires not
+needed
+Acid batteries
+Tube box
+
+8 Speaker
+Sound
+pressure
+level (SPL)
+in dB
+60
+Hz –
+18 k
+Hz
+100 –
+1000 watts
+2 or more
+No Digital
+
+9 Linear
+actuator
+Straight
+line motion/
+mechanical
+energy
+5 lb – 10000
+lb force
+15 – 2000
+pounds
+4 pins
+DC Battery
+Digital
+
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+22
+IoT and Smart City Applications
+Automobile Sensors
+Currently, modern automotive design can be accomplished using a variety
+of sensors [12]. These are integrated into the vehicle’s engine to detect and
+resolve issues such as repairs and service. Sensors in automobiles keep
+an eye on the vehicle’s operation. The owner of a car has no idea how
+many sensors their vehicle contains. Automobile sensors are sophisticated
+sensors that can monitor and control various parameters, including oil
+pressure, temperature, emission level, and coolant level. Numerous types
+of sensors are used in automobiles, but it is critical to understand how they
+work. To demonstrate the purpose of these sensors, the following is a list of
+the most frequently found sensors in automobiles. The sensor depicted in
+Figure 1-12 is used in automobile systems.
+• Speed sensor for the engine
+• Oxygen sensor for the exhaust manifold
+• Mass airflow sensor for the exhaust manifold
+• Fuel temperature sensor for the exhaust manifold
+• Camshaft position sensor for the exhaust manifold
+• Throttle position sensor for the exhaust manifold
+• Vehicle speed sensor for the exhaust manifold
+• Spark knock sensor for the exhaust manifold
+• Coolant sensor for the exhaust manifold
+• Voltage sensor for the exhaust manifold
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+23
+
+Figure 1-12. Some important automobile sensors
+Smart Home Sensors
+Smarter homes are established with IoT, cloud tech, and logical event
+processing. IoT allows mobile applications [11] with various sensors to be
+managed and communicated remotely. Sensors can monitor and regulate
+a variety of household appliances, such as air conditioning, lighting,
+and other environmental controls. As a result, it integrates computer
+intelligence with household equipment, allowing for temperature
+monitoring indoors and outdoors and appliance operation.
+Cloud technology enables expandable processing energy, memory
+availability, apps for designing, administering, and operating home
+services, and remote control of home equipment. A rule-based event
+processing system manages an advanced smart home’s overall control
+and orchestration. The term smart home refers to a domestic application
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+24
+of building automation that encompasses all embedded technology and
+its control and automation. It encompasses home appliances like air
+conditioning/heating systems, smart TVs, large appliances, and IP security
+cameras that can talk with their owner on a time and event basis through
+mobile phones and the Internet. The home electrical system is made of
+switches and sensors connected to a centralized IoT system operated
+by the homeowners and controlled via the cloud, GSM, and WLAN
+connectivity.
+The main advantages include energy efficiency, security, reduced
+operating costs, and user sophistication. The convenience, cost, and
+reduced operating time provide plenty of energy savings to the users.
+These techs are more adaptable to changes in the needs of outpatients,
+such as post-surgical people recovering in their homes. Its architecture is
+frequently adaptable enough to integrate various devices from multiple
+manufacturers and standards. Figure 1-13 depicts the sensors used in a
+smart home system.
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+25
+
+Figure 1-13. Smart home sensors
+Smart Transportation Sensors
+Improvements in ICT (Information and Communication Technology)
+devices have enabled opportunities for intelligent and sustainable
+transportation systems [13]. ICT in transportation helps sustainability,
+safety integration, and high-speed, accurate responses. The primary
+expectation of people using intelligent transportation like fast mobility,
+environmental sustainability, and economic development through goods
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+26
+and service transportation can be done through ICT tools. The platform
+used by intelligent transport systems (ITS) to access, gather and assess
+precise environmental data is crucial to its operation.
+
+There are typically two types of sensor platforms. The first is an intra-
+vehicle sensing platform that collects data about a vehicle’s condition.
+
+The two approaches of sensing are used in ITS. An intra-vehicle sensing
+platform collects data about a vehicle’s working conditions. An urban
+sensing platform gathers information about traffic conditions. Sensing
+technology has become essential for vehicle-to-vehicle (V2V) [15] and
+vehicle-to-infrastructure (V2I) communication. The data is further
+communicated to a transportation management system (TMS) for further
+data analysis and prognostics. The data can offer prognostics that can be
+used for decision-making, reducing pollution, emission traffic congestion,
+and road reconstruction.
+Non-intrusive sensors offer information like the location of the signal
+acquired through GPS devices, traffic queue density through LIDAR and
+traffic conditions through combined GPS information, and road and
+weather conditions. Sensors, such as high traffic lights, are typically placed
+in higher positions to monitor the region of interest. These sensors are also
+mounted under bridges and directly beneath a surveillance zone. Some
+sensors are positioned at the ground level to detect pedestrians. These
+are mostly used for single lanes and unidirectional traffic due to their
+vulnerability to interference from neighboring objects. Figure 1-14 shows
+sensors utilized in intelligent transportation.
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+27
+
+Figure 1-14. List of sensors in transportation
+Non-invasive sensors can more effectively perform many intrusive
+sensor duties. Weather conditions, like rain, fog, snow, and dust pollution,
+significantly impact them. To make educated decisions about traffic
+improvement projects, precise traffic statistics are required. Drivers are
+more likely to detect non-intrusive sensors, leading to varied and faster
+responses, such as slowing down and driving in the proper lane. It is
+critical not only to install these sensors but also to reduce driver reaction
+times based on the collected data and provide a more realistic depiction of
+the context and reality of the road or avenue.
+
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+28
+Summary
+This chapter overviewed sensors, actuators, and other communication
+protocols. Various sensor usage with different applications was also
+addressed in this chapter. Sensor classification and interfacing with boards
+are discussed in the next chapter.
+
+References
+[1] S. Long and F. Miao, “Research on Zigbee wireless communication
+technology and its application,” 2019 IEEE 4th Advanced Information
+Technology, Electronic and Automation Control Conference (IAEAC),
+pp. 1830–1834. doi: 10.1109/IAEAC47372.2019.8997928.
+[2] K. Pahlavan and P. Krishnamurthy, “Evolution and Impact of Wi-Fi
+Technology and Applications: A Historical Perspective,” International
+Journal of Wireless Information Networks, vol. 28, Nov. 19, 2020, pp. 3–19.
+https://doi.org/10.1007/s10776-020-00501-8.
+[3] U. Noreen, A. Bounceur, and L. Clavier, “A study of LoRa low power
+and wide area network technology,” 2017 International Conference on
+Advanced Technologies for Signal and Image Processing (ATSIP), pp. 1–6.
+doi: 10.1109/ATSIP.2017.8075570.
+[4] Dawoud Shenouda Dawoud and Peter Dawoud, “Design of I2C Bus
+and Operation,” in Microcontroller and Smart Home Networks, River
+Publishers, 2020, pp. 55–112.
+[5] Dawoud Shenouda Dawoud, Peter Dawoud, “Serial Peripheral
+Interface (SPI),” in Serial Communication Protocols and Standards
+RS232/485, UART/USART, SPI, USB, INSTEON, Wi-Fi and WiMAX, River
+Publishers, 2020, pp.191–244.
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+29
+[6] Erin T. Solovey and Felix Putze, Improving HCI with Brain Input:
+Review, Trends, and Outlook, Now Publishers, 2021.
+[7] P. S. Gandodhar and S. M. Chaware, “Context Aware Computing
+Systems: A survey,” 2018 2nd International Conference on I-SMAC (IoT in
+Social, Mobile, Analytics and Cloud), 2018, pp. 605–608.
+[8] Jeffrey Wishart, Yan Chen, Steven Como, Narayanan Kidambi, Duo
+Lu, Yezhou Yang, “Sensor and Actuator Hardware,” in Fundamentals of
+Connected and Automated Vehicles, SAE, 2022, pp.70–89.
+[9] A. Eraliev and G. Bracco, “Design and Implementation of Zigbee
+Based Low-Power Wireless Sensor and Actuator Network (WSAN) for
+Automation of Urban Garden Irrigation Systems,” 2021 IEEE International
+IOT, Electronics and Mechatronics Conference (IEMTRONICS), 2021,
+pp. 1–7. doi: 10.1109/IEMTRONICS52119.2021.9422568.
+[10] N. Mishra, P. Singhal, and S. Kundu, “Application of IoT Products in
+Smart Cities of India,” 2020 9th International Conference System Modeling
+and Advancement in Research Trends (SMART), pp. 155–157. doi: 10.1109/
+SMART50582.2020.9337150.
+[11] A. Eleyan and J. Fallon, “IoT-based Home Automation Using
+Android Application,” 2020 International Symposium on Networks,
+Computers and Communications (ISNCC), 2020, pp. 1–4. doi: 10.1109/
+ISNCC49221.2020.9297320.
+[12] S. Wasnik and R. Venkatesh, “Understanding usage of IoT
+Applications and its impact on consumer decision making in Indian
+Automobile industry,” 2022 International Conference on Decision Aid
+Sciences and Applications (DASA), 2022, pp. 1259–1264. doi: 10.1109/
+DASA54658.2022.9765216.
+
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+30
+[13] Saravjeet Singh and Jaiteg Singh, “Location Driven Edge Assisted
+Device and Solutions for Intelligent Transportation,” in Fog, Edge, and
+Pervasive Computing in Intelligent IoT Driven Applications, IEEE, 2021,
+pp.123–147. doi: 10.1002/9781119670087.ch7.
+[14] Shalli Rani, R. Maheswar, G. R. Kanagachidambaresan, Sachin Ahuja,
+and Deepali Gupta, Machine Learning Paradigm for Internet of Things
+Applications, John Wiley & Sons, 2022.
+[15] S. Kulkarni, A. Darekar, and S. Shirol, “Proposed framework for V2V
+communication using Li-Fi technology,” 2017 International Conference on
+Circuits, Controls, and Communications (CCUBE), 2017, pp. 187–190. doi:
+10.1109/CCUBE.2017.8394163.
+[16] G. R. Kanagachidambaresan, Role of Single Board Computers
+(SBCs) in rapid IoT Prototyping, Springer, 2021. https://doi.
+org/10.1007/978-3-030-72957-8.
+Chapter 1 An Overview of the Internet of Things (IoT) and Sensors
+
+31
+
+CHAPTER 2
+
+IoT Sensors and Their
+Interfacing Protocols
+Sensors can detect specific entities or functions by looking for them in
+the environment [1]. Electromechanical, optoelectrical, or electronic
+equipment can all be used to create these devices. Detectors for physical
+presence, such as flame or metal, can be found. Others include sensors
+that monitor gas and chemical concentrations and other sorts of sensors.
+There are additional varieties that can detect motion or closeness, while
+others can monitor physical qualities like temperature, pressure, or
+radiation, for example [3].
+It depends on the application [2], but electromagnetic fields,
+optics, or a mix of these can be used. It is common practice to employ
+a variety of sensors, detectors, and transducers in a wide range of
+industries to evaluate, monitor, and regulate machines’ processes and
+functions. As the Internet of Things (IoT) becomes more widespread,
+so does the demand for sensors as the main automation tool [5].
+Figure 2-1 showcases different types of sensors.
+
+© G. R. Kanagachidambaresan 2022
+G. R. Kanagachidambaresan, Internet of Things Using Single Board Computers,
+Maker Innovations Series, https://doi.org/10.1007/978-1-4842-8108-6_2
+
+32
+Figure 2-1. Types of sensors
+
+Figure 2-2. Image sensors
+Vision and Imaging Sensors
+Figure 2-2 shows an image based display.

@@ -1,0 +1,339 @@
+/mnt/datos/lucre/Libros_TODOS_antonieta/EEE_libros/Estadistica_Libros/
+1993_Book_ComputerIntensiveMethodsInStat.pdf, Computer Intensive Methods in Statistics
+2002_Book_ModernAppliedStatisticsWithS.pdf, Modern Applied Statistics with S Fourth Edition
+2005_Book_ModelsForDiscreteLongitudinalD.pdf, Models for Discrete Longitudinal Data
+2005_Book_PermutationParametricAndBootst.pdf, Permutation, Parametric and Bootstrap Tests of Hypotheses Third Edition
+2007_Book_AppliedStochasticProcesses.pdf, Applied Stochastic Processes
+2007_Book_LinearAndGeneralizedLinearMixe (1).pdf, 
+2007_Book_LinearAndGeneralizedLinearMixe.pdf, Linear and Generalized Linear Mixed Models and Their Applications
+2007_Book_PermutationMethods.pdf, Permutation Methods A Distance Function Approach Second Edition
+2007_Book_TheAnalysisOfCross-ClassifiedC.pdf, The Analysis of Cross-Classified Categorical Data Second Edition
+2008_Book_AppliedEconometricsWithR.pdf, Applied Econometrics with R
+2008_Book_IntroductoryStatisticsWithR.pdf, Introductory Statistics with R Second Edition
+2008_Book_ModernMultivariateStatisticalT.pdf
+2008_Book_NonlinearRegressionWithR.pdf
+2008_Book_RandomEffectAndLatentVariableM.pdf
+2008_Book_SoftwareForDataAnalysis.pdf
+2008_Book_StatisticalMethodsForEnvironme.pdf
+2009_Book_AModernApproachToRegressionWit.pdf
+2009_Book_BasicsOfAppliedStochasticProce.pdf
+2009_Book_PermutationTestsForStochasticO.pdf
+2010_Book_FundamentalsOfModernStatistica.pdf
+2010_Book_IntroducingMonteCarloMethodsWi.pdf
+2010_Book_IntroductionToProbabilitySimul.pdf
+2010_Book_LogisticRegression.pdf
+2010_Book_MultivariateNonparametricMetho.pdf
+2010_Book_StatisticalMethodsForDiseaseCl.pdf
+2010_Book_TheoreticalStatistics (1).pdf
+2010_Book_TheoreticalStatistics.pdf
+2011_Book_MedicalDecisionMaking.pdf
+2012_Book_BiostatisticsWithR.pdf
+2012_Book_ModernMathematicalStatisticsWi.pdf
+2013_Book_BayesianAndFrequentistRegressi.pdf
+2013_Book_EssentialStatisticalInference (1).pdf
+2013_Book_EssentialStatisticalInference.pdf
+2013_Book_LinearMixed-EffectsModelsUsing.pdf
+2013_Book_StatisticalModelsForDataAnalys.pdf
+2013_Book_StochasticToolsInMathematicsAn.pdf
+2013_Book_UnderstandingStatisticsUsingR.pdf
+2014_Book_BasicsOfModernMathematicalStat.pdf
+2014_Book_BayesianEssentialsWithR.pdf
+2014_Book_IntroductoryStatisticalInferen.pdf
+2014_Book_NonparametricStatisticsForAppl.pdf
+2014_Book_StatisticalAnalysisOfFinancial.pdf
+2014_Book_StatisticalAnalysisOfNextGener.pdf
+2014_Book_TopicsInNonparametricStatistic.pdf
+2015_Book_BasicsOfModernMathematicalStat.pdf
+2015_Book_MathematicalProblemsInDataScie.pdf
+2015_Book_ModernNonparametricRobustAndMu.pdf
+2015_Book_StochasticAnalysisOfBiochemica.pdf
+2015_Book_StochasticModelsStatisticsAndT.pdf
+2016_Book_ACourseInMathematicalStatistic.pdf
+2016_Book_AlgorithmsForDataScience.pdf
+2016_Book_AnIntroductionToStatisticsWith.pdf
+2016_Book_ApproximationMethodsInProbabil.pdf
+2016_Book_DataScience.pdf
+2016_Book_ExamplesInParametricInferenceW (1).pdf
+2016_Book_ExamplesInParametricInferenceW.pdf
+2016_Book_IntroductionToNonparametricSta.pdf
+2016_Book_MathematicsForNaturalScientist.pdf
+2016_Book_NonparametricStatistics.pdf
+2016_Book_NumericComputationAndStatistic.pdf
+2016_Book_PermutationStatisticalMethods.pdf
+2016_Book_SPSSForStartersAnd2ndLevelers.pdf
+2016_Book_SurvivalUnderUncertainty.pdf
+2016_Book_Uncertainty.pdf
+2017_Book_AnalysisOfRepeatedMeasuresData.pdf
+2017_Book_OutlierAnalysis.pdf
+2017_Book_ProbabilityForStatisticians.pdf
+2017_Book_TheDataScienceDesignManual.pdf
+2018_Book_AdvancesInPrincipalComponentAn.pdf
+2018_Book_DataScienceAndPredictiveAnalyt.pdf
+2018_Book_GeneralizedLinearModelsWithExa.pdf
+2018_Book_PracticalDataScience.pdf
+2018_Book_PracticalWebScrapingForDataSci.pdf
+2018_Book_SimulationAndInferenceForStoch.pdf
+2018_Book_TheMeasurementOfAssociation.pdf
+2018_Book_TheoryOfNonparametricTests.pdf
+2019_Book_APrimerOfPermutationStatistica.pdf
+2019_Book_DataScienceAndBigDataAnalytics.pdf
+2020_Book_DataScienceFromResearchToAppli.pdf
+2020_Book_ProbabilityAndSimulation.pdf
+2020_Book_SamplingTechniquesForSupervise.pdf
+2021_Book_RecentDevelopmentsInMathematic.pdf
+978-0-387-21727-7.pdf
+9781315650982_previewpdf.pdf
+978-1-4419-1572-6(1).pdf
+978-1-4419-1572-6(2).pdf
+978-1-4419-1572-6.pdf
+978-1-4614-1353-0.pdf
+978-1-4757-4145-2.pdf
+9782889459841.PDF
+978-3-030-44129-6.pdf
+978-3-030-74361-1.pdf
+978-3-030-80519-7.pdf
+978-3-030-85450-8.pdf
+978-3-031-66619-3.pdf
+978-3-319-19425-7.pdf
+978-3-319-28770-6.pdf
+978-3-319-76035-3.pdf
+978-3-642-96788-7.pdf
+978-3-662-05804-6.pdf
+978-90-481-2516-6.pdf
+978-981-19-0365-6.pdf
+Advanced_Calculus_Applications_Statistics.pdf
+Advanced_Statistical_Computing.pdf
+Advances_Mathematical_Statistical_Modeling.pdf
+Advances_regression_Survival_Analysis.pdf
+A_First_Course_Design_Analysis_Experiments_Gary_Oehlert.pdf
+agresti-introduction-to-categorical-data.pdf
+a-handbook-of-statistics.pdf
+All_Nonparametric_Statistics_Wasserman.pdf
+All of Nonparametric Statistics by Wasserman.pdf
+all_statistics.pdf
+ALSM_5Ed_Kutner.pdf
+Analysis_Covariance_Alternatives_Huitema.pdf
+Andy Field, Jerem - libgen.li.pdf
+Andy Hecto021) - libgen.li.pdf
+An_Introduction_Applied_Multivariate_Analysis_R.pdf
+an_introduction_generalized_linear_models.pdf
+AnIntroductiontoGeneralizedLinearModel.pdf
+an-introduction-to-generalized-linear-models-second-edition-dobson.pdf
+APPLICATION_STRUCTURAL_EQUATION_MODELING.pdf
+applied_linear_statistical_models.pdf
+Applied_Longitudinal_Analysis_2E_Garrett_Fitzmaurice.pdf
+Applied_Predictive_Modeling.pdf
+Applied_Regression_Analysis_A_Research_Tool.pdf
+applied-statistics.pdf
+Applied_Statistics_Probability_Engineers_6E.pdf
+Applied_Statistics_Using_SPSS_STATISTICA_MATLAB_ R.pdf
+Applied_Statistics_Using_SPSS_STATISTICA_MATLAB_R.pdf
+AR0003_Statistics for and Repeate.pdf
+Ardilly-Tillé2006_Book_SamplingMethods.pdf
+Basso2009_Book_PermutationTestsForStochasticO.pdf
+bayes-C2_libro.pdf
+Bayesian_Networks_Decision_Graphs.pdf
+Bayesian_Theory_Methods_Applications.pdf
+Bioestadistica_Bernardo.pdf
+Bioestadistica.pdf
+Biostatistical_Design_Analysis_Using_R_Logan.pdf
+Biostatistics%2c Kirk.pdf
+BIOSTATISTICS _daniel (1).pdf
+BIOSTATISTICS _daniel(1).pdf
+BIOSTATISTICS _daniel.pdf
+BIOSTATISTICS_daniel.pdf
+Biostatistics_with_R.pdf
+Book (1).pdf
+Cdu311-2AC3.pdf
+Chambers2008_Book_SoftwareForDataAnalysis.pdf
+Choosing_Using_Statistics_Biologists_guide.pdf
+CohenPower(1).pdf
+CohenPower.pdf
+Complex_Data_Modeling_Computationally_Intensive_Statistical_Methods.pdf
+Cook-Swayne2007_Book_InteractiveAndDynamicGraphicsF.pdf
+Correlated_Data_Analysis_Modeling_Analytics_Applications.pdf
+Daniel_Libro_ejercios.pdf
+descriptive-statistics_basics-v1.pdf
+Design_Experiments_Engineers_Scientists_Antony.pdf
+Design_Observational_Studies_Paul.pdf
+Design_Observational_Studies.pdf
+Devore-Berk2012_Book_ModernMathematicalStatisticsWi.pdf
+dir.txt
+discrete-distributions.pdf
+diva20140510_RGB.mp4
+Dixit2016_Book_ExamplesInParametricInferenceW.pdf
+DM-NarasimhaMurthy2020_Book_DesignOfExperimentsAndAdvanced.pdf
+DR_Advanced_Calculus_Applications_Statistics.pdf
+DR_Advanced_Statistical_Computing.pdf
+DR_An_Introduction_Applied_Multivariate_Analysis_.pdf
+DR_Applied_Statistics_Using_SPSS_STATISTICA_MATLAB_ R.pdf
+DR_Applied_Statistics_Using_SPSS_STATISTICA_MATLAB_R.pdf
+DR_Bioestadistica.pdf
+DR_Exploratory_analysis_data_modeling_functional_neuroimaging.djvu
+DR_Introduction to Statistical Thought2.pdf
+DR_IntroductiontoStatisticalThought2.pdf
+Dunn-Smyth2018_Book_GeneralizedLinearModelsWithExa.pdf
+ejercicios_psu3.pdf
+Ejercicios_PSU.pdf
+ejercicios_resueltos_probabilidad.pdf
+ejer-distribuciones.pdf
+ESLII_print10.pdf
+essential_statistics.pdf
+estadistica01.pdf
+Estadistica_Aplicada_Navarro.pdf
+Estadistica_Matematica_Aplicaciones_Dennis.pdf
+Estadística-no-paramétrica-aplicada.pdf
+Estadstica_ciencias_Sociales.pdf
+Estimation_Inferential_Statistics.pdf
+exercises-in-statistical-inference.pdf
+Exercises-in-Statistical-Inference.pdf
+Explaining_Psychological_Statistics_4E__Cohen.pdf
+Exploratory_analysis_data_modeling_functional_neuroimaging.djvu
+faraway-extending-the-linear-model-with-r-e28093-2006.pdf
+Foundations_Methods_Combinatorial_Statistical_Data_Analysis_Clustering.pdf
+Fundamentos_Inferencia_Estadistica_Ruiz.pdf
+goldstein.pdf
+grafi3.pdf
+HandbookBioStatThird.pdf
+Handbook_Epidemiology.pdf
+Handbook_of_Design_and_Analysis_of_Experiments [Dr.Soc].pdf
+Handbook_Statistical_Systems Biology_Crary.pdf
+Härdle2017_Book_BasicElementsOfComputationalSt.pdf
+Information_Complexity_Statistical_Modeling.pdf
+int_applied_bayesian_statistics_estimation_social_scientis.pdf
+introduccionalosmodelosmixtos.2016.pdf
+Introduccion_Probabilidad_estadistica.pdf
+introduction_probability.pdf
+introduction_Satistical_methods_data_analysis.pdf
+Introduction_Statistical_Thought.pdf
+introduction-to-probability.pdf
+Introduction-to-Resampling-Techniques-110901.pdf
+introduction-to-statistical-data-analysis-with-r.pdf
+Introduction to Statistical Thought2.pdf
+IntroductiontoStatisticalThought2.pdf
+ISLRv2_website.pdf
+IyDapuntes.pdf
+Jerrold-H.-Zar-Biostatistical-Analysis-5th-Edition-Prentice-Hall-2009.pdf
+Kaltenbach2021_Book_StatisticalDesignAndAnalysisOf.pdf
+Kaptein-VanDenHeuvel2022_Book_StatisticsForDataScientists.pdf
+Learn_R_Applied_Statistics.pdf
+Lib489791.pdf
+lib_esta01_lib.pdf
+lib_estadistica.pages
+lib_estadistica.pdf
+libro_estadistica.pdf
+libro_Methods_Multivariate_Analysis.pdf
+Linear_Mixed_Effects_Models_Using_R.pdf
+LinearModelsWithR(1).pdf
+LinearModelsWithR.pdf
+linear_stochastic_systems_picci.pdf
+livro.pdf
+Logan Biostatistical.pdf
+LoganBiostatistical.pdf
+Madhyastha2020_Book_AFirstCourseInLinearModelsAndD.pdf
+Mathematical_Statistics_Essays_History_methodology.pdf
+Mathematical_Statistics_Exercises_Solutions.pdf
+Medidas_Repetidas
+Methodology.in.Robust.and.Nonparametric.Statistics.pdf
+Methodology_Robust.and_Nonparametric_Statistics.pdf
+Michael_H_Kutner_Christopher_J._Nachtsheim_JohnBookFi.org.pdf
+Mixed_Effects_Models_S.pdf
+Mixed_Effects_Models_S_S_PLUS.pdf
+Modelos_Efectos_Mezclados
+Modelos-Lineales-Aplicados-en-R.pdf
+Modelos_Lineales_Generalizados
+Modern_Applied_Statistics_S_4e_Venables.pdf
+Modern_intro_probability_statistics_Dekking05.pdf
+Monte_Carlo
+Muestreo
+New_Advances_Statistical_Modeling_Applications.pdf
+New_Developments_Statistical_Modeling_Inference_Application.pdf
+New_Perspectives_Basin_Analysis.pdf
+New_Perspectives_Statistical_Modeling_Data_Analysis.pdf
+New_Theory_Discriminant_Analysis.pdf
+Nonparametric_Functional_Data_Analysis.pdf
+Nonparametric_Statistical_Methods.pdf
+non.pdf
+Numeric_Computation_Statistical_Data_Analysis_Java_Platform.pdf
+openintro-statistics.pdf
+Outlier_Analisis
+Paradigmas.ppt
+Permutation_Parametric_Bootstrap_Tests_Hypotheses.pdf
+Principal_Component_Analysis_-_Multidisciplinary_Applications.pdf
+R
+random-variables-iii.pdf
+random-variables-ii.pdf
+random-variables-i.pdf
+Random Walks and Random Environments (Vol.1.djvu
+Random walks and random environments, vol.2.djvu
+Regresion
+Regression_Linear_Models_Statistics.pdf
+Research_Methods_Statistics_Psychology_2E_Hugh.pdf
+Respuestas_dudas_típicas_ESTADÍSTICA.pdf
+Respuestas_dudas_tipicas_estadistica_Roberto.pdf
+robust statistics (2nd, 2009).pdf
+SAS Power.pdf
+Schumacker-Tomek2013_Book_UnderstandingStatisticsUsingR.pdf
+Seleccion_Modelo
+Sequencing_Data
+Simultaneous_Statistical_Inference.pdf
+SLS_corrected_1.4.16.pdf
+statbook.pdf
+Statistical_Analysis_anagement_Data.pdf
+Statistical_Analysis_Data_Display.pdf
+Statistical_Analysis_Designed Experiments.pdf
+Statistical_Analysis_Designed_Experiments.pdf
+Statistical_Analysis_Financial_Data_R.pdf
+statistical_analysis_functional_MRI_data_Lazar.pdf
+Statistical_Analysis_Network_Data.pdf
+Statistical_Analysis_Next_Generation_Sequencing_Data.pdf
+Statistical_Analysis_Panel_Count_Data.pdf
+Statistical Computing with R_ A tutorial.pdf
+STATISTICAL_MODELING_ANALYSIS_COMPLEX_DATA_PROBLEMS.pdf
+Statistical_Models_Data_Analysis_Studies_Classification_Data_Analysis_Knowledge_Organization.pdf
+Statisticalnal_MRI_Data.pdf
+Statistical_Parametric_Mapping.pdf
+Statistics_1-001_Practice_Problems_For_Dummies.pdf
+Statistics_Business_ Financial Economics.pdf
+Statistics_Business_Financial_Economics.pdf
+Statistics_Business_FinancialEconomics.pdf
+statistics-compendium.pdf
+statistics_data_r.pdf
+statistics-exercise-book.pdf
+statistics_exploration_analysis_data.pdf
+(Statistics for Biology urvival, and Repeate.pdf
+statistics-for-business-and-economics.pdf
+Statistics_for_Dummies.pdf
+statistics-for-health-life-and-social-sciences.pdf
+statistics in plain english (3rd, 2010).pdf
+Statistics_Mathematicians.pdf
+Statistics_Non-Statisticians.pdf
+Statistics Textbook.pdf
+Stats-Exercises.pdf
+stats-practically-short-and-simple.pdf
+StatsRefSample.pdf
+Stochastic_Approximation_Applications_Chen.pdf
+Stochastic_problems_Physics_Astronomy.djvu
+Stochastic processes.djvu
+Stochastic Programming.pdf
+StochasticProgramming.pdf
+Study_Guide_Statistics_Busines.pdf
+Temarios_Estadistica_oct1324.docx
+Terdik2021_Book_MultivariateStatisticalMethods.pdf
+The_Elements_Statistical_Learning_Data_Mining_Inference_Prediction.pdf
+The_Elements_Statistical_Learning.pdf
+the_linear_model_hypothesis.pdf
+The_statistical_analysis_functinal_MRI_data.pdf
+The_Statistical_Analysis_Functional_MRI_Data.pdf
+The Statisticalnal MRI Data.pdf
+The_Teaching_Learning_Statistics.pdf
+Topics_Nonparametric_Statistics.pdf
+Toutenburg-Shalabh2002_Book_StatisticalAnalysisOfDesignedE.pdf
+Understanding_Probability.pdf
+Understanding_Statistics_Using_R.pdf
+understand-statistics.pdf
+untitled folder
+Visauta, Análisis Estadístico con SPSS_Técnicas multivariantes.pdf
+Webster, Estadistica Aplicada a los Negocios y la Economía.pdf
+Webster,EstadisticaAplicadaalosNegociosylaEconomía.pdf
+youblisher.com-828697-estadistica.pdf
