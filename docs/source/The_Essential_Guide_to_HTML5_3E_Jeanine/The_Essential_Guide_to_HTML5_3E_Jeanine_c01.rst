@@ -200,24 +200,30 @@ Note that I’ve indented the nested tags here to make them more obvious, but HT
 itself ignores this indentation (or whitespace, as it’s known), and you don’t need to add
 it to your own files. In fact, for most of the examples throughout this book, I don’t indent
 my code.
+
 This document consists of the html element, indicated by the starting tag <html> and
 ending with the closing tag: </html>.
+
 HTML documents typically have a head and a body element, as this one has. This
 head element contains one element, title. The HTML title shows up different places
 in different browsers. Figure 1-3 shows the title, “Very Simple Example,” on a tab
 in Chrome.
 
 Figure 1-3. The HTML title on a tab in the Chrome browser
+
 In most cases, you will create something within the body of the web page that you’ll
 think of as a title, but it won’t be the HTML title! Figure 1-3 also shows the body of the
 web page: the short piece of text. Notice that the words html, head, title, and body do not
 appear. The tags “told” the browser how to display the HTML document.
+
 We can do much more with text, but let’s go on to see how to get images to appear.
 This requires an img element. Unlike the html, head, and body elements that use starting
 and ending tags, the img element just uses one tag. It is called a singleton tag. Its element
 type is img (not image), and you put all the information within the tag itself using what
 are termed attributes. What information? The most important item is the name of the file
 that holds the image. The tag
+
+
 <img src="frog.jpg"/>
 
 tells the browser to look for a file with the name frog and the file type .jpg. In this
@@ -227,11 +233,14 @@ It is termed an attribute of the element. The slash before the > indicates that 
 a singleton tag. There are common attributes for different element types, but most
 element types have additional attributes. Another attribute for img elements is the width
 attribute.
+
 <img src="frog.jpg" width="200"/>
+
 This specifies that the image should be displayed with a width of 200 pixels. The
 height will be whatever is necessary to keep the image at its original aspect ratio. If you
 want specific widths and heights, even if that may distort the image, specify both width
 and height attributes.
+
 Tip You’ll see examples (maybe even some of mine) in which the closing slash
 is missing that work just fine. It is considered good practice to include it. Similarly,
 you’ll see examples in which there are no quotation marks around the name of
@@ -240,9 +249,12 @@ programming systems. Finally, you’ll see HTML documents that start with a tag 
 type !DOCTYPE and have the HTML tag include other information. At this point, we
 don’t need this, so I will keep things as simple as I can (but no simpler, to quote
 Einstein).
+
 Producing hyperlinks is similar to producing images. The type of element for a
 hyperlink is a, and the critical attribute is href.
+
 <a href=http://www.purchase.edu>Purchase College website</a>
+
 As you can see, this element has a starting and ending tag. The content of the
 element, whatever is between the two tags—in this case, Purchase College website—is
 what shows up in blue and is underlined. The starting tag begins with a. One way to
@@ -256,19 +268,25 @@ Web addresses can be absolute or relative. An absolute address starts with http:
 A relative address is relative to the location of the HTML file. Using relative addressing
 makes it easier to move your project to a different website, and you can indicate the
 folder one level up by using
+
 ../
+
 at the start of the reference. In the favorite sites example, the avivasmugmug.png file
 and the apressshot.png file are located in the same folder as the HTML file. They are
 there because I put them there! For large projects, many people put all the images in a
 subfolder called images and write addresses as images/postcard.gif. File management
 is a big part of creating web pages.
+
 We can combine a hyperlink element with an img element to produce a picture on
 the screen that a user can click. Remember that elements can be nested within other
 elements. Instead of putting text after the starting <a> tag, put an <img> tag:
+
 <a href="http://apress.com">
 <img src="apressshot.png" width="100" />
 </a>
+
 Let’s put these concepts to work in another example:
+
 <html>
 <head>
 <title>Second example </title>
@@ -287,16 +305,19 @@ I created the HTML file, saved it as second.html, and then opened it in the Chro
 browser. Figure 1-4 shows what is displayed.
 
 Figure 1-4. Example with images and hyperlinks
+
 This produces the text; the image in its original width and height; the image with
 the width fixed at 200 pixels and height proportional; a hyperlink that will take you to
 the Purchase College website; and another link that uses an image that will take you to
 the web page on the Purchase College website for the Mathematics/Computer Science
 department. However, this isn’t quite what I had in mind. I wanted these elements
 spaced down the page.
+
 This demonstrates something you need to remember: HTML ignores line breaks and
 other whitespace. If you want a line break, you have to specify it. One way is to use the
 br singleton tag. I’ll show other ways later. Take a look at the following modified code.
 Notice that the <br/> tags don’t need to be on a line by themselves.
+
 <html>
 <head>
 <title>Second example Spaced Out</title>
@@ -316,6 +337,7 @@ decided to leave the origami frog images together, and I put two <br/> tags afte
 to Purchase College/SUNY.
 
 Figure 1-5. Text, images, and links with line breaks
+
 There are many HTML element types: the h1 through h6 heading elements produce
 text of different sizes; there are various elements for lists and tables, and others for forms.
 CSS, as we’ll see in a moment, is also used for formatting. You can select different fonts,
@@ -324,12 +346,13 @@ considered good practice to put formatting in CSS, create interactivity in JavaS
 and keep the HTML for the content. HTML5 provides new structural elements—such
 as article, section, footer, and header—putting formatting into the style element
 and making use of the new elements, called semantic tags , to facilitate working with
-
 other people. However, even when you’re working just with yourself, separating content,
 formatting, and behavior lets you easily change the formatting and the interactions.
 Formatting, including document layout, is a large topic. In this book, I stick to the basics.
 
 Using Cascading Style Sheets
+----------------------------
+
 CSS is a special language just for formatting. A style is essentially a rule that specifies
 how a particular element will be formatted. This means you can put style information
 in a variety of places: a separate file, a style element located in the head element, or a
@@ -340,6 +363,7 @@ used. For example, you might use your official company fonts as given in the sty
 section in the head element to flow through most of the text but include a specification
 within the local element to style one particular piece of text. Because that style is closest
 to the element, it is the one that is used.
+
 The basic format includes an indicator of what is to be formatted followed by
 one or more directives. In the examples for this chapter, I’ll specify the formatting for
 elements of type section, namely, a border or box around each item, margins, padding,
@@ -351,12 +375,14 @@ which have default formatting that the body and each p element will start on a n
 CSS can modify the formatting of old and new element types. Notice that the background
 color for the text in the section is different from the background color for the text outside
 the section.
+
 In the code in Listing 1-1, I specify styles for the body element (there is just one) and
 the section element. If I had more than one section element, the styling would apply to
 each of them. The style for the body specifies a background color and a color for the text.
 In the beginning, browsers accepted a set of only 16 colors by name, including black,
 white, red, blue, green, cyan, and pink. However, now the up-to-date browsers accept
 140 colors by name.
+
 See https://www.w3schools.com/colors/colors_names.asp.
 
 You can also specify color using RGB (red, green, blue) hexadecimal codes, but you’ll
@@ -364,6 +390,7 @@ need to use a graphics program—such as Adobe Photoshop, Corel Paint Shop Pro, 
 Adobe Flash Professional—to figure out the RGB values, or you can experiment. I used
 Paint Shop Pro to determine the RGB values for the green in the frog head picture and
 used that for the border as well.
+
 The text-align directives are just what they sound like: they indicate whether to
 center the material or align it to the left. The font-size sets the size of text in pixels.
 Borders are tricky and don’t appear to be consistent across browsers. Here I’ve specified
@@ -372,7 +399,9 @@ browser should use 85 percent of the window, whatever that is. The specification
 sets the width of the paragraph at 250 pixels. Padding refers to the spacing between the
 text and the borders of the section. The margin is the spacing between the section and its
 surroundings.
+
 Listing 1-1. A Complete HTML Document with Styles
+
 <html>
 <head>
 <title>CSS example </title>
@@ -438,6 +467,7 @@ Tip Don’t be concerned if you don’t understand everything immediately. Modif
 these examples and make up your own. You’ll find lots of help on the Web. In
 particular, see the official source for HTML 5 at http://dev.w3.org/html5/
 spec/Overview.html.
+
 There are many things you can do with CSS. You can use it to specify formatting
 for types of elements, as shown here; you can specify that elements are part of a class;
 and you can identify individual elements using the id attribute. In Chapter 6, where we
@@ -445,6 +475,8 @@ create a quiz, I use CSS to position specific elements in the window and then Ja
 to move them around.
 
 JavaScript Programming
+----------------------
+
 JavaScript is a programming language with built-in features for accessing parts of an
 HTML document, including styles in the CSS element. It is termed a scripting language
 to distinguish it from compiled languages, such as C++. Compiled languages are
@@ -453,13 +485,16 @@ line by browsers. This text assumes no prior programming experience or knowledge
 of JavaScript, but it may help to consult other books, such as Getting Started with
 JavaScript, by Terry McNavage (friends of ED, 2010), or online sources such as http://
 en.wikipedia.org/wiki/JavaScript.
+
 Each browser owns its version of JavaScript.
 An HTML document holds JavaScript in a script element, located in the head
 element. To display the time and date information as shown in Figure 1-2, I put the
 following in the head element of the HTML document:
+
 <script>
 document.write(Date());
 </script>
+
 JavaScript, like other programming languages, consists of statements of various
 types. In later chapters, I’ll show you assignment statements, compound statements
 such as if and switch and for statements, and statements that create what are called
@@ -468,11 +503,14 @@ in a block and can be called any time you need that functionality. Functions sav
 out the same code over and over. JavaScript supplies many built-in functions. Certain
 functions are associated with objects (more on this later) and are called methods.
 The code
+
 document.write("hello");
+
 is a JavaScript statement that invokes the write method of the document object with
 the argument "hello". An argument is additional information passed to a function or
 method. Statements are terminated by semicolons. This piece of code will write out the
 literal string of characters h, e, l, l, o as part of the HTML document.
+
 The document.write method writes out anything within the parentheses. Since I
 wanted the information written out to change as the date and time change, I needed a
 way to access the current date and time, so I used the built-in JavaScript Date function.
@@ -481,7 +519,9 @@ This function produces an object with the date and time. Later, you’ll see how
 Date objects to compute how long it takes for a player to complete a game. For now, all
 I want to do is display the current date and time information, and that’s just what this
 code does:
+
 document.write(Date());
+
 To use the formal language of programming: this code calls (invokes) the write
 method of the document object, a built-in piece of code. The period (.) indicates that the
 write to be invoked is a method associated with the document produced by the HTML
@@ -495,6 +535,7 @@ shown in Figure 1-2. The way these constructs are combined is typical of program
 languages. The statement ends with a semicolon. Why not a period? A period has
 other uses in JavaScript, such as indicating methods and serving as a decimal point for
 numbers.
+
 Natural languages, such as English, and programming languages have much in
 common—different types of statements; punctuation using certain symbols; and
 grammar for the correct positioning of elements. In programming, we use the term
@@ -512,6 +553,8 @@ browser still tries to display something. It’s up to you to figure out what an
 problem is when you don’t get the results you wanted in your work.
 
 Using a Text Editor
+-------------------
+
 You build an HTML document using a text editor and you view/test/play the document
 using a browser. Though you can use any text editor program to write the HTML, I
 suggest TextPad for PCs and Sublime for Macs. These are shareware, which makes
@@ -521,6 +564,7 @@ the other tools have benefits such as color-coding that I’ll demonstrate. To u
 you open it and type in the code. Figure 1-7 shows what the Sublime screen looks like.
 
 Figure 1-7. Starting off in Sublime
+
 You will want to save your work frequently and, most important, save it as the file
 type.html. Do this at the start, and then you will gain the benefits of the color-coding. In
 Sublime, select File ➤ Save As and then enter the name with the file extension .html, as
@@ -540,8 +584,10 @@ Word or PowerPoint and copy so-called “smart” quotation marks, ones that cur
 will cause problems.
 
 Building the Applications
+
 The source code for an HTML document typically includes an HTML document and
 other files.
+
 • The simple.html file is complete in itself and was shown in
 Figure 1-3.
 • The second.html application was shown in Figure 1-4, and
@@ -555,6 +601,7 @@ a tags are not present, then there will be error messages when the
 hyperlinks are clicked.
 • The FavoriteSites.html file references two image files:
 avivasmugmug.jpeg and apressshot.jpeg.
+
 Keeping track of files is a critical part of building HTML applications.
 Now let’s delve into the HTML coding statement by statement, first for the list of
 annotated links describing games and then for the favorite sites. The code uses the
@@ -565,6 +612,7 @@ all located in the same folder.
 Once you have created several of your own HTML applications, you may build a
 document such as this one to serve as your own annotated list. If you use folders, the
 href links will need to reflect the location in terms of the HTML document.
+
 The Favorite Sites code has the features of the annotated list with the addition of
 formatting: a green box around each item and a picture in two of the three items. See
 Table 1-2.
@@ -577,6 +625,7 @@ the practice called “fair use,” but I am not a lawyer. For the most part, pe
 to their sites. It doesn’t affect the legal question, but you can also choose to set the src
 in the img tag to the web address of the site where the image lives if you’d rather not
 download a particular image file to your computer and then upload it to your website.
+
 You also can make this application your own by changing the formatting. Styles can
 be used to specify fonts, including specific font, font family, and size. This lets you pick
 a favorite font and specify what font to use if the preferred font is not available on the
@@ -584,6 +633,8 @@ user’s computer. You can specify the margin and padding or vary independently 
 margin-top, margin-left, padding-top, and so forth.
 
 Testing and Uploading the Application
+-------------------------------------
+
 You need to have all the files, in this case the single HTML file plus all image files, in the
 same folder unless you are using full web addresses. For the links to work, you need to
 have the correct addresses for all href attributes. My examples show how to do this for
@@ -594,9 +645,11 @@ can put in a single img element or a single a element. Open a browser, such as F
 Chrome, or Safari. In Firefox, click File and then “Open file” and browse to your HTML
 file. In Chrome, press Ctrl on the PC (Cmd on the Mac) and then browse to the file and
 click OK to open it. You should see something like my examples.
+
 Click the hyperlinks to get to the other sites. Reload the page using the reload icon for
 the browser and observe the different time. If you don’t see what you expect—something
 like my examples—you need to examine your code. The following are common mistakes:
+
 • Missing or mismatched opening and closing tags.
 • Wrong name for image files or HTML files, or wrong file extension for
 the image files. You can use image files of type JPG, GIF, or PNG,
@@ -606,8 +659,11 @@ type of the image.
 editors, can help you identify this.
 
 Summary
+-------
+
 In this chapter, you learned how to compose HTML documents with text, images, and
 hyperlinks. This included the following:
+
 • The basic tags, including html, head, title, style, script, and body
 • Two semantic element tags: section and aside
 • The img element for displaying images
@@ -615,6 +671,7 @@ hyperlinks. This included the following:
 • Simple formatting using a style element written following Cascading
 Style Sheet (CSS) rules
 • A single line of JavaScript code to provide date and time information
+
 This chapter was just the beginning, though it’s possible to produce beautiful and
 informative web pages using basic HTML, with or without Cascading Style Sheets. In the
 next chapter, you learn how to include randomness and interactivity in an application
