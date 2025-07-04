@@ -47,4 +47,5 @@ documentation for details.
    Statistical_Research_Methods_Roy/index2
    Quantum_Computing_Himanshu/index2
    Applied_Delay_Differential_Equations/index2
+   The_Essential_Guide_to_HTML5_3E_Jeanine/index2
 
