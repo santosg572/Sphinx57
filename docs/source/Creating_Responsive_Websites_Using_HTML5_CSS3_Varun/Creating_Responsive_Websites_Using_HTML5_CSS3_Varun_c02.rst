@@ -1,6 +1,4 @@
-CHAPTER 2
-
-HTML5 and
+CHAPTER 2 HTML5 and
 Responsive Web
 Design
 This chapter covers HTML5 and responsive web design by describing
