@@ -1,17 +1,19 @@
+
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Lagrange Interpolation Approach for General Parameter-Shift Rule &#8212; Calculo 0.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
-    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=1ea45734" />
-    <script src="../_static/documentation_options.js?v=2709fde1"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -20,9 +22,8 @@
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
-
   
-  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
   
@@ -35,10 +36,10 @@
           <div class="body" role="main">
             
   <section id="lagrange-interpolation-approach-for-general-parameter-shift-rule">
-<h1>Lagrange Interpolation Approach for General Parameter-Shift Rule<a class="headerlink" href="#lagrange-interpolation-approach-for-general-parameter-shift-rule" title="Link to this heading">¶</a></h1>
+<h1>Lagrange Interpolation Approach for General Parameter-Shift Rule<a class="headerlink" href="#lagrange-interpolation-approach-for-general-parameter-shift-rule" title="Permalink to this headline">¶</a></h1>
 <p>Vu Tuan Hai and Le Bin Ho</p>
 <section id="introduction">
-<h2>1 Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<h2>1 Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>Quantum computing is an elegant fusion between computer science and principles
 of quantum physics to facilitate calculations [1]. It promises an excellent computational capacity that is intractable for classical computers to solve challenging
 problems, including materials science, information science, computer science,
@@ -134,7 +135,7 @@ colectivas, cuyos generadores tienen valores propios lineales como número de pa
 <p>For convenience, in Table 1, we present the major symbols used in this work.</p>
 </section>
 <section id="preliminary">
-<h2>2 Preliminary<a class="headerlink" href="#preliminary" title="Link to this heading">¶</a></h2>
+<h2>2 Preliminary<a class="headerlink" href="#preliminary" title="Permalink to this headline">¶</a></h2>
 <p>Let us consider a parameterized quantum gate with a general form U(x) = e−i x
 2 G where G is the generator and assume the cost function of interest is the expectation
 value of a measured observable B as</p>
@@ -169,7 +170,7 @@ the following, we derive the parameter-shift rule for general quantum gates by u
 the Lagrange interpolation.</p>
 </section>
 <section id="general-parameter-shift-rule-with-the-lagrange-interpolation-approach">
-<h2>3 General Parameter-Shift Rule with the Lagrange Interpolation Approach<a class="headerlink" href="#general-parameter-shift-rule-with-the-lagrange-interpolation-approach" title="Link to this heading">¶</a></h2>
+<h2>3 General Parameter-Shift Rule with the Lagrange Interpolation Approach<a class="headerlink" href="#general-parameter-shift-rule-with-the-lagrange-interpolation-approach" title="Permalink to this headline">¶</a></h2>
 <p>The Lagrange interpolation is a calculus method that decomposes a quantum gate
 in terms of the polynomials generator. It thus supports deriving the parameter-shift
 rule with any generic generator. In this section, we derive the general parameter-
@@ -177,7 +178,7 @@ shift rule using the Lagrange interpolation and apply it to the first-order deri
 (gradient) for the cost function.</p>
 </section>
 <section id="lagrange-interpolation-approach">
-<h2>3.1 Lagrange Interpolation Approach<a class="headerlink" href="#lagrange-interpolation-approach" title="Link to this heading">¶</a></h2>
+<h2>3.1 Lagrange Interpolation Approach<a class="headerlink" href="#lagrange-interpolation-approach" title="Permalink to this headline">¶</a></h2>
 <p>We begin with a general quantum gate represented by <span class="math notranslate nohighlight">\(U(x) = e^{−i\frac{x}{2} G\)</span>, where the Hermitian generator
 G has n distinguished eigenvalues <span class="math notranslate nohighlight">\(\{ \lambda_k \}\)</span>, i.e., <span class="math notranslate nohighlight">\(G = \sum^{n−}_{k=0} \lambda_k |φ_k&gt;&lt;φ_k|\)</span>. The
 Lagrange interpolation of the unitary U(x) is given by [14, 15]</p>
@@ -189,7 +190,7 @@ explicitly derive the general two-term, four-term, and multiple-term parameter-s
 rule from Eq. (5).</p>
 </section>
 <section id="two-term-parameter-shift-rule">
-<h2>3.2 Two-Term Parameter-Shift Rule<a class="headerlink" href="#two-term-parameter-shift-rule" title="Link to this heading">¶</a></h2>
+<h2>3.2 Two-Term Parameter-Shift Rule<a class="headerlink" href="#two-term-parameter-shift-rule" title="Permalink to this headline">¶</a></h2>
 <p>We first consider case n = 2. Let λ0 and λ1 be two distinguished eigenvalues of G.
 Equation (5) explicitly yields</p>
 <p>e−i x
@@ -339,7 +340,7 @@ M(α) · FT]
 <p>1(α)Λ1(α) ··· Λ∗
 1(α)Λn−1(α)</p>
 <section id="id3">
-<h3>.<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<h3>.<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>. .
 .
 . … .
@@ -420,7 +421,7 @@ cases of m in Table 2.</p>
 </section>
 </section>
 <section id="higher-order-derivative">
-<h2>4 Higher-Order Derivative<a class="headerlink" href="#higher-order-derivative" title="Link to this heading">¶</a></h2>
+<h2>4 Higher-Order Derivative<a class="headerlink" href="#higher-order-derivative" title="Permalink to this headline">¶</a></h2>
 <p>In this section, we compute higher-order derivatives of the cost function using the
 parameter-shift rule. Let a variational circuit is governed by a set of quantum gates
 U(θ) = V MUM(θM)··· V 1U1(θ1), (23)</p>
@@ -684,7 +685,7 @@ gyx gyz gyy
 shift rule as described in Eq. (30).</p>
 </section>
 <section id="numerical-simulations">
-<h2>5 Numerical Simulations<a class="headerlink" href="#numerical-simulations" title="Link to this heading">¶</a></h2>
+<h2>5 Numerical Simulations<a class="headerlink" href="#numerical-simulations" title="Permalink to this headline">¶</a></h2>
 <p>In this section, we first revisit the finite-difference gradient and quantify the mean-
 square error (MSE) as the figure of merit for evaluating different estimators (finite-
 difference and parameter-shift rule estimators). We later demonstrate the numerical
@@ -966,7 +967,7 @@ com/science/article/pii/002955826590862X</p>
           
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="../index.html">Calculo</a></h1>
 
@@ -1024,7 +1025,7 @@ com/science/article/pii/002955826590862X</p>
   </ul></li>
 </ul>
 </div>
-<search id="searchbox" style="display: none" role="search">
+<div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
@@ -1032,8 +1033,8 @@ com/science/article/pii/002955826590862X</p>
       <input type="submit" value="Go" />
     </form>
     </div>
-</search>
-<script>document.getElementById('searchbox').style.display = "block"</script>
+</div>
+<script>$('#searchbox').show(0);</script>
 
 
 
@@ -1047,11 +1048,11 @@ com/science/article/pii/002955826590862X</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &#169;2025, santosg57.
+      &copy;2025, santosg57.
       
       |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
-      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="../_sources/Quantum_Computing_Himanshu/Quantum_Computing_Himanshu_c01.rst.txt"

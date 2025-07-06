@@ -48,4 +48,5 @@ documentation for details.
    Quantum_Computing_Himanshu/index2
    Applied_Delay_Differential_Equations/index2
    The_Essential_Guide_to_HTML5_3E_Jeanine/index2
+   Fundamentals_of_Physics_Resnick/index2
 
