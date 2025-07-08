@@ -72,61 +72,31 @@ the performance, functionality, and user experience of websites. Here are
 some of the key technologies that have evolved in web development. This
 book will be focusing on HTML and CSS.
 
-• HTML: Hypertext Markup Language (HTML) has been
-the backbone of web development since the early days
-of the Internet. HTML has evolved over time, with
-new versions introducing new elements and features
-that make it easier to create complex websites and
-applications.
+• HTML: Hypertext Markup Language (HTML) has been the backbone of web development since the early days of the Internet. HTML has evolved over  
+time, with new versions introducing new elements and features that make it easier to create complex websites and applications.
 
-• CSS: Cascading Style Sheets (CSS) is used to style and
-lay out web pages. CSS has evolved to include new
-features, such as flexboxes, grids, and animations,
-that make it easier to create sophisticated designs and
-interactive user experiences.
+• CSS: Cascading Style Sheets (CSS) is used to style and lay out web pages. CSS has evolved to include new features, such as flexboxes, grids, 
+and animations, that make it easier to create sophisticated designs and interactive user experiences.
 
-• JavaScript: JavaScript is a scripting language used to
-create interactive websites and applications. JavaScript
-has evolved significantly over the years, with new
-libraries and frameworks such as React, Vue, and Angular
-making it easier to create complex web applications.
+• JavaScript: JavaScript is a scripting language used to create interactive websites and applications. JavaScript has evolved significantly over 
+the years, with new libraries and frameworks such as React, Vue, and Angular making it easier to create complex web applications.
 
-• Server-side languages: Server-side languages such
-as PHP, Python, and Ruby on Rails are used to
-create dynamic web applications that interact with
-databases and other server-side components. These
-languages have evolved to become more efficient and
-scalable, enabling developers to build complex web
-applications.
+• Server-side languages: Server-side languages such as PHP, Python, and Ruby on Rails are used to create dynamic web applications that interact 
+with databases and other server-side components. These languages have evolved to become more efficient and scalable, enabling developers to build 
+complex web applications.
 
-• Web APIs: Web application programming interfaces
-(APIs) allow web developers to integrate with other
-web services and data sources. Web APIs have evolved
-to include new standards such as RESTful APIs, which
-provide a simple and flexible way to interact with web
-services.
+• Web APIs: Web application programming interfaces (APIs) allow web developers to integrate with other web services and data sources. Web APIs 
+have evolved to include new standards such as RESTful APIs, which provide a simple and flexible way to interact with web services.
 
-• Cloud computing: Cloud computing has transformed
-web development by providing a scalable and flexible
-infrastructure for web applications. Cloud platforms
-such as AWS, Google Cloud, and Microsoft Azure allow
-developers to deploy and manage web applications
-with ease.
+• Cloud computing: Cloud computing has transformed web development by providing a scalable and flexible infrastructure for web applications. 
+Cloud platforms such as AWS, Google Cloud, and Microsoft Azure allow developers to deploy and manage web applications with ease.
 
-• Progressive web apps: Progressive web apps (PWAs)
-are web applications that provide a user experience
-similar to native apps. PWAs have evolved to include
-new features such as service workers, which allow
-web applications to work offline and provide push
-notifications.
+• Progressive web apps: Progressive web apps (PWAs) are web applications that provide a user experience similar to native apps. PWAs have evolved 
+to include new features such as service workers, which allow web applications to work offline and provide push notifications.
 
-• Artificial intelligence: Artificial intelligence (AI)
-is increasingly being used in web development
-to improve user experiences and provide new
-functionality. AI-powered chatbots, for example, can
-provide instant customer support, while machine
-learning algorithms can personalize content and
-improve search results.
+• Artificial intelligence: Artificial intelligence (AI) is increasingly being used in web development to improve user experiences and provide new 
+functionality. AI-powered chatbots, for example, can provide instant customer support, while machine  learning algorithms can personalize content 
+and improve search results.
 
 In conclusion, web development is the process of creating websites
 and web applications that are accessible through the Internet. It involves
@@ -236,16 +206,18 @@ of different sizes. The <em> tag is used to emphasize text, while the
 <strong> tag is used to highlight important text.
 Here is an example of a heading tag:
 
-<html>
-<body>
-<h1>This text is Heading 1.</h1>
-<h2>This text is Heading 2.</h2>
-<h3>This text is Heading 3.</h3>
-<h4>This text is Heading 4.</h4>
-<h5>This text is Heading 5.</h5>
-<h6>This text is Heading 6.</h6>
-</body>
-</html>
+.. code:: html
+
+   <html>
+      <body>
+         <h1>This text is Heading 1.</h1>
+         <h2>This text is Heading 2.</h2>
+         <h3>This text is Heading 3.</h3>
+         <h4>This text is Heading 4.</h4>
+         <h5>This text is Heading 5.</h5>
+         <h6>This text is Heading 6.</h6>
+      </body>
+   </html>
 
 Figure 1-3 shows an HTML file containing heading tag elements.
 
@@ -254,17 +226,18 @@ displayed in a browser
 
 Here is a code example of <p>:
 
-<html>
-<body>
-<p>
-This paragraph is written inside &lt;p&gt; element.
-It will be displayed as continous text in the
-browser.
+.. code:: html
 
-Let us see how does it look on the browser.
-</p>
-</body>
-</html>
+   <html>
+      <body>
+         <p>
+              This paragraph is written inside &lt;p&gt; element.
+              It will be displayed as continous text in the
+              browser.
+              Let us see how does it look on the browser.
+         </p>
+      </body>
+   </html>
 
 Figure 1-4 shows how it looks in a browser.
 
@@ -279,11 +252,13 @@ such as images and videos. They include elements such as the <img> and
 tag is used to display videos.
 Here is a code example for <img>:
 
-<html>
-<body>
-<img src="../../../html dom.jpg" alt="dom image">
-</body>
-</html>
+.. code:: html
+
+   <html>
+      <body>
+         <img src="../../../html dom.jpg" alt="dom image">
+      </body>
+   </html>
 
 Figure 1-5. HTML DOM structure
 
@@ -346,56 +321,34 @@ other multimedia elements.
 Let’s take a closer look at each of the HTML page structure elements
 and their role in the page:
 
-• <!DOCTYPE html>: The <!DOCTYPE html> element is
-the first element in an HTML page and tells the browser
-what version of HTML is being used. The latest version
-of HTML is HTML5, and the doctype for HTML5 is
-simply <!DOCTYPE html>.
+• <!DOCTYPE html>: The <!DOCTYPE html> element is the first element in an HTML page and tells the browser what version of HTML is being used. The 
+latest version of HTML is HTML5, and the doctype for HTML5 is simply <!DOCTYPE html>.
 
-• <html>: The <html> element is the root element of an
-HTML page and is used to define the entire structure of
-the page. It contains all the other elements of the page,
-including the head and body elements.
+• <html>: The <html> element is the root element of an HTML page and is used to define the entire structure of the page. It contains all the 
+other elements of the page, including the head and body elements.
 
-• <head>: The <head> element is used to provide
-information about the page that is not displayed to
-the user, such as the page title, meta tags, and links
-to external resources. The content within the head
-element is not visible to the user and is used by the
-browser to display the page correctly.
+• <head>: The <head> element is used to provide information about the page that is not displayed to the user, such as the page title, meta tags, 
+and links to external resources. The content within the head element is not visible to the user and is used by the browser to display the page 
+correctly.
 
-• <title>: The <title> element is used to define the title of
-the page, which is displayed in the browser’s title bar
-and can also be used by search engines to display the
-page title in search results.
+• <title>: The <title> element is used to define the title of the page, which is displayed in the browser’s title bar and can also be used by 
+search engines to display the page title in search results.
 
-• <meta>: The <meta> element is used to provide
-additional information about the page, such as the
-page description, author, and keywords. These meta
-tags are used by search engines to help rank the page in
-search results.
+• <meta>: The <meta> element is used to provide additional information about the page, such as the page description, author, and keywords. These 
+meta tags are used by search engines to help rank the page in search results.
 
-• <link>: The <link> element is used to link to external
-resources, such as CSS stylesheets, JavaScript files, or
-other HTML pages.
+• <link>: The <link> element is used to link to external resources, such as CSS stylesheets, JavaScript files, or other HTML pages.
 
-• <body>: The <body> element contains the main
-content of the page, including text, images, and other
-multimedia elements. It is the visible part of the page
-that the user interacts with.
+• <body>: The <body> element contains the main content of the page, including text, images, and other multimedia elements. It is the visible part 
+of the page that the user interacts with.
 
-• <header>: The <header> element is used to define the
-header section of the page, which typically contains the
-site logo, navigation menu, and other header content.
+• <header>: The <header> element is used to define the header section of the page, which typically contains the site logo, navigation menu, and 
+other header content.
 
-• <main>: The <main> element is used to define the
-main content section of the page, which contains the
-primary content of the page.
+• <main>: The <main> element is used to define the main content section of the page, which contains the primary content of the page.
 
-• <footer>: The <footer> element is used to define the
-footer section of the page, which typically contains
-copyright information, contact information, and other
-footer content.
+• <footer>: The <footer> element is used to define the footer section of the page, which typically contains copyright information, contact 
+information, and other footer content.
 
 The HTML page structure is composed of several different elements,
 each with its own purpose and function. By understanding the basic
@@ -422,22 +375,28 @@ the element.
 For example, to define a style for a paragraph element, the following
 syntax might be used:
 
-p {
-font-family: Arial;
-font-size: 22px;
-color: #bb0d10;
-}
+.. code:: html
+
+   p {
+      font-family: Arial;
+      font-size: 22px;
+      color: #bb0d10;
+   }
+
 HTML Code:
-<html>
-<body>
-<p>
-The properties font-family, font-size, and color
-are then defined, which set the font, font size,
-and color of the text within the paragraph element.
-</p>
-<link rel="stylesheet" href="../../css/example.css">
-</body>
-</html>
+
+.. code:: html
+
+   <html>
+      <body>
+         <p>
+            The properties font-family, font-size, and color
+            are then defined, which set the font, font size,
+            and color of the text within the paragraph element.
+         </p>
+         <link rel="stylesheet" href="../../css/example.css">
+      </body>
+   </html>
 
 Figure 1-6 shows what this code looks like in a browser.
 
@@ -465,21 +424,27 @@ For example, a style rule that targets a specific ID will have a higher
 specificity than a rule that targets a class or element. The following
 example demonstrates this:
 
-#header {
-background-color: blue;
-}
+.. code:: html
 
-.header {
-background-color: red;
-}
+   #header {
+      background-color: blue;
+   }
+
+   .header {
+      background-color: red;
+   }
+
 Here’s the HTML code:
-<html>
-<body>
-<h1 id="header" class="header">This text is
-Heading 1.</h1>
-<link rel="stylesheet" href="../../css/example.css">
-</body>
-</html>
+
+.. code:: html
+
+   <html>
+      <body>
+         <h1 id="header" class="header">This text is
+         Heading 1.</h1>
+         <link rel="stylesheet" href="../../css/example.css">
+      </body>
+   </html>
 
 As shown in Figure 1-7, the style rule that targets the #header ID will be
 applied, even though the .header class rule comes later in the file.
@@ -521,51 +486,27 @@ development is CSS, which is a stylesheet language that is used to define
 the visual appearance of web pages. CSS solves several common problems
 that web developers face when creating websites.
 
-• Consistency across pages: One of the biggest challenges
-in web development is maintaining consistency across
-multiple pages. With CSS, developers can create a set
-of styles that can be applied to all pages on a website,
-ensuring a consistent look and feel. This makes it easier
-for users to navigate the website and helps to establish
-a strong brand identity.
+• Consistency across pages: One of the biggest challenges in web development is maintaining consistency across multiple pages. With CSS, 
+developers can create a set of styles that can be applied to all pages on a website, ensuring a consistent look and feel. This makes it easier 
+for users to navigate the website and helps to establish a strong brand identity.
 
-• Responsive design: Another common problem in web
-development is creating websites that are optimized
-for different screen sizes and devices. CSS provides a
-range of tools and techniques for creating responsive
-designs, including media queries, flexible layouts, and
-viewport units. With these tools, developers can create
-websites that look great on desktops, laptops, tablets,
-and smartphones, without having to create separate
+• Responsive design: Another common problem in web development is creating websites that are optimized for different screen sizes and devices. 
+CSS provides a range of tools and techniques for creating responsive designs, including media queries, flexible layouts, and viewport units. With 
+these tools, developers can create websites that look great on desktops, laptops, tablets, and smartphones, without having to create separate
 designs for each device.
 
-• Browser compatibility: One of the most challenging
-aspects of web development is ensuring that websites
-look and function correctly across different web
-browsers. CSS provides a standardized way of defining
-styles, which helps to ensure that websites look
-consistent across different browsers. Additionally, CSS
-provides fallback options for older browsers so that
-websites can still be viewed by users who may not have
+• Browser compatibility: One of the most challenging aspects of web development is ensuring that websites look and function correctly across 
+different web browsers. CSS provides a standardized way of defining styles, which helps to ensure that websites look consistent across different 
+browsers. Additionally, CSS provides fallback options for older browsers so that websites can still be viewed by users who may not have
 the latest software.
 
-• Separation of content and presentation: One of the
-key principles of web development is the separation
-of content and presentation. CSS allows developers
-to create a clear separation between the content of
-a website and its visual appearance. This separation
-makes it easier to update the design of a website
-without affecting the underlying content and makes it
-easier to maintain and update the website over time.
+• Separation of content and presentation: One of the key principles of web development is the separation of content and presentation. CSS allows 
+developers to create a clear separation between the content of a website and its visual appearance. This separation makes it easier to update the 
+design of a website without affecting the underlying content and makes it easier to maintain and update the website over time.
 
-• Accessibility: Accessibility is an important
-consideration in web development, as websites should
-be designed to be accessible to all users, including
-those with disabilities. CSS provides a range of tools
-and techniques for improving the accessibility of
-websites, such as using high-contrast colors, providing
-text alternatives for images, and using semantic
-HTML markup.
+• Accessibility: Accessibility is an important consideration in web development, as websites should be designed to be accessible to all users, 
+including those with disabilities. CSS provides a range of tools and techniques for improving the accessibility of websites, such as using 
+high-contrast colors, providing text alternatives for images, and using semantic HTML markup.
 
 CSS is an essential technology for web development, as it solves many
 of the common problems that developers face when creating websites. CSS
@@ -590,45 +531,25 @@ as headings, paragraphs, links, and images. Selectors can be used to apply
 styles to individual elements or to groups of elements. There are several
 types of CSS selectors; each has its own syntax and functionality.
 
-• Type selectors: Type selectors target elements based
-on their HTML tag name. For example, the selector h1
-would target all heading level 1 elements on the page.
-Type selectors are the simplest type of selector and are
-often used to apply global styles to all elements of a
-particular type.
+• Type selectors: Type selectors target elements based on their HTML tag name. For example, the selector h1 would target all heading level 1 
+elements on the page. Type selectors are the simplest type of selector and are often used to apply global styles to all elements of a particular 
+type.
 
-• Class selectors: Class selectors target elements based on
-their class attribute. The class attribute is used to assign
-a name to an element, which can then be targeted
-with a selector. For example, the selector .my-class
-would target all elements that have the class my-class
-assigned to them. Class selectors are often used to
-apply styles to specific groups of elements, such as
-navigation menus or buttons.
+• Class selectors: Class selectors target elements based on their class attribute. The class attribute is used to assign a name to an element, 
+which can then be targeted with a selector. For example, the selector .my-class would target all elements that have the class my-class assigned 
+to them. Class selectors are often used to apply styles to specific groups of elements, such as navigation menus or buttons.
 
-• ID selectors: ID selectors target elements based on their
-ID attribute. The ID attribute is used to assign a unique
-identifier to an element, which can then be targeted
-with a selector. For example, the selector #my-id would
-target the element that has the ID my-id assigned to it.
-ID selectors are often used to apply styles to specific
-elements, such as headers or footer sections.
+• ID selectors: ID selectors target elements based on their ID attribute. The ID attribute is used to assign a unique identifier to an element, 
+which can then be targeted with a selector. For example, the selector #my-id would target the element that has the ID my-id assigned to it. ID 
+selectors are often used to apply styles to specific elements, such as headers or footer sections.
 
-• Attribute selectors: Attribute selectors target elements
-based on their attributes, such as the src attribute
-for images or the href attribute for links. Attribute
-selectors can be used to target elements based on
-specific attribute values or to target elements that have
-a particular attribute assigned to them.
+• Attribute selectors: Attribute selectors target elements based on their attributes, such as the src attribute for images or the href attribute 
+for links. Attribute selectors can be used to target elements based on specific attribute values or to target elements that have a particular 
+attribute assigned to them.
 
-• Pseudo-classes and pseudo-elements: Pseudo-classes
-and pseudo-elements are used to target elements
-based on their state or position within the document.
-Pseudo-classes are used to target elements based
-on user interactions, such as hovering over a link or
-clicking a button. Pseudo-elements are used to target
-specific parts of an element, such as the first letter of a
-paragraph or the content of a link.
+• Pseudo-classes and pseudo-elements: Pseudo-classes and pseudo-elements are used to target elements based on their state or position within the 
+document. Pseudo-classes are used to target elements based on user interactions, such as hovering over a link or clicking a button. 
+Pseudo-elements are used to target specific parts of an element, such as the first letter of a paragraph or the content of a link.
 
 CSS selectors are an essential tool for web developers, as they allow
 for precise targeting of specific elements on a web page. By using a

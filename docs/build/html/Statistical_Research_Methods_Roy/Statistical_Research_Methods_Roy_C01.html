@@ -1,19 +1,17 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Chapter 1 Introduction &#8212; Calculo 0.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=1ea45734" />
+    <script src="../_static/documentation_options.js?v=2709fde1"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Chapter 2 One-Sample Proportions" href="Statistical_Research_Methods_Roy_C02.html" />
@@ -21,8 +19,9 @@
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
+
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 
   </head><body>
   
@@ -35,7 +34,7 @@
           <div class="body" role="main">
             
   <section id="chapter-1-introduction">
-<h1>Chapter 1 Introduction<a class="headerlink" href="#chapter-1-introduction" title="Permalink to this headline">¶</a></h1>
+<h1>Chapter 1 Introduction<a class="headerlink" href="#chapter-1-introduction" title="Link to this heading">¶</a></h1>
 <p>1.1 Statistical Methods as a Part of the Research Process</p>
 <p>1.1.1 Populations and Samples</p>
 <p>The impetus for conducting research which utilizes statistical analyses is
@@ -330,7 +329,7 @@ select-all (“control A”), then run (“control R”).</p>
 <p>For the purposes of working with R, the data file you wish to import should
 be in a Comma Separated Values (CSV) format, which is a compact format
 for your data. To read in a CSV into a dataframe you use the following code:</p>
-<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">Data1</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="nf">file.choose</span><span class="p">(),</span> <span class="n">header</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">Data1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="nf">file.choose</span><span class="p">(),</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The statement above can be broken down into several pieces. The data file
@@ -381,20 +380,20 @@ blank then we will get the entire row or column for the item left non-blank.
 For example,</p>
 <p>Program 1 Program to import the Chapter1data.csv file into R and display the results.</p>
 <p>Code:</p>
-<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">Chapter1data</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="nf">file.choose</span><span class="p">(),</span><span class="n">header</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">Chapter1data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="nf">file.choose</span><span class="p">(),</span><span class="n">header</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
 <span class="n">Chapter1data</span>
 
 <span class="n">Output</span><span class="o">:</span>
-<span class="o">&gt;</span> <span class="n">Chapter1data</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="nf">file.choose</span><span class="p">(),</span> <span class="n">header</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
-<span class="o">&gt;</span> <span class="n">Chapter1data</span>
-<span class="n">Subject</span> <span class="n">Weight</span> <span class="n">Height</span> <span class="n">BP.Sys</span>
-<span class="m">1</span> <span class="m">1</span> <span class="m">117.9</span> <span class="m">65.9</span> <span class="m">124</span>
-<span class="m">2</span> <span class="m">2</span> <span class="m">137.5</span> <span class="m">69.0</span> <span class="m">129</span>
-<span class="m">3</span> <span class="m">3</span> <span class="m">147.1</span> <span class="m">65.8</span> <span class="m">127</span>
-<span class="m">4</span> <span class="m">4</span> <span class="m">146.4</span> <span class="m">61.5</span> <span class="m">129</span>
-<span class="m">5</span> <span class="m">5</span> <span class="m">125.4</span> <span class="m">62.3</span> <span class="m">123</span>
-<span class="m">6</span> <span class="m">6</span> <span class="m">139.8</span> <span class="m">65.2</span> <span class="m">124</span>
-<span class="m">7</span> <span class="m">7</span> <span class="m">143.9</span> <span class="m">55.5</span> <span class="m">117</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">Chapter1data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="nf">file.choose</span><span class="p">(),</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">Chapter1data</span>
+<span class="n">Subject</span><span class="w"> </span><span class="n">Weight</span><span class="w"> </span><span class="n">Height</span><span class="w"> </span><span class="n">BP.Sys</span>
+<span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">117.9</span><span class="w"> </span><span class="m">65.9</span><span class="w"> </span><span class="m">124</span>
+<span class="m">2</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">137.5</span><span class="w"> </span><span class="m">69.0</span><span class="w"> </span><span class="m">129</span>
+<span class="m">3</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">147.1</span><span class="w"> </span><span class="m">65.8</span><span class="w"> </span><span class="m">127</span>
+<span class="m">4</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">146.4</span><span class="w"> </span><span class="m">61.5</span><span class="w"> </span><span class="m">129</span>
+<span class="m">5</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">125.4</span><span class="w"> </span><span class="m">62.3</span><span class="w"> </span><span class="m">123</span>
+<span class="m">6</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">139.8</span><span class="w"> </span><span class="m">65.2</span><span class="w"> </span><span class="m">124</span>
+<span class="m">7</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">143.9</span><span class="w"> </span><span class="m">55.5</span><span class="w"> </span><span class="m">117</span>
 
 <span class="n">Chapter1data</span><span class="p">[</span><span class="m">3</span><span class="p">,]</span>
 </pre></div>
@@ -410,18 +409,18 @@ get the information you want. R can use the bracket notation in combination
 with logic operators to make subsets of your data. The logic operators are
 given in Table 1.1.</p>
 <p>Table 1.1: Basic Logic Operators in R.</p>
-<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">equal</span> <span class="n">to</span> <span class="o">==</span>
-<span class="n">not</span> <span class="n">equal</span> <span class="n">to</span> <span class="o">!=</span>
-<span class="n">less</span> <span class="n">than</span> <span class="o">&lt;</span>
-<span class="n">greater</span> <span class="n">than</span> <span class="o">&gt;</span>
-<span class="n">and</span> <span class="o">&amp;</span>
-<span class="n">or</span> <span class="o">|</span>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">equal</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">==</span>
+<span class="n">not</span><span class="w"> </span><span class="n">equal</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">!=</span>
+<span class="n">less</span><span class="w"> </span><span class="n">than</span><span class="w"> </span><span class="o">&lt;</span>
+<span class="n">greater</span><span class="w"> </span><span class="n">than</span><span class="w"> </span><span class="o">&gt;</span>
+<span class="n">and</span><span class="w"> </span><span class="o">&amp;</span>
+<span class="n">or</span><span class="w"> </span><span class="o">|</span>
 </pre></div>
 </div>
 <p>For example, suppose in the Chapter1data we want all the information
 for subject 4. Then we can use the bracket notation and the logic operators
 to obtain this information using the following syntax:</p>
-<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">Chapter1data</span><span class="p">[</span> <span class="n">Chapter1data</span><span class="o">$</span><span class="n">Subject</span> <span class="o">==</span> <span class="m">4</span><span class="p">,</span> <span class="p">]</span>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">Chapter1data</span><span class="p">[</span><span class="w"> </span><span class="n">Chapter1data</span><span class="o">$</span><span class="n">Subject</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Notice that inside the brackets we specified the column and dataframe that we
@@ -443,7 +442,7 @@ need additional assistance (e.g. see Ekstrom 2012).</p>
           
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="../index.html">Calculo</a></h1>
 
@@ -484,6 +483,8 @@ need additional assistance (e.g. see Ekstrom 2012).</p>
 <li class="toctree-l1"><a class="reference internal" href="../Quantum_Computing_Himanshu/Quantum_Computing_Himanshu_c01.html">Lagrange Interpolation Approach for General Parameter-Shift Rule</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Applied_Delay_Differential_Equations/index2.html">Applied_Delay_Differential_Equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../The_Essential_Guide_to_HTML5_3E_Jeanine/index2.html">The_Essential_Guide_to_HTML5_3E_Jeanine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Fundamentals_of_Physics_Resnick/index2.html">Fundamentals_of_Physics_Resnick</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Creating_Responsive_Websites_Using_HTML5_CSS3_Varun/index2.html">A_First_Course_Design_Analysis_Experiments_Gary</a></li>
 </ul>
 
 <div class="relations">
@@ -497,7 +498,7 @@ need additional assistance (e.g. see Ekstrom 2012).</p>
   </ul></li>
 </ul>
 </div>
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
@@ -505,8 +506,8 @@ need additional assistance (e.g. see Ekstrom 2012).</p>
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -520,11 +521,11 @@ need additional assistance (e.g. see Ekstrom 2012).</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2025, santosg57.
+      &#169;2025, santosg57.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
       
       |
       <a href="../_sources/Statistical_Research_Methods_Roy/Statistical_Research_Methods_Roy_C01.rst.txt"

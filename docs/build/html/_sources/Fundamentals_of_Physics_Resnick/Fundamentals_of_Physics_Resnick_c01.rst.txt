@@ -375,7 +375,7 @@ other unit vectors, has a magnitude of exactly 1 and no unit; its purpose is to
 point, like a direction arrow on a street sign.) With these decisions, we write the
 electrostatic force as
 
-..math::
+.. math::
 
   \overrightarrow{F} = k \frac{q_1q_2}{r^2} \hat{r}
 
@@ -421,6 +421,7 @@ through a region:
    i = \frac{dq}{dt}
 
 (electric current). (21-3)
+
 Rearranging Eq. 21-3 and replacing the symbols with their units (coulombs C,
 amperes A, and seconds s) we see that
 
@@ -453,13 +454,13 @@ equations and is
 
 . (21-6)
 
-Working a Problem. Note that the charge magnitudes appear in Eq. 21-4,
+**Working a Problem**. Note that the charge magnitudes appear in Eq. 21-4,
 which gives us the force magnitude. So, in working problems in this chapter, we
 use Eq. 21-4 to find the magnitude of a force on a chosen particle due to a second
 particle and we separately determine the direction of the force by considering the
 charge signs of the two particles.
 
-Multiple Forces. As with all forces in this book, the electrostatic force obeys
+**Multiple Forces**. As with all forces in this book, the electrostatic force obeys
 the principle of superposition. Suppose we have n charged particles near a chosen
 particle called particle 1; then the net force on particle 1 is given by the vector sum
 
@@ -469,7 +470,7 @@ particle called particle 1; then the net force on particle 1 is given by the vec
 
 (21-7)
 
-in which, for example, is the force on particle 1 due to the presence of particle 4.
+in which, for example, :math:`\overrightarrow{F}_{14}` is the force on particle 1 due to the presence of particle 4.
 
 This equation is the key to many of the homework problems, so let’s state it
 in words. If you want to know the net force acting on a chosen charged particle
@@ -500,7 +501,7 @@ on its surface has no net force acting on it due to the shell.
 the particle’s charge. Thus the presence of the particle has negligible effect on the
 distribution of charge on the shell.)
 
-Spherical Conductors
+**Spherical Conductors**
 
 If excess charge is placed on a spherical shell that is made of conducting material, the
 excess charge spreads uniformly over the (external) surface. For example, if we place
@@ -517,14 +518,14 @@ missing an electron) that are spread uniformly over the shell. According to the
 first shell theorem, the shell will again attract or repel an external charge as if all
 the shell’s excess charge were concentrated at its center.
 
-Checkpoint 2
+**Checkpoint 2**
 
 The figure shows two protons
 (symbol p) and one electron
 (symbol e) on an axis. On the central proton, what is the direction of (a) the force due to the
 electron, (b) the force due to the other proton, and (c) the net force?
 
-Sample Problem 21.01 Finding the net force due to two other particles
+**Sample Problem 21.01 Finding the net force due to two other particles**
 
 This sample problem actually contains three examples, to
 build from basic stuff to harder stuff. In each we have the
@@ -546,8 +547,7 @@ on particle 1 from particle 2?
 
 KEY IDEAS
 
-Because both particles are positively charged, particle 1 is re-
-pelled by particle 2, with a force magnitude given by Eq. 21-4.
+Because both particles are positively charged, particle 1 is repelled by particle 2, with a force magnitude given by Eq. 21-4.
 Thus, the direction of force :math:`\overrightarrow{F}_{12}` on particle 1 is away from parti-
 cle 2, in the negative direction of the x axis, as indicated in the
 free-body diagram of Fig. 21-7b.
@@ -596,12 +596,14 @@ is not affected by the presence of particle 2. Because particles 1
 
 Figure 21-7 (a) Two charged particles of charges q1 and q2 are fixed in place on an x axis. (b) The free-body
 diagram for particle 1, showing the electrostatic force on it from particle 2. (c) Particle 3 included. (d) Free-body
-diagram for particle 1. (e) Particle 4 included. (f ) Free-body diagram for particle 1
+diagram for particle 1. (e) Particle 4 included. (f ) Free-body diagram for particle 1.
 
 and 3 have charge of opposite signs, particle 1 is attracted
-to particle 3.Thus, force is directed toward particle 3, as in-
-dicated in the free-body diagram of Fig. 21-7d.
-Three particles: To find the magnitude of , we can
+to particle 3.Thus, force is directed toward particle 3, as indicated in the free-body diagram of Fig. 21-7d.
+
+9999
+
+**Three particles**: To find the magnitude of :math:`  , we can
 rewrite Eq. 21-4 as
 We can also write in unit-vector notation:
 The net force on particle 1 is the vector sum of F

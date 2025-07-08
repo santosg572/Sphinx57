@@ -1,6 +1,6 @@
-CHAPTER 2 HTML5 and
-Responsive Web
-Design
+CHAPTER 2 HTML5 and Responsive Web Design
+=========================================
+
 This chapter covers HTML5 and responsive web design by describing
 the features that are supported by modern-day browsers. It covers how
 to create an HTML5 page and explains why it is easier to write pages with
