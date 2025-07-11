@@ -255,119 +255,145 @@ direction of the x axis.
 drive to your arrival at the station?
 
 KEY IDEA
-9999999999
 
 We already know the walking time interval :math:`\Delta t_{wlk}` (= 0.50 h),
-but we lack the driving time interval -tdr. However, we
-know that for the drive the displacement -xdr is 8.4 km and
+but we lack the driving time interval :math:`\Delta t_{dr}`. However, we
+know that for the drive the displacement :math:`\Delta x_{dr}` is 8.4 km and
 the average velocity vavg,dr is 70 km/h. Thus, this average
 velocity is the ratio of the displacement for the drive to the
 time interval for the drive.
 
 Calculations: We first write
 
-avg,dr "
--tdr
+.. math::
+
+   v_{avg,dr} = \frac{\Delta x_{dr}}{\Delta t_{dr}}
+
 Rearranging and substituting data then give us
+
+.. math::
+
+   \Delta t_{dr} = \frac{\Delta x_{dr}}{v_{avg,_dr}} = \frac{8.4 km}{70 km/h} = 0.12 h    
+
 (Answer)
-" 0.12 h # 0.50 h " 0.62 h.
+
+So, :math:`\Delta t = \Delta t_{dr} + \Delta t_{wlk}`
+
+= 0.12 h + 0.50 h = 0.62 h.
+
 (c) What is your average velocity vavg from the beginning of
-your drive to your arrival at the station? Find it both numer-
-ically and graphically
+your drive to your arrival at the station? Find it both numerically and graphically
 
 KEY IDEA
+
 From Eq. 2-2 we know that vavg for the entire trip is the ratio
 of the displacement of 10.4 km for the entire trip to the time
 interval of 0.62 h for the entire trip.
 
 Calculation: Here we find
-vavg "
-" 16.8 km/h % 17 km/h
+
+.. math::
+
+   v_{avg} = \frac{\Delta x}{\Delta t} = \frac{10.4 km}{0.62 h}
 
 To find vavg graphically, first we graph the function x(t) as
 shown in Fig. 2-5, where the beginning and arrival points on
 the graph are the origin and the point labeled as “Station.”Your
 average velocity is the slope of the straight line connecting
-those points; that is, vavg is the ratio of the rise (-x " 10.4 km)
-to the run (-t " 0.62 h), which gives us vavg " 16.8 km/h.
+those points; that is, vavg is the ratio of the rise (:math:`\Delta x = 10.4 km`)
+to the run (:math:`\Delta t = 0.62 h`), which gives us vavg " 16.8 km/h.
 
 (d) Suppose that to pump the gasoline, pay for it, and walk
 back to the truck takes you another 45 min. What is your
 average speed from the beginning of your drive to your
 return to the truck with the gasoline?
+
 KEY IDEA
+
 Your average speed is the ratio of the total distance you
 move to the total time interval you take to make that move.
-Calculation: The total distance is 8.4 km # 2.0 km # 2.0
-km " 12.4 km. The total time interval is 0.12 h # 0.50 h #
-0.75 h " 1.37 h. Thus, Eq. 2-3 gives us
+
+Calculation: The total distance is 8.4 km + 2.0 km + 2.0
+km = 12.4 km. The total time interval is 0.12 h + 0.50 h +
+0.75 h = 1.37 h. Thus, Eq. 2-3 gives us
+
+.. math::
+
+   s_{avg} = \frac{12.4 km}{1.37 h} = 9.1 km/h
 
 Figure 2-5 The lines marked “Driving” and “Walking” are the
 position – time plots for the driving and walking stages. (The plot
 for the walking stage assumes a constant rate of walking.) The
 slope of the straight line joining the origin and the point labeled
 “Station” is the average velocity for the trip, from the beginning
-to the station
+to the station.
 
 2-2 INSTANTANEOUS VELOCITY AND SPEED
+------------------------------------
 
 Learning Objectives
+
 After reading this module, you should be able to . . .
+
 2.07 Given a particle’s position as a function of time,
 calculate the instantaneous velocity for any particular time.
 
 2.08 Given a graph of a particle’s position versus time, deter-
 mine the instantaneous velocity for any particular time.
+
 2.09 Identify speed as the magnitude of the instantaneous
 velocity.
 
 Key Ideas
-● The instantaneous velocity (or simply velocity) v of a moving
-particle is
--x
-dx
-v " lim
-"
-,
-- t : 0 -t
-dt
-where -x " x2 $ x1 and -t " t2 $ t1.
 
-The instantaneous velocity (at a particular time) may be
+* The instantaneous velocity (or simply velocity) v of a moving
+particle is
+
+.. math::
+
+   v = \lim_{\Delta t \to 0} \frac{\Delta x}{\Delta t} = \frac{dx}{dt}
+
+
+where :math:`\Delta x = x_2 - x_1` and :math:`\Delta t = t_2 - t_1`.
+
+* The instantaneous velocity (at a particular time) may be
 found as the slope (at that particular time) of the graph of x
 versus t.
-● Speed is the magnitude of instantaneous velocity.
+
+* Speed is the magnitude of instantaneous velocity.
 
 Instantaneous Velocity and Speed
+--------------------------------
+
 You have now seen two ways to describe how fast something moves: average
 velocity and average speed, both of which are measured over a time interval -t.
 However, the phrase “how fast” more commonly refers to how fast a particle is
 moving at a given instant—its instantaneous velocity (or simply velocity) v.
+
 The velocity at any instant is obtained from the average velocity by shrinking
-the time interval -t closer and closer to 0. As -t dwindles, the average velocity
+the time interval :math:`\Delta t` closer and closer to 0. As :math:`\Delta t` dwindles, the average velocity
 approaches a limiting value, which is the velocity at that instant:
-v " lim
--t : 0
--x
-dx
-"
-.
--t
-dt
-(2-4)
+
+.. math::
+
+   v = \lim_{\Delta t \to 0} = \frac{\Delta x}{\Delta t} = \frac{dx}{dt}
+
 Note that v is the rate at which position x is changing with time at a given instant;
 that is, v is the derivative of x with respect to t. Also note that v at any instant is
 the slope of the position – time curve at the point representing that instant.
 Velocity is another vector quantity and thus has an associated direction.
-Speed is the magnitude of velocity; that is, speed is velocity that has been
+
+**Speed** is the magnitude of velocity; that is, speed is velocity that has been
 stripped of any indication of direction, either in words or via an algebraic sign.
 (Caution: Speed and average speed can be quite different.) A velocity of #5 m/s
 and one of $5 m/s both have an associated speed of 5 m/s. The speedometer in a
 car measures speed, not velocity (it cannot determine the direction).
+
 Checkpoint 2
+
 The following equations give the position x(t) of a particle in four situations (in each
-equation, x is in meters, t is in seconds, and t . 0): (1) x " 3t $ 2; (2) x " $4t 2 $ 2;
-(3) x " 2/t 2; and (4) x " $2. (a) In which situation is the velocity v of the particle con-
+equation, x is in meters, t is in seconds, and t > 0): (1) x = 3t - 2; (2) :math:`x = 4t^2 - 2`;
+(3) :math:`x = 2/t^2`; and (4) x = -2. (a) In which situation is the velocity v of the particle con-
 stant? (b) In which is v in the negative x direction?
 
 Sample Problem 2.02 Velocity and slope of x versus t, elevator cab
@@ -375,21 +401,21 @@ Sample Problem 2.02 Velocity and slope of x versus t, elevator cab
 Figure 2-6a is an x(t) plot for an elevator cab that is initially
 stationary, then moves upward (which we take to be the pos-
 itive direction of x), and then stops. Plot v(t).
+
 KEY IDEA
+
 We can find the velocity at any time from the slope of the
 x(t) curve at that time.
 
 Calculations: The slope of x(t), and so also the velocity, is
 zero in the intervals from 0 to 1 s and from 9 s on, so then
 the cab is stationary. During the interval bc, the slope is con-
-stant and nonzero, so then the cab moves with constant ve-
-locity. We calculate the slope of x(t) then as
--x
-24 m $ 4.0 m
-"v"
-" #4.0 m/s.
--t
-8.0 s $ 3.0 s
+stant and nonzero, so then the cab moves with constant velocity. We calculate the slope of x(t) then as
+
+.. math::
+
+   \frac{\Delta x}{\Delta t} = v = \frac{24 m  - 4-0 m}{8.0 s - 3.0 s} = + 4.0 m/s
+
 (2-5)
 
 The plus sign indicates that the cab is moving in the posi-
@@ -399,18 +425,22 @@ tially begins to move and then later slows to a stop,
 v varies as indicated in the intervals 1 s to 3 s and 8 s to 9 s.
 Thus, Fig. 2-6b is the required plot. (Figure 2-6c is consid-
 ered in Module 2-3.)
+
 Given a v(t) graph such as Fig. 2-6b, we could “work
 backward” to produce the shape of the associated x(t) graph
 (Fig. 2-6a). However, we would not know the actual values
 for x at various times, because the v(t) graph indicates
-only changes in x. To find such a change in x during any in-
-
-terval, we must, in the language of calculus, calculate the
+only changes in x. To find such a change in x during any interval, we must, in the language of calculus, calculate the
 area “under the curve” on the v(t) graph for that interval.
 For example, during the interval 3 s to 8 s in which the cab
 has a velocity of 4.0 m/s, the change in x is
--x " (4.0 m/s)(8.0 s $ 3.0 s) " #20 m.
+
+.. math::
+
+   \Delta x = (4.0 m/s)(8.0 s $ 3.0 s) = +20 m.
+
 (2-6)
+
 (This area is positive because the v(t) curve is above the
 t axis.) Figure 2-6a shows that x does indeed increase by
 20 m in that interval. However, Fig. 2-6b does not tell us the
@@ -418,13 +448,18 @@ values of x at the beginning and end of the interval. For that,
 we need additional information, such as the value of x at
 some instant.
 
+
 2-3 ACCELERATION
+-----------------
+
 Learning Objectives
+
 After reading this module, you should be able to . . .
 
 2.10 Apply the relationship between a particle’s average
 acceleration, its change in velocity, and the time interval
 for that change.
+
 2.11 Given a particle’s velocity as a function of time, calcu-
 late the instantaneous acceleration for any particular time.
 
@@ -434,41 +469,44 @@ and the average acceleration between any two particular
 times
 
 Key Ideas
-● Average acceleration is the ratio of a change in velocity -v
-to the time interval -t in which the change occurs:
-aavg "
--v
-.
--t
+
+* Average acceleration is the ratio of a change in velocity :math:`\Delta v`
+to the time interval :math:`\Delta t` in which the change occurs:
+
+.. math::
+
+   a_{avg} = \frac{\Delta v}{\Delta t}
+
 The algebraic sign indicates the direction of aavg.
 
-● Instantaneous acceleration (or simply acceleration) a is the
+* Instantaneous acceleration (or simply acceleration) a is the
 first time derivative of velocity v(t) and the second time deriv-
 ative of position x(t):
-d 2x
-dv
-a"
-"
-.
-dt
-dt2
-● On a graph of v versus t, the acceleration a at any time t is
+
+.. math::
+
+   a = \frac{dv}{dt} = \frac{d^2 x}{dt^2}
+
+* On a graph of v versus t, the acceleration a at any time t is
 the slope of the curve at the point that represents t.
 
-cceleration
+Acceleration
+------------
+
 When a particle’s velocity changes, the particle is said to undergo acceleration (or
 to accelerate). For motion along an axis, the average acceleration aavg over a time
-interval -t is
-aavg "
-v2 $ v1
--v
-"
-,
-t2 $ t1
--t
+interval :math:`\Delta t` is
+
+.. math::
+
+   a_{avg} = \frac{v_2 - v_1}{t_2 - t_1} = \frac{\Delta v}{\Delta t}
+
 (2-7)
+
 where the particle has velocity v1 at time t1 and then velocity v2 at time t2. The
 instantaneous acceleration (or simply acceleration) is
+
+99999
 a"
 dv
 .
