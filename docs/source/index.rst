@@ -50,3 +50,10 @@ documentation for details.
    The_Essential_Guide_to_HTML5_3E_Jeanine/index2
    Fundamentals_of_Physics_Resnick/index2
    Creating_Responsive_Websites_Using_HTML5_CSS3_Varun/index2
+
+.. toctree::
+   :maxdepth: 1
+   :caption: An_Introduction_Statistics_Python
+
+   Libros_Leer_Apuntes_GOOGLE/Python/An_Introduction_Statistics_Python/An_Introduction_Statistics_Python_c01
+   Libros_Leer_Apuntes_GOOGLE/Python/An_Introduction_Statistics_Python/An_Introduction_Statistics_Python_c02

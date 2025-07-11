@@ -1,0 +1,1190 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapter 2 Python &#8212; Calculo 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="chapter-2-python">
+<h1>Chapter 2 Python<a class="headerlink" href="#chapter-2-python" title="Permalink to this headline">¶</a></h1>
+<p>Python is a very popular open source programming language. At the time of writing, codeeval was rating Python “the most popular language” for the fourth year in a row (<a class="reference external" href="http://blog.codeeval.com/codeevalblog">http://blog.codeeval.com/codeevalblog</a>). There are three reasons why I have switched from other programming languages to Python:</p>
+<ul class="simple">
+<li><ol class="arabic simple">
+<li><p>It is the most elegant programming language that I know.</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>It is free.</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="3">
+<li><p>It is powerful.</p></li>
+</ol>
+</li>
+</ul>
+<section id="getting-started">
+<h2>2.1 Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>2.1.1 Conventions</p>
+<p>In this book the following conventions will be used:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Text that is to be typed in at the computer is written in Courier font, e.g., plot(x,y).</p></li>
+<li><p>Optional text in command-line entries is expressed with square brackets and underscores, e.g., [_InstallationDir_]bin. (I use the underscores in addition, as sometimes the square brackets will be used for commands.)</p></li>
+<li><p>Names referring to computer programs and applications are written in italics, e.g., IPython.</p></li>
+<li><p>I will also use italics when introducing new terms or expressions for the first time.</p></li>
+</ul>
+</div></blockquote>
+<p>Code samples are marked as follows:</p>
+<p>Python code samples.</p>
+<p>All the marked code samples are freely available, under <a class="reference external" href="http://www.quantlet.de">http://www.quantlet.de</a>.</p>
+<p>Additional Python scripts (the listings of complete programs, as well as the Python code used to generate the figures) are available at github: <a class="reference external" href="https://github.com/">https://github.com/</a> thomas-haslwanter/statsintro_python.git, in the directory ISP (for “Introduction to Statistics with Python”). ISP contains the following subfolders:
+Exercise_Solutions contains the solutions to the exercises which are presented at the end of most chapters.
+Listings contains programs that are explicitly listed in this book.
+Figures lists all the code used to generate the remaining figures in the book. Code_Quantlets contains all the marked code samples, grouped by book-chapter.
+Packages on github are called repositories, and can easily be copied to your computer: when git is installed on your computer, simply type
+git clone [_RepositoryName_]
+and the whole repository—code as well as data—will be “cloned” to your system. (See Sect. 2.4.4 for more information on git, github and code-versioning.)</p>
+<p>2.1.2 Distributions and Packages</p>
+<ol class="loweralpha simple">
+<li><p>Python Packages for Statistics</p></li>
+</ol>
+<p>The Python core distribution contains only the essential features of a general programming language. For example, it does not even contain a specialized module for working efficiently with vectors and matrices! These specialized modules are being developed by dedicated volunteers. The relationship of the most important Python packages for statistical applications is delineated in Fig. 2.1.</p>
+<p>To facilitate the use of Python, the so-called Python distributions collect matching versions of the most important packages, and I strongly recommend using one of these distributions when getting started. Otherwise one can easily become overwhelmed by the huge number of Python packages available. My favorite Python distributions are</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li><p>WinPython recommended for Windows users. At the time of writing, the latest version was 3.5.1.3 (newer versions also ok).</p></li>
+</ul>
+</div></blockquote>
+<p><a class="reference external" href="https://winpython.github.io/">https://winpython.github.io/</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Anaconda by Continuum. For Windows, Mac, and Linux. Can be used to install Python 2.x and 3.x, even simultaneously! The latest Anaconda version at time of writing was 4.0.0 (newer versions also ok). <a class="reference external" href="https://store.continuum.io/cshop/anaconda/">https://store.continuum.io/cshop/anaconda/</a></p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<p>Neither of these two distributions requires administrator rights. I am presently using WinPython, which is free and customizable. Anaconda has become very popular recently, and is free for educational purposes.</p>
+<p>Unless you have a specific requirement for 64-bit versions, you may want to install a 32-bit version of Python: it facilitates many activities that require compilation of module parts, e.g., for Bayesian statistics (PyMC), or when you want to speed up your programs with Cython. Since all the Python packages required for this course are now available for Python 3.x, I will use Python 3 for this book. However, all the scripts included should also work for Python 2.7. Make sure that you use a current version of IPython/Jupyter (4.x), since the Jupyter Notebooks provided with this book won’t run on IPython 2.x.1</p>
+<p>The programs included in this book have been tested with Python 2.7.10 and 3.5.1, under Windows and Linux, using the following package versions:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ipython 4.1.2 : : : For interactive work.</p></li>
+<li><p>numpy 1.11.0 : : : For working with vectors and arrays.</p></li>
+<li><p>scipy 0.17.1 : : : All the essential scientific algorithms, including those for basic statistics.</p></li>
+<li><p>matplotlib 1.5.1 : : : The de-facto standard module for plotting and visualization.</p></li>
+<li><p>pandas 0.18.0 : : : Adds DataFrames (imagine powerful spreadsheets) to Python.</p></li>
+<li><p>patsy 0.4.1 : : : For working with statistical formulas.</p></li>
+<li><p>statsmodels 0.8.0 : : : For statistical modeling and advanced analysis.</p></li>
+<li><p>seaborn 0.7.0 : : : For visualization of statistical data.</p></li>
+</ul>
+</div></blockquote>
+<p>In addition to these fairly general packages, some specialized packages have also been used in the examples accompanying this book:</p>
+<ul>
+<li><p>xlrd 0.9.4 : : : For reading and writing MS Excel files.</p></li>
+<li><p>PyMC 2.3.6 : : : For Bayesian statistics, including Markov chain Monte Carlo simulations.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>scikit-learn 0.17.1 : : : For machine learning.</p></li>
+<li><p>scikits.bootstrap 0.3.2 : : : Provides bootstrap confidence interval algorithms for scipy.</p></li>
+<li><p>lifelines 0.9.1.0 : : : Survival analysis in Python.</p></li>
+<li><p>rpy2 2.7.4 : : : Provides a wrapper for R-functions in Python.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>Most of these packages come either with the WinPython or Anaconda distributions, or can be installed easily using pip or conda. To get PyMC to run, you may need to install a C-compiler. On my Windows platform, I installed Visual Studio 15, and set the environment variable SET VS90COMNTOOLS=%VS14COMNTOOLS%.</p>
+<p>To use R-function from within Python, you also have to install R. Like Python, R is available for free, and can be downloaded from the Comprehensive R Archive Network, the latest release at the time of writing being R-3.3.0 (<a class="reference external" href="http://cran.r-project">http://cran.r-project</a>. org/).</p>
+<ol class="loweralpha simple" start="2">
+<li><p>PyPI: The Python Package Index</p></li>
+</ol>
+<p>The Python Package Index (PyPI) (Currently at <a class="reference external" href="https://pypi.python.org/pypi">https://pypi.python.org/pypi</a>, but about to migrate to <a class="reference external" href="https://pypi.io">https://pypi.io</a>) is a repository of software for the Python programming language. It currently contains more than 80,000 packages!</p>
+<p>Packages from PyPI can be installed easily, from the Windows command shell (cmd) or the Linux terminal, with</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="p">[</span><span class="n">_package_</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>To update a package, use</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="p">[</span><span class="n">_package_</span><span class="p">]</span> <span class="o">-</span><span class="n">U</span>
+</pre></div>
+</div>
+<p>To get a list of all the Python packages installed on your computer, type</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="nb">list</span>
+</pre></div>
+</div>
+<p>Anaconda uses conda, a more powerful installation manager. But pip also works with Anaconda.</p>
+<p>2.1.3 Installation of Python</p>
+<ol class="loweralpha simple">
+<li><p>Under Windows</p></li>
+</ol>
+<p>Neither WinPython nor Anaconda require administrator rights for installation.</p>
+<p>WinPython</p>
+<p>In the following, I assume that [_WinPythonDir_] is the installation directory for WinPython.</p>
+<p>Tip: Do NOT install WinPython into the Windows program directory (typically C:Program Files or C:Program Files (x86)), because this typically leads to permission problems during the execution of WinPython.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Download WinPython from <a class="reference external" href="https://winpython.github.io/">https://winpython.github.io/</a>.</p></li>
+<li><p>Run the downloaded .exe-file, and install WinPython into the</p></li>
+</ul>
+</div></blockquote>
+<p>[_WinPythonDir_] of your choice.</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li><p>After the installation, make a change to your Windows Environment,</p></li>
+</ul>
+</div></blockquote>
+<p>by typing Win -&gt; env -&gt; Edit environment variables for your account:</p>
+</div></blockquote>
+<p>– Add[_WinPythonDir_]python-3.5.1;[_WinPythonDir_] python-3.5.1Scripts; to your PATH. (This makes Python and ipython accessible from the standard Windows command-line.)2
+– If you do have administrator rights, you should activate</p>
+<p>[_WinPythonDir_]WinPython Control Panel.exe -&gt; Advanced -&gt; Register Distribution.
+(This associates .py-files with this Python distribution.)</p>
+<p>Anaconda</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Download Anaconda from <a class="reference external" href="https://store.continuum.io/cshop/anaconda/">https://store.continuum.io/cshop/anaconda/</a>.</p></li>
+<li><p>Follow the installation instructions from the webpage. During the installation, allow Anaconda to make the suggested modifications to your environment PATH.</p></li>
+<li><p>After the installation: in the Anaconda Launcher, click update (besides the Apps), in order to ensure that you are running the latest version.</p></li>
+<li></li>
+</ul>
+</div></blockquote>
+<p>Installing Additional Packages</p>
+<p>Important Note: When I have had difficulties installing additional packages, I have been saved more than once by the pre-compiled packages from Christoph Gohlke, available under <a class="reference external" href="http://www.lfd.uci.edu/~gohlke/pythonlibs/">http://www.lfd.uci.edu/~gohlke/pythonlibs/</a>: from there you can download the [_xxx_x].whl file for your current version of Python, and then install it simply with pip install [_xxx_].whl.</p>
+<ol class="loweralpha simple" start="2">
+<li><p>Under Linux</p></li>
+</ol>
+<p>The following procedure worked on Linux Mint 17.1:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Download Anaconda for Python 3.5 (I used the 64 bit version, since I have a 64-bit Linux Mint Installation).</p></li>
+<li><p>Open terminal, and navigate to the location where you downloaded the file to.</p></li>
+<li><p>Install Anaconda with bash Anaconda3-4.0.0-Linux-x86.sh</p></li>
+<li><p>Update your Linux installation with sudo apt-get update</p></li>
+</ul>
+</div></blockquote>
+<p>Notes</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li><p>You do NOT need root privileges to install Anaconda, if you select a user writable install location, such as ~/Anaconda.</p></li>
+<li><p>After the self extraction is finished, you should add the Anaconda binary directory to your PATH environment variable.</p></li>
+<li><p>As all of Anaconda is contained in a single directory, uninstalling Anaconda is easy: you simply remove the entire install location directory.</p></li>
+<li><p>If any problems remain, Mac and Unix users should look up Johansson’ installations tips:</p></li>
+</ul>
+</div></blockquote>
+<p>(<a class="reference external" href="https://github.com/jrjohansson/scientific-python-lectures">https://github.com/jrjohansson/scientific-python-lectures</a>).</p>
+</div></blockquote>
+<ol class="loweralpha simple" start="3">
+<li><p>Under Mac OS X</p></li>
+</ol>
+<p>Downloading Anaconda for Mac OS X is simple. Just</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>go to continuum.io/downloads</p></li>
+<li><p>choose the Mac installer (make sure you select the Mac OS X Python 3.x</p></li>
+</ul>
+</div></blockquote>
+<p>Graphical Installer), and follow the instructions listed beside this button.</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li><p>After the installation: in the Anaconda Launcher, click update (besides the</p></li>
+</ul>
+</div></blockquote>
+<p>Apps), in order to ensure that you are running the latest version.</p>
+</div></blockquote>
+<p>After the installation the Anaconda icon should appear on the desktop. No admin password is required. This downloaded version of Anaconda includes the Jupyter notebook, Jupyter qtconsole and the IDE Spyder.</p>
+<p>To see which packages (e.g., numpy, scipy, matplotlib, pandas, etc.) are featured in your installation look up the Anaconda Package List for your Python version. For example, the Python-installer may not include seaborn. To add an additional package, e.g., seaborn, open the terminal, and enter pip install seaborn.</p>
+<p>2.1.4 Installation of R and rpy2</p>
+<p>If you have not used R previously, you can safely skip this section. However, if you are already an avid R used, the following adjustments will allow you to also harness the power of R from within Python, using the package rpy2.</p>
+<ol class="loweralpha simple">
+<li><p>Under Windows</p></li>
+</ol>
+<p>Also R does not require administrator rights for installation. You can download the latest version (at the time of writing R 3.0.0) from <a class="reference external" href="http://cran.r-project.org/">http://cran.r-project.org/</a>, and install it into the [_RDir_] installation directory of your choice.</p>
+<p>With WinPython</p>
+<ul class="simple">
+<li><p>After the installation of R, add the following two variables to your Windows Environment, by typing</p></li>
+</ul>
+<p>Win -&gt; env -&gt; Edit environment variables for your account:
+– R_HOME=[_RDir_]R-3.3.0
+– R_USER=[_YourLoginName_]
+The first entry is required for rpy2. The last entry is not really necessary, just better style.</p>
+<p>With Anaconda</p>
+<p>Anaconda comes without rpy2. So after the installation of Anaconda and R, you should:</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li><p>Get rpy2 from <a class="reference external" href="http://www.lfd.uci.edu/~gohlke/pythonlibs/">http://www.lfd.uci.edu/~gohlke/pythonlibs/</a>: Christoph Gohlkes Unofficial Windows Binaries for Python Extension Packages are one of the mainstays of the Python community—Thanks a lot, Christoph!</p></li>
+<li><p>Open the Anaconda command prompt</p></li>
+<li><p>Install rpy2 with pip. In my case, the command was</p></li>
+</ul>
+</div></blockquote>
+<p>pip rpy2-2.6.0-cp35-none-win32.whl</p>
+</div></blockquote>
+<ol class="loweralpha simple" start="2">
+<li><p>Under Linux</p></li>
+</ol>
+<ul class="simple">
+<li><p>After the installation of Anaconda, install R and rpy2 with conda install -c <a class="reference external" href="https://conda.binstar.org/r">https://conda.binstar.org/r</a> rpy2</p></li>
+</ul>
+<p>2.1.5 Personalizing IPython/Jupyter</p>
+<p>When working on a new problem, I always start out with the Jupyter qtconsole (see Sect. 2.3). Once I have the individual steps working, I use the IPython command %history to get the sequence of commands I have used, and switch to an IDE (integrated development environment), typically Wing or Spyder (see below).</p>
+<p>In the following, [_mydir_] has to be replaced with your home-directory (i.e., the directory that opens up when you run cmd in Windows, or terminal in Linux). And [_myname_] should be replaced by your name or your userID.</p>
+<p>To start up IPython in a folder of your choice, and with personalized startup scripts, proceed as follows.</p>
+<ol class="loweralpha">
+<li><p>In Windows</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Type Win+R, and start a command shell with cmd</p></li>
+<li><p>In the newly created command shell, type ipython. (This will launch an ipython session, and create the directory [_mydir_].ipython).</p></li>
+<li><p>Add the Variable IPYTHONDIR to your environment (see above), and set it to [_mydir_].ipython. This directory contains the startup-commands for your ipython-sessions.</p></li>
+<li><p>Into the startup folder [_mydir_].ipythonprofile_defaultstartup</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<blockquote>
+<div><p>place a file with, e.g., the name 00_[_myname_].py, containing the startup commands that you want to execute every time that you launch ipython. My personal startup file contains the following lines:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>import pandas as pd</dt><dd><p>import os
+os.chdir(r’C:[_mydir_]’)</p>
+</dd>
+</dl>
+</div></blockquote>
+</div></blockquote>
+<p>This will import pandas, and start you working in the directory of your choice.
+Note: since Windows uses to separate directories, but is also the escape character in strings, directory paths using a simple backslash have to be preceded by “r,” indicating “raw strings”.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Generate a file “ipy.bat” in mydir, containing</p></li>
+</ul>
+<p>jupyter qtconsole</p>
+</div></blockquote>
+<p>To see all Jupyter Notebooks that come with this book, for example, do the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Type Win+R, and start a command shell with cmd</p></li>
+<li><p>Run the commands</p></li>
+</ul>
+</div></blockquote>
+<p>cd [_ipynb-<a href="#id3"><span class="problematic" id="id4">dir_</span></a>] jupyter notebook</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Again, if you want, you can put this command sequence into a batch-file.</p></li>
+</ul>
+</div></blockquote>
+<ol class="loweralpha" start="2">
+<li><p>In Linux</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Start a Linux terminal with the command terminal</p></li>
+<li><p>In the newly created command shell, execute the following command</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ipython</span>
+</pre></div>
+</div>
+<p>(This generates a folder :ipython)</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li><p>Into the sub-folder .ipython/profile_default/startup, place a file with</p></li>
+</ul>
+</div></blockquote>
+<p>e.g., the name 00[_myname_].py, containing the lines</p>
+</div></blockquote>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span>import pandas as pd
+import os
+os.chdir([_mydir_])
+
+ • In your .bashrc file (which contains the startup commands for your shell- scripts), enter the lines
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span>alias ipy=&#39;jupyter qtconsole&#39;
+IPYTHONDIR=&#39;~/.ipython&#39;
+
+ • To see all Jupyter Notebooks, do the following:
+</pre></div>
+</div>
+<p>–  Go to [_mydir_]</p>
+<p>–  Create the file ipynb.sh, containing the lines</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="n">cd</span> <span class="p">[</span><span class="n">wherever_you_have_the_ipynb_files</span><span class="p">]</span>
+<span class="n">jupyter</span> <span class="n">notebook</span>
+</pre></div>
+</div>
+<p>–  Make the file executable, with chmod 755 ipynb.sh</p>
+<blockquote>
+<div><p>Now you can start “your” IPython by just typing ipy, and the Jupyter Notebook
+by typing ipynb.sh</p>
+</div></blockquote>
+<ol class="loweralpha" start="3">
+<li><p>InMacOSX</p>
+<blockquote>
+<div><p>◦ Start the Terminal either by manually opening Spotlight or the shortcut CMD + SPACE and entering Terminal and search for “Terminal.”</p>
+<p>◦ In Terminal, execute ipython, which will generate a folder under [_mydir_]/. ipython.</p>
+<p>◦ Enter the command pwd into the Terminal. This lists [_mydir_]; copy this for later use.</p>
+<p>◦ Now open Anaconda and launch an editor, e.g., spyder-app or TextEdit.3 Create a file containing the command lines you regularly use when writing code (you can always open this file and edit it). For starters you can create a file with the following command lines:</p>
+</div></blockquote>
+</li>
+</ol>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span>import pandas as pd
+import os
+os.chdir(&#39;[_mydir_]/.ipython/profile_[_myname_]&#39;)
+
+     ◦ The next steps are somewhat tricky. Mac OS X hides the folders that start with “.”. So to access .ipython open File -&gt; Save as n . . . . Now open a Finder window, click the Go menu, select Go to Folder and enter
+</pre></div>
+</div>
+<dl class="simple">
+<dt>[ _mydir_ ]/.ipython/profile_default/startup. This will open a Finder window with a header named “startup”. On the left of this text there should be a blue folder icon. Drag and drop the folder into the Save as… window open in the editor. IPython has a README file explaining the naming conventions. In our case the file must begin with 00-, so we could name it 00-[ _myname_ ].</dt><dd><ul class="simple">
+<li><p>Open your .bash_profile (which contains the startup commands for your shellscripts), and enter the line</p></li>
+</ul>
+</dd>
+</dl>
+<p>alias ipy=’jupyter qtconsole’</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>To see all Jupyter Notebooks, do the following:</p></li>
+</ul>
+</div></blockquote>
+<p>–  Go to [_mydir_]</p>
+<p>–  Create the file ipynb.sh, containing the lines</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="n">cd</span> <span class="p">[</span><span class="n">wherever_you_have_the_ipynb_files</span><span class="p">]</span>
+<span class="n">jupyter</span> <span class="n">notebook</span>
+</pre></div>
+</div>
+<p>–  Make the file executable, with chmod 755 ipynb.sh</p>
+<p>2.1.6 Python Resources</p>
+<p>If you have some programming experience, this book may be all you need to get the statistical analysis of your data going. But if required, very good additional information can be found on the web, where tutorials as well as good free books are available online. The following links are all recommendable sources of information if you are starting with Python:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Python Scientific Lecture Notes If you don’t read anything else, read this! (<a class="reference external" href="http://scipy-lectures.github.com">http://scipy-lectures.github.com</a>)</p></li>
+<li><p>NumPy for Matlab Users Start here if you have Matlab experience. (<a class="reference external" href="https://docs.scipy.org/doc/numpy-dev/user/numpy-for-matlab-users.html">https://docs.scipy.org/doc/numpy-dev/user/numpy-for-matlab-users.html</a>; also check <a class="reference external" href="http://mathesaurus.sourceforge.net/matlab-numpy.html">http://mathesaurus.sourceforge.net/matlab-numpy.html</a>)</p></li>
+<li><p>Lectures on scientific computing with Python Great Jupyter Notebooks, from JR Johansson!</p></li>
+</ul>
+</div></blockquote>
+<p>(<a class="reference external" href="https://github.com/jrjohansson/scientific-python-lectures">https://github.com/jrjohansson/scientific-python-lectures</a>)</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The Python tutorial The official introduction.</p></li>
+</ul>
+</div></blockquote>
+<p>(<a class="reference external" href="http://docs.python.org/3/tutorial">http://docs.python.org/3/tutorial</a>)</p>
+<blockquote>
+<div><p>In addition free Python books are available, for different levels of programming
+skills:</p>
+<blockquote>
+<div><blockquote>
+<div><p>◦ A Byte of Python A very good book, at the introductory level. (<a class="reference external" href="http://swaroopch.com/notes/python">http://swaroopch.com/notes/python</a>)</p>
+<p>◦ Learn Python the Hard Way (3rd Ed) A popular book that you can work through. (<a class="reference external" href="http://learnpythonthehardway.org/book/">http://learnpythonthehardway.org/book/</a>)</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Think Python For advanced programmers. (<a class="reference external" href="http://www.greenteapress.com/thinkpython">http://www.greenteapress.com/thinkpython</a>)</p></li>
+<li><p>Introduction to Python for Econometrics, Statistics and Data Analysis Introduces Python with a focus on statistics (Sheppard 2015).</p></li>
+<li><p>Probabilistic Programming and Bayesian Methods for Hackers An excellent introduction into Bayesian thinking. The section on Bayesian statistics in this book is also based on that book (Pilon 2015).</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<p>I have not seen many textbooks on Python that I have really liked. My favorite introductory books are Harms and McDonald (2010), and the more recent Scopatz and Huff (2015).</p>
+<p>When I run into a problem while developing a new piece of code, most of the time I just google; thereby I stick primarily (a) to the official Python documentation pages, and (b) to <a class="reference external" href="http://stackoverflow.com/">http://stackoverflow.com/</a>. Also, I have found user groups surprisingly active and helpful!</p>
+<p>2.1.7 First Python Programs</p>
+<ol class="loweralpha simple">
+<li><p>Hello World</p></li>
+</ol>
+<p>Python Shell</p>
+<p>Python is an interpreted language. The simplest way to start Python is to type python on the command line. (When I say command line I refer in Windows to the command shell started with cmd, and in Linux or Mac OS X to the terminal.) Then you can already start to execute Python commands, e.g., the command to print “Hello World” to the screen: print(‘Hello World’). On my Windows computer, this results in</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">Python</span> <span class="mf">3.5.1</span> <span class="p">(</span><span class="n">v3</span><span class="mf">.5.1</span><span class="p">:</span><span class="mi">37</span><span class="n">a07cee5969</span><span class="p">,</span> <span class="n">Dec</span> <span class="mi">6</span> <span class="mi">2015</span><span class="p">,</span> <span class="mi">01</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mi">25</span><span class="p">)</span> <span class="p">[</span>
+   <span class="n">MSC</span> <span class="n">v</span><span class="mf">.1900</span> <span class="mi">64</span> <span class="n">bit</span> <span class="p">(</span><span class="n">AMD64</span><span class="p">)]</span> <span class="n">on</span> <span class="n">win32</span>
+<span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">)</span>
+<span class="n">Hello</span> <span class="n">World</span>
+<span class="o">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>However, I never use the basic Python shell any more, but always start out with the IPython/Jupyter qtconsole described in more detail in Sect. 2.3. The Qt console is an interactive programming environment which offers a number of advantages. For example, when you type print( in the Qt console, you immediately see information about the possible input arguments for the command print.</p>
+<p>Python Modules</p>
+<p>Often we want to store our commands in a file for later reuse. Python files have the extension .py, and are referred to as Python modules. Let us create a new file with the name helloWorld.py, containing the line</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This file can now be executed by typing python helloWorld.py on the command line.</p>
+<p>In Windows you can actually run the file by double-clicking it, or by simply typing helloWorld.py if the extension .py is associated with the Python program installed on your computer. In Linux and Mac OS X the procedure is slightly more involved. There, the file needs to contain an additional first line specifying the path to the Python installation.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="ch">#! \usr\bin\python</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>On these two systems, you also have to make the file executable, by typing chmod +x helloWorld.py, before you can run it with helloWorld.py.</p>
+<ol class="loweralpha simple" start="2">
+<li><p>SquareMe</p></li>
+</ol>
+<p>To increase the level of complexity, let us write a Python module which prints out the square of the numbers from zero to five. We call the file squareMe.py, and it contains the following lines</p>
+<p>Listing 2.1 squareMe.py</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1">#This file shows the square of the numbers from 0 to 5.</span>
+<span class="k">def</span> <span class="nf">squared</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+   <span class="nb">print</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">squared</span><span class="p">(</span><span class="n">ii</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Done&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Let me explain what happens in this file, line-by-line:</p>
+<p>1       The first line starts with “#”, indicating a comment-line.</p>
+<p>3–4     These two lines define the function squared, which takes the variable x as
+The first line starts with “#”, indicating a comment-line.</p>
+<blockquote>
+<div><p>input, and returns the square (x**2) of this variable.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Note: The range of the function is defined by the indentation! This is a</dt><dd><p>feature loved by many Python programmers, but often found confusing by</p>
+</dd>
+</dl>
+<p>newcomers. Here the last indented line is line 4, which ends the function
+definition.</p>
+<p>6–7     Here the program loops over the first 6 numbers. Also the range of the for-
+loop is defined by the indentation of the code.
+In line 7, each number and its corresponding square are printed to the
+output.</p>
+<p>9       This command is not indented, and therefore is executed after the for-loop
+has ended.</p>
+<p>Notes</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Since Python starts at 0, the loop in line 6 includes the numbers from 0 to 5.</p></li>
+<li><p>In contrast to some other languages Python distinguishes the syntax for function calls from the syntax for addressing elements of an array etc: function calls, as in line 7, are indicated with round brackets ( … ); and individual elements of arrays or vectors are addressed by square brackets [ … ].</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="python-data-structures">
+<h2>2.2 Python Data Structures<a class="headerlink" href="#python-data-structures" title="Permalink to this headline">¶</a></h2>
+<p>2.2.1 Python Datatypes</p>
+<p>Python offers a number of powerful data structures, and it pays off to make yourself familiar with them. One can use</p>
+<blockquote>
+<div><ul>
+<li><p>Tuples to group objects of different types.</p></li>
+<li><p>Lists to group objects of the same types.</p></li>
+<li><p>Arrays to work with numerical data. (Python also offers the data type matrix.</p>
+<p>However, it is recommended to use arrays, since many numerical and scientific functions will not accept input data in matrix format.)</p>
+</li>
+<li><p>Dictionaries for named, structured data sets.</p></li>
+<li><p>DataFrames for statistical data analysis.</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Tuple ( )</strong> A collection of different things. Tuples are “immutable”, i.e., they cannot be modified after creation.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">myTuple</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.2</span><span class="p">),</span> <span class="mf">2.5</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">myTuple</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="mf">2.5</span>
+</pre></div>
+</div>
+<p><strong>List []</strong> Lists are “mutable”, i.e., their elements can be modified. Therefore lists are typically used to collect items of the same type (numbers, strings, : : :). Note that “+” concatenates lists.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">myList</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="s1">&#39;def&#39;</span><span class="p">,</span> <span class="s1">&#39;ghij&#39;</span><span class="p">]</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">myList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;klm&#39;</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="n">myList</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="p">[</span><span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="s1">&#39;def&#39;</span><span class="p">,</span> <span class="s1">&#39;ghij&#39;</span><span class="p">,</span> <span class="s1">&#39;klm&#39;</span><span class="p">]</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">myList2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">myList3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">myList2</span> <span class="o">+</span> <span class="n">myList3</span> <span class="n">Out</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Array []</strong> vectors and matrices, for numerical data manipulation. Defined in numpy. Note that vectors and 1-d arrays are different: vectors CANNOT be transposed! With arrays, “+” adds the corresponding elements; and the array- method .dot performs a scalar multiplication of two arrays. (From Python 3.5 onward, this can also be achieved with the “&#64;” operator.).</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="n">myArray2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">myList2</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="n">myArray3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">myList3</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="n">myArray2</span> <span class="o">+</span> <span class="n">myArray3</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="n">myArray2</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">myArray3</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="mi">32</span>
+</pre></div>
+</div>
+<p><strong>Dictionary { }</strong> Dictionaries are unordered (key/value) collections of content, where the content is addressed as dict[‘key’]. Dictionaries can be created with the command dict, or by using curly brackets {…}:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="n">myDict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">one</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">two</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">info</span><span class="o">=</span><span class="s1">&#39;some information&#39;</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="n">myDict2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ten&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;twenty&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">:</span><span class="s1">&#39;more information&#39;</span><span class="p">}</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="n">myDict</span><span class="p">[</span><span class="s1">&#39;info&#39;</span><span class="p">]</span>
+  <span class="n">Out</span><span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="s1">&#39;some information&#39;</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="n">myDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="n">dict_keys</span><span class="p">([</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><strong>DataFrame</strong> Data structure optimized for working with named, statistical data. Defined in pandas. (See Sect. 2.5.)</p>
+<p>2.2.2 Indexing and Slicing</p>
+<p>The rules for addressing individual elements in Python lists or tuples or in numpy arrays are pretty simple really, and have been nicely summarized by Greg Hewgill on stackoverflow4:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span> <span class="c1"># items start through end-1</span>
+<span class="n">a</span><span class="p">[</span><span class="n">start</span><span class="p">:]</span>    <span class="c1"># items start through the rest of the array</span>
+<span class="n">a</span><span class="p">[:</span><span class="n">end</span><span class="p">]</span>      <span class="c1"># items from the beginning through end-1</span>
+<span class="n">a</span><span class="p">[:]</span>         <span class="c1"># a copy of the whole array</span>
+</pre></div>
+</div>
+<p>There is also the step value, which can be used with any of the above:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">:</span><span class="n">step</span><span class="p">]</span> <span class="c1"># start through not past end, by step</span>
+</pre></div>
+</div>
+<p>The key points to remember are that indexing starts at 0, not at 1; and that the :end value represents the first value that is not in the selected slice. So, the difference between end and start is the number of elements selected (if step is 1, the default).</p>
+<p>The other feature is that start or end may be a negative number, which means it counts from the end of the array instead of the beginning. So:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># last item in the array</span>
+<span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span> <span class="c1"># last two items in the array</span>
+<span class="n">a</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># everything except the last two items</span>
+</pre></div>
+</div>
+<p>As a result, a[:5] gives you the first five elements (Hello in Fig. 2.2), and a[-5:] the last five elements (World).</p>
+<p>2.2.3 Vectors and Arrays</p>
+<p>numpy is the Python module that makes working with numbers efficient. It is commonly imported with</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+<p>By default, it produces vectors. The commands most frequently used to generate numbers are:</p>
+<p><strong>np.zeros</strong></p>
+<p>generates zeros. Note that it takes only one(!) input. If you want to generate a matrix of zeroes, this input has to be a tuple, containing the number of rows/columns!</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">array</span><span class="p">([</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">])</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="p">)</span> <span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">array</span><span class="p">([[</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span>
+
+             <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p><strong>np.ones</strong>     generates ones.</p>
+<p><strong>np.random.randn</strong> generates normally distributed numbers, with a mean of 0 and a standard deviation of 1.</p>
+<p><strong>np.arange</strong></p>
+<p>generates a range of numbers. Parameters can be
+start, end, steppingInterval. Note that the end-value is excluded! While this can sometimes be a bit awkward, it has the advantage that consecutive sequences can be easily generated, without any overlap, and without missing any data points:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="n">Out</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">array</span><span class="p">([</span> <span class="mf">1.</span> <span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.</span> <span class="p">,</span> <span class="mf">2.5</span><span class="p">])</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="n">xLow</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span> <span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">xHigh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">xLow</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">array</span><span class="p">([</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">])</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">xHigh</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">array</span><span class="p">([</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><strong>np.linspace</strong>  generates linearly spaced numbers.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="n">array</span><span class="p">([</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><strong>np.array</strong> generates a numpy array from given numerical data.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="p">])</span>
+</pre></div>
+</div>
+<p>There are a few points that are peculiar to Python, and that are worth noting:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Matrices are simply “lists of lists”. Therefore the first element of a matrix gives you the first row:</p></li>
+</ul>
+</div></blockquote>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span>In [12]: Amat = np.array([ [1, 2], [3, 4] ])
+
+In [13]: Amat[0] Out[13]: array([1, 2])
+
+ • A vector is not the same as a one-dimensional matrix! This is one of the few really un-intuitive features of Python, and can lead to mistakes that are hard to find. For example, vectors cannot be transposed, but matrices can
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="n">Amat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span> <span class="p">])</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="n">x</span><span class="o">.</span><span class="n">T</span> <span class="o">==</span> <span class="n">x</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="n">array</span><span class="p">([</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="n">Amat</span><span class="o">.</span><span class="n">T</span> <span class="o">==</span> <span class="n">Amat</span> <span class="n">Out</span><span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="n">array</span><span class="p">([[</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
+<span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="ipython-jupyter-an-interactive-programming-environment">
+<h2>2.3 IPython/Jupyter: An Interactive Programming Environment<a class="headerlink" href="#ipython-jupyter-an-interactive-programming-environment" title="Permalink to this headline">¶</a></h2>
+<p>A good workflow for source code development can make a very big difference for coding efficiency. For me, the most efficient way to write new code is as follows: I first get the individual steps worked out interactively in IPython (<a class="reference external" href="http://">http://</a> ipython.org/). IPython provides a programming environment that is optimized for interactive computing with Python, similar to the command-line in Matlab. It comes with a command history, interactive data visualization, command completion, and lots of features that make it quick and easy to try out code. When the pylab mode is activated with %pylab inline, IPython automatically loads numpy and matplotlib.pyplot (which is the package used for generating plots) into the active workspace, and provides a very convenient, Matlab-like programming environment. The optional argument inline directs plots into the current qtcon- sole/notebook.</p>
+<p>IPython uses Jupyter to provide different interface options, my favorite being the qtconsole:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">qtconsole</span>
+</pre></div>
+</div>
+<p>A very helpful addition is the browser-based notebook, with support for code, text, mathematical expressions, inline plots and other rich media.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">notebook</span>
+</pre></div>
+</div>
+<p>Note that many of the examples that come with this book are also available as Jupyter Notebooks, which are available at github: <a class="reference external" href="https://github.com/thomas">https://github.com/thomas</a>- haslwanter/statsintro_python.git.</p>
+<p>2.3.1 First Session with the Qt Console</p>
+<p>An important aspect of statistical data analysis is the interactive, visual inspection of the data. Therefore I strongly recommend to start the data analysis in the ipython qtonsole.</p>
+<p>For maximum flexibility, I start my IPython sessions from the command-line, with the command jupyter qtconsole. (Under WinPython: if you have problems starting IPython from the cmd console, use the WinPython Command Prompt instead—it is nothing else but a command terminal with the environment variables set such that Python is readily found.)</p>
+<p>To get started with Python and IPython, let me go step-by-step through the IPython session in Fig. 2.3:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>IPython starts out listing the version of IPython and Python that are used, and showing the most important help calls.</p></li>
+<li><p>In [1]: The first command %pylab inline loads numpy and matplotlib into the current workspace, and directs matplotlib to show plots “inline”.</p></li>
+</ul>
+</div></blockquote>
+<p>To understand what is happening here requires a short detour into the structure of scientific Python.</p>
+<p>Figure 2.1 shows the connection of the most important Python packages that are used in this book. Python itself is an interpretative programming language, with no optimization for working with vectors or matrices, or for producing plots. Packages which extend the abilities of Python must be loaded explicitly. The most important package for scientific applications is numpy , which makes working with vectors and matrices fast and efficient, and matplotlib, which is the most common package used for producing graphical output. scipy contains important scientific algorithms. For the statistical data analysis, scipy.stats contains the majority of the algorithms that will be used in this book. pandas is a more recent addition, which has become widely adopted for statistical data analysis. It provides DataFrames, which are labeled, two-dimensional data structures, making work with data more intuitive. seaborn extends the plotting
+abilities of matplotlib, with a focus on statistical graphs. And statsmodels contains many modules for statistical modeling, and for advanced statistical analysis. Both seaborn and statsmodels make use of pandas DataFrames.</p>
+<p>IPython provides the tools for interactive data analysis. It lets you quickly dis- play graphs and change directories, explore the workspace, provides a command history etc. The ideas and base structure of IPython have been so successful that the front end has been turned into a project of its own, Jupyter, which is now also used by other languages like Julia, R, and Ruby.</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li><p>In [2]: The command t = r_[0:10:0.1] is a shorthand version for</p></li>
+</ul>
+</div></blockquote>
+<p>t = arange(0, 10, 0.1), and generates a vector from 0 to 10, with a step size of 0.1. <a href="#id5"><span class="problematic" id="id6">r_</span></a> (and arange) are commands in the numpy package. (<a href="#id7"><span class="problematic" id="id8">r_</span></a> generates row vectors, and <a href="#id9"><span class="problematic" id="id10">c_</span></a> is the corresponding numpy command to generate column vectors.) However, since numpy has already been imported into the current workspace by %pylab inline, we can use these commands right away.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>In [4]: Since t is a vector, and sin is a function from numpy, the sine-value is calculated automatically for each value of t.</p></li>
+<li><p>In [5]: In Python scripts, changes of the current folder have to be performed with os.chdir(). However, tasks common with interactive computing, such as directory changes (%cd), bookmarks for directories (%bookmark), inspection of the workspace (%who and %whos), etc., are implemented as “IPython magic functions”. If no Python variable with the same name exists, the “%” sign can be left away, as here.</p></li>
+<li><p>In [6]: Since we have started out with the command %pylab inline, IPython generates plots in the Jupyter QtConsole, as shown in Fig. 2.3. To enter multi-line commands in IPython, one can use CTRL+Enter for additional command lines, indicated in the terminal by …. (The command sequence gets executed after the next empty line.)</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<p>Note that also generating graphics files is very simple: here I generate the PNG- file “Sinewave.png”, with a resolution of 200 dots-per-inch.</p>
+<p>I have mentioned above that matplotlib handles the graphics output. In the Jupyter QtConsole, you can switch between inline graphs and output into an external graphics-window with %matplotlib inline and %matplotlib qt4 (see Fig.2.4). (Depending on your version of Python, you may have to replace %matplotlib qt4 with %matplotlib tk.) An external graphics window allows to zoom and pan in the figure, get the cursor position (which can help to find outliers), and get interactive input with the command ginput. matplotlib’s plotting commands closely follow the Matlab conventions.</p>
+<p>2.3.2 Notebook and rpy2</p>
+<p>Many of the code samples accompanying this book are also available as Jupyter Notebooks, and can be downloaded from <a class="reference external" href="https://github.com/thomas-haslwanter/">https://github.com/thomas-haslwanter/</a> statsintro_python.git. Therefore the concept of Notebooks and their integration with the R-language are briefly presented here.</p>
+<ol class="loweralpha simple">
+<li><p>The Notebook</p></li>
+</ol>
+<p>Since approximately 2013 the IPython Notebook has become a very popular way to share research and results in the Python community. In 2015 the development of the interface has become its own project, called Jupyter, since the notebook can be used not only with Python language, but also with Julia, R, and 40 other programming languages. The notebook is a browser based interface, which is especially well suited for teaching and for documentation. It allows to combine a structured layout, equations in the popular LaTeX format, and images, and can include resulting graphs and videos, as well as the output from Python commands (see Fig. 2.5).</p>
+<ol class="loweralpha simple" start="2">
+<li><p>rpy2</p></li>
+</ol>
+<p>While Python is my preferred programming language, the world of advanced statistics is clearly dominated by R. Like Python, R is completely free and has a very active user community. While Python is a general programming language, R is optimized for the interactive work with statistical data. Many users swear that ggplot provides the best-looking graphs for statistical data.</p>
+<p>To combine the best of both worlds, the package rpy2 provides a way to transfer data from Python into R, execute commands in R, and transfer the results back into Python. In the Jupyter Notebook, with rpy2 even R graphics can be fully utilized (see Fig. 2.6)!</p>
+<p>2.3.3 IPython Tips</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Use IPython in the Jupyter QtConsole, and customize your startup as described in Sect. 2.1.5: it will save you time in the long run!</p></li>
+<li><p>For help on e.g., plot, use help(plot) or plot?. With one question mark the help gets displayed, with two question marks (e.g., plot??) also the source code is shown.</p></li>
+<li><p>Check out the help tips displayed at the start of IPython.</p></li>
+<li><p>Use TAB-completion, for file- and directory names, variable names, AND for commands.</p></li>
+<li><p>To switch between inline and external graphs, use %matplotlib inline and %matplotlib qt4.</p></li>
+<li><p>By default, IPython displays data with a very high precision. For a more concise display, use %precision 3.</p></li>
+<li><p>You can use edit [_fileName_] to edit files in the local directory, and</p></li>
+</ol>
+</div></blockquote>
+<p>%run [_fileName_] to execute Python scripts in your current workspace.</p>
+</section>
+<section id="developing-python-programs">
+<h2>2.4 Developing Python Programs<a class="headerlink" href="#developing-python-programs" title="Permalink to this headline">¶</a></h2>
+<p>2.4.1 Converting Interactive Commands into a Python Program</p>
+<p>IPython is very helpful in working out the command syntax and sequence. The next step is to turn these commands into a Python program with comments, that can be run from the command-line. This section introduces a fairly large number of Python conventions and syntax.</p>
+<p>An efficient way to turn IPython commands into a function is to</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>first obtain the command history with the command %hist or %history.</p></li>
+<li><p>copy the history into a good IDE (integrated development environment): I either use Wing (my clear favorite Python IDE, although it is commercial; see Fig. 2.7) or Spyder (which is good and free; see Fig. 2.8). PyCharm is another IDE with a good debugger, and with very good vim-emulation.</p></li>
+<li><p>turn it into a working Python program by adding the relevant package informa- tion, etc.</p></li>
+</ul>
+</div></blockquote>
+<p>Converting the commands from the interactive session in Fig. 2.3 into a program, we get</p>
+<p>Listing 2.2 L2_4_pythonScript.py</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>  <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">2  Short demonstration of a Python script.</span>
+
+
+<span class="s1">3</span>
+
+<span class="s1">4  author:ThomasHaslwanter</span>
+
+<span class="s1">5  date: May-2015</span>
+
+<span class="s1">6  ver: 1.0</span>
+
+<span class="s1">7  &#39;&#39;&#39;</span>
+
+<span class="mi">8</span>
+
+<span class="mi">9</span>  <span class="c1">#Importstandardpackages</span>
+
+<span class="mi">10</span>  <span class="n">importnumpyasnp</span>
+
+<span class="mi">11</span>  <span class="n">importmatplotlib</span><span class="o">.</span><span class="n">pyplotasplt</span>
+
+<span class="mi">12</span>
+
+<span class="mi">13</span>  <span class="c1">#Generatethetime-values</span>
+
+<span class="mi">14</span>  <span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mf">0.1</span><span class="p">]</span>
+
+<span class="mi">15</span>
+
+<span class="mi">16</span>  <span class="c1">#Setthefrequency,andcalculatethesine-value</span>
+
+<span class="mi">17</span>  <span class="n">freq</span><span class="o">=</span><span class="mf">0.5</span>
+
+<span class="mi">18</span>  <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">freq</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+
+
+<span class="mi">19</span>
+
+<span class="mi">20</span>  <span class="c1">#Plotthedata</span>
+
+<span class="mi">21</span>  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+
+<span class="mi">22</span>
+
+<span class="mi">23</span>  <span class="c1">#Formattheplot</span>
+
+<span class="mi">24</span>  <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time[sec]&#39;</span><span class="p">)</span>
+
+<span class="mi">25</span>  <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Values&#39;</span><span class="p">)</span>
+
+<span class="mi">26</span>
+
+<span class="mi">27</span>  <span class="c1">#Generateafigure,onedirectoryup</span>
+
+<span class="mi">28</span>  <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;..\Sinewave.png&#39;</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+
+<span class="mi">29</span>
+
+<span class="mi">30</span>  <span class="c1">#Putitonthescreen</span>
+
+<span class="mi">31</span>  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The following modifications were made from the IPython history:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The commands were put into a files with the extension “.py”, a so-called Python module.</p></li>
+<li><p>1–7: It is common style to precede a Python module with a header block. Multi- line comments are given between triple inverted commas ‘’’ [_ xxx _] ‘’’. The first comment block describing the module should also contain information about author, date, and version number.</p></li>
+<li><p>9: Single-line comments use “#”.</p></li>
+<li><p>10–11: The required Python packages have to be imported explicitly. (In IPython, this is done for numpy and matplotlib.pyplot by the command %pylab.) It is customary to import numpy as np, and matplotlib.pyplot, the matplotlib module containing all the plotting commands, as plt.</p></li>
+<li><p>14 etc: The numpy command <a href="#id11"><span class="problematic" id="id12">r_</span></a> has to be addressed through the corresponding package name, i.e., <a href="#id13"><span class="problematic" id="id14">np.r_</span></a>. (In IPython, %pylab took care of that.)</p></li>
+<li><p>18: Note that also “pi” is in numpy, so np.pi is needed!</p></li>
+<li><p>21 etc: All the plotting commands are in the package plt.</p></li>
+<li><p>28: Care has to be taken with backslashes in pathnames: in Windows, directories in path-names are separated by “&quot;, which is also used as the escape-character in strings. To take “&quot; literally, a string has to be preceded by “r” (for “r”aw string), e.g., r’C:UsersPeter’ instead of ‘C:\Users\Peter’.</p></li>
+<li><p>34: While IPython automatically shows graphical output, Python programs don’t show the output until this is explicitly requested by plt.show(). The idea behind this is to optimize the program speed, only showing the graphical output when required. The output looks the same as in Fig. 2.4.</p></li>
+</ul>
+</div></blockquote>
+<p>2.4.2 Functions, Modules, and Packages</p>
+<p>Python has three different levels of modularization:</p>
+<p><strong>Function</strong> A function is defined by the keyword def, and can be defined anywhere in Python. It returns the object in the return statement, typically at the end of the function.
+<strong>Modules</strong> A module is a file with the extension “.py”. Modules can contain function and variable definitions, as well as valid Python statements.
+<strong>Packages</strong> A package is a folder containing multiple Python modules, and must have a file named __init__.py. For example, numpy is a Python package. Since packages are mainly important for grouping a larger number of modules, they won’t be discussed in this book.</p>
+<ol class="loweralpha simple">
+<li><p>Functions</p></li>
+</ol>
+<p>The following example shows how functions can be defined and used.</p>
+<p>Listing 2.3 L2_4_pythonFunction.py</p>
+<p>1 ‘’’DemonstrationofaPythonFunction
+2
+3  author:thomashaslwanter,date:May-2015</p>
+<p>4  ‘’’</p>
+<p>5</p>
+<p>6  #Importstandardpackages</p>
+<blockquote>
+<div><ul class="simple">
+<li></li>
+</ul>
+</div></blockquote>
+<p>7  importnumpyasnp</p>
+<p>8
+9 10</p>
+<p>def incomeAndExpenses(data):
+‘’’Find the sum of the positive numbers, and the sum of
+the negative ones.’’’</p>
+<p>income = np.sum(data[data&gt;0]) expenses = np.sum(data[data&lt;0])</p>
+<p>return (income, expenses) if__name__==’__main__’:</p>
+<p>testData = np.array([-5, 12, 3, -6, -4, 8])</p>
+<p># If only real banks would be so nice ;)</p>
+<p>if testData[0] &lt; 0:
+print(‘Your first transaction was a loss, and will be</p>
+<blockquote>
+<div><blockquote>
+<div><p>dropped.’)</p>
+</div></blockquote>
+<p>testData = np.delete(testData, 0)</p>
+</div></blockquote>
+<p>else:
+print(‘Congratulations: Your first transaction was a</p>
+<p>gain!’)
+(myIncome, myExpenses) = incomeAndExpenses(testData)
+print(‘You have earned {0:5.2f} EUR, and spent {1:5.2f} EUR.’.format(myIncome, -myExpenses))</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>1–4: Comment header.</p></li>
+<li><p>6: Since numpy will be required in that module, it has to be imported. To reduce the writing to a minimum, it is conventionally called np.</p></li>
+<li><p>9/10: Function definition, and a comment describing the function. Note that in Python the function block is defined by the indentation, not by any brackets or end statements! This is a feature that irritates many Python novices, but really helps to keep code clear and nicely formatted. Important: Python makes a difference between a tab and the equivalent amount of spaces. This can lead to errors which are really hard to detect, so use a good IDE that automatically converts tabs to spaces!</p></li>
+<li><p>11:</p></li>
+</ul>
+</div></blockquote>
+<p>–  The sum command is taken from numpy, so it has to be preceded by .np.</p>
+<dl class="simple">
+<dt>–  In Python, function arguments are indicated by round brackets (…), whereas elements of lists, tuples, vectors, and arrays are indicated by square brackets</dt><dd><p>[…].</p>
+</dd>
+</dl>
+<p>–  In numpy you can select elements of an array either with an index (see line 20), or with a boolean array (line 11).</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>14: Python also uses round brackets to form groups of elements, the so-called tuples. And the return statement does the obvious things: it returns elements from a function.</p></li>
+<li><p>16: Here quite a few new aspects of Python come together:</p></li>
+</ul>
+</div></blockquote>
+<p>– Just like function definitions, if-loops or for-loops use indentation to define their context.</p>
+<p>– Python conventionally uses underscores (_) to indicate private variables, which are not used for typical programming tasks.</p>
+<p>– Here we check the variable with the name __name__, which is denoting the context of a module evaluation. If the module is run as a Python script, __name__ is set to __main__. But if a module is imported, it is set to the name of the importing module. This way it is possible to add code to a function that is only used when the module is executed, but not when the functions in this module are imported by other modules (see below).</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>17: Definition of a numpy array.</p></li>
+<li><p>26: The two elements returned as a tuple from the function incomeAndExpenses can be immediately assigned to two different Python objects</p></li>
+</ul>
+</div></blockquote>
+<p>(myIncome, myExpenses).</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>27: While there are different ways to produce formatted strings, this is probably the most elegant one: curly brackets { … } indicate values that will be inserted, and can also contain formatting statements. The corresponding values are then passed into the string by the method format, e.g., print(‘The value of pi is {0}’.format(np.py)).</p></li>
+</ul>
+</div></blockquote>
+<ol class="loweralpha simple" start="2">
+<li><p>Modules</p></li>
+</ol>
+<dl class="simple">
+<dt>To execute the module pythonFunction.py from the command-line, type</dt><dd><p>python pythonFunction.py. In Windows, if the extension “.py” is associated
+with the Python program, it suffices to double-click the module, or to type pythonFunction.py on the command-line. In WinPython the association of the extension “.py” with the Python function is set by the WinPython Control Panel.exe, by the command Register Distribution : : : in the menu Advanced.</p>
+</dd>
+</dl>
+<p>To run a module in IPython, use the magic function %run:</p>
+<dl class="simple">
+<dt>In [56]: %run pythonFunction</dt><dd><p>Your first transaction was a loss, and will be dropped. You have earned 23.00 EUR, and spent 10.00 EUR.</p>
+</dd>
+</dl>
+<p>Note that you either have to be in the directory where the function is defined, or you have to give the full pathname.</p>
+<p>If you want to use a function or variable that is defined in a different module, you have to import that module. This can be done in three different ways. For the following example, assume that the other module is called newModule.py, and the function that we want from there newFunction.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>import newModule: The function can then be accessed with newModule.newFunction().</p></li>
+<li><p>from newModule import newFunction: In this case, the function can be called directly newFunction().</p></li>
+<li><p>from newModule import <a href="#id1"><span class="problematic" id="id2">*</span></a>: This imports all variables and functions from newModule into the current workspace; again, the function can be called directly with newFunction(). However, use of this syntax is discouraged as it clutters up the current workspace.</p></li>
+</ul>
+</div></blockquote>
+<p>If you import a module multiple times, Python recognizes that the module is already known, and skips later imports. If you want to override this, and explicitly want to re-import a module that has changed, you have to use the command reload from the package importlib:</p>
+<p>from importlib import reload
+reload(pythonFunction)</p>
+<p>Python 2.x: reload does NOT need to be imported from importlib, but is available as a core module.</p>
+<p>The next example shows you how to import functions from one module into another module:</p>
+<p>Listing 2.4 L2_4_pythonImport.py</p>
+<p>1 ‘’’DemonstrationofimportingaPythonmodule 2
+3 author:ThH,date:May-2015’’’
+4
+5  #Importstandardpackages</p>
+<p>6  importnumpyasnp</p>
+<p>7</p>
+<p>8  #additionalpackages:thisimportsthefunctiondefined</p>
+<p>above</p>
+<p>9  importL2_4_pythonFunction</p>
+<p>10
+11  #Generatetest-data</p>
+<p>12  testData=np.arange(-5,10)</p>
+<p>13
+14  #Useafunctionfromtheimportedmodule</p>
+<p>15  out=L2_4_pythonFunction.incomeAndExpenses(testData)</p>
+<p>16</p>
+<p>17  #Showsomeresults</p>
+<p>18  print(‘Youhaveearned{0:5.2f}EUR,andspent{1:5.2f}EUR.’</p>
+<blockquote>
+<div><blockquote>
+<div><p>.format(out[0], -out[1]))</p>
+</div></blockquote>
+<ul class="simple">
+<li></li>
+<li><p>9: Here the module pythonFunction (that we have just discussed above) is imported. Note that the code in the section if __name__ == ‘__main__’ in pythonFunction.py is NOT executed when the module is imported!</p></li>
+<li><p>15: To access the function incomeAndExpenses from the module pythonFunction, module- and function-name have to be given: incomeAndExpenses.pythonFunction(…)</p></li>
+</ul>
+</div></blockquote>
+<dl>
+<dt>2.4.3 Python Tips</dt><dd><ol class="arabic">
+<li><p>Stick to the standard conventions.</p>
+<blockquote>
+<div><p>◦ Every function should have a documentation string on the line below the function definition.</p>
+<p>◦ Packages should be imported with their commonly used names:</p>
+</div></blockquote>
+</li>
+</ol>
+</dd>
+<dt>import numpy as np</dt><dd><p>import matplotlib.pyplot as plt import scipy as sp
+import pandas as pd
+import seaborn as sns</p>
+<blockquote>
+<div><ol class="arabic simple" start="2">
+<li><p>To get the current directory, use os.path.abspath(os.curdir). And in Python modules a change of directories can NOT be executed with cd (as in IPython), but instead requires the command os.chdir(…).</p></li>
+<li><p>Everything in Python is an object: to find out about “obj”, use type(obj) and dir(obj).</p></li>
+<li><p>Learn to use the debugger. Personally, I always use the debugger from the IDE, and rarely resort to the built-in debugger pdb.</p></li>
+<li><p>Know lists, tuples, and dictionaries; also, know about numpy arrays and pandas DataFrames.</p></li>
+<li><p>Use functions a lot, and understand the if __name__==’__main__’: construct.</p></li>
+<li><p>If you have all your personal functions in the directory mydir, you can add this directory to your PYTHONPATH with the command import sys</p></li>
+</ol>
+</div></blockquote>
+</dd>
+</dl>
+<p>sys.path.append(‘mydir’)</p>
+<blockquote>
+<div><blockquote>
+<div><ol class="arabic simple" start="8">
+<li><p>If you are using non-ASCII characters, such as the German&quot;{o}&quot;{a}&quot;{u}{ss} or the French `{e}'{e}, you have to let Python know, by adding</p></li>
+</ol>
+</div></blockquote>
+<p># -<em>- coding: utf-8 -</em>-
+in the first or second line of your Python module. This has to be done, even if the non-ASCII characters only appear in the comments! This requirement arises from the fact that Python will default to ASCII as standard encoding if no other encoding hints are given.</p>
+</div></blockquote>
+<p>2.4.4 Code Versioning
+Computer programs rarely come out perfect at the first try. Typically they are developed iteratively, by successively eliminating the known errors. Version control programs, also known as revision control programs, allow tracking only the modifications, and storing previous versions of the program under development. If the latest changes cause a new problem, it is then easy to compare them to earlier versions, and to restore the program to a previous state.
+I have been working with a number of version control programs, and git is the first one I am really happy with. git is a version control program, and github is a central source code repository. If you are developing computer software, I strongly recommend the use of git. It can be used locally, with very little overhead. And it can also be used to maintain and manage a remote backup copy of the programs. While the real power of git lies in its features for collaboration, I have been very happy with it for my own data and software. An introduction to git goes beyond the scope of this book, but a very good instruction is available under <a class="reference external" href="https://git-scm">https://git-scm</a>. com/. Good, short, and simple starting instructions—in many languages—can be found at <a class="reference external" href="http://rogerdudler.github.io/git-guide/">http://rogerdudler.github.io/git-guide/</a>.</p>
+<p>I am mostly working under Windows, and tortoisegit (<a class="reference external" href="https://tortoisegit.org/">https://tortoisegit.org/</a>) provides a very useful Windows shell interface for git. For example, in order to clone a repository from github to a computer where tortoisegit is installed, simply right- click in the folder on your computer where you want the repository to be installed, select Git Clone …, and enter the repository name—and the whole repository will be cloned there. Done!
+github (<a class="reference external" href="https://github.com/">https://github.com/</a>) is an online project using git, and the place where the source code for the majority of Python packages is hosted.</p>
+<p>2.5 Pandas: Data Structures for Statistics
+pandas is a widely used Python package which has been contributed by Wes McKinney. It provides data structures suitable for statistical analysis, and adds functions that facilitate data input, data organization, and data manipulation. It is common to import pandas as pd, which reduces the typing a bit (<a class="reference external" href="http://pandas">http://pandas</a>. pydata.org/).
+A good introduction to pandas has been written by Olson (2012).</p>
+<p>2.5.1 Data Handling
+a) Common Procedures
+In statistical data analysis, labeled data structures have turned out to be immensely useful. To handle labeled data in Python, pandas introduces the so-called DataFrame objects. A DataFrame is a two-dimensional labeled data structure with columns of potentially different types. You can think of it like a spreadsheet or SQL table. DataFrames are the most commonly used pandas objects.
+Let me start with a specific example, by creating a DataFrame with three columns, called “Time,” “x,” and “y”:</p>
+<p>import numpy as np import pandas as pd
+t = np.arange(0,10,0.1) x = np.sin(t)
+y = np.cos(t)
+df = pd.DataFrame({‘Time’:t, ‘x’:x, ‘y’:y})</p>
+<p>In pandas, rows are addressed through indices and columns through their name. To address the first column only, you have two options:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>df.Time</dt><dd><p>df[‘Time’]</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>If you want to extract two columns at the same time, ask for several variables in a list:
+data = df[[‘Time’, ‘y’]]</p>
+<p>To display the first or last rows, use</p>
+<blockquote>
+<div><dl class="simple">
+<dt>data.head()</dt><dd><p>data.tail()</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>To extract the six rows from 5 to 10, use</p>
+<p>data[4:10]</p>
+<p>as 10 - 4 = 6. (I know, the array indexing takes some time to get used to. Just keep in mind that Python addresses the locations between entries, not the entries, and that it starts at 0!
+The handling of DataFrames is somewhat different from the handling of numpy arrays. For example, (numbered) rows and (labeled) columns can be addressed simultaneously as follows:</p>
+<p>df[[‘Time’, ‘y’]][4:10]
+You can also apply the standard row/column notation, by using the method iloc:
+df.iloc[4:10, [0,2]]
+Finally, sometimes you want to have direct access to the data, not to the DataFrame. You can do this with
+data.values
+which returns a numpy array.
+b) Notes on Data Selection
+While pandas’ DataFrames are similar to numpy arrays, their philosophy is different, and I have wasted a lot of nerves addressing data correctly. Therefore I want to explicitly point out the differences here:
+numpy handles “rows” first. E.g., data[0] is the first row of an array
+pandas starts with the columns. E.g., df[‘values’][0] is the first element of the column ‘values’.
+If a DataFrame has labeled rows, you can extract for example the row “rowlabel” with df.loc[‘rowlabel’]. If you want to address a row by its number, e.g., row number “15,” use df.iloc[15]. You can also use iloc to address “rows/columns,” e.g., df.iloc[2:4,3].
+Slicing of rows also works, e.g., df[0:5] for the first 5 (!) rows. A sometimes confusing convention is that if you want to slice out a single row, e.g., row “5,” you have to use df[5:6]. If you use df[5] alone, you get an error!</p>
+<p>2.5.2 Grouping
+pandas offers powerful functions to handle missing data which are often replaced by nan’s (“Not-A-Number”). It also allows more complex types of data manipulation like pivoting. For example, you can use data-frames to efficiently group objects, and do a statistical evaluation of each group. The following data are simulated (but realistic) data of a survey on how many hours a day people watch the TV, grouped into “m”ale and “f”emale responses:</p>
+<p>import pandas as pd
+import matplotlib.pyplot as plt</p>
+<p>data = pd.DataFrame({
+‘Gender’: [‘f’, ‘f’, ‘m’, ‘f’, ‘m’,</p>
+<p>‘m’, ‘f’, ‘m’, ‘f’, ‘m’, ‘m’], ‘TV’: [3.4, 3.5, 2.6, 4.7, 4.1, 4.1,</p>
+<p>5.1, 3.9, 3.7, 2.1, 4.3]</p>
+<p>}) #——————————————–</p>
+<p># Group the data
+grouped = data.groupby(‘Gender’)</p>
+<p># Do some overview statistics print(grouped.describe())</p>
+<p># Plot the data: grouped.boxplot() plt.show()</p>
+<p>#——————————————– # Get the groups as DataFrames
+df_female = grouped.get_group(‘f’)</p>
+<p># Get the corresponding numpy-array values_female = grouped.get_group(‘f’).values</p>
+<p>produces</p>
+<p>2.6 Statsmodels: Tools for Statistical Modeling
+statsmodels is a Python package contributed to the community by the statsmodels development team (<a class="reference external" href="http://www.statsmodels.org/">http://www.statsmodels.org/</a>). It has a very active user commu- nity, and has in the last five years massively increased the functionality of Python for statistical data analysis. statsmodels provides classes and functions for the estimation of many different statistical models, as well as for conducting statistical tests and statistical data exploration. An extensive list of result statistics are available for each estimator.
+statsmodels also allows the formulation of models with the popular formula language based on the notation introduced by Wilkinson and Rogers (1973), and also used by S and R. For example, the following example would fit a model that assumes a linear relationship between x and y to a given dataset:</p>
+<p>import numpy as np
+import pandas as pd
+import statsmodels.formula.api as sm</p>
+<p># Generate a noisy line, and save the data in a pandas-DataFrame x = np.arange(100)
+y = 0.5*x - 20 + np.random.randn(len(x))
+df = pd.DataFrame({‘x’:x, ‘y’:y})
+# Fit a linear model, using the “formula” language # added by the package “patsy”
+model = sm.ols(‘y~x’, data=df).fit()
+print( model.summary() )</p>
+<p>Another example would be a model that assumes that “success” is determined by intelligence” and “diligence,” as well as the interaction of the two. Such a model could be described by</p>
+<p>success 􏰙 intelligence 􏰚 diligence</p>
+<p>More information on that topic is presented in Chap. 11 (“Statistical Models”).
+An extensive list of result statistics are available for each estimator. The results of all statsmodels commands have been tested against existing statistical packages to ensure that they are correct. Features include:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Linear Regression</p></li>
+<li><p>Generalized Linear Models</p></li>
+<li><p>Generalized Estimating Equations</p></li>
+<li><p>Robust Linear Models</p></li>
+<li><p>Linear Mixed Effects Models</p></li>
+<li><p>Regression with Discrete Dependent Variables</p></li>
+<li><p>ANOVA</p></li>
+<li><p>Time Series analysis</p></li>
+<li><p>Models for Survival and Duration Analysis</p></li>
+<li><p>Statistics (e.g., Multiple Tests, Sample Size Calculations, etc.)</p></li>
+<li><p>Nonparametric Methods</p></li>
+<li><p>Generalized Method of Moments</p></li>
+<li><p>Empirical Likelihood</p></li>
+<li><p>Graphics functions</p></li>
+<li><p>A Datasets Package</p></li>
+</ul>
+</div></blockquote>
+<p>2.7 Seaborn: Data Visualization
+seaborn is a Python visualization library based on matplotlib. Its primary goal is to provide a concise, high-level interface for drawing statistical graphics that are both informative and attractive <a class="reference external" href="http://stanford.edu/~mwaskom/software/seaborn/">http://stanford.edu/~mwaskom/software/seaborn/</a> (Fig. 2.9).
+For example, the following code already produces a nice regression plot (Fig. 2.9), with line-fit and confidence intervals:</p>
+<p>import numpy as np
+import matplotlib.pyplot as plt</p>
+<p>import pandas as pd
+import seaborn as sns
+x = np.linspace(1, 7, 50)
+y = 3 + 2*x + 1.5*np.random.randn(len(x)) df = pd.DataFrame({‘xData’:x, ‘yData’:y}) sns.regplot(‘xData’, ‘yData’, data=df) plt.show()</p>
+<p>2.8 General Routines
+In the examples used later in this book, a few tasks come up repeatedly: reading in data, setting the desired font size and formatting parameters, and generating graphical output files. The two following modules handle those tasks. If you are interested you can check them out; but their understanding is not really required:
+Code: “ISP_mystyle.py”5: sets commonly used formatting options, and provides functions for standardized graphics-output into files.
+2.9 Exercises
+2.1 DataInput
+Read in data from different sources:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A CVS-file with a header (’.Datadata_kaplanswim100m.csv’). Also show the first 5 data points.</p></li>
+<li><p>An MS-Excel file (’.Datadata_othersTable 2.8 Waist loss.xls’). Show the last five data points.</p></li>
+<li><p>Read in the same file, but this time from the zipped archive <a class="reference external" href="http://cdn.crcpress">http://cdn.crcpress</a>. com/downloads/C9500/GLM_data.zip.</p></li>
+</ul>
+</div></blockquote>
+<p>2.2 First Steps with Pandas</p>
+<blockquote>
+<div><p>◦ Generate a pandas DataFrame, with the x-column time stamps from 0 to 10 s, at a rate of 10 Hz, the y-column data values with a sine with 1.5 Hz, and the z-column the corresponding cosine values. Label the x-column “Time”, and the y-column “YVals”, and the z-column “ZVals”.</p>
+<p>◦ Show the head of this DataFrame.</p>
+<p>◦ Extract the data in lines 10–15 from “Yvals” and “ZVals”, and write them to the file “out.txt”.</p>
+<p>◦ Let the user know where the data have been written to.</p>
+</div></blockquote>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Calculo</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Introductor_Statistics_with_R_2E</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Introductor_Statistics_with_R_2E/index2.html">Introductor_Statistics_with_R_2E</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Geometria_Trigonometria</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Geometria_Trigonometria/c02.html">c02 Angulos</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Temarios</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Temarios/index2.html">Temarios</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">A_First_Course_Design_Analysis_Experiments_Gary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../A_First_Course_Design_Analysis_Experiments_Gary/index2.html">A_First_Course_Design_Analysis_Experiments_Gary</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">An_Introduction_Dynmical_Systems_Chaos_2E</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../An_Introduction_Dynmical_Systems_Chaos_2E/index2.html">A_First_Course_Design_Analysis_Experiments_Gary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../calculo_diferencial_integral/index2.html">A_First_Course_Design_Analysis_Experiments_Gary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Statistical_Research_Methods_Roy/index2.html">A_First_Course_Design_Analysis_Experiments_Gary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Quantum_Computing_Himanshu/Quantum_Computing_Himanshu_c01.html">Lagrange Interpolation Approach for General Parameter-Shift Rule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Applied_Delay_Differential_Equations/index2.html">Applied_Delay_Differential_Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../The_Essential_Guide_to_HTML5_3E_Jeanine/index2.html">The_Essential_Guide_to_HTML5_3E_Jeanine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Fundamentals_of_Physics_Resnick/index2.html">Fundamentals_of_Physics_Resnick</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Creating_Responsive_Websites_Using_HTML5_CSS3_Varun/index2.html">A_First_Course_Design_Analysis_Experiments_Gary</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">An_Introduction_Statistics_Python</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="An_Introduction_Statistics_Python_c01.html">C01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="An_Introduction_Statistics_Python_c01.html#chapter-1-why-statistics">Chapter 1 Why Statistics?</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2025, santosg57.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../_sources/Libros_Leer_Apuntes_GOOGLE/Python/An_Introduction_Statistics_Python/An_Introduction_Statistics_Python_c02.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

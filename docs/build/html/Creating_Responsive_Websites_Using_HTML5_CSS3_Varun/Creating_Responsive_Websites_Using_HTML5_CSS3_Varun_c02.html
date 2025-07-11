@@ -1,26 +1,28 @@
+
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>CHAPTER 2 HTML5 and Responsive Web Design &#8212; Calculo 0.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
-    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=1ea45734" />
-    <script src="../_static/documentation_options.js?v=2709fde1"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="C01" href="../Libros_Leer_Apuntes_GOOGLE/Python/An_Introduction_Statistics_Python/An_Introduction_Statistics_Python_c01.html" />
     <link rel="prev" title="Introduction to Web Development" href="Creating_Responsive_Websites_Using_HTML5_CSS3_Varun_c01.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
-
   
-  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
   
@@ -33,7 +35,7 @@
           <div class="body" role="main">
             
   <section id="chapter-2-html5-and-responsive-web-design">
-<h1>CHAPTER 2 HTML5 and Responsive Web Design<a class="headerlink" href="#chapter-2-html5-and-responsive-web-design" title="Link to this heading">¶</a></h1>
+<h1>CHAPTER 2 HTML5 and Responsive Web Design<a class="headerlink" href="#chapter-2-html5-and-responsive-web-design" title="Permalink to this headline">¶</a></h1>
 <p>This chapter covers HTML5 and responsive web design by describing
 the features that are supported by modern-day browsers. It covers how
 to create an HTML5 page and explains why it is easier to write pages with
@@ -43,688 +45,713 @@ Additionally, the chapter explains text-level semantics in detail, followed
 by the audio and video capabilities. All these concepts are supported by
 code examples and browser screenshots displaying how a modern-day
 browser renders the code.</p>
-<p>What HTML5 Features Are Supported
-by Browsers?
-Most parts of HTML5 can be used today, as it is a widely supported
+<section id="what-html5-features-are-supported-by-browsers">
+<h2>What HTML5 Features Are Supported by Browsers?<a class="headerlink" href="#what-html5-features-are-supported-by-browsers" title="Permalink to this headline">¶</a></h2>
+<p>Most parts of HTML5 can be used today, as it is a widely supported
 standard across all modern browsers. However, some of the newer features
-may not be fully supported in older browsers, so before implementing</p>
-<p>a new feature, you should always check the browser version your app is
+may not be fully supported in older browsers, so before implementing
+a new feature, you should always check the browser version your app is
 going to run on. Here are some of the commonly used HTML5 features
-that are widely supported across all modern browsers:
-• Semantics: HTML5 introduced a new set of semantic
-tags that can be used to describe the structure of web
-pages more accurately. These tags are designed to
-replace the generic &lt;div&gt; and &lt;span&gt; tags that were
-used in earlier versions of HTML. Some of the most
-popular semantic tags in HTML5 include &lt;header&gt;,
-&lt;footer&gt;, &lt;nav&gt;, &lt;article&gt;, and &lt;section&gt;. Search
-engine optimization can be improvised if these tags
-are utilized appropriately, since a search engine will
-use the new tags to understand the content of the
-web page.
-• Audio and video: HTML5 provides built-in support for
-audio and video playback, which eliminates the need
-for third-party plugins like Adobe Flash. This makes
-it much easier to include multimedia content on web
-pages. The audio and video tags in HTML5 support
-several file formats, including MP3, MP4, and Ogg.
-They also include controls for playback, volume, and
-other settings, making it easy for users to interact with
-multimedia content.
-• Canvas: The &lt;canvas&gt; element in HTML5 provides a
-way to draw graphics on a web page using JavaScript.
-This feature can be used to create dynamic visual
-effects, such as animations, games, and data
-visualizations. The &lt;canvas&gt; element can be used to
-create 2D or 3D graphics, and it provides a powerful set
-of APIs for manipulating the graphics.</p>
+that are widely supported across all modern browsers:</p>
 <ul class="simple">
-<li><p>Forms: HTML5 includes several enhancements to</p></li>
+<li><p>Semantics: HTML5 introduced a new set of semantic tags that can be used to describe the structure of web pages more accurately. These tags are</p></li>
 </ul>
-<p>forms, including new input types and attributes. Some
-of the new input types in HTML5 include email, URL,
-and number, which provide more accurate validation
-for user input. HTML5 also includes new form
-attributes, such as autocomplete and required, which
-improve the usability of forms.
-• Geolocation: HTML5 provides a geolocation API that
-allows web applications to access the user’s location.
-This feature can be used to create location-based
-services, such as maps, local search, and weather
-updates. The geolocation API is available on the latest
-web browsers, such as Chrome, Firefox, and Safari.
-• Local storage: HTML5 provides a local storage API that
-permits web applications to use a user’s computer
-to store data. This feature can be used to create web
-applications that work offline or to cache the data to
-load the web application faster. The local storage API
-works on the latest web browsers, such as Chrome,
-Firefox, and Safari.
-• Web workers: HTML5 provides a web workers API
-that allows web applications to run scripts in the
-background. This feature can be used to improve the
-performance of web applications by offloading tasks
-to separate threads. The web workers API works on
-the latest web browsers, such as Chrome, Firefox,
-and Safari.</p>
+<p>designed to replace the generic &lt;div&gt; and &lt;span&gt; tags that were used in earlier versions of HTML. Some of the most popular semantic tags in HTML5
+include &lt;header&gt;, &lt;footer&gt;, &lt;nav&gt;, &lt;article&gt;, and &lt;section&gt;. Search engine optimization can be improvised if these tags are utilized
+appropriately, since a search engine will use the new tags to understand the content of the web page.</p>
 <ul class="simple">
-<li><p>Web sockets: HTML5 provides a web sockets API that</p></li>
+<li><p>Audio and video: HTML5 provides built-in support for audio and video playback, which eliminates the need for third-party plugins like Adobe</p></li>
 </ul>
-<p>allows web applications to create real-time, two-way
-communication channels between the client and
-the server. This feature can be used to create web
-applications that update in real time, such as chat
-applications, collaborative editors, and online gaming
-apps. The web sockets API works on the latest web
-browsers, such as Chrome, Firefox, and Safari.</p>
-<p>How to Write HTML5 Pages
-The way HTML page used to be written was something like the
-following code:
-&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN”
-“<a class="reference external" href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</a>”&gt;
-&lt;html xmlns=”<a class="reference external" href="http://www.w3.org/1999/xhtml">http://www.w3.org/1999/xhtml</a>”&gt;
-&lt;head&gt;
-&lt;meta http-equiv=”Content-Type” content=”text/html;
-charset=UTF-8” /&gt;
-The HTML5 equivalent code, shown here, is the same as the
-previous code:
-&lt;!DOCTYPE html&gt;
-&lt;html lang=”en”&gt;
-&lt;head&gt;
-&lt;meta charset=UTF-8” /&gt;
-Save the previous code with an .html extension, and you have
+<p>Flash. This makes it much easier to include multimedia content on web pages. The audio and video tags in HTML5 support several file formats,
+including MP3, MP4, and Ogg. They also include controls for playback, volume, and other settings, making it easy for users to interact with
+multimedia content.</p>
+<ul class="simple">
+<li><p>Canvas: The &lt;canvas&gt; element in HTML5 provides a way to draw graphics on a web page using JavaScript. This feature can be used to create</p></li>
+</ul>
+<p>dynamic visual effects, such as animations, games, and data visualizations. The &lt;canvas&gt; element can be used to create 2D or 3D graphics, and it
+provides a powerful set of APIs for manipulating the graphics.</p>
+<ul class="simple">
+<li><p>Forms: HTML5 includes several enhancements to forms, including new input types and attributes. Some of the new input types in HTML5 include</p></li>
+</ul>
+<p>email, URL, and number, which provide more accurate validation for user input. HTML5 also includes new form attributes, such as autocomplete and
+required, which improve the usability of forms.</p>
+<ul class="simple">
+<li><p>Geolocation: HTML5 provides a geolocation API that allows web applications to access the user’s location. This feature can be used to create</p></li>
+</ul>
+<p>location-based services, such as maps, local search, and weather updates. The geolocation API is available on the latest web browsers, such as
+Chrome, Firefox, and Safari.</p>
+<ul class="simple">
+<li><p>Local storage: HTML5 provides a local storage API that permits web applications to use a user’s computer to store data. This feature can be</p></li>
+</ul>
+<p>used to create web applications that work offline or to cache the data to load the web application faster. The local storage API works on the
+latest web browsers, such as Chrome, Firefox, and Safari.</p>
+<ul class="simple">
+<li><p>Web workers: HTML5 provides a web workers API that allows web applications to run scripts in the background. This feature can be used to</p></li>
+</ul>
+<p>improve the performance of web applications by offloading tasks to separate threads. The web workers API works on the latest web browsers, such
+as Chrome, Firefox, and Safari.</p>
+<ul class="simple">
+<li><p>Web sockets: HTML5 provides a web sockets API that allows web applications to create real-time, two-way communication channels between the</p></li>
+</ul>
+<p>client and the server. This feature can be used to create web applications that update in real time, such as chat applications, collaborative
+editors, and online gaming apps. The web sockets API works on the latest web browsers, such as Chrome, Firefox, and Safari.</p>
+</section>
+<section id="how-to-write-html5-pages">
+<h2>How to Write HTML5 Pages<a class="headerlink" href="#how-to-write-html5-pages" title="Permalink to this headline">¶</a></h2>
+<p>The way HTML page used to be written was something like the
+following code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;</span>
+<span class="cp">&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;text/html;</span>
+<span class="s">charset=UTF-8&quot;</span> <span class="p">/&gt;</span>
+</pre></div>
+</div>
+<p>The HTML5 equivalent code, shown here, is the same as the previous code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">UTF-8&quot;</span> <span class="p">/&gt;</span>
+</pre></div>
+</div>
+<p>Save the previous code with an .html extension, and you have
 written your first HTML5 page according to the W3C validator (<a class="reference external" href="http://">http://</a>
 validator.w3.org)!</p>
 <p>The first line of the code declares the new HTML5 doctype; remember,
 &lt;!DOCTYPE html&gt; and &lt;!doctype html&gt; are the same; the case does not
-make any difference.
-The second tag is the first &lt;html&gt; tag, which mentions the language.
-&lt;html lang=”en”&gt;
-The &lt;head&gt; tag follows, with character encoding specified using
+make any difference.</p>
+<p>The second tag is the first &lt;html&gt; tag, which mentions the language.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>The &lt;head&gt; tag follows, with character encoding specified using
 &lt;meta&gt; (this is a void element and will not require a closing tag). The value
 for the character encoding will be UTF-8 (almost every time you create a
 HTML page) unless there is a specific requirement otherwise.</p>
-<p>Writing HTML5 Code Is Easy
-Developers have traditionally written code in HTML in lowercase and by
+</section>
+<section id="writing-html5-code-is-easy">
+<h2>Writing HTML5 Code Is Easy<a class="headerlink" href="#writing-html5-code-is-easy" title="Permalink to this headline">¶</a></h2>
+<p>Developers have traditionally written code in HTML in lowercase and by
 surrounding multiple attributes with double quotes. But HTML5 lets you
 write code without quotes, in lower or uppercase, and with camel-case
 letters, and it doesn’t need much information provided as an attribute in
-HTML tags.
-Typically, CSS code in HTML would have href, rel, and type attributed,
-like so:
-&lt;link href=”CSS/main.css” rel=”stylesheet” type=”text/css”/&gt;
-HTML5 does not require so many details; it will just work fine with the
-following declaration:
-&lt;link href=CSS/main.css rel=stylesheet &gt;
-If you look closely, there is no ending tag or closing slash, there are
+HTML tags.</p>
+<p>Typically, CSS code in HTML would have href, rel, and type attributed,
+like so:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;CSS/main.css&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span><span class="p">/&gt;</span>
+</pre></div>
+</div>
+<p>HTML5 does not require so many details; it will just work fine with the following declaration:
+.. code:: html</p>
+<blockquote>
+<div><p>&lt;link href=CSS/main.css rel=stylesheet &gt;</p>
+</div></blockquote>
+<p>If you look closely, there is no ending tag or closing slash, there are
 no quotes surrounding attribute values, and there is no type declaration
 either. Here both the examples are valid and would work just fine.</p>
 <p>In addition to CSS and JavaScript elements, this kind of lenient syntax
 is applicable for all HTML tags. A &lt;div&gt; element could be defined as
-follows:
-&lt;div id=wrapper&gt;
-Let’s take an example of another tag, for example, an &lt;img&gt; tag.
-&lt;img SRC=company_logo.png Alt=logo &gt;
-This HTML code is a valid &lt;img&gt; tag without an end tag or a slash,
+follows:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">wrapper</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Let’s take an example of another tag, for example, an &lt;img&gt; tag.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">img</span> <span class="na">SRC</span><span class="o">=</span><span class="s">company_logo.png</span> <span class="na">Alt</span><span class="o">=</span><span class="s">logo</span> <span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>This HTML code is a valid &lt;img&gt; tag without an end tag or a slash,
 without quotes, and with mixing upper and lowercase. HTML even lets
 developers write code without specifying &lt;html&gt;, &lt;body&gt;, and &lt;head&gt;
-tags, and it still validates.
-Although HTML5 is flexible, I still recommend writing a few extra lines
+tags, and it still validates.</p>
+<p>Although HTML5 is flexible, I still recommend writing a few extra lines
 of code to maintain best practices for better code maintainability and ease
 of understanding. Hence, writing code in the old style is beneficial. The
-CSS declaration shown earlier, for example, can be written as follows:
-&lt;link href=”CSS/main.css” rel=”stylesheet” /&gt;
-The quotes and closing slash are in the stylesheet declaration, but the
-type attribute is omitted here. This HTML code would not be flagged.
-The anchor tag has been revised and can do a few things that the prior
+CSS declaration shown earlier, for example, can be written as follows:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;CSS/main.css&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="p">/&gt;</span>
+</pre></div>
+</div>
+<p>The quotes and closing slash are in the stylesheet declaration, but the
+type attribute is omitted here. This HTML code would not be flagged.</p>
+<p>The anchor tag has been revised and can do a few things that the prior
 version of HTML didn’t support. The older HTML version needed each
-element to have its own anchor tag.
-For example, look at the following code snippet:
-&lt;div class=”container”&gt;&lt;a href=”home.html”&gt; Home &lt;/a&gt;&lt;/div&gt;
-&lt;p&gt;&lt;a href=”home.html”&gt; This paragraph is actually a link
-tagged by anchor. &lt;/a&gt;&lt;/p&gt;
-&lt;h1&gt;&lt;a href=”home.html”&gt; Navigate to Home Page &lt;/a&gt;&lt;/h1&gt;
-HTML5 now allows us to group all the elements under the anchor tag,
+element to have its own anchor tag.</p>
+<p>For example, look at the following code snippet:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;home.html&quot;</span><span class="p">&gt;</span> Home <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;home.html&quot;</span><span class="p">&gt;</span> This paragraph is actually a link
+tagged by anchor. <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;home.html&quot;</span><span class="p">&gt;</span> Navigate to Home Page <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>HTML5 now allows us to group all the elements under the anchor tag,
 and it doesn’t require each element to have its own anchor tag. See the
 following code snippet:</p>
-<p>&lt;a&gt;
-&lt;div class=”container”&gt; Home &lt;/div&gt;
-&lt;p&gt; This paragraph is actually a link tagged by
-anchor. &lt;/p&gt;
-&lt;h1&gt; Navigate to Home Page &lt;/h1&gt;
-&lt;/a&gt;
-The only restriction here with the anchor tag is that it cannot be
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container&quot;</span><span class="p">&gt;</span> Home <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span> This paragraph is actually a link tagged by
+   anchor. <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span> Navigate to Home Page <span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>The only restriction here with the anchor tag is that it cannot be
 grouped with another anchor tag, and form elements are not allowed to be
-grouped within the anchor tag.
-There are some features of HTML5 that are obsolete; it won’t complain
+grouped within the anchor tag.</p>
+<p>There are some features of HTML5 that are obsolete; it won’t complain
 if you use them, but you should avoid using them if you can. The HTML5
-validator will generate warnings for these elements.
-There are two types of obsolete features: conforming and
+validator will generate warnings for these elements.</p>
+<p>There are two types of obsolete features: conforming and
 nonconforming. The prior definition was for the conforming obsolete
 feature, whereas a nonconforming obsolete feature doesn’t guarantee that
 it will work on all the browsers. It may work on a few but not others, so you
 should implement those types at your own risk. Here is where you can find
 a list of nonconforming obsolete features: <a class="reference external" href="https://html.spec.whatwg">https://html.spec.whatwg</a>.
 org/#non-conforming-features.</p>
-<p>Semantic Elements in HTML5
-What are semantic elements? A semantic element defines its purpose
+</section>
+<section id="semantic-elements-in-html5">
+<h2>Semantic Elements in HTML5<a class="headerlink" href="#semantic-elements-in-html5" title="Permalink to this headline">¶</a></h2>
+<p>What are semantic elements? A semantic element defines its purpose
 or what type of content it will contain. A few examples of such semantic
 elements are &lt;header&gt;, &lt;footer&gt;, and &lt;p&gt; tags. HTML was invented as a
 markup language to provide a description of the documents it hosts, and it
-has evolved as the Internet has grown.
-Initially the Internet was used to share scientific research material, and
+has evolved as the Internet has grown.</p>
+<p>Initially the Internet was used to share scientific research material, and
 eventually people wanted to share other things on the Internet, followed
 up by people making their website look good. Building such functionality
-on the Web was not supported at that time, which forced developers to use</p>
-<p>work-arounds to make their websites look good. Nonsemantic elements
+on the Web was not supported at that time, which forced developers to use
+work-arounds to make their websites look good. Nonsemantic elements
 did this job for the programmers (e.g., &lt;div&gt;) and provided these tags with
 class or id attributes, which in turn defined the purpose of the tag (e.g.,
-&lt;div class=”header”&gt;&lt;/div&gt;).
-There are many advantages to using semantic elements. The first
+&lt;div class=”header”&gt;&lt;/div&gt;).</p>
+<p>There are many advantages to using semantic elements. The first
 and foremost is that they make it easier to read code. They draw anyone’s
 attention when they look at the code (either written by you or by
-someone else).
-The following piece of code will illustrate my point; it uses semantic
-elements:
-&lt;header&gt;&lt;/header&gt;
-&lt;section&gt;
-&lt;article&gt;
-&lt;figure&gt;
-&lt;img&gt;
-&lt;figcaption&gt;&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;/article&gt;
-&lt;/section&gt;
-&lt;footer&gt;&lt;/footer&gt;
-The following code uses nonsemantic elements:
-&lt;div id=”header”&gt;&lt;/div&gt;
-&lt;div class=”section”&gt;
-&lt;div class=”article”&gt;
-&lt;div class=”figure”&gt;
-&lt;img&gt;
-&lt;div class=”figcaption”&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=”footer”&gt;&lt;/div&gt;</p>
+someone else).</p>
+<p>The following piece of code will illustrate my point; it uses semantic
+elements:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">article</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">figure</span><span class="p">&gt;</span>
+         <span class="p">&lt;</span><span class="nt">img</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">figcaption</span><span class="p">&gt;&lt;/</span><span class="nt">figcaption</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">footer</span><span class="p">&gt;&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>The following code uses nonsemantic elements:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;header&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;section&quot;</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;article&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;figure&quot;</span><span class="p">&gt;</span>
+         <span class="p">&lt;</span><span class="nt">img</span><span class="p">&gt;</span>
+         <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;figcaption&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;footer&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
 <p>Apart from better readability, semantic elements have greater
 accessibility. They are not restricted to readability; they can also be used as
 search engine optimization (SEO) and assistive technologies, which help
 users who have vision impairment. Overall, it’s a better experience for all
-the users.
-New Semantic Elements
-Here are the new semantic elements:
-• &lt;article&gt;: This element specifies an independent
-content. Use cases of article tags could be comments,
-news articles, blogs, etc.
-Here is what it looks like in code:
-&lt;style&gt;
-.superheros {
-margin: 0;
-padding: 5px;
-background-color: lightgray;
-}
-.superheros &gt; h1, .superhero {
-margin: 10px;
-padding: 5px;
-}
-.superhero {
-background: white;
-}</p>
-<p>.superheros &gt; h2, p {
-margin: 4px;
-font-size: 90%;
-}
-&lt;/style&gt;
-&lt;article class=”superheros”&gt;
-&lt;h1&gt;Most Liked Superheros&lt;/h1&gt;
-&lt;article class=”superhero”&gt;
-&lt;h2&gt; Batman &lt;/h2&gt;
-&lt;p&gt;Batman is a superhero appearing in American
-comic books published by DC Comics. &lt;br/&gt;
-The character was created by artist Bob Kane
-and writer Bill Finger, and debuted in the 27th
-issue of the comic book&lt;/p&gt;
-&lt;/article&gt;
-&lt;article class=”superhero”&gt;
-&lt;h2&gt; Iron Man&lt;/h2&gt;
-&lt;p&gt;Iron Man is a superhero appearing in
-American comic books published by Marvel
-Comics. &lt;br/&gt;
-The character was co-created by writer and editor
-Stan Lee, developed by scripter Larry Lieber,
-and designed by artists Don Heck and Jack
-Kirby&lt;/p&gt;
-&lt;/article&gt;
-&lt;/article&gt;
-Figure 2-2 shows what it looks like in a browser (the paragraph in the
-code is taken from Wikipedia).</p>
+the users.</p>
+</section>
+<section id="new-semantic-elements">
+<h2>New Semantic Elements<a class="headerlink" href="#new-semantic-elements" title="Permalink to this headline">¶</a></h2>
+<p>Here are the new semantic elements:</p>
 <ul class="simple">
-<li><p>&lt;aside&gt;: As an addendum to the main content, &lt;aside&gt;</p></li>
+<li><p>&lt;article&gt;: This element specifies an independent content. Use cases of article tags could be comments, news articles, blogs, etc.</p></li>
 </ul>
-<p>is used to define a kind of subcontent or sidebar
-content.
-Here is what it looks like in code:
-&lt;style&gt;
-aside {
-width: 30%;
-padding-left: 15px;
-margin-left: 15px;
-float: right;
-font-style: italic;
-background-color: lightgray;
-}
-&lt;/style&gt;
-&lt;p&gt;
-Marvel Comics is an American comic book publisher
-and the flagship property of Marvel Entertainment,
-a division of The Walt Disney Company since
-September 1, 2009. Evolving from Timely Comics
-in 1939,</p>
-<p>Magazine Management/Atlas Comics in 1951 and its
-predecessor, Marvel Mystery Comics, the Marvel
-Comics title/name/brand
-was first used in June 1961.
-Marvel was started in 1939 by Martin Goodman as
-Timely Comics,[3] and by 1951 had generally become
-known as Atlas Comics.
-The Marvel era began in June 1961 with the launch
-of The Fantastic Four and other superhero titles
-created by Stan Lee, Jack Kirby,
-Steve Ditko and many others. The Marvel brand,
-which had been used over the years and decades, was
-solidified as the company’s
-primary brand.
-&lt;/p&gt;
-&lt;aside&gt;
-&lt;h3&gt;
-Wolverine
-&lt;/h3&gt;
-&lt;p&gt;
-The Wolverine, is a fictional character
-originating as the primary protagonist of 20th
-Century Fox’s X-Men film series, &lt;br/&gt;
-and appearing in the Marvel Cinematic Universe
-media franchise produced by Marvel Studios.
-&lt;/p&gt;
-&lt;/aside&gt;
-Figure 2-3 shows what it looks like in a browser (the paragraph in the
-code is taken from Wikipedia).</p>
-<p>Figure 2-2. Google Chrome displaying &lt;aside&gt; tag
-• &lt;details&gt;: This element is used to provide additional
-information that can be opened or closed based on
-user action. It can be assumed to be a pop-up or a
-widget that can be opened or closed.
-Here is what it looks like in code:
-&lt;style&gt;
-details &gt; summary {
-padding: 4px;
-width: 200px;
-background-color: #5296ce;
-border: none;
-box-shadow: 1px 1px 2px #bbbbbb;
-cursor: pointer;
-}
-details &gt; p {
-background-color: #5296ce;
-padding: 4px;
-margin: 0;</p>
-<p>box-shadow: 1px 1px 2px #bbbbbb;
-}
-&lt;/style&gt;
-&lt;details&gt;
-&lt;summary&gt;
-ICC World Cup
-&lt;/summary&gt;
-&lt;p&gt;
-The Cricket World Cup, officially known
-as ICC Men’s Cricket World Cup,[4] is the
-international championship of
-One Day International (ODI) cricket. The event
-is organised by the sport’s governing body, the
-International Cricket Council
-(ICC), every four years, with preliminary
-qualification rounds leading up to a finals
-tournament. The tournament is one of the
-world’s most viewed sporting events and
-is considered the “flagship event of the
-international cricket calendar” by the ICC.[5]
-The first World Cup was organised in England
-in June 1975, with the first ODI cricket match
-having been played only four years
-earlier. However, a separate Women’s Cricket
-World Cup had been held two years before the
-first men’s tournament, and a
-tournament involving multiple international
-teams had been held as early as 1912, when a
-triangular tournament of Test matches</p>
-<p>was played between Australia, England and South
-Africa. The first three World Cups were held in
-England. From the 1987
-tournament onwards, hosting has been shared
-between countries under an unofficial rotation
-system, with fourteen ICC members
-having hosted at least one match in the
-tournament.
-&lt;/p&gt;
-&lt;/details&gt;
-Figure 2-3 shows what it looks like in a browser (the paragraph in the
-code is taken from Wikipedia). Figure 2-4 shows the HTML &lt;details&gt; tag
+<p>Here is what it looks like in code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="p">.</span><span class="nc">superheros</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="kc">lightgray</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">   </span><span class="p">.</span><span class="nc">superheros</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">h1</span><span class="o">,</span><span class="w"> </span><span class="p">.</span><span class="nc">superhero</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">   </span><span class="p">.</span><span class="nc">superhero</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">   </span><span class="p">.</span><span class="nc">superheros</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">h2</span><span class="o">,</span><span class="w"> </span><span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="kt">%</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">article</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;superheros&quot;</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Most Liked Superheros<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">article</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;superhero&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span> Batman <span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Batman is a superhero appearing in American
+      comic books published by DC Comics. <span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+      The character was created by artist Bob Kane
+      and writer Bill Finger, and debuted in the 27th
+      issue of the comic book<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">article</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;superhero&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span> Iron Man<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Iron Man is a superhero appearing in
+      American comic books published by Marvel
+      Comics. <span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+      The character was co-created by writer and editor
+      Stan Lee, developed by scripter Larry Lieber,
+      and designed by artists Don Heck and Jack
+      Kirby<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Figure 2-2 shows what it looks like in a browser (the paragraph in the code is taken from Wikipedia).</p>
+<ul class="simple">
+<li><p>&lt;aside&gt;: As an addendum to the main content, &lt;aside&gt; is used to define a kind of subcontent or sidebar content.</p></li>
+</ul>
+<p>Here is what it looks like in code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">aside</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="kt">%</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">padding-left</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">margin-left</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">float</span><span class="p">:</span><span class="w"> </span><span class="kc">right</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">font-style</span><span class="p">:</span><span class="w"> </span><span class="kc">italic</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="kc">lightgray</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+   Marvel Comics is an American comic book publisher
+   and the flagship property of Marvel Entertainment,
+   a division of The Walt Disney Company since
+   September 1, 2009. Evolving from Timely Comics
+   in 1939,
+
+   Magazine Management/Atlas Comics in 1951 and its
+   predecessor, Marvel Mystery Comics, the Marvel
+   Comics title/name/brand
+   was first used in June 1961.
+
+   Marvel was started in 1939 by Martin Goodman as
+   Timely Comics,[3] and by 1951 had generally become
+   known as Atlas Comics.
+   The Marvel era began in June 1961 with the launch
+   of The Fantastic Four and other superhero titles
+   created by Stan Lee, Jack Kirby,
+   Steve Ditko and many others. The Marvel brand,
+   which had been used over the years and decades, was
+   solidified as the company&#39;s
+   primary brand.
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">aside</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>
+      Wolverine
+   <span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+   The Wolverine, is a fictional character
+   originating as the primary protagonist of 20th
+   Century Fox&#39;s X-Men film series, <span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+   and appearing in the Marvel Cinematic Universe
+   media franchise produced by Marvel Studios.
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">aside</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Figure 2-3 shows what it looks like in a browser (the paragraph in the code is taken from Wikipedia).</p>
+<p>Figure 2-2. Google Chrome displaying &lt;aside&gt; tag</p>
+<ul class="simple">
+<li><p>&lt;details&gt;: This element is used to provide additional information that can be opened or closed based on user action. It can be assumed to be a</p></li>
+</ul>
+<p>pop-up or a widget that can be opened or closed.</p>
+<p>Here is what it looks like in code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">details</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">summary</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#5296ce</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">box-shadow</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="w"> </span><span class="mh">#bbbbbb</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">cursor</span><span class="p">:</span><span class="w"> </span><span class="kc">pointer</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="nt">details</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#5296ce</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">box-shadow</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="w"> </span><span class="mh">#bbbbbb</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">details</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">summary</span><span class="p">&gt;</span>
+      ICC World Cup
+   <span class="p">&lt;/</span><span class="nt">summary</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+   The Cricket World Cup, officially known
+   as ICC Men&#39;s Cricket World Cup,[4] is the
+   international championship of
+   One Day International (ODI) cricket. The event
+   is organised by the sport&#39;s governing body, the
+   International Cricket Council
+   (ICC), every four years, with preliminary
+   qualification rounds leading up to a finals
+   tournament. The tournament is one of the
+   world&#39;s most viewed sporting events and
+   is considered the &quot;flagship event of the
+   international cricket calendar&quot; by the ICC.[5]
+   The first World Cup was organised in England
+   in June 1975, with the first ODI cricket match
+   having been played only four years
+   earlier. However, a separate Women&#39;s Cricket
+   World Cup had been held two years before the
+   first men&#39;s tournament, and a
+   tournament involving multiple international
+   teams had been held as early as 1912, when a
+   triangular tournament of Test matches
+   was played between Australia, England and South
+   Africa. The first three World Cups were held in
+   England. From the 1987
+   tournament onwards, hosting has been shared
+   between countries under an unofficial rotation
+   system, with fourteen ICC members
+   having hosted at least one match in the
+   tournament.
+   <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">details</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Figure 2-3 shows what it looks like in a browser (the paragraph in the code is taken from Wikipedia). Figure 2-4 shows the HTML &lt;details&gt; tag
 expanded.</p>
 <ul class="simple">
-<li><p>&lt;figcaption&gt;: Whenever a &lt;figure&gt; element needs a</p></li>
+<li><p>&lt;figcaption&gt;: Whenever a &lt;figure&gt; element needs a caption, the &lt;figcaption&gt; tag comes to rescue. This element can be placed as the first or</p></li>
 </ul>
-<p>caption, the &lt;figcaption&gt; tag comes to rescue. This
-element can be placed as the first or last child of the
-&lt;figure&gt; element.</p>
-<p>Here is what it looks like in code:
-&lt;style&gt;
-figure {
-border: 1px #cccccc solid;
-padding: 4px;
-margin: auto;
-}
-figcaption {
-background-color: black;
-color: white;
-font-style: italic;
-padding: 2px;
-text-align: center;
-}
-&lt;/style&gt;
-&lt;figure&gt;
-&lt;img src=”../../../cityscape.jpeg” alt=”cityscape”
-style=”width: 100%; height: 90%;” /&gt;
-&lt;figcaption&gt;High rise buildings in the city at
-night look so amazing.&lt;/figcaption&gt;
-&lt;/figure&gt;
-Figure 2-5 shows what it looks like in a browser.</p>
+<p>last child of the &lt;figure&gt; element.</p>
+<p>Here is what it looks like in code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">figure</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="mh">#cccccc</span><span class="w"> </span><span class="kc">solid</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="nt">figcaption</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="kc">black</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="k">font-style</span><span class="p">:</span><span class="w"> </span><span class="kc">italic</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">figure</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;../../../cityscape.jpeg&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;cityscape&quot;</span>
+      <span class="na">style</span><span class="o">=</span><span class="s">&quot;width: 100%; height: 90%;&quot;</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nt">figcaption</span><span class="p">&gt;</span>High rise buildings in the city at
+      night look so amazing.<span class="p">&lt;/</span><span class="nt">figcaption</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Figure 2-5 shows what it looks like in a browser.</p>
 <ul class="simple">
-<li><p>&lt;footer&gt;: There can be multiple elements in the footer</p></li>
+<li><p>&lt;footer&gt;: There can be multiple elements in the footer section, and typically the footer element contains authorship, copyright, contact</p></li>
 </ul>
-<p>section, and typically the footer element contains
-authorship, copyright, contact information, and a link
-to go to the top of the document.
-Here is the code:
-&lt;style&gt;
-footer {
-text-align: center;
-padding: 3px;
-background-color: DarkSalmon;
-color: white;
-}
-&lt;/style&gt;
-&lt;footer&gt;
-&lt;p&gt;Author: John Doe&lt;br&gt;
-&lt;a href=”<a class="reference external" href="mailto:johndoe&#37;&#52;&#48;example&#46;com">mailto:johndoe<span>&#64;</span>example<span>&#46;</span>com</a>”&gt;
-<a class="reference external" href="mailto:johndoe&#37;&#52;&#48;example">johndoe<span>&#64;</span>example</a>.com&lt;/a&gt;
-&lt;/p&gt;
-&lt;/footer&gt;</p>
+<p>information, and a link to go to the top of the document.</p>
+<p>Here is the code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">footer</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="n">DarkSalmon</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">footer</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Author: John Doe<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;mailto:johndoe@example.com&quot;</span><span class="p">&gt;</span>
+      johndoe@example.com<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
+</pre></div>
+</div>
 <p>Figure 2-6. HTML &lt;footer&gt; tag displayed in Chrome</p>
-<p>Note The footer is placed after the figcaption tag and shows the
-author information.</p>
+<p>Note The footer is placed after the figcaption tag and shows the author information.</p>
 <ul class="simple">
-<li><p>&lt;header&gt;: This element represents the introductory</p></li>
+<li><p>&lt;header&gt;: This element represents the introductory content for the document. Typically it contains navigation links, heading elements, or</p></li>
 </ul>
-<p>content for the document. Typically it contains
-navigation links, heading elements, or company logos.
-Here is the code:
-&lt;style&gt;
-header {
-display: block;
-}
-&lt;/style&gt;</p>
-<p>&lt;header&gt;
-&lt;h1&gt;Main page heading here&lt;/h1&gt;
-&lt;p&gt;Posted by John Doe&lt;/p&gt;
-&lt;/header&gt;
-&lt;style&gt;
-figure {
-border: 1px #cccccc solid;
-padding: 4px;
-margin: auto;
-}
-figcaption {
-background-color: black;
-color: white;
-font-style: italic;
-padding: 2px;
-text-align: center;
-}
-&lt;/style&gt;
-&lt;figure&gt;
-&lt;img src=”../../../cityscape.jpeg” alt=”cityscape”
-style=”width: 100%; height: 90%;” /&gt;
-&lt;figcaption&gt;High rise buildings in the city at
-night look so amazing.&lt;/figcaption&gt;
-&lt;/figure&gt;
-Figure 2-7 shows what it looks like in a browser.</p>
+<p>company logos.</p>
+<p>Here is the code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span><span class="w"></span>
+<span class="nt">header</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">block</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Main page heading here<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Posted by John Doe<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">figure</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="mh">#cccccc</span><span class="w"> </span><span class="kc">solid</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="nt">figcaption</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="kc">black</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">font-style</span><span class="p">:</span><span class="w"> </span><span class="kc">italic</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">figure</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;../../../cityscape.jpeg&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;cityscape&quot;</span>
+   <span class="na">style</span><span class="o">=</span><span class="s">&quot;width: 100%; height: 90%;&quot;</span> <span class="p">/&gt;</span>
+   <span class="p">&lt;</span><span class="nt">figcaption</span><span class="p">&gt;</span>High rise buildings in the city at
+   night look so amazing.<span class="p">&lt;/</span><span class="nt">figcaption</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Figure 2-7 shows what it looks like in a browser.</p>
 <p>Figure 2-7. HTML &lt;header&gt; tag displayed in Chrome</p>
 <p>Note The image tag is followed by the header tag.</p>
 <ul class="simple">
-<li><p>&lt;hgroup&gt;: This element can be used when the</p></li>
+<li><p>&lt;hgroup&gt;: This element can be used when the requirement is to have a heading with one or more subheadings. It is used to group heading elements</p></li>
 </ul>
-<p>requirement is to have a heading with one or more
-subheadings. It is used to group heading elements from
-&lt;h1&gt; to &lt;h6&gt;.
-Here is the code:
-&lt;hgroup&gt;
-&lt;h1&gt;Heading H_One&lt;/h1&gt;
-&lt;h2&gt;Heading H_Two&lt;/h2&gt;
-&lt;hgroup&gt;
-&lt;p&gt;This is a sample text in paragraph 1.&lt;/p&gt;
-&lt;p&gt;This is a sample text in paragraph 2.&lt;/p&gt;
-&lt;p&gt;This is a sample text in paragraph 3.&lt;/p&gt;
-&lt;p&gt;This is a sample text in paragraph 4.&lt;/p&gt;
-&lt;/body&gt;</p>
-<p>Figure 2-8. HTML &lt;hgroup&gt; tag displayed in Chrome
-• &lt;main&gt;: As the name specifies, this tag is used to define
-the nonrepetitive content of the document. This tag
-should contain information unique to document; no
-content such as navigations, sidebars, or links should
-be repeated. Multiple definitions for the main tag per
-the documentation is not allowed, and it cannot be a
-descendent of &lt;article&gt;,&lt;aside&gt;, &lt;header&gt;, &lt;footer&gt;, or
-&lt;nav&gt; elements.
-Here is the code:
-&lt;style&gt;
-main {
-margin: 0;
-padding: 5px;
-background-color: rgb(91, 153, 161);
-}
-main &gt; h1, p, .cricketer {
-margin: 10px;
-padding: 5px;
-}</p>
-<p>.cricketer {
-background: rgb(137, 116, 116);
-}
-.cricketer &gt; h2, p {
-margin: 4px;
-font-size: 90%;
-}
-&lt;/style&gt;
-&lt;main&gt;
-&lt;h1&gt;Most Popular Cricketers&lt;/h1&gt;
-&lt;p&gt;The list of cricketer popular around the world
-is hard to fit in here.&lt;/p&gt;
-&lt;article class=”cricketer”&gt;
-&lt;h2&gt;Sachin Tendulkar&lt;/h2&gt;
-&lt;p&gt;Sachin Ramesh Tendulkar, AO is an Indian
-former international cricketer who captained the
-Indian national team.
-He is regarded as one of the greatest batsmen
-in the history of cricket. He is the all-time
-highest run-scorer in both ODI and
-Test cricket with more than 18,000 runs and
-15,000 runs, respectively.&lt;/p&gt;
-&lt;/article&gt;
-&lt;article class=”cricketer”&gt;
-&lt;h2&gt;Adam Gilchrist&lt;/h2&gt;
-&lt;p&gt;Adam Craig Gilchrist AM is an Australian
-cricket commentator and former international
-cricketer and captain of the
-Australia national cricket team. He was an</p>
-<p>attacking left-handed batsman and record-
-breaking wicket-keeper, who redefined</p>
-<p>the role for the Australia national team
-through his aggressive batting.&lt;/p&gt;
-&lt;/article&gt;
-&lt;article class=”cricketer”&gt;
-&lt;h2&gt;Allan Donald&lt;/h2&gt;
-&lt;p&gt;Allan Anthony Donald is a South African former
-cricketer who is also the current bowling coach
-of Bangladesh national cricket
-team. Often nicknamed ‘White Lightning’ due to
-his lightning quick bowling, he is considered
-one of the South Africa national
-cricket team’s most successful pace
-bowlers.&lt;/p&gt;
-&lt;/article&gt;
-&lt;/main&gt;
-Figure 2-9 shows what it looks like in a browser (the paragraph in the
-code is taken from Wikipedia).</p>
-<p>Figure 2-9. HTML &lt;main&gt; tag displayed in Chrome
-• &lt;mark&gt;: This tag defines the text that should be
-highlighted.</p>
-<p>Here is the code:
-&lt;style&gt;
-mark {
-background-color: yellow;
-color: black;
-}
-&lt;/style&gt;
-&lt;p&gt;Send &lt;mark&gt;bug report&lt;/mark&gt;, holiday plan and
-&lt;mark&gt;MOM&lt;/mark&gt; to the higher management.&lt;/p&gt;
-Figure 2-10 shows what it looks like in a browser.</p>
-<p>Figure 2-10. HTML &lt;mark&gt; tag displayed in Chrome
-• &lt;nav&gt;: As the name suggests, the web application’s
-navigation can be defined using this tag. Though it is
+<p>from &lt;h1&gt; to &lt;h6&gt;.</p>
+<p>Here is the code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">hgroup</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Heading H_One<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Heading H_Two<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">hgroup</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This is a sample text in paragraph 1.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This is a sample text in paragraph 2.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This is a sample text in paragraph 3.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This is a sample text in paragraph 4.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Figure 2-8. HTML &lt;hgroup&gt; tag displayed in Chrome</p>
+<ul class="simple">
+<li><p>&lt;main&gt;: As the name specifies, this tag is used to define the nonrepetitive content of the document. This tag should contain information unique</p></li>
+</ul>
+<p>to document; no content such as navigations, sidebars, or links should be repeated. Multiple definitions for the main tag per the documentation
+is not allowed, and it cannot be a descendent of &lt;article&gt;,&lt;aside&gt;, &lt;header&gt;, &lt;footer&gt;, or &lt;nav&gt; elements.</p>
+<p>Here is the code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">main</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="nb">rgb</span><span class="p">(</span><span class="mi">91</span><span class="p">,</span><span class="w"> </span><span class="mi">153</span><span class="p">,</span><span class="w"> </span><span class="mi">161</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="nt">main</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">h1</span><span class="o">,</span><span class="w"> </span><span class="nt">p</span><span class="o">,</span><span class="w"> </span><span class="p">.</span><span class="nc">cricketer</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">   </span><span class="p">.</span><span class="nc">cricketer</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nb">rgb</span><span class="p">(</span><span class="mi">137</span><span class="p">,</span><span class="w"> </span><span class="mi">116</span><span class="p">,</span><span class="w"> </span><span class="mi">116</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="p">.</span><span class="nc">cricketer</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">h2</span><span class="o">,</span><span class="w"> </span><span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="kt">%</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">main</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Most Popular Cricketers<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The list of cricketer popular around the world
+   is hard to fit in here.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">article</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cricketer&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Sachin Tendulkar<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Sachin Ramesh Tendulkar, AO is an Indian
+      former international cricketer who captained the
+      Indian national team.
+      He is regarded as one of the greatest batsmen
+      in the history of cricket. He is the all-time
+      highest run-scorer in both ODI and
+      Test cricket with more than 18,000 runs and
+      15,000 runs, respectively.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">article</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cricketer&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Adam Gilchrist<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Adam Craig Gilchrist AM is an Australian
+      cricket commentator and former international
+      cricketer and captain of the
+      Australia national cricket team. He was an
+      attacking left-handed batsman and record-
+      breaking wicket-keeper, who redefined
+      the role for the Australia national team
+      through his aggressive batting.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">article</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cricketer&quot;</span><span class="p">&gt;</span>
+       <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Allan Donald<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+       <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Allan Anthony Donald is a South African former
+       cricketer who is also the current bowling coach
+       of Bangladesh national cricket
+       team. Often nicknamed &#39;White Lightning&#39; due to
+       his lightning quick bowling, he is considered
+       one of the South Africa national
+       cricket team&#39;s most successful pace
+       bowlers.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Figure 2-9 shows what it looks like in a browser (the paragraph in the code is taken from Wikipedia).</p>
+<p>Figure 2-9. HTML &lt;main&gt; tag displayed in Chrome</p>
+<ul class="simple">
+<li><p>&lt;mark&gt;: This tag defines the text that should be highlighted.</p></li>
+</ul>
+<p>Here is the code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">mark</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="kc">yellow</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">black</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Send <span class="p">&lt;</span><span class="nt">mark</span><span class="p">&gt;</span>bug report<span class="p">&lt;/</span><span class="nt">mark</span><span class="p">&gt;</span>, holiday plan and
+<span class="p">&lt;</span><span class="nt">mark</span><span class="p">&gt;</span>MOM<span class="p">&lt;/</span><span class="nt">mark</span><span class="p">&gt;</span> to the higher management.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Figure 2-10 shows what it looks like in a browser.</p>
+<p>Figure 2-10. HTML &lt;mark&gt; tag displayed in Chrome</p>
+<ul class="simple">
+<li><p>&lt;nav&gt;: As the name suggests, the web application’s</p></li>
+</ul>
+<p>navigation can be defined using this tag. Though it is
 not mandatory to define all the links inside the &lt;nav&gt;
-tag, it defines the majority of navigational links.
-Here is the code:
-&lt;nav&gt;
-&lt;a href=”/html/”&gt;HTML&lt;/a&gt; |
-&lt;a href=”/css/”&gt;CSS&lt;/a&gt; |
-&lt;a href=”/js/”&gt;JavaScript&lt;/a&gt; |
-&lt;a href=”/python/”&gt;Python&lt;/a&gt;
-&lt;/nav&gt;
-Figure 2-11 shows what it looks like in a browser.</p>
-<p>Figure 2-11. HTML &lt;nav&gt; tag displayed in Chrome
-• &lt;section&gt;: The &lt;section&gt; element is used when a
-generic section of document needs to be defined.
-Here is the code:
-&lt;style&gt;
-section {
-display: block;
-}
-&lt;/style&gt;
-&lt;section&gt;
-&lt;h2&gt;WWF History&lt;/h2&gt;
-&lt;p&gt;The World Wide Fund for Nature (WWF) is an
-international organization working on issues
-regarding the conservation, research and
-restoration of the environment, formerly named the
-World Wildlife Fund. WWF was founded in 1961.&lt;/p&gt;
-&lt;/section&gt;
-&lt;section&gt;
-&lt;h2&gt;WWF’s Symbol&lt;/h2&gt;
-&lt;p&gt;The Panda has become the symbol of WWF. The
-well-known panda logo of WWF originated from a
-panda named Chi Chi that was transferred from the
-Beijing Zoo to the London Zoo in the same year of
-the establishment of WWF.&lt;/p&gt;
-&lt;/section&gt;</p>
+tag, it defines the majority of navigational links.</p>
+<p>Here is the code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">nav</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/html/&quot;</span><span class="p">&gt;</span>HTML<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> |
+   <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/css/&quot;</span><span class="p">&gt;</span>CSS<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> |
+   <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/js/&quot;</span><span class="p">&gt;</span>JavaScript<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> |
+   <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/python/&quot;</span><span class="p">&gt;</span>Python<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Figure 2-11 shows what it looks like in a browser.</p>
+<p>Figure 2-11. HTML &lt;nav&gt; tag displayed in Chrome</p>
+<ul class="simple">
+<li><p>&lt;section&gt;: The &lt;section&gt; element is used when a generic section of document needs to be defined.</p></li>
+</ul>
+<p>Here is the code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">section</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">block</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>WWF History<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The World Wide Fund for Nature (WWF) is an
+   international organization working on issues
+   regarding the conservation, research and
+   restoration of the environment, formerly named the
+   World Wildlife Fund. WWF was founded in 1961.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>WWF&#39;s Symbol<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The Panda has become the symbol of WWF. The
+   well-known panda logo of WWF originated from a
+   panda named Chi Chi that was transferred from the
+   Beijing Zoo to the London Zoo in the same year of
+   the establishment of WWF.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+</pre></div>
+</div>
 <p>Figure 2-12 shows what it looks like in a browser (the paragraph in the
 code is taken from Wikipedia).</p>
-<p>Figure 2-12. HTML &lt;section&gt; tag displayed in Chrome
-• &lt;address&gt;: The &lt;address&gt; element defines numerous
-ways of getting touch with the author or owner of the
-document. This tag can contain contact information
-such as email address, website link, postal address,
-phone number, or social media links. The information
-rendered in the &lt;address&gt; tag is in italic, and a line
-break is added before and after the &lt;address&gt; element
-by the majority of the browsers.
-Here is the code:
-&lt;style&gt;
-address {
-display: block;
-font-style: italic;
-}
-&lt;/style&gt;
-&lt;p&gt;
+<p>Figure 2-12. HTML &lt;section&gt; tag displayed in Chrome</p>
+<ul class="simple">
+<li><p>&lt;address&gt;: The &lt;address&gt; element defines numerous ways of getting touch with the author or owner of the document. This tag can contain contact</p></li>
+</ul>
+<p>information such as email address, website link, postal address, phone number, or social media links. The information rendered in the &lt;address&gt;
+tag is in italic, and a line break is added before and after the &lt;address&gt; element by the majority of the browsers.</p>
+<p>Here is the code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">address</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">block</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">font-style</span><span class="p">:</span><span class="w"> </span><span class="kc">italic</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
 The properties font-family, font-size, and color
-are then defined, &lt;br/&gt;
-which set the font, font size, &lt;br/&gt;
-and color of the text within the paragraph element.</p>
-<p>&lt;br/&gt;&lt;br/&gt;
+are then defined, <span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+which set the font, font size, <span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+and color of the text within the paragraph element.
+
+<span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
 The stylesheet is applied because it has been
-defined for element &amp;lt;p&amp;gt; in &lt;br/&gt;
+defined for element <span class="ni">&amp;lt;</span>p<span class="ni">&amp;gt;</span> in <span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
 parent folder and file example.css.
-&lt;/p&gt;
-&lt;link rel=”stylesheet” href=”../../css/example.css”&gt;
-&lt;address&gt;
-Written by &lt;a href=”<a class="reference external" href="mailto:johndoe&#37;&#52;&#48;example&#46;com">mailto:johndoe<span>&#64;</span>example<span>&#46;</span>com</a>”&gt;Jon
-Doe&lt;/a&gt;.&lt;br&gt;
-Visit us at:&lt;br&gt;
-Example.com&lt;br&gt;
-Box 564, Disneyland&lt;br&gt;
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;../../css/example.css&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">address</span><span class="p">&gt;</span>
+Written by <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;mailto:johndoe@example.com&quot;</span><span class="p">&gt;</span>Jon
+Doe<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>.<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+Visit us at:<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+Example.com<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+Box 564, Disneyland<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
 USA
-&lt;/address&gt;
-Figure 2-13 shows what it looks like in a browser (the paragraph in the
+<span class="p">&lt;/</span><span class="nt">address</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Figure 2-13 shows what it looks like in a browser (the paragraph in the
 code is taken from Wikipedia)..</p>
-<p>Figure 2-13. HTML &lt;address&gt; tag displayed in chrome
-• &lt;summary&gt;: This tag defines the heading for the
-&lt;details&gt; tag. The first child of the &lt;details&gt; tag must be
-a &lt;summary&gt; tag, which contains the information in a
-section that can be expanded or collapsed by a click of
-a button.</p>
-<p>Here is what it looks like in code:
-&lt;style&gt;
-details &gt; summary {
-padding: 4px;
-width: 200px;
-background-color: #d9b37c;
-border: none;
-box-shadow: 1px 1px 2px #131313;
-cursor: pointer;
-}
-details &gt; p {
-background-color: #d9b37c;
-padding: 4px;
-margin: 0;
-box-shadow: 1px 1px 2px #131313;
-}
-&lt;/style&gt;
-&lt;details&gt;
-&lt;summary&gt;Marvel Comics&lt;/summary&gt;
-&lt;p&gt;
-Marvel Comics is an American comic book
-publisher and the flagship property of Marvel
-Entertainment,
-a division of The Walt Disney Company since
-September 1, 2009. Evolving from Timely Comics
-in 1939,
-Magazine Management/Atlas Comics in 1951 and
-its predecessor, Marvel Mystery Comics, the
-Marvel Comics title/name/brand
-was first used in June 1961.</p>
-<p>Marvel was started in 1939 by Martin Goodman
-as Timely Comics,[3] and by 1951 had generally
-become known as Atlas Comics.
-The Marvel era began in June 1961 with the
-launch of The Fantastic Four and other
-superhero titles created by Stan Lee,
-Jack Kirby,
-Steve Ditko and many others. The Marvel brand,
-which had been used over the years and decades,
-was solidified as the company’s
-primary brand.
-&lt;/p&gt;
-&lt;/details&gt;
-Figure 2-14 shows how Google Chrome displays it (collapsed).</p>
+<p>Figure 2-13. HTML &lt;address&gt; tag displayed in chrome</p>
+<ul class="simple">
+<li><p>&lt;summary&gt;: This tag defines the heading for the &lt;details&gt; tag. The first child of the &lt;details&gt; tag must be a &lt;summary&gt; tag, which contains the</p></li>
+</ul>
+<p>information in a section that can be expanded or collapsed by a click of a button.</p>
+<p>Here is what it looks like in code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">details</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">summary</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#d9b37c</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">box-shadow</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="w"> </span><span class="mh">#131313</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">cursor</span><span class="p">:</span><span class="w"> </span><span class="kc">pointer</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="nt">details</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#d9b37c</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">box-shadow</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="w"> </span><span class="mh">#131313</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">details</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">summary</span><span class="p">&gt;</span>Marvel Comics<span class="p">&lt;/</span><span class="nt">summary</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+      Marvel Comics is an American comic book
+      publisher and the flagship property of Marvel
+      Entertainment,
+      a division of The Walt Disney Company since
+      September 1, 2009. Evolving from Timely Comics
+      in 1939,
+      Magazine Management/Atlas Comics in 1951 and
+      its predecessor, Marvel Mystery Comics, the
+      Marvel Comics title/name/brand
+      was first used in June 1961.
+
+      Marvel was started in 1939 by Martin Goodman
+      as Timely Comics,[3] and by 1951 had generally
+      become known as Atlas Comics.
+      The Marvel era began in June 1961 with the
+      launch of The Fantastic Four and other
+      superhero titles created by Stan Lee,
+      Jack Kirby,
+      Steve Ditko and many others. The Marvel brand,
+      which had been used over the years and decades,
+      was solidified as the company&#39;s
+      primary brand.
+   <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">details</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Figure 2-14 shows how Google Chrome displays it (collapsed).</p>
 <p>Figure 2-14. HTML &lt;summary&gt; tag displayed in Chrome (collapsed)
 Figure 2-15 shows how Google Chrome displays it (expanded).</p>
 <p>Figure 2-15. HTML &lt;summary&gt; tag displayed in Chrome
@@ -732,15 +759,19 @@ Figure 2-15 shows how Google Chrome displays it (expanded).</p>
 <ul class="simple">
 <li><p>&lt;time&gt;: This tag defines the time or datetime.</p></li>
 </ul>
-<p>Here is what it looks like in code:
-&lt;p&gt;The office is open from &lt;time&gt;09:00&lt;/time&gt; to
-&lt;time&gt;18:00&lt;/time&gt; Monday to Friday.&lt;/p&gt;
-&lt;p&gt;I have an appointment with the CEO on
-&lt;time datetime=”2023-02-28 20:00”&gt;last day of
-February&lt;/time&gt;.&lt;/p&gt;
-Figure 2-16 shows what it looks like in a browser.</p>
-<p>Text-Level Semantics in HTML5
-Text-level semantics refer to the HTML elements that define the meaning
+<p>Here is what it looks like in code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The office is open from <span class="p">&lt;</span><span class="nt">time</span><span class="p">&gt;</span>09:00<span class="p">&lt;/</span><span class="nt">time</span><span class="p">&gt;</span> to
+<span class="p">&lt;</span><span class="nt">time</span><span class="p">&gt;</span>18:00<span class="p">&lt;/</span><span class="nt">time</span><span class="p">&gt;</span> Monday to Friday.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>I have an appointment with the CEO on
+<span class="p">&lt;</span><span class="nt">time</span> <span class="na">datetime</span><span class="o">=</span><span class="s">&quot;2023-02-28 20:00&quot;</span><span class="p">&gt;</span>last day of
+February<span class="p">&lt;/</span><span class="nt">time</span><span class="p">&gt;</span>.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Figure 2-16 shows what it looks like in a browser.</p>
+</section>
+<section id="text-level-semantics-in-html5">
+<h2>Text-Level Semantics in HTML5<a class="headerlink" href="#text-level-semantics-in-html5" title="Permalink to this headline">¶</a></h2>
+<p>Text-level semantics refer to the HTML elements that define the meaning
 of the text within a web page. These elements provide additional context
 and information about the content of a page, making it easier for search
 engines, screen readers, and other tools to understand and interpret the
@@ -751,189 +782,199 @@ be used to highlight specific words or phrases or to indicate the location
 of a particular point within the text. A code example was given earlier in
 this book.</p>
 <ul class="simple">
-<li><p>&lt;time&gt;: This element is used to define a specific date or</p></li>
+<li><p>&lt;time&gt;: This element is used to define a specific date or time within the document. Time-related information such as the publication date of an</p></li>
 </ul>
-<p>time within the document. Time-related information
-such as the publication date of an article, the time of
-an event, or any other date can be represented by the
-&lt;time&gt; element. A code example was given earlier in
-this book.
-• &lt;abbr&gt;: This element is used to define an abbreviation
-or acronym within the document. Additional context
-information and information about the meaning of a
-particular word or phrase can be emphasized by this
-element.
-Here is what it looks like in code:
-&lt;style&gt;
-abbr {
-display: inline;
-}
-&lt;/style&gt;
-&lt;p&gt;&lt;dfn&gt;&lt;abbr title=”Cascading Style Sheets”&gt;CSS&lt;/abbr&gt;
-&lt;/dfn&gt; is a language that describes the style of an
-HTML document.&lt;/p&gt;
-Figure 2-17 shows what it looks like in a browser.</p>
+<p>article, the time of an event, or any other date can be represented by the &lt;time&gt; element. A code example was given earlier in this book.</p>
+<ul class="simple">
+<li><p>&lt;abbr&gt;: This element is used to define an abbreviation or acronym within the document. Additional context information and information about the</p></li>
+</ul>
+<p>meaning of a particular word or phrase can be emphasized by this element.</p>
+<p>Here is what it looks like in code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">abbr</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">inline</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">dfn</span><span class="p">&gt;&lt;</span><span class="nt">abbr</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Cascading Style Sheets&quot;</span><span class="p">&gt;</span>CSS<span class="p">&lt;/</span><span class="nt">abbr</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">dfn</span><span class="p">&gt;</span> is a language that describes the style of an
+HTML document.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Figure 2-17 shows what it looks like in a browser.</p>
 <p>Figure 2-17. HTML &lt;abbr&gt; tag displayed in Chrome</p>
 <ul class="simple">
-<li><p>&lt;q&gt;: A short quotation within a document is written</p></li>
+<li><p>&lt;q&gt;: A short quotation within a document is written inside the &lt;q&gt; element. The primary focus of this element is to provide additional context</p></li>
 </ul>
-<p>inside the &lt;q&gt; element. The primary focus of
-this element is to provide additional context and
-information about a particular quote or to indicate the
-author of a quote.
-Here is what it looks like in code:
-&lt;style&gt;
-q {
-color: gray;
-font-style: italic;
-}
-&lt;/style&gt;
-&lt;p&gt;WWF’s goal is to:
-&lt;q&gt;Build a future where people live in harmony with
-nature.&lt;/q&gt;
-We hope they succeed.
-&lt;/p&gt;
-Figure 2-18 shows what it looks like in a browser.</p>
-<p>Figure 2-18. HTML &lt;a&gt; tag displayed in Chrome
-• &lt;cite&gt;: This element is used to define a citation within
-the document. The primary focus of &lt;cite&gt; is to provide
-additional context and information about the source of
-a particular piece of information.</p>
-<p>Here is what it looks like in code:
-&lt;style&gt;
-cite {
-font-style: italic;
-color: rgb(126, 126, 237);
-}
-&lt;/style&gt;
-&lt;p&gt;&lt;cite&gt;The sport of cricket&lt;/cite&gt; has a known
-history beginning in the late 16th century. Having</p>
-<p>originated in south-
-east England,</p>
-<p>it became an established sport in the country in
+<p>and information about a particular quote or to indicate the author of a quote.</p>
+<p>Here is what it looks like in code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">q</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">gray</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">font-style</span><span class="p">:</span><span class="w"> </span><span class="kc">italic</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>WWF&#39;s goal is to:
+   <span class="p">&lt;</span><span class="nt">q</span><span class="p">&gt;</span>Build a future where people live in harmony with
+   nature.<span class="p">&lt;/</span><span class="nt">q</span><span class="p">&gt;</span>
+   We hope they succeed.
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Figure 2-18 shows what it looks like in a browser.</p>
+<p>Figure 2-18. HTML &lt;a&gt; tag displayed in Chrome</p>
+<ul class="simple">
+<li><p>&lt;cite&gt;: This element is used to define a citation within the document. The primary focus of &lt;cite&gt; is to provide additional context and</p></li>
+</ul>
+<p>information about the source of a particular piece of information.</p>
+<p>Here is what it looks like in code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">cite</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">font-style</span><span class="p">:</span><span class="w"> </span><span class="kc">italic</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="nb">rgb</span><span class="p">(</span><span class="mi">126</span><span class="p">,</span><span class="w"> </span><span class="mi">126</span><span class="p">,</span><span class="w"> </span><span class="mi">237</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">cite</span><span class="p">&gt;</span>The sport of cricket<span class="p">&lt;/</span><span class="nt">cite</span><span class="p">&gt;</span> has a known
+history beginning in the late 16th century. Having
+originated in south-
+east England,
+it became an established sport in the country in
 the 18th century and developed globally in the 19th
 and 20th centuries.
 International matches have been played since the
 19th-century and formal Test cricket matches are
-considered to date from 1877.&lt;/p&gt;</p>
+considered to date from 1877.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
 <p>Figure 2-19 shows what it looks like in a browser (the paragraph in the
 code is taken from Wikipedia).</p>
-<p>Figure 2-19. HTML &lt;cite&gt; tag displayed in Chrome
-Why Are Text-Level Semantics Important?
-Text-level semantics are important because they help to improve the
+<p>Figure 2-19. HTML &lt;cite&gt; tag displayed in Chrome</p>
+</section>
+<section id="why-are-text-level-semantics-important">
+<h2>Why Are Text-Level Semantics Important?<a class="headerlink" href="#why-are-text-level-semantics-important" title="Permalink to this headline">¶</a></h2>
+<p>Text-level semantics are important because they help to improve the
 accessibility and usability of web content. By providing additional context
 and information about the content of a page, these elements make it easier
 for people with disabilities to understand and navigate the content.</p>
 <p>For example, the &lt;mark&gt; element can be used to indicate the location
 of a particular point within the text. This can be particularly useful for
 people with visual impairments, who may find it difficult to navigate
-through large blocks of text.
-Similarly, the &lt;abbr&gt; element can be used to provide additional
+through large blocks of text.</p>
+<p>Similarly, the &lt;abbr&gt; element can be used to provide additional
 context and information about the meaning of a particular word or phrase.
 This can be particularly useful for people with cognitive disabilities, who
-may have difficulty understanding certain words or concepts.
-In addition to improving accessibility, text-level semantics can also
+may have difficulty understanding certain words or concepts.</p>
+<p>In addition to improving accessibility, text-level semantics can also
 improve the search engine optimization of a web page. By providing
 additional context and information about the content of a page, these
 elements make it easier for search engines to understand and index the
 content, which can lead to better search engine rankings and increased
-traffic to the site.
-How to Use Text-Level Semantics
-Using text-level semantics is relatively simple. All you need to do is identify
+traffic to the site.</p>
+</section>
+<section id="how-to-use-text-level-semantics">
+<h2>How to Use Text-Level Semantics<a class="headerlink" href="#how-to-use-text-level-semantics" title="Permalink to this headline">¶</a></h2>
+<p>Using text-level semantics is relatively simple. All you need to do is identify
 the elements that are most appropriate for the content on your page and
-use them accordingly.
-For example, if you are required to add a quote on your page, the
+use them accordingly.</p>
+<p>For example, if you are required to add a quote on your page, the
 &lt;q&gt; element can be used to define the quote, and the &lt;cite&gt; element
 can be used to define the source of the quote. Similarly, if you have an
 abbreviation or acronym on your page, you could use the &lt;abbr&gt; element
-to define the meaning of the word or phrase.
-Audio and Video Capabilities of HTML5
-The introduction of the &lt;video&gt; and &lt;audio&gt; tags in HTML5 has made the
+to define the meaning of the word or phrase.</p>
+</section>
+<section id="audio-and-video-capabilities-of-html5">
+<h2>Audio and Video Capabilities of HTML5<a class="headerlink" href="#audio-and-video-capabilities-of-html5" title="Permalink to this headline">¶</a></h2>
+<p>The introduction of the &lt;video&gt; and &lt;audio&gt; tags in HTML5 has made the
 plug-ins that were used to embed the video and audio file on the website
 useless. A video file can be featured on the web page using the &lt;video&gt;
 element.</p>
-<p>Let’s take a look at a code example:
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
-&lt;video width=”1080” height=”720” controls&gt;
-&lt;source src=”../../../sample.mp4” type=video/mp4&gt;
-&lt;/video&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-Figure 2-20 shows what it looks like in a browser.</p>
+<p>Let’s take a look at a code example:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">video</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;1080&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;720&quot;</span> <span class="na">controls</span><span class="p">&gt;</span>
+         <span class="p">&lt;</span><span class="nt">source</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;../../../sample.mp4&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">video/mp4</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">video</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Figure 2-20 shows what it looks like in a browser.</p>
 <p>Figure 2-20. HTML &lt;video&gt; tag displayed in Chrome</p>
 <p>The &lt;video&gt; element must define the following attributes in order
-work correctly:
-• src: The URL where the video content is hosted.
-• type: The video file format that will be used to play the
-content.
-• controls: To control the playback content, this attribute
-is a must; without this attribute, the end user will not
-be able to play, pause, or seek the video content.
-Additionally, the following are option controls that help influence the
-video content:
-• autoplay: This starts the video as soon as it loads on the
-web page.
-• loop: As the name specifies, the video content will be
-repeated once it is finished playing.
-• poster: This defines an image or thumbnail for
-the video, and it is displayed when the content is
-not played.
-• preload: When the page loads, how the video content is
-loaded can be specified by this attribute.
-HTML5 supports three types of video files, as listed in Table 2-1.
-Table 2-1. Video Formats Supported
+work correctly:</p>
+<ul class="simple">
+<li><p>src: The URL where the video content is hosted.</p></li>
+<li><p>type: The video file format that will be used to play the content.</p></li>
+<li><p>controls: To control the playback content, this attribute is a must; without this attribute, the end user will not be able to play, pause, or</p></li>
+</ul>
+<p>seek the video content.</p>
+<p>Additionally, the following are option controls that help influence the
+video content:</p>
+<ul class="simple">
+<li><p>autoplay: This starts the video as soon as it loads on the web page.</p></li>
+<li><p>loop: As the name specifies, the video content will be repeated once it is finished playing.</p></li>
+<li><p>poster: This defines an image or thumbnail for the video, and it is displayed when the content is not played.</p></li>
+<li><p>preload: When the page loads, how the video content is loaded can be specified by this attribute.</p></li>
+</ul>
+<p>HTML5 supports three types of video files, as listed in Table 2-1.</p>
+<p>Table 2-1. Video Formats Supported
 by the HTML5 &lt;video&gt; Tag
 Format MIME Type
 mp4 video/mp4
 webm video/webm
 ogg video/ogg</p>
 <p>Another way of inserting videos from an external source could be done
-by using iframes. Follow these steps to get the YouTube URL link:
-1. Open the video on YouTube.
-2. Right-click the video and click “&lt;&gt; copy
-embed code.”
-3. Paste the copied code onto a Notepad src tag, and
+by using iframes. Follow these steps to get the YouTube URL link:</p>
+<ol class="arabic simple">
+<li><p>Open the video on YouTube.</p></li>
+<li><p>Right-click the video and click “&lt;&gt; copy embed code.”</p></li>
+</ol>
+<p>3. Paste the copied code onto a Notepad src tag, and
 will have the YouTube video source link; you will be
-using it for your src attribute of the video tag.
-The following is some sample code:
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
-&lt;h2&gt;Steve Jobs - How to Live before You Die&lt;/h2&gt;
-&lt;p&gt;At his Stanford University commencement speech, Steve
-Jobs, CEO and co-founder of Apple and Pixar, urges us to
-pursue our dreams and see the opportunities in life’s
-setbacks - including death itself.&lt;/p&gt;
-&lt;iframe width=”500” height=”320” src=”<a class="reference external" href="https://www.youtube">https://www.youtube</a>.
-com/embed/lcZDWo6hiuI”&gt;
-&lt;/iframe&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-The &lt;audio&gt; tag can be used to embed an audio file in the web page. Just
+using it for your src attribute of the video tag.</p>
+<p>The following is some sample code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Steve Jobs - How to Live before You Die<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>At his Stanford University commencement speech, Steve
+      Jobs, CEO and co-founder of Apple and Pixar, urges us to
+      pursue our dreams and see the opportunities in life&#39;s
+      setbacks - including death itself.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;500&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;320&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://www.youtube.</span>
+<span class="s">      com/embed/lcZDWo6hiuI&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>The &lt;audio&gt; tag can be used to embed an audio file in the web page. Just
 like the &lt;video&gt; tag, the &lt;audio&gt; tag has the controls and source attributes
 that identify the file and whether to show the controls on the web page.
-Here is what it looks like in code:
-&lt;h3&gt;Ambient Classic Guitar&lt;/h3&gt;
-&lt;audio controls autoplay&gt;
-&lt;source src=”../../../sample_audio.mp3” type=”audio/mpeg”&gt;
-&lt;/audio&gt;</p>
+Here is what it looks like in code:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Ambient Classic Guitar<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">audio</span> <span class="na">controls</span> <span class="na">autoplay</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">source</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;../../../sample_audio.mp3&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;audio/mpeg&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">audio</span><span class="p">&gt;</span>
+</pre></div>
+</div>
 <p>Figure 2-21 shows what it looks like in a browser.</p>
 <p>Figure 2-21. HTML &lt;audio&gt; tag displayed in Chrome
 The HTML DOM controls the audio by defining properties, methods,
 and events that help to load, play, and pause audios, as well as set the
 duration and volume. The HTML DOM events can be used to notify when
-an audio begins to play, is paused, etc.
-HTML5 supports the audio formats shown in Table 2-2.
+an audio begins to play, is paused, etc.</p>
+<p>HTML5 supports the audio formats shown in Table 2-2.
 Table 2-2. Audio Formats Supported
 by the HTML5 &lt;audio&gt; Tag
 Format MIME Type
 mp3 audio/mpeg
 wav audio/wav
 ogg audio/ogg</p>
-<p>Summary
-This chapter covered the features of HTML5 that can be used to create a
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>This chapter covered the features of HTML5 that can be used to create a
 responsive web design. It explained the new features supported by this
 technology and listed the features such as the semantics, audio, and video
 capabilities added to HTML, as well as the canvas, geolocation, local
@@ -941,13 +982,14 @@ storage, web works, and web sockets. We also explained how to write a new
 HTML5 web page, ways to make the job easier, and new features added
 to HTML5.</p>
 </section>
+</section>
 
 
           </div>
           
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="../index.html">Calculo</a></h1>
 
@@ -990,6 +1032,11 @@ to HTML5.</p>
 </ul>
 </li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">An_Introduction_Statistics_Python</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Libros_Leer_Apuntes_GOOGLE/Python/An_Introduction_Statistics_Python/An_Introduction_Statistics_Python_c01.html">C01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Libros_Leer_Apuntes_GOOGLE/Python/An_Introduction_Statistics_Python/An_Introduction_Statistics_Python_c01.html#chapter-1-why-statistics">Chapter 1 Why Statistics?</a></li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
@@ -997,11 +1044,12 @@ to HTML5.</p>
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="index2.html">A_First_Course_Design_Analysis_Experiments_Gary</a><ul>
       <li>Previous: <a href="Creating_Responsive_Websites_Using_HTML5_CSS3_Varun_c01.html" title="previous chapter">Introduction to Web Development</a></li>
+      <li>Next: <a href="../Libros_Leer_Apuntes_GOOGLE/Python/An_Introduction_Statistics_Python/An_Introduction_Statistics_Python_c01.html" title="next chapter">C01</a></li>
   </ul></li>
   </ul></li>
 </ul>
 </div>
-<search id="searchbox" style="display: none" role="search">
+<div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
@@ -1009,8 +1057,8 @@ to HTML5.</p>
       <input type="submit" value="Go" />
     </form>
     </div>
-</search>
-<script>document.getElementById('searchbox').style.display = "block"</script>
+</div>
+<script>$('#searchbox').show(0);</script>
 
 
 
@@ -1024,11 +1072,11 @@ to HTML5.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &#169;2025, santosg57.
+      &copy;2025, santosg57.
       
       |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
-      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="../_sources/Creating_Responsive_Websites_Using_HTML5_CSS3_Varun/Creating_Responsive_Websites_Using_HTML5_CSS3_Varun_c02.rst.txt"

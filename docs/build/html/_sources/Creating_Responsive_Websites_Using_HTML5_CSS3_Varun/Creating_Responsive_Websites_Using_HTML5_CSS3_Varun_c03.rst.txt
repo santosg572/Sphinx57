@@ -1,0 +1,1455 @@
+CHAPTER 3 Cascading Style Sheets and Layouts
+============================================
+
+This chapter covers CSS and layouts. This chapter will explain how to
+create and use floats in CSS3, as well as explaining the issues faced when
+working with floats and how to resolve them. Next, the chapter will cover
+box-sizing versus border-box, which one to use, and how to resolve issues
+if there are any during implementing them. Then, the chapter will explain
+how to implement a flexbox layout using CSS3, by providing HTML and
+CSS code and showing how the browser renders this code. It will explain
+various attributes and their values as well as how to arrange flex items
+and what properties they can have. The CSS grid layout is the next topic,
+covering details such as aligning and spacing grid items and sizing each
+item in the layout.
+
+CSS and Responsive Design
+-------------------------
+
+Cascading Style Sheets (CSS) is an essential tool for web developers to
+create visually appealing websites. With the release of CSS3, developers
+have gained access to a plethora of new features that make designing
+websites much easier and more efficient. One of the most significant
+improvements in CSS3 is the ability to create complex and dynamic layouts
+without the need for external libraries or frameworks. In this chapter, we
+will explore three ways to build layouts using CSS3.
+
+• Flexbox
+
+A flexbox is a powerful model that enables
+developers to design responsive and dynamic
+layouts quickly. A flexbox works by defining a
+container and its child elements, which are referred
+to as flex items. With a flexbox, you can easily align
+and distribute items within a container, adjust
+their sizes, and reorder them without affecting the
+HTML structure. The display property of the parent
+element is set to flex, and the layout properties
+for the child elements are defined to create a flex
+container. The most commonly used properties
+in a flexbox are justify-content, align-items, and
+flex-wrap.
+
+• Grid
+
+A CSS grid is another powerful layout model that
+enables developers to create complex layouts
+with ease. With a CSS grid, you can define a grid
+container, divide it into rows and columns, and
+then place elements anywhere within that grid.
+A grid offers much more control over positioning
+than a flexbox and is particularly useful for creating
+multicolumn layouts. To use a grid, you need to
+define a grid container and specify its properties,
+such as grid-template-columns, grid-template-rows,
+and grid-gap. Once the grid container is defined, the
+grid-column and grid-row attributes can be used to
+place the items inside the grid.
+
+• Floats
+
+Floats are a legacy technique for creating layouts
+still widely used today. Floats work by “floating” an
+element to one side of its container, allowing other
+content to flow around it. This technique is useful
+for creating multicolumn layouts and wrapping text
+around images. To use floats, you need to set the
+float attribute of an element to either left or right
+and then specify the width and margin properties
+to control its positioning. While floats can be useful
+for simple layouts, they have limitations and are not
+recommended for complex designs.
+
+CSS3 offers developers a range of powerful tools for creating dynamic
+and responsive layouts. Flexbox and grid are the most commonly used
+layout models and offer a lot of flexibility and control over positioning.
+Floats are still useful for simple layouts but should be avoided for complex
+designs. By mastering these three techniques, developers can create
+visually appealing and responsive websites that work across multiple
+devices and platforms.
+
+Using Floats
+------------
+
+The CSS3 float property allows you to position an element to the left or
+right of its containing parent block, allowing other elements to flow around
+it. What float does is take out the element from its normal document flow
+and position it in relation to its parent element.
+
+Here is some example code:
+
+.. code:: html
+
+   <!DOCTYPE html>
+   <html>
+   <head>
+      <style>
+         /* The container div */
+         .container {
+            width: 600px;
+            margin: 0 auto;
+            background-color: cornsilk;
+            padding: 10px;
+         }
+         /* The left floated div */
+         .left {
+            float: left;
+            width: 200px;
+            background-color: crimson;
+            padding: 10px;
+            margin-right: 20px;
+         }
+         /* The right floated div */
+         .right {
+            float: right;
+            width: 200px;
+            background-color: darkolivegreen;
+            padding: 10px;
+            margin-left: 20px;
+         }
+      </style>
+   </head>
+
+   <body>
+      <div class="container">
+         <div class="left">
+            <p>This is a left floated div.</p>
+            <p>Other elements will flow around it.</p>
+         </div>
+      <div class="right">
+         <p>This is a right floated div.</p>
+         <p>Other elements will flow around it.</p>
+      </div>
+      <p>This is some text that will flow around the floated
+      divs.</p>
+      </div>
+      </body>
+   </html>
+
+This code example has a parent container <div> with two child <div>s;
+the first one is floated to the left, and the second one is floated to the
+right. We also have a paragraph element after the floated <div>s that flows
+around them.
+
+The .left and .right classes specify the float property, as well as the
+width, background color, padding, and margin properties. The .container
+class specifies the width, margin, background color, and padding
+properties.
+
+Note that when using floats, it is important to clear them afterward to
+prevent unexpected layout behavior. This can be done by using the clear
+property or by using a clearfix hack.
+
+Figure 3-1 shows how the code is displayed in a browser.
+
+Figure 3-1. Chrome browser displaying how float is used
+
+When working with CSS floats, it’s common to encounter issues where
+floated elements do not behave as expected, such as when the containing
+element doesn’t expand to contain its floated children or when subsequent
+elements are unintentionally affected by the float.
+
+CSS clearfix will come to rescue to fix this problem, which is a
+technique to force a container element to expand and contain its floated
+children. Let’s look at an example of how to use a clearfix.
+
+Here is some code without the clearfix:
+
+.. code:: html
+
+   <!DOCTYPE html>
+   <html>
+   <head>
+   <style>
+      /* The container div with clearfix */
+      /*.container:after {
+         content: "";
+         display: table;
+         clear: both;
+      }*/
+
+      /* The left floated div */
+      .left {
+         float: left;
+         width: 200px;
+         background-color: cornflowerblue;
+         padding: 10px;
+         margin-right: 20px;
+      }
+      /* The right floated div */
+      .right {
+         float: right;
+         width: 200px;
+         background-color: sienna;
+         padding: 10px;
+         margin-left: 20px;
+      }
+      </style>
+   </head>
+   <body>
+      <div class="container">
+         <div class="left">
+            <p>This is a left floated div.</p>
+            <p>Other elements will flow around it.</p>
+         </div>
+      <div class="right">
+         <p>This is a right floated div.</p>
+         <p>Other elements will flow around it.</p>
+      </div>
+      <p>This is some text that will flow around the floated
+      divs.</p>
+      </div>
+   </body>
+   </html>
+
+Figure 3-2 shows how the code is displayed in a browser.
+
+Figure 3-2. Chrome browser displaying how a float is used without
+clearfix
+
+Here is some code with clearfix:
+
+.. code:: html
+
+   <!DOCTYPE html>
+   <html>
+   <head>
+      <style>
+      /* The container div with clearfix */
+      .container:after {
+         content: "";
+         display: table;
+         clear: both;
+      }
+      /* The left floated div */
+      .left {
+         float: left;
+         width: 200px;
+         background-color: cornflowerblue;
+         padding: 10px;
+         margin-right: 20px;
+      }
+      /* The right floated div */
+      .right {
+         float: right;
+         width: 200px;
+         background-color: sienna;
+         padding: 10px;
+         margin-left: 20px;
+      }
+      </style>
+   </head>
+   <body>
+      <div class="container">
+         <div class="left">
+         <p>This is a left floated div.</p>
+         <p>Other elements will flow around it.</p>
+      </div>
+      <div class="right">
+         <p>This is a right floated div.</p>
+         <p>Other elements will flow around it.</p>
+      </div>
+      <p>This is some text that will flow around the floated
+      divs.</p>
+      </div>
+   </body>
+   </html>
+
+Figure 3-3 shows how the code is displayed in a browser.
+
+Figure 3-3. Chrome browser displaying how float is used with
+clearfix
+
+In this example, the .container class now has an :after pseudo-element
+with the content property value set to a blank string, display property set to
+table, and clear property set to both. This creates a pseudo-element after
+the container element and clears any floated elements within it, forcing the
+container to expand and contain its floated children.
+
+Note that the clearfix technique can be applied to any container
+element with floated children and can also be achieved using other
+methods such as using the overflow property or using a separate element
+with the clear property.
+
+Building a Float Layout
+-----------------------
+
+Consider the following HTML and CSS code. You can name the HTML file
+however you’d like, and the CSS should be named style.css (or you need
+to modify the link attribute to point to the correct CSS file).
+
+Here’s the HTML file:
+
+.. code:: html 
+
+   <!DOCTYPE html>
+   <html>
+   <head>
+      <title>Float Layout Example</title>
+      <link rel="stylesheet" type="text/css" href="style.css">
+   </head>
+   <body>
+      <header>
+         <h1>My Website</h1>
+      </header>
+      <nav>
+         <ul>
+            <li><a href="#">Home</a></li>
+     9999 <li><a href="#">About</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+</nav>
+<main>
+<h2>Welcome to my website!</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing
+elit. Sed in ante vitae arcu vulputate suscipit sit
+amet non massa. In hac habitasse platea dictumst. Sed
+tempor elit a urna vulputate hendrerit. Proin vitae
+massa non augue posuere bibendum. Nulla laoreet sodales
+leo, vel egestas lorem feugiat at.</p>
+
+Chapter 3 Cascading Style Sheets and Layouts
+
+72
+</main>
+<footer>
+<p>&copy; 2023 My Website. All rights reserved.</p>
+</footer>
+</body>
+</html>
+The text comes from https://loremipsum.io/.
+Here is style.css:
+body {
+margin: 0;
+padding: 0;
+font-family: Arial, sans-serif;
+}
+header {
+background-color: #c73636;
+padding: 20px;
+}
+nav {
+float: left;
+width: 20%;
+background-color: aquamarine;
+height: 500px;
+}
+nav ul {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+Chapter 3 Cascading Style Sheets and Layouts
+
+73
+
+nav li {
+padding: 10px;
+}
+nav a {
+text-decoration: none;
+color: #333;
+}
+main {
+float: none;
+width: 100%;
+background-color: wheat;
+padding: 20px;
+height: 460px;
+}
+footer {
+clear: both;
+background-color: #ccc;
+padding: 20px;
+color: #fff;
+text-align: center;
+}
+In this example, the layout consists of a header, navigation bar, main
+content section, and footer. The navigation bar and main content section
+are positioned side by side using the float property. The footer element has
+a clear property that ensures it appears below the floated elements.
+Figure 3-4 shows the Chrome browser displaying the float layout.
+Chapter 3 Cascading Style Sheets and Layouts
+
+74
+Figure 3-4. Chrome browser displaying the float layout
+Box-Sizing or Border-Box
+An element’s box-model size can be controlled by the box-sizing property
+in CSS. By default, the size of an element is calculated based on its
+content, padding, border, and margin. However, with box-sizing, you can
+change this behavior to calculate the size of an element based on different
+box models.
+There are two values for the box-sizing property: content-box and
+border-box.
+• content-box: This is the box-sizing property’s default
+value. When box-sizing: content-box is applied to an
+element, the element’s dimensions are calculated
+based on its content, padding, and border. Any margin
+applied to the element is added to its total width
+and height.
+Chapter 3 Cascading Style Sheets and Layouts
+
+75
+• border-box: When box-sizing: border-box is applied to
+an element, the element’s dimensions are calculated
+based on its content, padding, border, and margin.
+The total height and width of the element include its
+padding and border, but not any margin applied to it.
+When content-box is used, the width is the addition of widths of
+content, margins, padding, and border as opposed to border-box, which is
+adjusting its width of content to accommodate the margins, padding, and
+border. Let’s look at some examples.
+The CSS for main and nav are modified, and a new definition of
+container is added.
+
+When main or nav is modified with margin or padding with content-
+box, look athow the browser is displaying the content. Also note that the
+
+nav definition is using a box-sizing: content-box.
+Here is the CSS code:
+body {
+margin: 0;
+padding: 0;
+font-family: Arial, sans-serif;
+}
+header {
+background-color: #c73636;
+padding: 20px;
+}
+nav {
+float: left;
+width: 200px;
+background-color: aquamarine;
+
+Chapter 3 Cascading Style Sheets and Layouts
+
+76
+height: 500px;
+box-sizing: content-box;
+}
+nav ul {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+nav li {
+padding: 10px;
+}
+nav a {
+text-decoration: none;
+color: #333;
+}
+main {
+float: none;
+width: 1000px;
+background-color: wheat;
+padding: 20px;
+height: 460px;
+}
+footer {
+clear: both;
+background-color: #ccc;
+padding: 20px;
+color: #fff;
+text-align: center;
+}
+Chapter 3 Cascading Style Sheets and Layouts
+
+77
+
+container {
+width: 1200px;
+}
+Here is the HTML code:
+<!DOCTYPE html>
+<html>
+<head>
+<title>Float Layout Example</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body class="container">
+<header>
+<h1>My Website</h1>
+</header>
+<nav>
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+</nav>
+<main>
+<h2>Welcome to my website!</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing
+elit. Sed in ante vitae arcu vulputate suscipit sit
+amet non massa. In hac habitasse platea dictumst. Sed
+tempor elit a urna vulputate hendrerit. Proin vitae
+massa non augue posuere bibendum. Nulla laoreet sodales
+leo, vel egestas lorem feugiat at.</p>
+</main>
+
+Chapter 3 Cascading Style Sheets and Layouts
+
+78
+<footer>
+<p>&copy; 2023 My Website. All rights reserved.</p>
+</footer>
+</body>
+</html>
+Figure 3-5 shows how it looks in a browser (the paragraph comes from
+https://loremipsum.io/).
+
+Figure 3-5. Chrome browser displaying the float layout with
+content-box
+Observe that the nav width of 200px and padding of 100px is added to
+the box and the nav content is out of place.
+Let’s use border-box and check how Google Chrome displays it; here
+box-sizing: border-box in nav css definition is changed. See Figure 3-6.
+Chapter 3 Cascading Style Sheets and Layouts
+
+79
+Figure 3-6. Chrome browser displaying the float layout with
+border-box
+
+Introduction to Flexboxes
+CSS3 has brought a lot of exciting new features to the field of web
+development, and one of the most powerful is the flexbox layout system. A
+
+flexbox, which means “flexible box layout,” is a flexible and easy-to-
+use system for laying out elements in a container. It allows you to control
+
+the alignment, size, and distribution of elements with just a few simple
+properties, making it an essential tool for creating modern, responsive web
+designs.
+One of the key benefits of a flexbox is its simplicity. With just a few lines
+of CSS, you can create complex and flexible layouts that would be difficult
+or impossible with traditional CSS layout techniques. To create a flexbox,
+a container element that encapsulates all the elements you want to lay out
+needs to be created. By changing the display property value to flex (display:
+flex), any HTML element can be turned into a flex container; let that HTML
+element be a <div> or a section.
+
+Chapter 3 Cascading Style Sheets and Layouts
+
+80
+Once you have your container set up, you can start using the various
+flexbox properties to control the layout of the elements inside it. Some
+of the most important properties include flex-direction, justify-content,
+align-items, and flex-wrap.
+• flex-direction is used to determine two things: the main
+axis of the flex container and the direction in which the
+flex items are organized. It can be set to row, which is
+the default, to organize the items in a row from left to
+right. Alternatively, you can set it to row-reverse to lay
+out the items from right to left or column-reverse to lay
+
+them out in a column from top to bottom. column-
+reverse can also be used to lay out the items from
+
+bottom to top.
+• justify-content controls how the items are aligned
+along the main axis of the flex container. It can be set
+to a number of different values, including flex-start,
+flex-end, center, space-between, space-around, and
+space-evenly. flex-start aligns the items to the start
+of the container, flex-end aligns them to the end, and
+center aligns them to the center. space-between is used
+when items need to be aligned with equal space in
+between them along the main axis, while space-around
+distributes the items with equal space on their left and
+right sides. Finally, space-evenly distributes the items
+with equal space between and around them.
+• align-items controls how the flex items are organized
+along the cross-axis of the container, which is
+perpendicular to the main axis. By default the value is
+
+stretch, which stretches the items to fill the entire cross-
+axis. Alternatively, you can set it to flex-start to align
+
+Chapter 3 Cascading Style Sheets and Layouts
+
+81
+
+them to the start of the cross-axis, flex-end to align
+them to the end, center to align them to the center, or
+baseline to align them to the baseline of the text.
+• flex-wrap controls if the flex items should wrap to the
+next line or stay on the same line. The default value
+is set to nowrap, which means that the items will stay
+on the same line and may overflow the container.
+However, this value can be set to wrap that permits the
+items to wrap to the next line as needed. wrap-reverse
+can also be used to wrap the items to the next line in
+reverse order.
+• Finally, flex-grow, flex-shrink, and flex-basis control the
+
+size and flexibility of the individual flex items. flex-
+grow determines the growth of an item in relation to
+
+other items in the container, flex-shrink determines the
+factory by which an item can shrink, and flex-basis is
+used to set the initial size of the flex items before any
+remaining space.
+
+Flexbox Overview
+CSS has revolutionized the way web pages are designed and structured.
+One of the most powerful CSS features is the flexbox, a layout model that
+lets developers create flexible and responsive designs with ease. Whether
+you’re an experienced web developer or just a beginner, understanding
+the fundamentals of a flexbox is essential for building modern, dynamic
+web interfaces. In this section, we will provide an overview of a flexbox,
+exploring its core concepts and demonstrating how it can streamline your
+CSS layouts.
+
+Chapter 3 Cascading Style Sheets and Layouts
+
+82
+What is a flexbox? A flexbox, short for “flexible box layout,” is a
+CSS layout model designed to provide a way to create a container that
+effectively arranges, distributes, and aligns the elements within it. With
+Flexbox, you can create responsive and dynamic layouts that adapt to
+different screen sizes and orientations.
+• The flex container and flex items: To use a flexbox, a flex
+container and its children known as flex items must be
+defined. The value flex for the display attribute (display:
+flex) creates a flex container and enables flexbox
+properties for its child elements. This allows you to
+control the layout and positioning of the child elements
+known as flex items within the container.
+• Main axis and cross axis: The flexbox layout introduces
+two main axes: the main axis and the cross axis. The
+primary axis along which the flex items are aligned is
+the main axis, while the cross axis runs vertically to it.
+The direction of the main axis can be defined using the
+
+flex-direction property, which can be set to row, row-
+reverse, column, or column-reverse. This flexibility
+
+enables both horizontal and vertical layouts.
+• Alignment and distribution: Flexbox provides a
+powerful mechanism to arrange and spread flex items
+along the main axes as well as cross axes. Some of the
+key properties include the following:
+• justify-content: How flex items are aligned along the
+main axes is controlled by justify-content.
+• align-items: This aligns flex items along the
+cross axis.
+
+Chapter 3 Cascading Style Sheets and Layouts
+
+83
+
+• align-content: This provides an additional space
+along the cross axis when multiple rows or columns
+of flex items need to be accommodated in the
+container.
+• Flex item properties: Flex items have properties that
+allow you to control their behavior within the flex
+container. Some commonly used properties include the
+following:
+• flex-grow: This specifies how flex items will spread
+to fill available space.
+• flex-shrink: This determines the ability of flex items
+to shrink when space is limited.
+• flex-basis: The initial size of a flex item is defined
+first, and the remaining space is distributed across
+the flex items within the container.
+• order: This controls the order in which flex items
+appear within the container.
+• Responsive layouts with Flexbox: Flexbox excels at
+creating responsive layouts that adapt to different
+screen sizes and orientations. By combining flexible
+sizing options, media queries, and other CSS
+techniques, you can build dynamic interfaces that
+seamlessly adjust to varying devices and viewport
+dimensions.
+• Browser pupport and compatibility: A flexbox is widely
+supported in modern browsers, including Chrome,
+Firefox, Safari, and Edge. However, for older versions of
+Internet Explorer, partial support is available using
+the -ms- prefix.
+
+Chapter 3 Cascading Style Sheets and Layouts
+
+84
+A flexbox is a powerful CSS layout model that enables developers
+with a versatile toolset to create flexible and responsive web designs. By
+understanding the core concepts of a flexbox and its various properties,
+you can streamline your CSS layouts and build modern interfaces that
+adapt seamlessly to different devices. With its widespread browser
+support, a flexbox is a valuable addition to any developer’s toolkit. So, dive
+into the world of flexbox and take your web layouts to new heights!
+Arranging the Flex Items
+In CSS3, you can use a flexbox layout to align and space flex items within
+a flex container. A flexbox provides several properties that control the flex
+items’ space and alignment within the container. Let’s go through the main
+properties you can use:
+• Justify content: The alignment of the flex items along
+the main axis of the container is controlled by the
+justify content property. It defines how the extra space
+is spread between and around flex items. The following
+are the possible values:
+• flex-start: Items are aligned at the start of the
+container.
+• flex-end: Items are aligned at the end of the
+container.
+• center: Items are centered within the container.
+• space-between: Items are evenly spread with space
+between them.
+• space-around: The space around the flex items is
+distributed evenly.
+• space-evenly: The flex items will be aligned by
+spacing them evenly in the container.
+Chapter 3 Cascading Style Sheets and Layouts
+
+85
+
+• Align items: The alignment of the flex items along
+the cross axis of the container is controlled by align
+items property. It determines how items are aligned
+within their respective lines. The possible values are as
+follows:
+• flex-start: Items are aligned at the start of the
+cross axis.
+• flex-end: Items are aligned at the end of the
+cross axis.
+• center: Items are centered along the cross axis.
+• stretch: Items are stretched to fill the container
+along the cross axis.
+• baseline: Flex items’ baseline will determine their
+alignment.
+• Align self: The only difference between align-items
+and align-self is that align-self allows flex items to be
+aligned individually within the container. It takes the
+same values as align-items.
+• Align content: Multiple lines of flex items can be
+arranged along the cross axis by using this property, in
+case they wrap into multiple lines. The possible values
+are similar to justify-content but apply to the cross axis.
+• Flex item margins: You can also use regular CSS margin
+properties to add space around individual flex items.
+An alternate to this is gap, which can be applied to flex
+container and will do the same job as margins.
+
+Chapter 3 Cascading Style Sheets and Layouts
+
+86
+• Order: All the flex elements are of order 0 and displayed
+in the same order as defined in the HTML. If you want
+to re-order the elements, the order property can be
+given a value to less than 0 to move the flex item ahead
+or greater than 0 to move the flex item after the flex
+item having the default order.
+Here’s the code for style.css:
+.container {
+font-family: sans-serif;
+background-color: bisque;
+font-size: 34px;
+/* Flexbox */
+display: flex;
+align-items: center;
+justify-content: flex-start;
+gap: 30px;
+}
+.element--1 {
+align-self: flex-start;
+background-color: yellowgreen;
+}
+.element--2 {
+background-color: burlywood;
+}
+.element--3 {
+background-color: turquoise;
+height: 150px;
+}
+Chapter 3 Cascading Style Sheets and Layouts
+
+87
+
+.element--4 {
+background-color: springgreen;
+}
+.element--5 {
+align-self: stretch;
+order: 1;
+background-color: slategray;
+}
+HTML file:-
+<!DOCTYPE html>
+<html>
+<head>
+<title>Float Layout Example</title>
+<link rel="stylesheet" type="text/css"
+href="style.css">
+</head>
+<body>
+<div class="container">
+<div class="element--1">1</div>
+<div class="element--2">2</div>
+<div class="element--3">3</div>
+<div class="element--4">4</div>
+<div class="element--5">5</div>
+</div>
+</body>
+</html>
+Figure 3-7 shows how the code looks in a browser.
+
+Chapter 3 Cascading Style Sheets and Layouts
+
+88
+Figure 3-7. Chrome browser displaying the flexbox layout
+Properties of Flex
+In CSS, the flex property is a shorthand property that combines three
+individual properties: flex-grow, flex-shrink, and flex-basis. It is used to
+control the behavior and sizing of flex items within a flex container.
+The flex property accepts up to three values.
+• flex-grow: It is possible for one flex item to grow
+in comparison to other flex items within the same
+container. How much it will grow can be determined by
+the flex-grow property. It takes a non-negative number
+as a value. By default, all flex items have a flex-grow
+value of 0, which means they won’t grow to fill the
+available space. If you set a positive value, such as flex:
+1, the item will grow proportionally to other items with
+positive flex-grow values.
+Chapter 3 Cascading Style Sheets and Layouts
+
+89
+
+• flex-shrink: It is possible for one flex item to shrink
+in comparison to other flex items within the same
+container. How much it will shrink can be determined
+by the flex-shrink property. It takes a non-negative
+
+number as a value. By default, all flex items have a flex-
+shrink value of 1, which means they can shrink equally.
+
+If you set a value of 0, the item will not shrink. If you set
+a higher value, such as flex: 2, the item will shrink twice
+as much as other items with flex-shrink set to 1.
+• flex-basis: The initial size of the flex items can be
+defined by this property after the remaining space is
+distributed. It can be specified as a length value (e.g.,
+pixels, percentages) or the keyword auto. The default
+value is auto, which means the item’s size is based on
+its content or the value of its width or height properties.
+You can also use flex-basis to explicitly set a specific
+size for the flex item.
+Here are a few examples of how the flex property can be used:
+.flex-item {
+flex: 1; /* Equivalent to flex-grow: 1, flex-shrink: 1,
+flex-basis: 0 */
+}
+.flex-item {
+flex: 0 0 200px; /* No growth, no shrinking, initial width
+of 200 pixels */
+}
+.flex-item {
+flex: 2 1 auto; /* Twice the growth compared to other
+items, default shrinking, initial size based on content */
+}
+
+Chapter 3 Cascading Style Sheets and Layouts
+
+90
+By utilizing the flex property, you have control over how flex items
+grow, shrink, and establish their initial size within a flex container.
+Building a Flexbox Layout
+Here is the code for flex.html:
+<!DOCTYPE html>
+<html>
+<head>
+<title>Float Layout Example</title>
+<link rel="stylesheet" type="text/css"
+href="style.css">
+</head>
+<body>
+<div class="container">
+<div class="el element--1">1</div>
+<div class="el element--2">2</div>
+<div class="el element--3">3</div>
+<div class="el element--4">4</div>
+<div class="el element--5">5</div>
+</div>
+</body>
+</html>
+Here is the code for style.css:
+.container {
+font-family: sans-serif;
+background-color: bisque;
+font-size: 34px;
+Chapter 3 Cascading Style Sheets and Layouts
+
+91
+
+/* Flexbox */
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 30px;
+}
+.el {
+flex: 1;
+padding: 10px;
+border: 1px solid #ccc;
+}
+.element--1 {
+align-self: flex-start;
+background-color: yellowgreen;
+}
+.element--2 {
+background-color: burlywood;
+}
+.element--3 {
+background-color: turquoise;
+height: 150px;
+}
+.element--4 {
+background-color: springgreen;
+}
+
+Chapter 3 Cascading Style Sheets and Layouts
+
+92
+.element--5 {
+align-self: stretch;
+order: 1;
+background-color: slategray;
+}
+The flex container has three flex items in the previous code example.
+The display property converts the normal container into a flex container.
+The justify-content property is set to space-between, which places an
+equal space between the items. The align-items property is set to center,
+which vertically centers the items within the container.
+The .item class has a flex property set to 1, which allows the items
+to grow and shrink equally to fill the available space. We also add some
+padding and styling to make the items visually distinguishable.
+You can customize the layout by adjusting the flex properties and other
+CSS properties to meet your specific needs. Feel free to modify the code as
+desired.
+Figure 3-8 shows how the code looks in a browser.
+
+Figure 3-8. Chrome browser displaying the flexbox layout with
+adjusting the flex item
+Chapter 3 Cascading Style Sheets and Layouts
+
+93
+
+Introduction to CSS Grid
+The CSS grid is a powerful layout system introduced in CSS3 that allows
+developers to create complex and responsive grid-based layouts on web
+pages. It provides a wide range of features and properties that enable
+precise control over placing and aligning flex items within a grid.
+Before CSS grids, web developers relied on various techniques such
+as floats, positioning, and flexboxes to achieve grid-like layouts. While
+these techniques were useful, they often required complex CSS rules and
+were not specifically designed for creating grid layouts. CSS grid, on the
+other hand, was built from the ground up to address these limitations and
+provide a more intuitive and efficient way to create grid-based designs.
+The main concept behind a CSS grid is the division of a web page into
+a series of rows and columns. Elements within these rows and columns
+can be placed and arranged according to the desired layout. The grid
+container serves as the parent element that holds the grid items, which are
+the individual elements being positioned within the grid.
+To start using the CSS grid layout, you first define a grid container by
+applying the display: grid property to a parent element. This establishes
+the grid context for its child elements. Once the grid container is set, you
+
+can specify the size and behavior of the rows and columns using the grid-
+template-rows and grid-template-columns properties. These properties
+
+allow you to define fixed sizes, use flexible proportions, or even use
+keywords like auto to automatically adjust the size based on the content.
+
+Elements within the grid container can be positioned using the grid-
+row and grid-column properties. These properties determine the starting
+
+and ending positions of an element within the grid, allowing you to create
+both simple and complex layouts. Additionally, the row and column
+positions can be defined by the grid-area property in a single declaration.
+Chapter 3 Cascading Style Sheets and Layouts
+
+94
+The CSS grid also offers powerful alignment and spacing options. You
+can align elements vertically or horizontally within their respective grid
+cells using properties such as justify-items, align-items, justify-content,
+and align-content. These properties enable precise control over the
+positioning of grid items. Furthermore, the grid-gap property allows you
+to define the spacing between rows and columns, providing flexibility in
+adjusting the overall grid layout.
+One of the most powerful features of a CSS grid is its ability to handle
+
+responsive design seamlessly. By utilizing media queries and the grid-
+template-areas property, you can create different grid layouts for different
+
+screen sizes. This flexibility makes it easier to build responsive websites
+that adapt to various devices and screen resolutions.
+The CSS grid is a game-changer for web layout design. With its intuitive
+syntax and powerful capabilities, it simplifies the creation of grid-based
+layouts, offers precise control over element positioning and alignment,
+and enables seamless responsiveness. Whether you are a beginner or an
+experienced developer, mastering the CSS grid layout opens up a world of
+possibilities for creating modern and visually appealing web designs. So,
+dive into CSS grid and elevate your web layout skills to the next level!
+
+CSS Grid: Revolutionizing Web
+Layout Design
+The CSS grid layout system has revolutionalized the way web developers
+create and manage website layouts. With its introduction in CSS3, the CSS
+
+grid provides a powerful and flexible solution for designing complex grid-
+based structures with ease. In this section, we will explore the fundamental
+
+concepts and features of CSS grid and understand how it has reshaped the
+landscape of web design.
+Chapter 3 Cascading Style Sheets and Layouts
+
+95
+
+What Is a CSS Grid?
+A CSS grid is a two-dimensional layout model that allows developers to
+create grid-based designs by dividing a web page into rows and columns.
+Unlike previous layout methods such as floats and positioning, a CSS
+grid provides a dedicated system designed specifically for building grids,
+making it more intuitive and efficient.
+Defining a Grid
+To start using a CSS grid, we designate an element as the grid container
+by applying the display: grid property. This establishes the grid context
+for its child elements, turning them into grid items. Once the container is
+defined, we can set up the rows and columns by using properties such as
+grid-template-rows and grid-template-columns, specifying their sizes and
+proportions or using keywords like auto to dynamically adjust based on
+content.
+Placing Grid Items
+A CSS grid offers accurate control over the placement of grid items within
+the grid container. We can specify the starting and ending positions of an
+item within the grid using properties such as grid-row-start, grid-row-end,
+grid-column-start, and grid-column-end. These properties allow us to
+create both simple and complex layouts by precisely positioning items in
+the desired grid cells.
+Grid Lines and Areas
+Grid lines play a crucial role in a CSS grid as they define the boundaries
+of rows and columns. By utilizing line-based placement, we can position
+items not only within cells but also across multiple cells. Additionally, a
+Chapter 3 Cascading Style Sheets and Layouts
+
+96
+CSS grid introduces the concept of grid areas. With the grid-area property,
+we can assign names to areas within the grid and easily position items in
+those areas using the grid-area value.
+Alignment and Spacing
+A CSS grid provides powerful alignment and spacing options to control
+the positioning of grid items. Properties such as justify-items, align-items,
+justify-content, and align-content allow us to align items vertically and
+horizontally within their grid cells or adjust the overall alignment of items
+within the grid container. Moreover, the grid-gap property enables us to
+define the spacing between rows and columns, allowing for precise control
+over the layout’s spacing and rhythm.
+Responsive Design with CSS Grid
+One of the standout features of a CSS grid is its ability to handle responsive
+design effortlessly. By combining media queries with different grid
+configurations, developers can create different layouts for different screen
+sizes. Using the grid-template-areas property, we can assign grid areas
+to specific sections of the layout and rearrange them dynamically as the
+screen size changes. This flexibility empowers us to build responsive
+websites that seamlessly adapt to various devices and screen resolutions.
+Browser Support
+A CSS grid enjoys widespread browser support, making it accessible to
+a vast majority of web users. All the latest browsers, including Google
+Chrome, Firefox, Safari, and Edge, have excellent support for CSS grids.
+Additionally, with the use of vendor prefixes, developers can ensure
+compatibility with older browser versions.
+Chapter 3 Cascading Style Sheets and Layouts
+
+97
+In conclusion, a CSS grid is a groundbreaking layout system that has
+revolutionized web design. Its intuitive syntax, extensive features, and
+excellent browser support make it a go-to choice for creating responsive,
+flexible, and visually appealing grid-based layouts. By mastering CSS grids,
+developers can unlock a new level of creativity and efficiency in web layout
+design, enabling them to build modern, dynamic websites that engage and
+delight users. So, embrace CSS grids and embark on an exciting journey to
+reshape the digital landscape.
+Sizing Grid Columns and Rows
+The CSS grid layout has revolutionized web design by providing a powerful
+and flexible way to create grid-based layouts. One of the key aspects of
+CSS grids is the ability to size grid columns and rows according to our
+design requirements. In this section, we will explore different methods and
+techniques for sizing grid columns and rows effectively.
+• Understanding the grid template: Before manipulating
+sizing, it’s important to grasp the concept of the grid
+template. The grid template defines the structure of the
+grid by specifying the number of rows and columns it
+should have. Here’s an example:
+.grid-container {
+display: grid;
+grid-template-columns: 1fr 2fr 1fr;
+grid-template-rows: auto 100px;
+}
+In this example, we have three columns with a
+flexible width ratio of 1:2:1 and two rows, one with an
+automatic height and the other with a fixed height of
+100 pixels.
+
+Chapter 3 Cascading Style Sheets and Layouts
+
+98
+• Using fixed sizes: To set fixed sizes for grid columns and
+rows, we can use specific length units like pixels (px) or
+any other appropriate unit. For instance:
+.grid-container {
+display: grid;
+grid-template-columns: 200px 300px;
+grid-template-rows: 100px 150px;
+}
+The previous code example will create a grid with two
+columns, the first being 200 pixels wide and the second
+300 pixels wide. Similarly, the grid will have two rows,
+with the first being 100 pixels tall and the second 150
+pixels tall.
+• Utilizing flexible sizes: CSS grids also provide a powerful
+way to create flexible sizes for grid columns and rows.
+This approach allows the grid to adjust its layout
+dynamically based on available space. The fr unit is
+used to define these flexible sizes. Here’s an example:
+.grid-container {
+display: grid;
+grid-template-columns: 1fr 2fr;
+grid-template-rows: 1fr auto;
+}
+In this case, the first column occupies one-third of the
+
+grid's width, while the second column occupies two-
+thirds. The first row takes one-third of the grid’s height,
+
+while the second row expands to fit its content.
+Chapter 3 Cascading Style Sheets and Layouts
+
+99
+
+• Combining fixed and flexible sizes: In many cases, a
+combination of fixed and flexible sizes is required
+to achieve the desired layout. CSS Grid allows us to
+mix these approaches within the grid template. For
+example:
+.grid-container {
+display: grid;
+grid-template-columns: 1fr 200px 2fr;
+grid-template-rows: auto 100px;
+}
+Here, the first column and the third column have flexible sizes that
+adapt to the available space, while the middle column maintains a fixed
+width of 200 pixels. The first row adjusts its height based on content, and
+the second row has a fixed height of 100 pixels.
+Sizing grid columns and rows in a CSS grid layout gives developers
+fine-grained control over their web layouts. By combining fixed and
+
+flexible sizes intelligently, we can create versatile and responsive grid-
+based designs. Understanding the grid template and utilizing length units
+
+like pixels and the fr unit empowers us to craft layouts that meet our design
+goals. Experiment with different sizing techniques to achieve visually
+appealing and adaptive grid layouts with a CSS grid.
+Placing and Aligning Grid Items
+To place and align grid items in a CSS grid layout, there are numerous
+properties and values you can use various properties and values. Here’s an
+overview of the most commonly used ones:
+
+Chapter 3 Cascading Style Sheets and Layouts
+
+100
+• grid-template-columns and grid-template-rows: These
+properties define the size and number of columns and
+rows in your grid. You can specify the size using absolute
+units (pixels, percentages) or relative units (fr, auto).
+Here’s an example:
+.grid-container {
+display: grid;
+grid-template-columns: 1fr 2fr 1fr;
+grid-template-rows: auto 100px;
+}
+• grid-column and grid-row: These properties specify the
+starting and ending positions of an item within the grid
+by referring to the column and row lines.
+Here’s an example:
+.grid-item {
+grid-column: 2 / 4; /* Starts at the 2nd column
+line and ends at the 4th column line */
+grid-row: 1; /* Starts at the 1st row line and ends
+at the 1st row line (same row) */
+}
+• grid-area: A single declaration that can declare the
+item’s size and position is achieved using the grid-area
+attribute by using the grid area’s name.
+Here’s an example:
+.grid-item {
+grid-area: header; /* Refers to a named grid area
+called "header" */
+}
+Chapter 3 Cascading Style Sheets and Layouts
+
+101
+• justify-self and align-self: The individual grid items can
+be aligned using this attribute within their cells along
+the horizontal (justify) and vertical (align) axes.
+Here’s an example:
+.grid-item {
+justify-self: center; /* Centers the item
+horizontally within its cell */
+align-self: end; /* Aligns the item to the bottom
+of its cell */
+}
+• justify-items and align-items: These properties set the
+default alignment for all grid items within the grid
+container.
+Here’s an example:
+.grid-container {
+justify-items: center; /* Centers all items
+horizontally within their cells */
+align-items: stretch; /* Stretches all items
+vertically to fill their cells */
+}
+These are just a few examples of how you can place and align grid
+items in a CSS grid layout. By combining these properties and values,
+you can create various grid layouts and achieve precise control over the
+positioning and alignment of your elements.
+
+Chapter 3 Cascading Style Sheets and Layouts
+
+102
+Building a CSS Grid Layout
+CSS Grid is a powerful layout system that permits the creation of complex
+and flexible grid-based designs. Let’s see an example of how you can create
+a basic grid layout.
+Here is style.css:
+.grid-container {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr; /* Three columns with
+equal width */
+grid-gap: 10px; /* Gap between grid items */
+}
+.item {
+background-color: #cd3434;
+padding: 20px;
+}
+Here is grid.html:
+<!DOCTYPE html>
+<html>
+<head>
+<title>Float Layout Example</title>
+<link rel="stylesheet" type="text/css"
+href="style.css">
+</head>
+<body>
+<div class="grid-container">
+<div class="item">Item 1</div>
+<div class="item">Item 2</div>
+<div class="item">Item 3</div>
+<div class="item">Item 4</div>
+Chapter 3 Cascading Style Sheets and Layouts
+
+103
+
+<div class="item">Item 5</div>
+<div class="item">Item 6</div>
+</div>
+</body>
+</html>
+
+In the previous example, we have a container with the class grid-
+container that displays as a grid. The grid-template-columns property
+
+defines the number and width of the grid columns. In this case, we have
+three columns, each with equal width (1fr).
+The grid-gap property adds a gap of 10 pixels between grid items.
+The item class is applied to each grid item. In this example, I’ve given
+them a background color and some padding to make them visually distinct.
+Feel free to adjust the number of columns, gap size, and styling as
+per your requirements. You can also use different units such as pixels,
+percentages, or auto for column widths to create more complex grid
+layouts.
+Figure 3-9 shows what it looks like in a browser.
+
+Figure 3-9. Chrome browser displaying the CSS grid layout
+
+Chapter 3 Cascading Style Sheets and Layouts
+
+104
+Summary
+This chapter covered various topics related to CSS layouts and how to
+implement them. We covered how to create and use floats, box-sizing,
+and border-box. The chapter also covered flexboxes and how to create
+them along with its attributes and their explanation. We talked about
+the flex items in the flexbox layout and covered the properties of the flex.
+We showed how to implement a CSS grid layout along with sizing grid
+columns and rows and placing and aligning the grid items.
+Chapter 3 Cascading Style Sheets and Layouts
+
+© Varun Gor 2023 105
+V. Gor, Creating Responsive Websites Using HTML5 and CSS3,
+https://doi.org/10.1007/978-1-4842-9783-4_4
+CHAPTER 4
+
+Media Queries
+
+In the era of smartphones, tablets, and multitudes of screen sizes, creating
+a seamless user experience across devices has become crucial. Responsive
+web design allows websites to adapt and respond to different viewport
+sizes, providing optimal viewing experiences. CSS3 introduced a powerful
+feature called media queries that enables developers to tailor stylesheets
+based on various device characteristics. In this chapter, we will explore
+what media queries are, how they work, and their significance in creating
+responsive designs.
+
+What Are Media Queries?
+Media queries are a CSS3 feature that allows developers to apply
+different stylesheets or specific styles within a stylesheet based on the
+characteristics of the device or viewport. These characteristics include
+viewport width, height, device type, orientation, resolution, and more. By
+utilizing media queries, developers can create designs that adapt gracefully
+to different devices and ensure the content remains readable and usable
+across various screen sizes.
+
+106
+Media queries work by evaluating the media features specified within
+the query and applying the associated styles if the conditions are met.
+The general syntax of a media query consists of an @media rule followed
+by one or more media features enclosed within parentheses. Here’s an
+example of a basic media query:
+@media (max-width: 768px) {
+/* Styles to apply when viewport width is 768px or less */
+}
+In this example, the styles within the curly braces will be applied when
+the viewport width is 768 pixels or less. Media queries can also include
+logical operators such as and, not, and only to combine multiple media
+features for precise targeting.
+
+Common Media Features
+Here are the common media features:
+• Width and height: The width and height media features
+allow developers to apply styles based on the viewport
+dimensions. For example:
+@media (max-width: 600px) {
+/* Styles for viewport width 600px or less */
+}
+@media (min-height: 768px) {
+/* Styles for viewport height 768px or more */
+}
+Chapter 4 Media Queries
+
+107
+
+• Device type: Media queries can also target specific
+device types, such as the screen, print, speech, and
+more. This allows for tailored styles for different output
+devices. For example:
+@media screen {
+/* Styles for screen devices */
+}
+@media print {
+/* Styles for print media */
+}
+• Orientation: The orientation media feature enables
+developers to differentiate between portrait and
+landscape orientations of the device. For example:
+@media (orientation: landscape) {
+/* Styles for landscape orientation */
+}
+@media (orientation: portrait) {
+/* Styles for portrait orientation */
+}
+• Resolution: Media queries can target devices based
+on their display resolution, ensuring high-resolution
+assets are used when necessary. For example:
+@media (min-resolution: 300dpi) {
+/* Styles for devices with high-resolution
+displays */
+}
+
+Chapter 4 Media Queries
+
+108
+Significance of Media Queries
+Media queries are integral to creating responsive web designs that adapt
+to the ever-expanding range of devices and screen sizes. They allow
+developers to craft interfaces that provide a consistent user experience,
+regardless of whether the user is on a desktop, smartphone, or tablet.
+By utilizing media queries effectively, websites can improve readability,
+usability, and overall user satisfaction.
+Media queries in CSS3 empower developers to build responsive
+web designs that gracefully adapt to various devices and screen sizes. By
+targeting specific media features, such as width, height, orientation, and
+resolution, developers can apply custom styles to ensure a seamless user
+experience. With the continued growth of mobile and diverse screen sizes,
+understanding and implementing media queries is essential for creating
+modern, user-friendly websites that cater to a wide range of devices and
+user preferences.
+
+How Does a Media Query Work?
+This section covers how to define a media query. Consider the following
+CSS code.
+Here is style.css:
+.container {
+background-color: cadetblue;
+width: 1920px;
+height: 1080px;
+clear: both;
+}
+Chapter 4 Media Queries
+
+109
+
+@media screen and (max-width : 920px) {
+.container {
+background-color: crimson;
+clear: both;
+}
+}
+@media screen and (max-width : 780px) {
+.container {
+background-color: plum;
+clear: both;
+}
+}
+@media screen and (max-width : 600px) {
+.container {
+background-color: darkgreen;
+clear: both;
+}
+}
+@media screen and (max-width : 360px) {
+.container {
+background-color: seagreen;
+clear: both;
+}
+}
+
+Chapter 4 Media Queries
+
+110
+Here is the HTML file:
+<!DOCTYPE html>
+<html>
+<head>
+<title>Media Query Example</title>
+<link rel="stylesheet" type="text/css"
+href="style.css">
+</head>
+<body>
+<div class="container"></div>
+</body>
+</html>
+How does Google Chrome display this with different resolution sizes?
+See Figure 4-1 through Figure 4-4. (Note: As the browser size is changing,
+the background color for <div> will change as defined in the CSS.)
+

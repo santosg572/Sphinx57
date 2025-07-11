@@ -1,17 +1,19 @@
+
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>CHAPTER 2 Dice Game &#8212; Calculo 0.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
-    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=1ea45734" />
-    <script src="../_static/documentation_options.js?v=2709fde1"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Fundamentals_of_Physics_Resnick" href="../Fundamentals_of_Physics_Resnick/index2.html" />
@@ -19,9 +21,8 @@
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
-
   
-  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
   
@@ -34,7 +35,7 @@
           <div class="body" role="main">
             
   <section id="chapter-2-dice-game">
-<h1>CHAPTER 2 Dice Game<a class="headerlink" href="#chapter-2-dice-game" title="Link to this heading">¶</a></h1>
+<h1>CHAPTER 2 Dice Game<a class="headerlink" href="#chapter-2-dice-game" title="Permalink to this headline">¶</a></h1>
 <p>In this chapter, we cover the following:</p>
 <ul class="simple">
 <li><p>Drawing on a canvas</p></li>
@@ -85,7 +86,7 @@ following the rules, even if that means play goes on and on. My students sometim
 as if their games work only if they win. In a correct implementation of the game, players
 will win and lose.</p>
 <section id="critical-requirements">
-<h2>Critical Requirements<a class="headerlink" href="#critical-requirements" title="Link to this heading">¶</a></h2>
+<h2>Critical Requirements<a class="headerlink" href="#critical-requirements" title="Permalink to this headline">¶</a></h2>
 <p>The requirements for building the dice game begin with simulating the random throwing
 of dice. At first, this seems impossible since programming means specifying exactly what
 the computer will do. Luckily, JavaScript, like most other programming languages, has
@@ -118,12 +119,12 @@ for the computer screen are implemented in similar ways in most programming
 languages, as I’ll explain shortly.</p>
 </section>
 <section id="html5-css-and-javascript-features">
-<h2>HTML5, CSS, and JavaScript Features<a class="headerlink" href="#html5-css-and-javascript-features" title="Link to this heading">¶</a></h2>
+<h2>HTML5, CSS, and JavaScript Features<a class="headerlink" href="#html5-css-and-javascript-features" title="Permalink to this headline">¶</a></h2>
 <p>Let’s now take a look at the specific features of HTML5, CSS, and JavaScript that provide
 what we need to implement the craps game.</p>
 </section>
 <section id="pseudorandom-processing-and-mathematical-expressions">
-<h2>Pseudorandom Processing and Mathematical Expressions<a class="headerlink" href="#pseudorandom-processing-and-mathematical-expressions" title="Link to this heading">¶</a></h2>
+<h2>Pseudorandom Processing and Mathematical Expressions<a class="headerlink" href="#pseudorandom-processing-and-mathematical-expressions" title="Permalink to this headline">¶</a></h2>
 <p>Pseudorandom processing in JavaScript is performed using a built-in method called
 Math.random. Formally, random is a method of the Math class. The call Math.random()
 generates a number from 0 up to but not including 1, resulting in a decimal number, for
@@ -171,7 +172,7 @@ using Math.floor.</p>
 few other things first.</p>
 </section>
 <section id="variables-and-assignment-statements">
-<h2>Variables and Assignment Statements<a class="headerlink" href="#variables-and-assignment-statements" title="Link to this heading">¶</a></h2>
+<h2>Variables and Assignment Statements<a class="headerlink" href="#variables-and-assignment-statements" title="Permalink to this headline">¶</a></h2>
 <p>Like other programming languages, JavaScript has a construct called a variable, which
 is essentially a place to put a value, such as a number. It is a way of associating a name
 with a value. You can use the value later by referencing the name. One analogy is to
@@ -234,7 +235,7 @@ refer to these values in several different places, storing the values in variabl
 if I want to change one or both, I need to make the change in only one place.</p>
 </section>
 <section id="programmer-defined-functions">
-<h2>Programmer-Defined Functions<a class="headerlink" href="#programmer-defined-functions" title="Link to this heading">¶</a></h2>
+<h2>Programmer-Defined Functions<a class="headerlink" href="#programmer-defined-functions" title="Permalink to this headline">¶</a></h2>
 <p>JavaScript has many built-in functions and methods, but it doesn’t have everything you
 might need. For example, as far as I know, it does not have functions specifically for
 simulating the throwing of dice. So JavaScript lets us define and use our own functions.
@@ -285,7 +286,7 @@ JavaScript invokes the throwdice function I defined in the script element.</p>
 <p>The form element, described later, could invoke a function in a similar way.</p>
 </section>
 <section id="conditional-statements-if-and-switch">
-<h2>Conditional Statements: if and switch<a class="headerlink" href="#conditional-statements-if-and-switch" title="Link to this heading">¶</a></h2>
+<h2>Conditional Statements: if and switch<a class="headerlink" href="#conditional-statements-if-and-switch" title="Permalink to this headline">¶</a></h2>
 <p>The craps game has a set of rules. One way to summarize the rules is to say, if it is a
 first-throw situation, we check for certain values of the dice throw. If it’s not the first
 throw, we check for other values of the dice throw. JavaScript provides the if and switch
@@ -386,7 +387,7 @@ specific layout for these statements. You could put everything on one line if yo
 However, make things easy on yourself and use multiple lines and indenting.</p>
 </section>
 <section id="drawing-on-the-canvas">
-<h2>Drawing on the Canvas<a class="headerlink" href="#drawing-on-the-canvas" title="Link to this heading">¶</a></h2>
+<h2>Drawing on the Canvas<a class="headerlink" href="#drawing-on-the-canvas" title="Permalink to this headline">¶</a></h2>
 <p>Now we get to one of the most powerful new features in HTML5, the canvas element. I
 will explain the pieces of coding that go into an application involving canvas, then show
 some simple examples, and finally get back to our goal of drawing dice faces on the
@@ -864,7 +865,7 @@ cannon ball and slingshot.</p>
           
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="../index.html">Calculo</a></h1>
 
@@ -907,6 +908,11 @@ cannon ball and slingshot.</p>
 <li class="toctree-l1"><a class="reference internal" href="../Fundamentals_of_Physics_Resnick/index2.html">Fundamentals_of_Physics_Resnick</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Creating_Responsive_Websites_Using_HTML5_CSS3_Varun/index2.html">A_First_Course_Design_Analysis_Experiments_Gary</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">An_Introduction_Statistics_Python</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Libros_Leer_Apuntes_GOOGLE/Python/An_Introduction_Statistics_Python/An_Introduction_Statistics_Python_c01.html">C01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Libros_Leer_Apuntes_GOOGLE/Python/An_Introduction_Statistics_Python/An_Introduction_Statistics_Python_c01.html#chapter-1-why-statistics">Chapter 1 Why Statistics?</a></li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
@@ -919,7 +925,7 @@ cannon ball and slingshot.</p>
   </ul></li>
 </ul>
 </div>
-<search id="searchbox" style="display: none" role="search">
+<div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
@@ -927,8 +933,8 @@ cannon ball and slingshot.</p>
       <input type="submit" value="Go" />
     </form>
     </div>
-</search>
-<script>document.getElementById('searchbox').style.display = "block"</script>
+</div>
+<script>$('#searchbox').show(0);</script>
 
 
 
@@ -942,11 +948,11 @@ cannon ball and slingshot.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &#169;2025, santosg57.
+      &copy;2025, santosg57.
       
       |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
-      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="../_sources/The_Essential_Guide_to_HTML5_3E_Jeanine/The_Essential_Guide_to_HTML5_3E_Jeanine_c02.rst.txt"
