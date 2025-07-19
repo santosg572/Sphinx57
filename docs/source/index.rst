@@ -48,7 +48,6 @@ documentation for details.
    Quantum_Computing_Himanshu/index2
    Applied_Delay_Differential_Equations/index2
    The_Essential_Guide_to_HTML5_3E_Jeanine/index2
-   Fundamentals_of_Physics_Resnick/index2
    Creating_Responsive_Websites_Using_HTML5_CSS3_Varun/index2
 
 .. toctree::
@@ -57,3 +56,9 @@ documentation for details.
 
    Libros_Leer_Apuntes_GOOGLE/Python/An_Introduction_Statistics_Python/An_Introduction_Statistics_Python_c01
    Libros_Leer_Apuntes_GOOGLE/Python/An_Introduction_Statistics_Python/An_Introduction_Statistics_Python_c02
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Fundamentals_of_Physics_Resnick
+
+   Fundamentals_of_Physics_Resnick/index2
