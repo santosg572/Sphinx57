@@ -9,6 +9,8 @@ Fundamentals_of_Physics_Resnick
    :maxdepth: 2
 
    Fundamentals_of_Physics_Resnick_c01
+   Fundamentals_of_Physics_Resnick_c02
+   Fundamentals_of_Physics_Resnick_c21
 
 
 
