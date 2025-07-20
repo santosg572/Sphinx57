@@ -1,2 +1,0 @@
-https://phoenixnap.com/kb/install-ffmpeg-ubuntu
-
