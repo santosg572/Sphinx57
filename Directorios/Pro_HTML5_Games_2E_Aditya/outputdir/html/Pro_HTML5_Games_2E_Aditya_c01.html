@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>CHAPTER 1 HTML5 and JavaScript Essentials &#8212; Pro_HTML5_Games_2E_Aditya 01 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=82a30901"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="CHAPTER 2 Creating a Basic Game World" href="Pro_HTML5_Games_2E_Aditya_c02.html" />
+    <link rel="prev" title="Pro_HTML5_Games_2E_Aditya documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="chapter-1-html5-and-javascript-essentials">
+<h1>CHAPTER 1 HTML5 and JavaScript Essentials<a class="headerlink" href="#chapter-1-html5-and-javascript-essentials" title="Link to this heading">¶</a></h1>
+<p>HTML5, the latest version of the HTML standard, provides us with many new features for improved
+interactivity and media support. These new features (such as canvas, audio, and video) have made it
+possible to make fairly rich and interactive applications for the browser without requiring third-party plug-
+ins such as Flash.</p>
+<p>Even though the HTML5 standard continues to grow and improve as a “living standard,” all the
+elements that we need for building some very amazing games are already supported by all modern browsers
+(Google Chrome, Mozilla Firefox, Internet Explorer 9+, Microsoft Edge, Safari, and Opera).</p>
+<p>Over the past half-decade (since I wrote the first edition of this book), HTML5 support has become a
+standard across all modern browsers, both desktop and mobile. This means we now can make games in
+HTML5 that can be easily extended to work on both mobile and desktop across a wide variety of operating
+systems.</p>
+<p>All you need to get started on developing your games in HTML5 are a good text editor to write your
+code (I currently use Visual Studio Code on both Mac and PC—<a class="reference external" href="https://code.visualstudio.com/">https://code.visualstudio.com/</a>) and
+a modern, HTML5-compatible browser (I primarily use Google Chrome). Once you have installed your
+preferred text editor and HTML5-compatible browser, you are ready to create your first HTML5 page.</p>
+<section id="a-basic-html5-page">
+<h2>A Basic HTML5 Page<a class="headerlink" href="#a-basic-html5-page" title="Link to this heading">¶</a></h2>
+<p>The structure of an HTML5 document is very similar to the structure in previous versions, except that
+HTML5 has a much simpler DOCTYPE tag at the beginning of the document. This simpler DOCTYPE tag
+lets the browser know that it needs to use the latest standards when interpreting the document.</p>
+<p>Listing 1-1 provides a skeleton for a very basic HTML5 file that we will be using as a starting point for the
+rest of this chapter. Executing this code involves saving it as an HTML file and then opening the file in a web
+browser. If you do everything correctly, the browser should pop up the message “Hello World!”</p>
+<p>Listing 1-1. Basic HTML5 File Skeleton</p>
+<div class="highlight-HTML notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;Content-type&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;text/html; charset=utf-8&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Sample HTML5 File<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>
+<span class="c1">// This function will be called once the page loads completely</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">pageLoaded</span><span class="p">(){</span>
+<span class="w">   </span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Hello World!&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span> <span class="na">onload</span><span class="o">=</span><span class="s">&quot;pageLoaded();&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>■ Note We use the body’s onload event to call our pageLoaded() function so that we can be sure that
+our page has completely loaded before we start working with it. this will become important when we start
+manipulating elements like images and audio. trying to access these elements before the browser has finished
+loading them will cause JavaScript errors or other unexpected behavior.</p>
+<p>Before we start developing games, we need to go over some of the basic building blocks that we will be
+using to create our games. The most important ones that we need are</p>
+<ul class="simple">
+<li><p>The canvas element, to render shapes and images</p></li>
+<li><p>The audio element, to add sounds and background music</p></li>
+<li><p>The image element, to load our game artwork and display it on the canvas</p></li>
+<li><p>The browser timer functions, and game loops to handle animation</p></li>
+</ul>
+</section>
+<section id="the-canvas-element">
+<h2>The canvas Element<a class="headerlink" href="#the-canvas-element" title="Link to this heading">¶</a></h2>
+<p>The most important element for use in our games is the new canvas element. As per the HTML5 standard
+specification, “The canvas element provides scripts with a resolution-dependent bitmap canvas, which
+can be used for rendering graphs, game graphics, art, or other visual images on the fly.” You can find the
+complete specification at <a class="reference external" href="https://html.spec.whatwg.org/multipage/scripting.html#the-canvas">https://html.spec.whatwg.org/multipage/scripting.html#the-canvas</a>-
+element.</p>
+<p>The canvas allows us to draw primitive shapes like lines, circles, and rectangles, as well as images and
+text, and has been optimized for fast drawing. Browsers have started enabling GPU-accelerated rendering of
+2D canvas content, so that canvas-based games and animations run fast.</p>
+<p>Using the canvas element is fairly simple. Place the &lt;canvas&gt; tag inside the body of the HTML5 file we
+created earlier, as shown in Listing 1-2.</p>
+<p>Listing 1-2. Creating a Canvas Element</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">body</span> <span class="n">onload</span><span class="o">=</span><span class="s2">&quot;pageLoaded();&quot;</span><span class="o">&gt;</span>
+   <span class="o">&lt;</span><span class="n">canvas</span> <span class="n">width</span><span class="o">=</span><span class="s2">&quot;640&quot;</span> <span class="n">height</span><span class="o">=</span><span class="s2">&quot;480&quot;</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;testcanvas&quot;</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;border: 1px solid black;&quot;</span><span class="o">&gt;</span>
+      <span class="n">Your</span> <span class="n">browser</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">support</span> <span class="n">HTML5</span> <span class="n">Canvas</span><span class="o">.</span> <span class="n">Please</span> <span class="n">shift</span> <span class="n">to</span> <span class="n">a</span> <span class="n">newer</span> <span class="n">browser</span><span class="o">.</span>
+   <span class="o">&lt;/</span><span class="n">canvas</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The code in Listing 1-2 creates a canvas that is 640 pixels wide and 480 pixels high. By itself, the canvas
+shows up as a blank area (with a black border that we specified in the style). We can now start drawing inside
+this rectangle using JavaScript.</p>
+<p>■ Note Browsers that do not support canvas will ignore the &lt;canvas&gt; tag and render anything inside
+the &lt;canvas&gt; tag. You can use this feature to show users on older browsers alternative fallback content or a
+message directing them to a more modern browser.</p>
+<p>We draw on the canvas using what is known as its primary rendering context. We can access this context
+with the getContext() method of the canvas object. The getContext() method takes one parameter: the
+type of context that we need. We will be using the 2d context for our games.</p>
+<p>Listing 1-3 shows how we can access the canvas and its context once the page has loaded by modifying
+the pageLoaded() method.</p>
+<p>Listing 1-3. Accessing the Canvas Context</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">script</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span><span class="o">&gt;</span>
+   <span class="n">function</span> <span class="n">pageLoaded</span><span class="p">(){</span>
+      <span class="o">//</span> <span class="n">Get</span> <span class="n">a</span> <span class="n">handle</span> <span class="n">to</span> <span class="n">the</span> <span class="n">canvas</span> <span class="nb">object</span>
+      <span class="n">var</span> <span class="n">canvas</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&quot;testcanvas&quot;</span><span class="p">);</span>
+      <span class="o">//</span> <span class="n">Get</span> <span class="n">the</span> <span class="mi">2</span><span class="n">d</span> <span class="n">context</span> <span class="k">for</span> <span class="n">this</span> <span class="n">canvas</span>
+      <span class="n">var</span> <span class="n">context</span> <span class="o">=</span> <span class="n">canvas</span><span class="o">.</span><span class="n">getContext</span><span class="p">(</span><span class="s2">&quot;2d&quot;</span><span class="p">);</span>
+      <span class="o">//</span> <span class="n">Our</span> <span class="n">drawing</span> <span class="n">code</span> <span class="n">here</span><span class="o">...</span>
+   <span class="p">}</span>
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>■ Note all browsers support the 2d context that we need for 2d graphics. Most browsers also implement
+other contexts with names such as webgl or experimental-webgl for 3d graphics.</p>
+<p>This code doesn’t seem to do anything yet. However, we now have access to a 2d context object. This
+context object provides us with a large number of methods that we can use to draw our game elements on
+the screen. This includes methods for the following:</p>
+<ul class="simple">
+<li><p>Drawing rectangles</p></li>
+<li><p>Drawing complex paths (lines, arcs, and so forth)</p></li>
+<li><p>Drawing text</p></li>
+<li><p>Customizing drawing styles (colors, alpha, textures, and so forth)</p></li>
+<li><p>Drawing images</p></li>
+<li><p>Transforming and rotating</p></li>
+</ul>
+<p>We will look at each of these methods in more detail in the following sections</p>
+</section>
+<section id="drawing-rectangles">
+<h2>Drawing Rectangles<a class="headerlink" href="#drawing-rectangles" title="Link to this heading">¶</a></h2>
+<p>Before you can start drawing on the canvas, you need to understand how to reference coordinates on it. The
+canvas uses a coordinate system with the origin (0, 0) at the top-left corner of the canvas, x increasing toward
+the right, and y increasing downward, as illustrated in Figure 1-1.</p>
+<p>We can draw a rectangle on the canvas using the context’s rectangle methods:</p>
+<ul class="simple">
+<li><p>fillRect(x, y, width, height): Draws a filled rectangle</p></li>
+<li><p>strokeRect(x, y, width, height): Draws a rectangular outline</p></li>
+<li><p>clearRect(x, y, width, height): Clears the specified rectangular area and makes</p></li>
+</ul>
+<p>it fully transparent</p>
+<p>Listing 1-4. Drawing Rectangles Inside the Canvas</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">FILLED</span> <span class="n">RECTANGLES</span>
+<span class="o">//</span> <span class="n">Draw</span> <span class="n">a</span> <span class="n">solid</span> <span class="n">square</span> <span class="k">with</span> <span class="n">width</span> <span class="ow">and</span> <span class="n">height</span> <span class="n">of</span> <span class="mi">100</span> <span class="n">pixels</span> <span class="n">at</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">fillRect</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">Draw</span> <span class="n">a</span> <span class="n">solid</span> <span class="n">square</span> <span class="k">with</span> <span class="n">width</span> <span class="n">of</span> <span class="mi">90</span> <span class="n">pixels</span> <span class="ow">and</span> <span class="n">height</span> <span class="n">of</span> <span class="mi">30</span> <span class="n">pixels</span> <span class="n">at</span> <span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">70</span><span class="p">)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">fillRect</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">STROKED</span> <span class="n">RECTANGLES</span>
+<span class="o">//</span> <span class="n">Draw</span> <span class="n">a</span> <span class="n">rectangular</span> <span class="n">outline</span> <span class="k">with</span> <span class="n">width</span> <span class="ow">and</span> <span class="n">height</span> <span class="n">of</span> <span class="mi">50</span> <span class="n">pixels</span> <span class="n">at</span> <span class="p">(</span><span class="mi">110</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">strokeRect</span><span class="p">(</span><span class="mi">110</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">Draw</span> <span class="n">a</span> <span class="n">rectangular</span> <span class="n">outline</span> <span class="k">with</span> <span class="n">width</span> <span class="ow">and</span> <span class="n">height</span> <span class="n">of</span> <span class="mi">50</span> <span class="n">pixels</span> <span class="n">at</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">strokeRect</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">CLEARING</span> <span class="n">RECTANGLES</span>
+<span class="o">//</span> <span class="n">Clear</span> <span class="n">a</span> <span class="n">rectangle</span> <span class="k">with</span> <span class="n">width</span> <span class="n">of</span> <span class="mi">30</span> <span class="n">pixels</span> <span class="ow">and</span> <span class="n">height</span> <span class="n">of</span> <span class="mi">20</span> <span class="n">pixels</span> <span class="n">at</span> <span class="p">(</span><span class="mi">210</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">clearRect</span><span class="p">(</span><span class="mi">210</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">Clear</span> <span class="n">a</span> <span class="n">rectangle</span> <span class="k">with</span> <span class="n">width</span> <span class="n">of</span> <span class="mi">30</span> <span class="n">pixels</span> <span class="ow">and</span> <span class="n">height</span> <span class="n">of</span> <span class="mi">20</span> <span class="n">pixels</span> <span class="n">at</span> <span class="p">(</span><span class="mi">260</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">clearRect</span><span class="p">(</span><span class="mi">260</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The code in Listing 1-4 will draw multiple rectangles on the top-left corner of the canvas, as shown in
+Figure 1-2. Add the code to the bottom of the pageLoaded() method, save the file, and refresh the browser to
+see the result of these changes.</p>
+</section>
+<section id="drawing-complex-paths">
+<h2>Drawing Complex Paths<a class="headerlink" href="#drawing-complex-paths" title="Link to this heading">¶</a></h2>
+<p>The context has several methods that allow us to draw complex shapes when simple boxes aren’t enough:</p>
+<ul class="simple">
+<li><p>beginPath(): Starts recording a new shape</p></li>
+<li><p>closePath(): Closes the path by drawing a line from the current drawing point to the</p></li>
+</ul>
+<p>starting point
+• fill(), stroke(): Fills or draws an outline of the recorded shape
+• moveTo(x, y): Moves the drawing point to x, y
+• lineTo(x, y): Draws a line from the current drawing point to x, y
+• arc(x, y, radius, startAngle, endAngle, anticlockwise): Draws an arc at x, y
+with specified radius</p>
+<p>Using these methods, drawing a complex path involves the following steps:</p>
+<ul class="simple">
+<li><ol class="arabic simple">
+<li><p>Use beginPath() to start recording the new shape.</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>Use moveTo(), lineTo(), and arc() to create the shape.</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="3">
+<li><p>Optionally, close the shape using closePath().</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="4">
+<li><p>Use either stroke() or fill() to draw an outline or filled shape. Using fill() automatically closes any open paths</p></li>
+</ol>
+</li>
+</ul>
+<p>Listing 1-5 will create the triangles, arcs, and shapes shown in Figure 1-3.</p>
+<p>Listing 1-5. Drawing Complex Shapes Inside the Canvas</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">DRAWING</span> <span class="n">COMPLEX</span> <span class="n">SHAPES</span>
+<span class="o">//</span> <span class="n">Draw</span> <span class="n">a</span> <span class="n">filled</span> <span class="n">triangle</span>
+<span class="n">context</span><span class="o">.</span><span class="n">beginPath</span><span class="p">();</span>
+<span class="n">context</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">120</span><span class="p">);</span> <span class="o">//</span> <span class="n">Start</span> <span class="n">drawing</span> <span class="n">at</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">120</span>
+<span class="n">context</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">180</span><span class="p">);</span>
+<span class="n">context</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">110</span><span class="p">,</span> <span class="mi">150</span><span class="p">);</span>
+<span class="n">context</span><span class="o">.</span><span class="n">fill</span><span class="p">();</span> <span class="o">//</span> <span class="n">Close</span> <span class="n">the</span> <span class="n">shape</span> <span class="ow">and</span> <span class="n">fill</span> <span class="n">it</span> <span class="n">out</span>
+<span class="o">//</span> <span class="n">Draw</span> <span class="n">a</span> <span class="n">stroked</span> <span class="n">triangle</span>
+<span class="n">context</span><span class="o">.</span><span class="n">beginPath</span><span class="p">();</span>
+<span class="n">context</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mi">140</span><span class="p">,</span> <span class="mi">160</span><span class="p">);</span> <span class="o">//</span> <span class="n">Start</span> <span class="n">drawing</span> <span class="n">at</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">160</span>
+<span class="n">context</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">140</span><span class="p">,</span> <span class="mi">220</span><span class="p">);</span>
+<span class="n">context</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">190</span><span class="p">);</span>
+<span class="n">context</span><span class="o">.</span><span class="n">closePath</span><span class="p">();</span>
+<span class="n">context</span><span class="o">.</span><span class="n">stroke</span><span class="p">();</span>
+<span class="o">//</span> <span class="n">Draw</span> <span class="n">a</span> <span class="n">more</span> <span class="nb">complex</span> <span class="nb">set</span> <span class="n">of</span> <span class="n">lines</span>
+<span class="n">context</span><span class="o">.</span><span class="n">beginPath</span><span class="p">();</span>
+<span class="n">context</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="mi">160</span><span class="p">);</span> <span class="o">//</span> <span class="n">Start</span> <span class="n">drawing</span> <span class="n">at</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">160</span>
+<span class="n">context</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">170</span><span class="p">,</span> <span class="mi">220</span><span class="p">);</span>
+<span class="n">context</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">240</span><span class="p">,</span> <span class="mi">210</span><span class="p">);</span>
+<span class="n">context</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">260</span><span class="p">,</span> <span class="mi">170</span><span class="p">);</span>
+<span class="n">context</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">190</span><span class="p">,</span> <span class="mi">140</span><span class="p">);</span>
+<span class="n">context</span><span class="o">.</span><span class="n">closePath</span><span class="p">();</span>
+<span class="n">context</span><span class="o">.</span><span class="n">stroke</span><span class="p">();</span>
+<span class="o">//</span> <span class="n">DRAWING</span> <span class="n">ARCS</span> <span class="o">&amp;</span> <span class="n">CIRCLES</span>
+<span class="o">//</span> <span class="n">Draw</span> <span class="n">a</span> <span class="n">semicircle</span>
+<span class="n">context</span><span class="o">.</span><span class="n">beginPath</span><span class="p">();</span>
+<span class="o">//</span> <span class="n">Draw</span> <span class="n">an</span> <span class="n">arc</span> <span class="n">at</span> <span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span> <span class="k">with</span> <span class="n">radius</span> <span class="mi">40</span> <span class="kn">from</span><span class="w"> </span><span class="mi">0</span> <span class="n">to</span> <span class="mi">180</span> <span class="n">degrees</span><span class="p">,</span> <span class="n">anticlockwise</span>
+<span class="o">//</span> <span class="n">PI</span> <span class="n">radians</span> <span class="o">=</span> <span class="mi">180</span> <span class="n">degrees</span>
+<span class="n">context</span><span class="o">.</span><span class="n">arc</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Math</span><span class="o">.</span><span class="n">PI</span><span class="p">,</span> <span class="n">true</span><span class="p">);</span>
+<span class="n">context</span><span class="o">.</span><span class="n">stroke</span><span class="p">();</span>
+<span class="o">//</span> <span class="n">Draw</span> <span class="n">a</span> <span class="n">full</span> <span class="n">circle</span>
+<span class="n">context</span><span class="o">.</span><span class="n">beginPath</span><span class="p">();</span>
+<span class="o">//</span> <span class="n">Draw</span> <span class="n">an</span> <span class="n">arc</span> <span class="n">at</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span> <span class="k">with</span> <span class="n">radius</span> <span class="mi">30</span> <span class="kn">from</span><span class="w"> </span><span class="mi">0</span> <span class="n">to</span> <span class="mi">360</span> <span class="n">degrees</span><span class="p">,</span> <span class="n">anticlockwise</span>
+<span class="o">//</span> <span class="mi">2</span><span class="o">*</span><span class="n">PI</span> <span class="n">radians</span> <span class="o">=</span> <span class="mi">360</span> <span class="n">degrees</span>
+<span class="n">context</span><span class="o">.</span><span class="n">arc</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="n">PI</span><span class="p">,</span> <span class="n">true</span><span class="p">);</span>
+<span class="n">context</span><span class="o">.</span><span class="n">fill</span><span class="p">();</span>
+<span class="o">//</span> <span class="n">Draw</span> <span class="n">a</span> <span class="n">three</span><span class="o">-</span><span class="n">quarter</span> <span class="n">arc</span>
+<span class="n">context</span><span class="o">.</span><span class="n">beginPath</span><span class="p">();</span>
+<span class="o">//</span> <span class="n">Draw</span> <span class="n">an</span> <span class="n">arc</span> <span class="n">at</span> <span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="k">with</span> <span class="n">radius</span> <span class="mi">25</span> <span class="kn">from</span><span class="w"> </span><span class="mi">0</span> <span class="n">to</span> <span class="mi">270</span> <span class="n">degrees</span><span class="p">,</span> <span class="n">clockwise</span>
+<span class="o">//</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">PI</span> <span class="n">radians</span> <span class="o">=</span> <span class="mi">270</span> <span class="n">degrees</span><span class="p">)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">arc</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="n">PI</span><span class="p">,</span> <span class="n">false</span><span class="p">);</span>
+<span class="n">context</span><span class="o">.</span><span class="n">stroke</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="drawing-text">
+<h2>Drawing Text<a class="headerlink" href="#drawing-text" title="Link to this heading">¶</a></h2>
+<p>The context also provides us with two methods for drawing text on the canvas:</p>
+<ul class="simple">
+<li><p>strokeText(text, x, y): Draws an outline of the text at (x, y)</p></li>
+<li><p>fillText(text, x, y): Fills out the text at (x, y)</p></li>
+</ul>
+<p>Unlike text inside other HTML elements, text inside canvas does not have CSS layout options such
+as wrapping, padding, and margins. However, the text output can be modified by setting the context font,
+stroke, and fill style properties, as shown in Listing 1-6.</p>
+<p>Listing 1-6. Drawing Text Inside the Canvas</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">DRAWING</span> <span class="n">TEXT</span>
+<span class="n">context</span><span class="o">.</span><span class="n">fillText</span><span class="p">(</span><span class="s2">&quot;This is some text...&quot;</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">40</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">Modify</span> <span class="n">the</span> <span class="n">font</span>
+<span class="n">context</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="s2">&quot;10pt Arial&quot;</span><span class="p">;</span>
+<span class="n">context</span><span class="o">.</span><span class="n">fillText</span><span class="p">(</span><span class="s2">&quot;This is in 10pt Arial...&quot;</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">60</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">Draw</span> <span class="n">stroked</span> <span class="n">text</span>
+<span class="n">context</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="s2">&quot;16pt Arial&quot;</span><span class="p">;</span>
+<span class="n">context</span><span class="o">.</span><span class="n">strokeText</span><span class="p">(</span><span class="s2">&quot;This is stroked in 16pt Arial...&quot;</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The code in Listing 1-6 will draw the text shown in Figure 1-4.</p>
+<p>When setting the font property, you can use any valid CSS font property. As you can see from the
+previous example, while you may not have the same degree of flexibility in formatting that HTML and CSS
+provide, you can still do a lot with the canvas text methods. Of course, this would look a lot better if we could
+add some color.</p>
+</section>
+<section id="customizing-drawing-styles-colors-and-textures">
+<h2>Customizing Drawing Styles (Colors and Textures)<a class="headerlink" href="#customizing-drawing-styles-colors-and-textures" title="Link to this heading">¶</a></h2>
+<p>So far, everything we have drawn has been in black, but only because the canvas default drawing color is
+black. We have other options. We can style and customize the lines, shapes, and text on a canvas. We can
+draw using different colors, line styles, transparencies, and even fill textures inside the shapes.</p>
+<p>If we want to apply colors to a shape, there are two important properties we can use:</p>
+<ul class="simple">
+<li><p>fillStyle: Sets the default color for all future fill operations</p></li>
+<li><p>strokeStyle: Sets the default color for all future stroke operations</p></li>
+</ul>
+<p>Both properties can take valid CSS colors as values. This includes rgb() and rgba() values as well as
+color constant values. For example, context.fillStyle = “red”; will define the fill color as red for all future
+fill operations (fillRect, fillText, and fill).</p>
+<p>In addition, the context object’s createTexture() method creates a texture from an image, which can
+also be used as a fill style. Before we can use an image, we need to load the image into the browser. For now,
+we will just add an &lt;img&gt; tag after the &lt;canvas&gt; tag in our HTML file:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;fire.png&quot;</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;fire&quot;</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The code in Listing 1-7 will draw colored and textured rectangles, as shown in Figure 1-5.</p>
+<p>Listing 1-7. Drawing with Colors and Textures</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">FILL</span> <span class="n">STYLES</span> <span class="n">AND</span> <span class="n">COLORS</span>
+<span class="o">//</span> <span class="n">Set</span> <span class="n">fill</span> <span class="n">color</span> <span class="n">to</span> <span class="n">red</span>
+<span class="n">context</span><span class="o">.</span><span class="n">fillStyle</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">;</span>
+<span class="o">//</span> <span class="n">Draw</span> <span class="n">a</span> <span class="n">red</span> <span class="n">filled</span> <span class="n">rectangle</span>
+<span class="n">context</span><span class="o">.</span><span class="n">fillRect</span><span class="p">(</span><span class="mi">310</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">Set</span> <span class="n">stroke</span> <span class="n">color</span> <span class="n">to</span> <span class="n">green</span>
+<span class="n">context</span><span class="o">.</span><span class="n">strokeStyle</span> <span class="o">=</span> <span class="s2">&quot;green&quot;</span><span class="p">;</span>
+<span class="o">//</span> <span class="n">Draw</span> <span class="n">a</span> <span class="n">green</span> <span class="n">stroked</span> <span class="n">rectangle</span>
+<span class="n">context</span><span class="o">.</span><span class="n">strokeRect</span><span class="p">(</span><span class="mi">310</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">Set</span> <span class="n">fill</span> <span class="n">color</span> <span class="n">to</span> <span class="n">yellow</span> <span class="n">using</span> <span class="n">rgb</span><span class="p">()</span>
+<span class="n">context</span><span class="o">.</span><span class="n">fillStyle</span> <span class="o">=</span> <span class="s2">&quot;rgb(255, 255, 0)&quot;</span><span class="p">;</span>
+<span class="o">//</span> <span class="n">Draw</span> <span class="n">a</span> <span class="n">yellow</span> <span class="n">filled</span> <span class="n">rectangle</span>
+<span class="n">context</span><span class="o">.</span><span class="n">fillRect</span><span class="p">(</span><span class="mi">420</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">Set</span> <span class="n">fill</span> <span class="n">color</span> <span class="n">to</span> <span class="n">green</span> <span class="k">with</span> <span class="n">an</span> <span class="n">alpha</span> <span class="n">of</span> <span class="mf">0.6</span>
+<span class="n">context</span><span class="o">.</span><span class="n">fillStyle</span> <span class="o">=</span> <span class="s2">&quot;rgba(0, 255, 0, 0.6)&quot;</span><span class="p">;</span>
+<span class="o">//</span> <span class="n">Draw</span> <span class="n">a</span> <span class="n">semi</span><span class="o">-</span><span class="n">transparent</span> <span class="n">green</span> <span class="n">filled</span> <span class="n">rectangle</span>
+<span class="n">context</span><span class="o">.</span><span class="n">fillRect</span><span class="p">(</span><span class="mi">450</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">TEXTURES</span>
+<span class="o">//</span> <span class="n">Get</span> <span class="n">a</span> <span class="n">handle</span> <span class="n">to</span> <span class="n">the</span> <span class="n">Image</span> <span class="nb">object</span>
+<span class="n">var</span> <span class="n">fireImage</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&quot;fire&quot;</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">pattern</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">createPattern</span><span class="p">(</span><span class="n">fireImage</span><span class="p">,</span> <span class="s2">&quot;repeat&quot;</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">Set</span> <span class="n">fill</span> <span class="n">style</span> <span class="n">to</span> <span class="n">newly</span> <span class="n">created</span> <span class="n">pattern</span>
+<span class="n">context</span><span class="o">.</span><span class="n">fillStyle</span> <span class="o">=</span> <span class="n">pattern</span><span class="p">;</span>
+<span class="o">//</span> <span class="n">Draw</span> <span class="n">a</span> <span class="n">pattern</span> <span class="n">filled</span> <span class="n">rectangle</span>
+<span class="n">context</span><span class="o">.</span><span class="n">fillRect</span><span class="p">(</span><span class="mi">420</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In addition to these methods, the canvas also provides several methods to use color gradients, shadows,
+and patterns while drawing. I encourage you to take the time to explore the canvas and context API more
+thoroughly when you get the chance.</p>
+</section>
+<section id="drawing-images">
+<h2>Drawing Images<a class="headerlink" href="#drawing-images" title="Link to this heading">¶</a></h2>
+<p>Although we can achieve quite a lot using just the drawing methods we have covered so far, we still need
+to explore how to use images. Learning how to draw images will enable you to draw game backgrounds,
+character sprites, and effects like explosions that can make your games come alive.</p>
+<p>We can draw images and sprites on the canvas using the drawImage() method. The context provides us
+with three different versions of this method:</p>
+<ul class="simple">
+<li><p>drawImage(image, x, y): Draws the image on the canvas at (x, y)</p></li>
+<li><p>drawImage(image, x, y, width, height): Scales the image to the specified width</p></li>
+</ul>
+<p>and height and then draws it at (x, y)
+• drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, x, y,
+width, height): Clips a rectangle from the image at (sourceX, sourceY) with
+dimensions (sourceWidth, sourceHeight), scales it to the specified width and height,
+and draws it on the canvas at (x, y)</p>
+<p>Before we start drawing images, we need to load another image into the browser. We will add one more
+&lt;img&gt; tag after the &lt;canvas&gt; tag in our HTML file:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;spaceship.png&quot;</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;spaceship&quot;</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Once the image has been loaded, we can draw it using the code shown in Listing 1-8.</p>
+<p>Listing 1-8. Drawing Images</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">DRAWING</span> <span class="n">IMAGES</span>
+<span class="o">//</span> <span class="n">Get</span> <span class="n">a</span> <span class="n">handle</span> <span class="n">to</span> <span class="n">the</span> <span class="n">Image</span> <span class="nb">object</span>
+<span class="n">var</span> <span class="n">image</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&quot;spaceship&quot;</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">Draw</span> <span class="n">the</span> <span class="n">image</span> <span class="n">at</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">350</span><span class="p">)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">drawImage</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">350</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">Scale</span> <span class="n">the</span> <span class="n">image</span> <span class="n">to</span> <span class="n">half</span> <span class="n">the</span> <span class="n">original</span> <span class="n">size</span>
+<span class="n">context</span><span class="o">.</span><span class="n">drawImage</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">Draw</span> <span class="n">part</span> <span class="n">of</span> <span class="n">the</span> <span class="n">image</span>
+<span class="n">context</span><span class="o">.</span><span class="n">drawImage</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">420</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The code in Listing 1-8 will draw the images shown in Figure 1-6. The last example in Listing 1-8, where
+we draw only a part of the image, will become especially useful when we start using sprite sheets to combine
+our game assets and store multiple sprites in a single large image</p>
+</section>
+<section id="transforming-and-rotating">
+<h2>Transforming and Rotating<a class="headerlink" href="#transforming-and-rotating" title="Link to this heading">¶</a></h2>
+<p>The context object has several methods for transforming the coordinate system used for drawing elements.
+These methods are</p>
+<ul class="simple">
+<li><p>translate(x, y): Moves the canvas and its origin to a different point (x, y)</p></li>
+<li><p>rotate(angle): Rotates the canvas clockwise around the current origin by angle</p></li>
+</ul>
+<p>(radians)
+• scale(x, y): Scales the objects drawn by a multiple of x and y along the respective
+axes</p>
+<p>A common use of these methods is to rotate objects or sprites when drawing them. We can do this by</p>
+<ul class="simple">
+<li><p>Translating the canvas origin to the location of the object</p></li>
+<li><p>Rotating the canvas by the desired angle</p></li>
+<li><p>Drawing the object</p></li>
+<li><p>Restoring the canvas back to its original state</p></li>
+</ul>
+<p>Let’s look at rotating objects before drawing them, as shown in Listing 1-9.</p>
+<p>Listing 1-9. Rotating Objects Before Drawing Them</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">ROTATION</span> <span class="n">AND</span> <span class="n">TRANSLATION</span>
+<span class="o">//</span><span class="n">Translate</span> <span class="n">origin</span> <span class="n">to</span> <span class="n">location</span> <span class="n">of</span> <span class="nb">object</span>
+<span class="n">context</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span> <span class="mi">370</span><span class="p">);</span>
+<span class="o">//</span><span class="n">Rotate</span> <span class="n">about</span> <span class="n">the</span> <span class="n">new</span> <span class="n">origin</span> <span class="n">by</span> <span class="mi">60</span> <span class="n">degrees</span>
+<span class="n">context</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">3</span><span class="p">);</span>
+<span class="n">context</span><span class="o">.</span><span class="n">drawImage</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+<span class="o">//</span><span class="n">Restore</span> <span class="n">to</span> <span class="n">original</span> <span class="n">state</span> <span class="n">by</span> <span class="n">rotating</span> <span class="ow">and</span> <span class="n">translating</span> <span class="n">back</span>
+<span class="n">context</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="o">-</span><span class="n">Math</span><span class="o">.</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">3</span><span class="p">);</span>
+<span class="n">context</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="mi">240</span><span class="p">,</span> <span class="o">-</span><span class="mi">370</span><span class="p">);</span>
+
+<span class="o">//</span><span class="n">Translate</span> <span class="n">origin</span> <span class="n">to</span> <span class="n">location</span> <span class="n">of</span> <span class="nb">object</span>
+<span class="n">context</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">370</span><span class="p">);</span>
+<span class="o">//</span><span class="n">Rotate</span> <span class="n">about</span> <span class="n">the</span> <span class="n">new</span> <span class="n">origin</span>
+<span class="n">context</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">);</span>
+<span class="n">context</span><span class="o">.</span><span class="n">drawImage</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+<span class="o">//</span><span class="n">Restore</span> <span class="n">to</span> <span class="n">original</span> <span class="n">state</span> <span class="n">by</span> <span class="n">rotating</span> <span class="ow">and</span> <span class="n">translating</span> <span class="n">back</span>
+<span class="n">context</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">);</span>
+<span class="n">context</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="mi">300</span><span class="p">,</span> <span class="o">-</span><span class="mi">370</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The code in Listing 1-9 will draw the two rotated ship images shown in Figure 1-7.</p>
+<p>■ Note apart from rotating and translating back, you can also restore the canvas state by first using the
+save() method before starting the transformations and then calling the restore() method at the end of the
+transformations.</p>
+<p>With this last example, we have covered all the essentials of the canvas that we will need to build our
+games. There is still a lot of the API that we have not covered here. You can read more about the canvas API
+at <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API</a>.</p>
+</section>
+<section id="the-audio-element">
+<h2>The audio Element<a class="headerlink" href="#the-audio-element" title="Link to this heading">¶</a></h2>
+<p>Using the HTML5 audio element is the new standard way to embed an audio file into a web page. Until this
+element came along, most pages played audio files using embedded plug-ins (such as Flash).</p>
+<p>The audio element can be created in HTML using the &lt;audio&gt; tag or in JavaScript using the Audio
+object. An example is shown in Listing 1-10.</p>
+<p>Listing 1-10. The HTML5 &lt;audio&gt; Tag</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span>  <span class="o">&lt;</span><span class="n">audio</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;music.mp3&quot;</span> <span class="n">controls</span><span class="o">=</span><span class="s2">&quot;controls&quot;</span><span class="o">&gt;</span>
+     <span class="n">Your</span> <span class="n">browser</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">support</span> <span class="n">HTML5</span> <span class="n">Audio</span><span class="o">.</span> <span class="n">Please</span> <span class="n">shift</span> <span class="n">to</span> <span class="n">a</span> <span class="n">newer</span> <span class="n">browser</span><span class="o">.</span>
+  <span class="o">&lt;/</span><span class="n">audio</span><span class="o">&gt;</span>
+
+<span class="n">Note</span> <span class="n">Browsers</span> <span class="n">that</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">support</span> <span class="n">audio</span> <span class="n">will</span> <span class="n">ignore</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">audio</span><span class="o">&gt;</span> <span class="n">tag</span> <span class="ow">and</span> <span class="n">render</span> <span class="n">anything</span> <span class="n">inside</span> <span class="n">the</span>
+</pre></div>
+</div>
+<p>&lt;audio&gt; tag. You can use this feature to show users on older browsers alternative fallback content or a
+message directing them to a more modern browser.</p>
+<p>The controls attribute included in Listing 1-10 makes the browser display a simple browser-specific
+interface for playing the audio file (such as a play/pause button and volume controls).</p>
+<p>The audio element has several other attributes, such as the following:</p>
+<ul class="simple">
+<li><p>preload: Specifies whether or not the audio should be preloaded</p></li>
+<li><p>autoplay: Specifies whether or not to start playing the audio as soon as the object</p></li>
+</ul>
+<p>has loaded
+• loop: Specifies whether to keep replaying the audio once it has finished</p>
+<p>There are currently three popular file formats supported by browsers: MP3 (MPEG Audio Layer 3),
+WAV (Waveform Audio), and OGG (Ogg Vorbis). One thing to watch out for is that not all browsers support
+all audio formats. Firefox, for example, does not play MP3 files directly because of patent and licensing
+issues (and has to rely on operating system support), though it does play OGG and WAV files directly. Safari,
+on the other hand, supports MP3 but does not support OGG. Table 1-1 shows the formats supported by the
+latest version of popular browsers.</p>
+<p>The way to work around this limitation is to provide the browser with alternative formats to play. The
+audio element allows multiple source elements within the &lt;audio&gt; tag, and the browser automatically uses
+the first recognized format (see Listing 1-11).</p>
+<p>Listing 1-11. The &lt;audio&gt; Tag with Multiple Sources</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">audio</span> <span class="n">controls</span><span class="o">=</span><span class="s2">&quot;controls&quot;</span><span class="o">&gt;</span>
+   <span class="o">&lt;</span><span class="n">source</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;music.ogg&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;audio/ogg&quot;</span> <span class="o">/&gt;</span>
+   <span class="o">&lt;</span><span class="n">source</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;music.mp3&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;audio/mpeg&quot;</span> <span class="o">/&gt;</span>
+      <span class="n">Your</span> <span class="n">browser</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">support</span> <span class="n">HTML5</span> <span class="n">Audio</span><span class="o">.</span> <span class="n">Please</span> <span class="n">shift</span> <span class="n">to</span> <span class="n">a</span> <span class="n">newer</span> <span class="n">browser</span><span class="o">.</span>
+<span class="o">&lt;/</span><span class="n">audio</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Audio can also be loaded dynamically by using the Audio object in JavaScript. The Audio object allows
+us to load, play, and pause sound files as needed, which is what will be used for games (see Listing 1-12).</p>
+<p>Listing 1-12. Dynamically Loading an Audio File</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+   <span class="o">//</span><span class="n">Create</span> <span class="n">a</span> <span class="n">new</span> <span class="n">Audio</span> <span class="nb">object</span>
+   <span class="n">var</span> <span class="n">sound</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Audio</span><span class="p">();</span>
+   <span class="o">//</span> <span class="n">Select</span> <span class="n">the</span> <span class="n">source</span> <span class="n">of</span> <span class="n">the</span> <span class="n">sound</span>
+   <span class="n">sound</span><span class="o">.</span><span class="n">src</span> <span class="o">=</span> <span class="s2">&quot;music.ogg&quot;</span><span class="p">;</span>
+   <span class="o">//</span> <span class="n">This</span> <span class="n">will</span> <span class="n">only</span> <span class="n">work</span> <span class="n">on</span> <span class="n">browsers</span> <span class="n">that</span> <span class="n">support</span> <span class="n">OGG</span>
+   <span class="o">//</span> <span class="n">Play</span> <span class="n">the</span> <span class="n">sound</span>
+   <span class="o">//</span> <span class="n">sound</span><span class="o">.</span><span class="n">play</span><span class="p">();</span>
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Unlike with the &lt;audio&gt; HTML tag, where we could easily specify multiple formats, when using
+JavaScript we need a way to detect the formats supported by the browser so we can load the appropriate
+format. The Audio object provides us with a method called canPlayType() that returns values of “”, “maybe”,
+or “probably” to indicate support for a specific codec. We can use this to create a simple check and load the
+appropriate audio format, as shown in Listing 1-13.</p>
+<p>Listing 1-13. Testing for Audio Support</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+<span class="n">var</span> <span class="n">audio</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s2">&quot;audio&quot;</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">mp3Support</span><span class="p">,</span> <span class="n">oggSupport</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">audio</span><span class="o">.</span><span class="n">canPlayType</span><span class="p">)</span> <span class="p">{</span>
+<span class="o">//</span> <span class="n">Currently</span> <span class="n">canPlayType</span><span class="p">()</span> <span class="n">returns</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;maybe&quot;</span><span class="p">,</span> <span class="ow">or</span> <span class="s2">&quot;probably&quot;</span>
+<span class="n">mp3Support</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="o">!==</span> <span class="n">audio</span><span class="o">.</span><span class="n">canPlayType</span><span class="p">(</span><span class="s2">&quot;audio/mpeg&quot;</span><span class="p">);</span>
+<span class="n">oggSupport</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="o">!==</span> <span class="n">audio</span><span class="o">.</span><span class="n">canPlayType</span><span class="p">(</span><span class="s2">&quot;audio/ogg; codecs=</span><span class="se">\&quot;</span><span class="s2">vorbis</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="o">//</span> <span class="n">The</span> <span class="n">audio</span> <span class="n">tag</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">supported</span>
+<span class="n">mp3Support</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+<span class="n">oggSupport</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="n">Check</span> <span class="k">for</span> <span class="n">ogg</span><span class="p">,</span> <span class="n">then</span> <span class="n">mp3</span><span class="p">,</span> <span class="ow">and</span> <span class="k">finally</span> <span class="nb">set</span> <span class="n">soundFileExtn</span> <span class="n">to</span> <span class="n">undefined</span>
+
+<span class="n">var</span> <span class="n">soundFileExtn</span> <span class="o">=</span> <span class="n">oggSupport</span> <span class="err">?</span> <span class="s2">&quot;.ogg&quot;</span> <span class="p">:</span> <span class="n">mp3Support</span> <span class="err">?</span> <span class="s2">&quot;.mp3&quot;</span> <span class="p">:</span> <span class="n">undefined</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">soundFileExtn</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">var</span> <span class="n">sound</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Audio</span><span class="p">();</span>
+<span class="o">//</span> <span class="n">Load</span> <span class="n">sound</span> <span class="n">file</span> <span class="k">with</span> <span class="n">the</span> <span class="n">detected</span> <span class="n">extension</span>
+<span class="n">sound</span><span class="o">.</span><span class="n">src</span> <span class="o">=</span> <span class="s2">&quot;music&quot;</span> <span class="o">+</span> <span class="n">soundFileExtn</span><span class="p">;</span>
+<span class="n">sound</span><span class="o">.</span><span class="n">play</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Listing 1-13 uses canPlayType() to set a soundFileExtn property, which we can then use to load future
+audio files. We will use this idea when we build audio into our games in later chapters.</p>
+<p>The Audio object triggers several different events to help us know when the sound has been loaded and
+is ready for playing. The loadedmetadata event is fired when the initial audio file metadata has been loaded
+by the browser. The canplay event is fired once enough of the audio file has been downloaded
+to start playing, and the canplaythrough event is fired when the browser can play the entire audio file
+without needing to pause and buffer the file. We can use the canplaythrough event to keep track of when
+the sound file has been loaded sufficiently for our purposes. Listing 1-14 shows an example of how the
+canplaythrough event can be used to play a sound once it has been loaded.</p>
+<p>Listing 1-14. Waiting for an Audio File to Load</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+<span class="o">//</span> <span class="n">Play</span> <span class="n">the</span> <span class="n">sound</span> <span class="n">after</span> <span class="n">waiting</span> <span class="k">for</span> <span class="n">it</span> <span class="n">to</span> <span class="n">load</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">soundFileExtn</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">var</span> <span class="n">sound</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Audio</span><span class="p">();</span>
+<span class="n">sound</span><span class="o">.</span><span class="n">addEventListener</span><span class="p">(</span><span class="s2">&quot;canplaythrough&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="n">sound</span><span class="o">.</span><span class="n">play</span><span class="p">();</span>
+<span class="p">});</span>
+<span class="o">//</span> <span class="n">Load</span> <span class="n">sound</span> <span class="n">file</span> <span class="k">with</span> <span class="n">the</span> <span class="n">detected</span> <span class="n">extension</span>
+<span class="n">sound</span><span class="o">.</span><span class="n">src</span> <span class="o">=</span> <span class="s2">&quot;music&quot;</span> <span class="o">+</span> <span class="n">soundFileExtn</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Now that we have looked at how to check for supported audio formats, dynamically load audio, and
+detect when an audio file has loaded, we can combine these concepts to design an audio preloader that will
+dynamically load all the game audio resources before starting the game. We will look at this idea in more
+detail in the next few chapters when we build an asset loader for our games.</p>
+</section>
+<section id="the-image-element">
+<h2>The image Element<a class="headerlink" href="#the-image-element" title="Link to this heading">¶</a></h2>
+<p>The image element allows us to display images inside an HTML file. The simplest way to do this is by using
+the &lt;image&gt; tag and specifying an src attribute, as shown earlier and again here in Listing 1-15.
+Listing 1-15. The &lt;image&gt; Tag</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;spaceship.png&quot;</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;spaceship&quot;</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>You can also load an image dynamically using JavaScript by instantiating a new Image object and setting
+its src property, as shown in Listing 1-16.</p>
+<p>Listing 1-16. Dynamically Loading an Image</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">image</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Image</span><span class="p">();</span>
+<span class="n">image</span><span class="o">.</span><span class="n">src</span> <span class="o">=</span> <span class="s2">&quot;spaceship.png&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>You can use either of these methods to get an image for drawing on a canvas</p>
+</section>
+<section id="image-loading">
+<h2>Image Loading<a class="headerlink" href="#image-loading" title="Link to this heading">¶</a></h2>
+<p>Games are usually designed to wait for all the images to load completely before they start so as to avoid
+errors due to partly loaded images. While the images are being loaded, programmers commonly display a
+progress bar or status indicator that shows the percentage of images loaded.</p>
+<p>The Image object provides us with an onload event that gets fired as soon as the browser finishes
+loading the image file. Using this event, we can keep track of when the image has loaded, as shown in the
+example in Listing 1-17.</p>
+<p>Listing 1-17. Waiting for an Image to Load</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">image</span><span class="o">.</span><span class="n">onload</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+   <span class="n">alert</span><span class="p">(</span><span class="s2">&quot;Image finished loading&quot;</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Using the onload event, we can create a simple image loader that tracks images loaded so far
+(see Listing 1-18).</p>
+<p>Listing 1-18. Simple Image Loader</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">imageLoader</span> <span class="o">=</span> <span class="p">{</span>
+<span class="n">loaded</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+<span class="n">loadedImages</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="n">totalImages</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="n">load</span><span class="p">:</span> <span class="n">function</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">this</span><span class="o">.</span><span class="n">totalImages</span><span class="o">++</span><span class="p">;</span>
+<span class="n">this</span><span class="o">.</span><span class="n">loaded</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">image</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Image</span><span class="p">();</span>
+<span class="n">image</span><span class="o">.</span><span class="n">src</span> <span class="o">=</span> <span class="n">url</span><span class="p">;</span>
+<span class="n">image</span><span class="o">.</span><span class="n">onload</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="n">imageLoader</span><span class="o">.</span><span class="n">loadedImages</span><span class="o">++</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">imageLoader</span><span class="o">.</span><span class="n">loadedImages</span> <span class="o">===</span> <span class="n">imageLoader</span><span class="o">.</span><span class="n">totalImages</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">imageLoader</span><span class="o">.</span><span class="n">loaded</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">image</span><span class="o">.</span><span class="n">onload</span> <span class="o">=</span> <span class="n">undefined</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">return</span> <span class="n">image</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this code, we create an imageLoader object with a load() method. This load() method takes an
+image URL, and increases the totalImages counter each time it is called. It then dynamically creates
+an Image object and sets the object’s src property. Finally, it uses the object’s onload event handler to
+increment the loadedImages counter, and once the counter reaches totalImages, it sets the loaded variable
+back to true.</p>
+<p>This image loader can be invoked to load a large number of images (say in a loop). We can check to see
+if all the images are loaded by using imageLoader.loaded, and we can draw a percentage/progress bar by
+using loadedImages/totalImages.</p>
+<p>Don’t worry about actually using this loader yet. This is just a partial code snippet to help illustrate the
+basic idea for an image loader. We will be building a more complete version of an asset loader for our games
+in the coming chapters.</p>
+</section>
+<section id="sprite-sheets">
+<h2>Sprite Sheets<a class="headerlink" href="#sprite-sheets" title="Link to this heading">¶</a></h2>
+<p>Another concern when your game has a lot of images is how to optimize the way the server loads these
+images. Games can require anything from tens to hundreds of images. Even a simple real-time strategy (RTS)
+game will need images for different units, buildings, maps, backgrounds, and effects. In the case of units and
+buildings, you might need multiple versions of images to represent different directions and states, and in the
+case of animations, you might need an image for each frame of the animation.</p>
+<p>In one of my earlier RTS game projects, I used individual images for each animation frame and state
+for every unit and building, ending up with over 1,000 images. Since most browsers make only a few
+simultaneous requests at a time, downloading all these images took a lot of time, with an overload of HTTP
+requests on the server. While this wasn’t a problem when I was testing the code locally, it was a bit of a pain
+when the code went onto the server. Players ended up waiting 5 to 10 minutes (sometimes longer) for the
+game to load before they could actually start playing. All the concurrent requests also caused considerable
+load on my web server.</p>
+<p>Luckily for us, there is a simple way to fix this problem of too many images and HTTP requests, and this
+is where sprite sheets come in. Sprite sheets store all the sprites (images) for a game entity in a single large
+image file. When displaying the images, we calculate the offset of the sprite we want to show and use the
+ability of the drawImage() method to draw only a part of an image. The spaceship.png image we have been
+using in this chapter is an example of a sprite sheet since it contains multiple spaceship sprites within the
+same file.</p>
+<p>Looking at the code fragments in Listings 1-19 and 1-20, you can see examples of drawing an image
+loaded individually versus drawing an image loaded in a sprite sheet.</p>
+<p>Listing 1-19. Drawing an Image Loaded Individually</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">First</span><span class="p">:</span> <span class="p">(</span><span class="n">Load</span> <span class="n">individual</span> <span class="n">images</span> <span class="ow">and</span> <span class="n">store</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">big</span> <span class="n">array</span><span class="p">)</span>
+<span class="o">//</span> <span class="n">Three</span> <span class="n">arguments</span><span class="p">:</span> <span class="n">the</span> <span class="n">element</span><span class="p">,</span> <span class="ow">and</span> <span class="n">destination</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="n">coordinates</span>
+<span class="n">var</span> <span class="n">image</span> <span class="o">=</span> <span class="n">imageArray</span><span class="p">[</span><span class="n">imageNumber</span><span class="p">];</span>
+<span class="n">context</span><span class="o">.</span><span class="n">drawImage</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Listing 1-20. Drawing an Image Loaded in a Sprite Sheet</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">First</span><span class="p">:</span> <span class="p">(</span><span class="n">Load</span> <span class="n">single</span> <span class="n">sprite</span> <span class="n">sheet</span> <span class="n">image</span><span class="p">)</span>
+<span class="o">//</span> <span class="n">Nine</span> <span class="n">arguments</span><span class="p">:</span> <span class="n">the</span> <span class="n">element</span><span class="p">,</span> <span class="n">source</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="n">coordinates</span><span class="p">,</span>
+<span class="o">//</span> <span class="n">source</span> <span class="n">width</span> <span class="ow">and</span> <span class="n">height</span> <span class="p">(</span><span class="k">for</span> <span class="n">cropping</span><span class="p">),</span>
+<span class="o">//</span> <span class="n">destination</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="n">coordinates</span><span class="p">,</span> <span class="ow">and</span>
+<span class="o">//</span> <span class="n">destination</span> <span class="n">width</span> <span class="ow">and</span> <span class="n">height</span> <span class="p">(</span><span class="n">resize</span><span class="p">)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">drawImage</span> <span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">spriteImage</span><span class="p">,</span> <span class="n">this</span><span class="o">.</span><span class="n">imageWidth</span><span class="o">*</span><span class="p">(</span><span class="n">imageNumber</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">this</span><span class="o">.</span><span class="n">imageWidth</span><span class="p">,</span>
+<span class="n">this</span><span class="o">.</span><span class="n">imageHeight</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">this</span><span class="o">.</span><span class="n">imageWidth</span><span class="p">,</span> <span class="n">this</span><span class="o">.</span><span class="n">imageHeight</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In the first example, we store each individual sprite as a separate Image object in an array, and then
+draw a specific sprite by accessing the Image object. This method would require as many Image objects as
+sprites, and just as many HTTP requests to the server to fetch each image.</p>
+<p>In the second example, we load a single large sprite sheet where all the sprites are placed side by side.
+Drawing the sprite involves calculating the x and y offset of the sprite within the image and then drawing
+just the appropriate portion of the image. This method involves only a single HTTP request and only a single
+Image object per sprite sheet, along with a little more complexity in computing the sprite location within the
+image. In terms of utilization of network resources, this is significantly better.</p>
+<p>The following are some of the advantages of using a sprite sheet, which make using sprite sheets for any
+kind of complex game a no-brainer:</p>
+<ul class="simple">
+<li><p>Fewer HTTP requests: A unit that has 80 images (and so 80 requests) will now be</p></li>
+</ul>
+<p>downloaded in a single HTTP request.
+• Better compression: Storing the images in a single file means that the header
+information doesn’t repeat for each file and the single combined file is significantly
+smaller than all the individual files.
+• Faster load times: With significantly lower HTTP requests and file sizes, the
+bandwidth usage and load times for the game drop as well, which means users won’t
+have to wait for as long a time for the game to load.</p>
+</section>
+<section id="animation-timer-and-game-loops">
+<h2>Animation: Timer and Game Loops<a class="headerlink" href="#animation-timer-and-game-loops" title="Link to this heading">¶</a></h2>
+<p>The last thing you need to understand before you get started with actually building games is animation.
+Animating is just a matter of drawing an object, erasing it, and drawing it again at a new position, fast
+enough that the human eye only sees it as smooth movement.</p>
+<p>The most common way to handle animation is by keeping a drawing function that gets called several
+times a second. Within this function, we iterate through all the game entities and draw them one by one.</p>
+<p>Simpler games typically handle both animating or moving the entities and drawing them within the
+same drawing function. However, some games have a separate control/animation function that updates
+movement of the entities within the game, while the drawing function handles only the actual drawing of the
+entities on the screen. The animation function, since it is independent of the drawing function, can be called
+less often than the drawing function. Listing 1-21 contains skeleton code illustrating a typical animation and
+drawing routine.</p>
+<p>Listing 1-21. Typical Animation and Drawing Loop</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">animationLoop</span><span class="p">(){</span>
+<span class="o">//</span> <span class="n">Iterate</span> <span class="n">through</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">items</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">game</span>
+<span class="o">//</span><span class="n">And</span> <span class="n">move</span> <span class="n">them</span>
+<span class="p">}</span>
+<span class="n">function</span> <span class="n">drawingLoop</span><span class="p">(){</span>
+<span class="o">//</span><span class="mf">1.</span> <span class="n">Clear</span> <span class="n">the</span> <span class="n">canvas</span>
+<span class="o">//</span><span class="mf">2.</span> <span class="n">Iterate</span> <span class="n">through</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">items</span>
+<span class="o">//</span><span class="mf">3.</span> <span class="n">And</span> <span class="n">draw</span> <span class="n">each</span> <span class="n">item</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Assuming we built a working drawingLoop() method for our game, we need to figure out a way to call
+drawingLoop() repeatedly at regular intervals. The simplest way of achieving this is to use the two timer
+methods setInterval() and setTimeout(). setInterval(functionName, timeInterval) tells the browser
+to keep calling a given function repeatedly at fixed time intervals until the clearInterval() function is
+called. When we need to stop animating (when the game is paused, or has ended), we use clearInterval().
+Listing 1-22 shows an example of how this would work</p>
+<p>Listing 1-22. Calling Drawing Loop with setInterval()</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Call</span> <span class="n">drawingLoop</span><span class="p">()</span> <span class="n">every</span> <span class="mi">20</span> <span class="n">milliseconds</span>
+<span class="n">var</span> <span class="n">gameLoop</span> <span class="o">=</span> <span class="n">setInterval</span><span class="p">(</span><span class="n">drawingLoop</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">Stop</span> <span class="n">calling</span> <span class="n">drawingLoop</span><span class="p">()</span> <span class="ow">and</span> <span class="n">clear</span> <span class="n">the</span> <span class="n">gameLoop</span> <span class="n">variable</span>
+<span class="n">clearInterval</span><span class="p">(</span><span class="n">gameLoop</span><span class="p">);</span>
+<span class="n">setTimeout</span><span class="p">(</span><span class="n">functionName</span><span class="p">,</span> <span class="n">timeInterval</span><span class="p">)</span> <span class="n">tells</span> <span class="n">the</span> <span class="n">browser</span> <span class="n">to</span> <span class="n">call</span> <span class="n">a</span> <span class="n">given</span> <span class="n">function</span> <span class="n">one</span> <span class="n">single</span> <span class="n">time</span>
+<span class="n">after</span> <span class="n">a</span> <span class="n">given</span> <span class="n">time</span> <span class="n">interval</span><span class="p">,</span> <span class="k">as</span> <span class="n">shown</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">Listing</span> <span class="mi">1</span><span class="o">-</span><span class="mf">23.</span>
+</pre></div>
+</div>
+<p>Listing 1-23. Calling Drawing Loop with setTimeout()</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">drawingLoop</span><span class="p">(){</span>
+<span class="o">//</span> <span class="mf">1.</span> <span class="n">Call</span> <span class="n">the</span> <span class="n">drawingLoop</span><span class="p">()</span> <span class="n">method</span> <span class="n">once</span> <span class="n">after</span> <span class="mi">20</span> <span class="n">milliseconds</span>
+<span class="n">var</span> <span class="n">gameLoop</span> <span class="o">=</span> <span class="n">setTimeout</span><span class="p">(</span><span class="n">drawingLoop</span><span class="p">,</span><span class="mi">20</span><span class="p">);</span>
+<span class="o">//</span> <span class="mf">2.</span> <span class="n">Clear</span> <span class="n">the</span> <span class="n">canvas</span>
+<span class="o">//</span> <span class="mf">3.</span> <span class="n">Iterate</span> <span class="n">through</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">items</span>
+<span class="o">//</span> <span class="mf">4.</span> <span class="n">And</span> <span class="n">draw</span> <span class="n">them</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Unlike with setInterval(), when using setTimeout() we need to make a new call each time since
+setTimeout() only calls the drawingLoop() method once. When we need to stop animating (when the game
+is paused, or has ended), we can use clearTimeout():</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Stop</span> <span class="n">calling</span> <span class="n">drawingLoop</span><span class="p">()</span> <span class="ow">and</span> <span class="n">clear</span> <span class="n">the</span> <span class="n">gameLoop</span> <span class="n">variable</span>
+<span class="n">clearTimeout</span><span class="p">(</span><span class="n">gameLoop</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Now, don’t get too worried if some of this seems a little confusing or abstract at this point. This chapter
+is only meant to be a quick crash course, and I just want you to get a general overview of how this works. We
+will be looking at detailed working examples of all of these functions when we start building our games in
+later chapters, at which point everything should start making a lot more sense.</p>
+</section>
+<section id="requestanimationframe">
+<h2>requestAnimationFrame<a class="headerlink" href="#requestanimationframe" title="Link to this heading">¶</a></h2>
+<p>While using setInterval() or setTimeout() as a way to animate frames does work, browser vendors have
+come up with a new API specifically for handling animation. Some of the advantages of using this API
+instead of setInterval() are that the browser can do the following:</p>
+<ul class="simple">
+<li><p>Optimize the animation code into a single reflow-and-repaint cycle, resulting in</p></li>
+</ul>
+<p>smoother animation
+• Pause the animation when the tab is not visible, leading to less CPU and GPU usage
+• Automatically cap the frame rate on machines that do not support higher frame
+rates, or increase the frame rate on machines that are capable of processing them</p>
+<p>Around the time that I was writing the first edition of this book, browser vendors had their own
+proprietary names for the methods in the API (such as Microsoft’s msrequestAnimationFrame() method and
+Mozilla’s mozRequestAnimationFrame() method). Since then, however, all browsers have standardized this
+API implementation and you can now use requestAnimationFrame() and cancelAnimationFrame() across
+all browsers that support HTML5.</p>
+<p>■ Note now that we have no guarantee of frame rate (the browser decides the speed at which it will call our
+drawing loop), we need to ensure that animated objects move at the same speed on the screen independent of
+the actual frame rate. We do this either by animating objects in a separate setTimeout() or setInterval()
+loop, or by calculating the time since the previous drawing cycle and using it to interpolate the location of the
+object being animated.</p>
+<p>The requestAnimationFrame() method can be called from within the drawingLoop() method similar to
+setTimeout(), as shown in Listing 1-24.</p>
+<p>Listing 1-24. Calling Drawing Loop with requestAnimationFrame()</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">drawingLoop</span><span class="p">(</span><span class="n">nowTime</span><span class="p">){</span>
+<span class="o">//</span> <span class="mf">1.</span> <span class="n">Call</span> <span class="n">the</span> <span class="n">drawingLoop</span><span class="p">()</span> <span class="n">method</span> <span class="n">whenever</span> <span class="n">the</span> <span class="n">browser</span> <span class="ow">is</span> <span class="n">ready</span> <span class="n">to</span> <span class="n">draw</span> <span class="n">again</span>
+<span class="n">var</span> <span class="n">gameLoop</span> <span class="o">=</span> <span class="n">requestAnimationFrame</span><span class="p">(</span><span class="n">drawingLoop</span><span class="p">);</span>
+<span class="o">//</span> <span class="mf">2.</span> <span class="n">Clear</span> <span class="n">the</span> <span class="n">canvas</span>
+<span class="o">//</span> <span class="mf">3.</span> <span class="n">Iterate</span> <span class="n">through</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">items</span>
+<span class="o">//</span> <span class="mf">4.</span> <span class="n">Optionally</span> <span class="n">use</span> <span class="n">nowTime</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">last</span> <span class="n">nowTime</span> <span class="n">to</span> <span class="n">interpolate</span> <span class="n">frames</span>
+<span class="o">//</span> <span class="mf">5.</span> <span class="n">And</span> <span class="n">draw</span> <span class="n">the</span> <span class="n">items</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>When we need to stop animating (when the game is paused, or has ended), we can use
+cancelAnimationFrame():</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Stop</span> <span class="n">calling</span> <span class="n">drawingLoop</span><span class="p">()</span> <span class="ow">and</span> <span class="n">clear</span> <span class="n">the</span> <span class="n">gameLoop</span> <span class="n">variable</span>
+<span class="n">cancelAnimationFrame</span><span class="p">(</span><span class="n">gameLoop</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This section has covered the primary ways to add animation to your games. We will be looking at actual
+implementations of these animation loops in the coming chapters.</p>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
+<p>In this chapter, we looked at the basic elements of HTML5 that are needed for building games. We covered
+how to use the canvas element to draw shapes, write text, and manipulate images. We examined how to use
+the audio element to load and play sounds across different browsers. We also briefly covered the basics of
+animation, preloading objects and using sprite sheets.</p>
+<p>The topics we covered here are just a starting point and not exhaustive by any means. This chapter was
+meant to be a quick crash course or refresher on HTML5 and a handy reference for easily looking up syntax
+or code examples whenever needed. As I mentioned earlier, we will be going into these topics in more detail,
+along with complete implementations, as we build our games in the coming chapters.</p>
+<p>If you had trouble keeping up and would like a more detailed explanation of the basics of JavaScript and
+HTML5, I would recommend reading introductory books on JavaScript and HTML5, such as JavaScript for
+Absolute Beginners by Terry McNavage and The Essential Guide to HTML5 by Jeanine Meyer.</p>
+<p>Now that we have the basics out of the way, let’s get started building our first game.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Pro_HTML5_Games_2E_Aditya</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CHAPTER 1 HTML5 and JavaScript Essentials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#a-basic-html5-page">A Basic HTML5 Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-canvas-element">The canvas Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#drawing-rectangles">Drawing Rectangles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#drawing-complex-paths">Drawing Complex Paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#drawing-text">Drawing Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#customizing-drawing-styles-colors-and-textures">Customizing Drawing Styles (Colors and Textures)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#drawing-images">Drawing Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transforming-and-rotating">Transforming and Rotating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-audio-element">The audio Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-image-element">The image Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#image-loading">Image Loading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sprite-sheets">Sprite Sheets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#animation-timer-and-game-loops">Animation: Timer and Game Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requestanimationframe">requestAnimationFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Pro_HTML5_Games_2E_Aditya_c02.html">CHAPTER 2 Creating a Basic Game World</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Pro_HTML5_Games_2E_Aditya documentation</a></li>
+      <li>Next: <a href="Pro_HTML5_Games_2E_Aditya_c02.html" title="next chapter">CHAPTER 2 Creating a Basic Game World</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, leopoldo.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/Pro_HTML5_Games_2E_Aditya_c01.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
