@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Beginning_Data_Science_R_Manas_C05 &#8212; Beginning_Data_Science_R_Manas 01 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=82a30901"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="c06.html" />
+    <link rel="prev" title="Beginning_Data_Science_R_Manas_C04" href="c04.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="beginning-data-science-r-manas-c05">
+<h1>Beginning_Data_Science_R_Manas_C05<a class="headerlink" href="#beginning-data-science-r-manas-c05" title="Link to this heading">¶</a></h1>
+<p>When we are analyzing a new dataset, it is beneficial to get a sense of the layout
+of the data first. This layout is in the form of how the data is structured or more
+concretely, the data distribution. Exploratory data analysis (EDA) is a collection of
+analysis techniques that we can apply to the data for this purpose. Most of these
+techniques are often simple to implement as well as computationally inexpensive,
+which allow us to obtain the exploratory results quickly.
+EDA helps us form our intuitions about the underlying processes that explain
+the data. This in turn helps us in choosing which analysis method to apply to the
+dataset. EDA is an important step in the life cycle of a data science project. In many
+such projects, which data science methodology to use is often unclear and so is the
+potential that the dataset has to offer. A good starting point is to look around the
+dataset to see if we can find something interesting; we can form detailed analysis
+plans after that.
+In this chapter, we will look at various ways to get an overview of the data. This
+includes summary statistics like maximum and minimum values, means, medians,
+and quantiles. We also look estimating the data distribution by using box plots and
+histograms. To get a numeric measure of the symmetry of the data distribution, we
+also look at advanced measures such as skewness and kurtosis. Finally, problem of
+using exploratory analysis techniques to find outliers in the data.
+Case Study: US Census
+To illustrate exploratory data analysis, we use data from an important dataset: the
+2010 US Census. 1 The dataset contains the variables listed in Table 5.1. The areas
+are classified into counties or equivalent, metropolitan areas, metropolitan statistical
+areas, and micropolitan statistical areas. 2 In the dataset, the type of an area is denoted
+by the legal/statistical area description (LSAD) variable.</p>
+<p>We can load the dataset using read.csv():
+&gt; data = read.csv(’metropolitan.csv’)
+5.1 Summary Statistics
+Summary statistics is an integral part of data exploration. We first look at how to
+compute summary statistics in R using the data from the case study.
+5.1.1 Dataset Size
+The first statistic that we often want to compute is to find the size of the dataset.
+The dim() function outputs a vector containing the number of rows and columns or
+observations and variables.
+&gt; dim(data)
+[1] 2759 11
+Our dataset contains 2759 areas each with entries for the 11 variables listed in Table
+5.1. We can alternatively use the nrow() function to find only the number of rows in
+the dataset.
+&gt; nrow(data)
+[1] 2759
+Similarly, we use the ncol() function to find the number of columns. &gt; ncol(data)
+[1] 11</p>
+<p>5.1.2 Summarizing the Data
+Once we know the number of variables of the dataset, the next step in EDA is to
+identify the nature of the variables. The head() and tail() functions, respectively,
+output the first and last few entries of a data frame. This is often useful to inspect
+some of the values taken by the variables.
+&gt; head(data[,1:3])
+NAME LSAD CENSUS2010POP
+1 Abilene, TX Metropolitan Statistical Area 165252
+2 Callahan County, TX County or equivalent 13544
+3 Jones County, TX County or equivalent 20202
+4 Taylor County, TX County or equivalent 131506
+5 Akron, OH Metropolitan Statistical Area 703200
+6 Portage County, OH County or equivalent 161419
+The summary() function provides a brief summary of each variable.
+&gt; summary(data)
+NAME
+Carson City, NV : 2
+Washington-Arlington-Alexandria, DC-VA-MD-WV: 2
+Abbeville, LA : 1
+Aberdeen, SD : 1
+Aberdeen, WA : 1
+Abilene, TX : 1
+(Other) :2751
+LSAD CENSUS2010POP NPOPCHG_2010
+County or equivalent :1788 Min. : 416 Min. :-5525.0
+Metropolitan Division : 29 1st Qu.: 33258 1st Qu.: -10.0
+Metropolitan Statistical Area: 366 Median : 62544 Median : 54.0
+Micropolitan Statistical Area: 576 Mean : 239151 Mean : 475.0
+3rd Qu.: 156813 3rd Qu.: 257.5
+Max. :18897109 Max. :29631.0
+NATURALINC2010 BIRTHS2010 DEATHS2010 NETMIG2010
+Min. : -794 Min. : 0 Min. : 0.0 Min. :-9786.0
+1st Qu.: 7 1st Qu.: 98 1st Qu.: 79.0 1st Qu.: -38.0
+Median : 40 Median : 184 Median : 145.0 Median : 15.0
+Mean : 326 Mean : 774 Mean : 447.9 Mean : 148.3
+3rd Qu.: 161 3rd Qu.: 483 3rd Qu.: 318.0 3rd Qu.: 123.0
+Max. :28129 Max. :60868 Max. :32739.0 Max. :14574.0
+INTERNATIONALMIG2010 DOMESTICMIG2010 RESIDUAL2010
+Min. : -2.0 Min. :-25584.00 Min. :-204.0000
+1st Qu.: 3.0 1st Qu.: -62.00 1st Qu.: -3.0000
+Median : 14.0 Median : 0.00 Median : -1.0000
+Mean : 163.6 Mean : -15.34 Mean : 0.6807
+3rd Qu.: 61.0 3rd Qu.: 73.00 3rd Qu.: 1.0000
+Max. :20199.0 Max. : 9416.00 Max. : 376.0000
+For factors or categorical variables such as NAME and LSAD, the summary contains
+the number of times each value occurs in the variable, ordered alphabetically. If ther</p>
+<p>64 5 Exploratory Data Analysis
+are too many distinct values, then the values occurring most number of times are
+listed at the top, and most of the values are clubbed together as (other).
+One of the goals of using the summary functions is to catch errors in the data early
+on. The fact that Carson City, NV and Washington-Arlington-Alexandria occur twice
+in the dataset look suspicious. We look into the entries for these areas below.
+&gt; data[which(data$NAME == ’Carson City, NV’),c(’NAME’,’LSAD’)]
+NAME LSAD
+227 Carson City, NV Metropolitan Statistical Area
+228 Carson City, NV County or equivalent
+&gt; data[which(data$NAME == ’Washington-Arlington-Alexandria,
+DC-VA-MD-WV’),c(’NAME’,’LSAD’)]
+NAME LSAD
+1419 Washington-Arlington-Alexandria, DC-VA-MD-WV
+Metropolitan Statistical Area
+1423 Washington-Arlington-Alexandria, DC-VA-MD-WV
+Metropolitan Division
+The entries show that the Carson City, NV is listed twice in the dataset because
+it is both a metropolitan statistical area and a county. The case for Washington-
+Arlington-Alexandria is similar, which indicates that there is no duplication error in
+the dataset.
+For the remaining numerical variables, the summary contains the following
+statistics:
+1. Min.—smallest value of the variable.
+2. 1st Qu. (Q1)—first quartile or 25th percentile. A quarter of the values are below
+this number and three quarters are above it.
+3. Median—second quartile or 50th percentile. A half of the values are below this
+number, half are above it.
+4. Mean—Average value of the variable.
+5. 3rd Qu. (Q2)—third quartile or 75th percentile. Three quarters of the values are
+below this number and a quarter are above it.
+6. Max.—largest value of the variable.
+If the data has even number of elements, the median is an interpolated value between
+the two central elements, e.g., median(c(1,2,3,4)) = 2.5. A percentile of
+x % implies that x % of the data is below this value.
+The minimum, Q1, median, Q3, and the maximum value when taken together
+are called as a five-number summary. These are also called order statistics, as they
+are specific ranks in the ordered values of the variable, for instance, using ascending
+order, minimum is the first position, median is the middle position, and maximum is
+the last position.
+These statistics are useful to get a sense of the data distribution for a variable:
+its range and centrality. We can obtain the range of the data from the minimum and
+maximum values, and dispersion or how much the data is spread out between Q1
+and Q3. A related statistic is the interquartile range (IQR) which is the difference
+between the Q3 and Q1. We can obtain the location or centrality of the data from the
+median and the mea</p>
+<p>5.1 Summary Statistics 65
+5.1.3 Ordering Data by a Variable
+We often want to find the extreme values of numerical variables, e.g., the top ten
+metropolitan areas by population. We can use the sort() function that sorts vectors
+or data frames by a variable. We can sort the CENSUS2010POP variable using:
+&gt; sort(data$CENSUS2010POP)
+[1] 416 539 690 763 783
+929 1599 1901 1987 2044 2156
+2470 2513 2790 2966 3331
+…
+To sort the variable in a descending order, we need to use the decreasing=T parameter.
+&gt; sort(data$CENSUS2010POP,decreasing=T)
+[1] 18897109 12828837 11576251 9818605
+9818605 9461105 7883147 6371773
+5965343 5946800 5582170 5564635 5268860
+…
+The sort function also works for string, factor, and ordered variables. The string and
+factor variables are sorted alphabetically, and ordered variables are sorted according
+to their order. The sort() function also handles missing values; by default the NA
+values are removed and we get a shorter sorted vector as output. To get a sorted
+vector with the NA values, we apply the na.last = T argument that places the NA
+values at the end of the vector.
+In the examples above, the sort function only sorts the given variable by value.
+Sometimes, we need to sort a data frame by a variable. We can do this using sort();
+by the passing the index.return=T argument, we obtain a data frame containing the
+sorted values and a vector containing indices of the sorted values. We later use this
+vector to index the data frame.
+&gt; output = sort(data$CENSUS2010POP,decreasing=T,index.return=T)
+&gt; data[output$ix[1:10],1:2]
+NAME
+946 New York-Northern New Jersey-Long Island, NY-NJ-PA
+790 Los Angeles-Long Beach-Santa Ana, CA
+962 New York-White Plains-Wayne, NY-NJ
+791 Los Angeles-Long Beach-Glendale, CA
+792 Los Angeles County, CA
+271 Chicago-Joliet-Naperville, IL-IN-WI
+272 Chicago-Joliet-Naperville, IL
+368 Dallas-Fort Worth-Arlington, TX
+1046 Philadelphia-Camden-Wilmington, PA-NJ-DE-MD
+600 Houston-Sugar Land-Baytown, TX
+LSAD
+946 Metropolitan Statistical Area
+790 Metropolitan Statistical Area
+962 Metropolitan Division
+791 Metropolitan Division
+792 County or equivalent</p>
+<p>66 5 Exploratory Data Analysis
+271 Metropolitan Statistical Area
+272 Metropolitan Division
+368 Metropolitan Statistical Area
+1046 Metropolitan Statistical Area
+600 Metropolitan Statistical Area
+We indexed the data frame using the first 10 elements of the index vector out-
+put$ix[1:10] to obtain the names of the top-10 areas by population. The values
+printed to the left of the entries are the row numbers where that entry occurs in the
+original data frame data.
+This method of ordering data frames is a bit convoluted; R provides a function
+called order() that orders the data frame for a given variable in one step.
+&gt; data[order(-data$CENSUS2010POP)[1:10],1:2]
+This returns exactly the same output as above. The minus sign in front of the
+data$CENSUS2010POP variable negates it, which causes it to be sorted in reverse.
+The order function can also sort on multiple variables together, to do so, we can call
+it as order(variable1, variable2, …). This will sort the data frame
+by variable1, and in case there are ties, it will break them by sorting on variable2.
+To sort some variables in descending order, simply negate them with a minus sign:
+order(variable1, -variable2, …).
+5.1.4 Group and Split Data by a Variable
+In the examples for the sort function, we see that the output consists of all four
+types of areas: counties, metropolitan divisions, micropolitan statistical area, and
+metropolitan areas as encoded by the LSAD variable. We often need to compute
+statistics separately for these area types. Using the function,
+&gt; which(data$LSAD == ’Metropolitan Statistical Area’)
+we can first select a subset of the data related to metropolitan statistical areas, and
+then perform the analysis on that. That will require us to apply this function with
+different values of the LSAD variables. This may suffice for the our dataset, but it is
+cumbersome if the variable has too many values.
+As we saw in the previous chapter, the by() function allows us to perform oper-
+ations on subgroups of data based on values of a variable. We use by() to compute
+the mean population of the area types given by the LSAD variable.
+&gt; by(data$CENSUS2010POP,data$LSAD,mean)
+data$LSAD: County or equivalent
+[1] 161779.3
+————————————————————
+data$LSAD: Metropolitan Division
+[1] 2803270
+————————————————————
+data$LSAD: Metropolitan Statistical Area</p>
+<p>5.1 Summary Statistics 67
+[1] 705786.2
+————————————————————
+data$LSAD: Micropolitan Statistical Area
+[1] 53721.44
+There is a similar function called split() that splits the data frame according to the
+values of the variable. We can then compute the statistic of interest on the smaller
+data frames, which in our case is identifying the top five areas by population. We do
+this computation below by looping over the data splits.
+&gt; data.split = split(data,data$LSAD)
+&gt; for (x in names(data.split)) {
+dd = data.split[[x]]
+print(x)
+print(dd[order(-dd$CENSUS2010POP)[1:5],c(1,3)])
+}
+[1] “County or equivalent”
+NAME CENSUS2010POP
+792 Los Angeles County, CA 9818605
+273 Cook County, IL 5194675
+606 Harris County, TX 4092459
+1062 Maricopa County, AZ 3817117
+1239 San Diego County, CA 3095313
+[1] “Metropolitan Division”
+NAME CENSUS2010POP
+962 New York-White Plains-Wayne, NY-NJ 11576251
+791 Los Angeles-Long Beach-Glendale, CA 9818605
+272 Chicago-Joliet-Naperville, IL 7883147
+1423 Washington-Arlington-Alexandria, DC-VA-MD-WV 4377008
+369 Dallas-Plano-Irving, TX 4235751
+[1] “Metropolitan Statistical Area”
+NAME CENSUS2010POP
+946 New York-Northern New Jersey-Long Island, NY-NJ-PA 18897109
+790 Los Angeles-Long Beach-Santa Ana, CA 12828837
+271 Chicago-Joliet-Naperville, IL-IN-WI 9461105
+368 Dallas-Fort Worth-Arlington, TX 6371773
+1046 Philadelphia-Camden-Wilmington, PA-NJ-DE-MD 5965343
+[1] “Micropolitan Statistical Area”
+NAME CENSUS2010POP
+2523 Seaford, DE 197145
+2639 Torrington, CT 189927
+2006 Hilton Head Island-Beaufort, SC 187010
+2004 Hilo, HI 185079
+1781 Daphne-Fairhope-Foley, AL 182265
+Inside the for loop, we first use split() to split the data by the LSAD variable. This
+function outputs a list of data frames that are stored in the variable data.split and are
+indexed by the value of the LSAD variable. For instance, we access the data frame
+containing Metropolitan Division by data.split[[‘Metropolitan Division’]].</p>
+<p>68 5 Exploratory Data Analysis
+We iterate over all the data frames contained in the list data.split. To do so,
+we use the names() function that returns a list of data frame names.
+&gt; names(data.split)
+[1] “County or equivalent” “Metropolitan Division”
+[3] “Metropolitan Statistical Area” “Micropolitan Statistical Area”
+Apart from a list of data frames, the names() function is also useful to list the variables
+in a data frame.
+In each iteration of the for loop, the x variable will contain one of the names,
+and we obtain the corresponding data frame by data.split[[x]]. We then use the order
+function to output the top five areas by population in that data frame.
+We use the output of the split() function to create data frames corresponding to
+different area types.
+&gt; data.county = data.split[[’County or equivalent’]]
+&gt; data.division = data.split[[’Metropolitan Division’]]
+&gt; data.metro = data.split[[’Metropolitan Statistical Area’]]
+&gt; data.micro = data.split[[’Micropolitan Statistical Area’]]
+5.1.5 Variable Correlation
+Correlation analysis is a useful tool to measure the relationship between the different
+variables of the dataset. A correlation metric between two numerical variables reflects
+if increasing value of a variable co-occurs with increasing value of another variable,
+e.g., increase in the consumption of sweetened sodas and increase in the prevalence
+of diabetes [5].
+In general, knowing the correlation between variables is valuable information,
+e.g., in a business, we can check if the advertising costs for different products
+correlated with their sales.
+The term co-occurrence is of importance in the previous paragraph; we did not
+say that increase in the variable x causes an increase in variable y, i.e., consuming
+large amounts of high-fructose corn syrup causes diabetes. The data merely indicates
+that over time people have been drinking a lot of sweetened sodas and there has also
+been an increase in the percentage of diabetes in the population. Hence, the classic
+phrase “correlation does not imply causation.”
+Relating correlation to causation leads one swiftly to a statistical minefield. Over
+the last 100 years, the number of people wearing hats has certainly decreased, and the
+average shoe sizes have increased [4]. This does not imply not wearing hats causes
+big feet.
+There are various versions of the correlation metric, here, we use the Pearson’s
+correlation coefficient. A correlation metric usually takes a value between − 1 and 1.
+A value of zero indicates no correlation between the two variables, while a larger
+positive or negative value indicates that the variables are correlated positively or
+negatively, respectively.</p>
+<p>5.1 Summary Statistics 69
+Means and Variances
+In order to define correlation mathematically, we first formally introduce more
+fundamental statistics such as mean and variance.
+The mean of a variable x, denoted by ¯x or μ and computed by the R function
+mean(x), is the average value of the variable. For a variable x with n data points
+{x1 , … , xn},
+mean(x) = 1
+n
+n∑
+i=1
+x i .
+The variance of the variable x, denoted by σ 2 given by the R function var(x) is a
+measure of how much the data is spread out from the mean. Higher the spread of the
+data, higher the variance.
+var(x) = 1
+n − 1
+∑
+i
+(x i − mean(x)) 2.
+The variance is a second degree quantity, as we can see by the squared term in the
+summation above. We often need a metric indicating the spread of the data in the
+same order of magnitude as the mean. The square root of the variance is the standard
+deviation, denoted by σ and computed by the function sd(x).
+sd(x) = √var(x).
+Covariance is the extension of variance to two variables. It is a measure of whether
+two variables spread out similarly. We can calculate it using the cov(x,y) function
+defined as:
+cov(x, y) = 1
+n − 1
+∑
+i
+(x i − mean(x))(y i − mean(y)).
+Correlation between two variables x and y is given by the covariance between
+those two variables normalized by their individual variances.
+cor(x, y) = cov(x, y)
+√var(x)var(y) .
+We use the cor() function to find the covariance of a pair of variables, in this case,
+the census population and number of births for metropolitan areas.
+&gt; cor(data.metro$CENSUS2010POP,data.metro$BIRTHS2010)
+[1] 0.9955464
+We see that these two variables are highly correlated. This makes sense, as the areas
+with large populations should also have more number of births every year. This
+logic does not hold true for all variables though, e.g., we see a negative correlation</p>
+<p>70 5 Exploratory Data Analysis
+ENSUS2010POENSUS2010PO
+−5000 25000
+0.77 0.95
+0 40000
+1.00 0.99
+−5000 15000
+0.16
+0.96
+−25000 0
+−0.53
+0.0e+000.24
+−5000 25000
+POPCHG_201POPCHG_201 0.87 0.80 0.70 0.72 0.76 0.094
+0.55
+AATURALINC20AA 0.97 0.89 0.28 0.93 −0.40
+0 20000
+0.44
+0 40000
+BIRTHS2010 0.97 0.20
+0.96 −0.49 0.30
+DEATHS2010AA 0.11
+0.93 −0.55
+0 20000
+0.13
+−5000 15000
+NETMIG2010 0.18
+0.73 0.43
+RNR ATIONALMIGGAA −0.54
+0 15000
+0.20
+−25000 0
+MESTICMIG20MESTICMIG20 0.23
+0.0e+00 0 20000 0 20000 0 15000 −200 200
+−200 200
+RESIDR UAL201000
+Fig. 5.1 Pairwise correlation for metropolitan statistical areas
+between census population and domestic migration. This implies people are leaving
+areas with large population for smaller ones [3].
+&gt; cor(data.metro$CENSUS2010POP,data.metro$DOMESTICMIG2010)
+[1] -0.5271686
+We can use the cor() function to obtain the pairwise correlation between a set of
+numeric variables of a data frame (output omitted for conciseness).
+&gt; cor(data.metro[,3:11])
+It is often better to visualize the pairwise correlation between variables: The pairs()
+function generates a scatter plot between all variables tiled together by default. The
+pairs() function is configurable; we can also specify our own functions to obtain
+different plots at the upper, lower, and diagonal panels.
+In Fig. 5.1, we create a customized pairs plot where the lower panel contains the
+scatter plots with a smoothed line indicating how the variables are correlated, and</p>
+<p>5.2 Getting a Sense of Data Distribution 71
+the upper panel contains the correlation values. We spice up the upper panel to have
+the font of the entries proportional to their value.
+# function for generating the correlation values
+&gt; panel.cor &lt;- function(x, y, digits = 2, prefix = “”, cex.cor, …) {
+usr &lt;- par(“usr”); on.exit(par(usr))
+par(usr = c(0, 1, 0, 1))
+r &lt;- cor(x, y)
+txt &lt;- format(c(r, 0.123456789), digits = digits)[1]
+txt &lt;- paste(prefix, txt, sep = “”)
+if(missing(cex.cor)) cex.cor &lt;- 1/strwidth(txt)
+text(0.5, 0.5, txt, cex = cex.cor * abs(r))
+}
+&gt; pairs(data.metro[,3:11], lower.panel = panel.smooth,
+upper.panel = panel.cor)
+5.2 Getting a Sense of Data Distribution
+An important step in EDA is understanding the data distribution. Intuitively, the data
+distribution can be understood as a map of the data: which regions or values of the
+variables is the data more concentrated and which are the extreme values. In this
+section, we look at two powerful tools to visualize the data distribution: box plots
+and histograms. After that, we also look at skewness and kurtosis, which are numeric
+measures of data skewness.
+5.2.1 Box Plots
+A box plot or alternatively, box-and-whisker plot provides a visualization of the
+distribution of a numerical variable. It is based on the five-number summary statistics
+of a variable (minimum, Q1, median, Q3, maximum) that we discussed above.
+Figure 5.2 shows a box plot for BIRTHS2010 variable for the entries correspond-
+ing to micropolitan statistical areas. We limit this analysis to only micropolitan
+statistical areas for clarity. We use the data.micro data frame that we created
+previously.
+We obtain this plot using the boxplot() function.
+&gt; boxplot(data.micro$BIRTHS2010,names=c(’BIRTHS2010’),show.names=T)
+On the vertical axis, we have the values of the variable. R does not show the name
+of the variable on the horizontal axis by default, so we call boxplot() with the names
+and show.names parameter</p>
+<p>72 5 Exploratory Data Analysis
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+BIRTHS2010
+100 200 300 400 500 600
+Fig. 5.2 Box plot of BIRTHS2010 for micropolitan statistical areas
+A box plot has three elements:
+1. Box: A rectangular box with a solid horizontal line in bold.
+2. Whiskers 3 : A pair of vertical dotted lines, with solid horizontal end lines which
+are called notches.
+3. Extremities: Unfilled circles or bubbles located above or below the whiskers.
+The solid horizontal line in the box plot corresponds to the median. The lower and
+upper lines of the box, or whisker hinges, correspond to the 1st quartile (Q1) and 3rd
+quartile (Q3) respectively. The size of the box visually indicates the centrality of the
+data, or the proportion of the data lying close to the median.
+The whisker notches correspond to the furthest data points lying in the 1.5 times the
+interquartile range (IQR). For a variable x, the notch of the top whisker is, therefore,
+min(max(x), Q3 + 1.5 * IQR), and the notch for the lower whisker is max(min(x),
+Q1 − 1.5 * IQR). The bubbles beyond the whiskers are the data points that are above
+or below the top and bottom notches, respectively. These data points are the extrem</p>
+<p>5.2 Getting a Sense of Data Distribution 73
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●●●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+BIRTHS2010 DEATHS2010
+0 100 200 300 400 500 600
+Fig. 5.3 Box plot of BIRTHS2010 and DEATHS2010 for micropolitan statistical areas
+values for the variable or commonly referred to as the tail. Along with the visual rep-
+resentation of the data distribution, the boxplot() function also returns the numerical
+values of the statistics.
+The box plot in Fig. 5.2 provides multiple insights into the BIRTH2010 variable.
+Firstly, there are extreme values only above the top whisker. This implies that dataset
+is well spread out, and has a few values that are much larger than the median. We
+can also see the same effect in the whiskers, where the top whisker is longer than
+the bottom whisker. Secondly, the median, denoted by the solid line, is the point at
+which there are equal number of data points above and below it. The short-bottom
+whisker indicates that a large portion of the data is concentrated in the short range
+between the minimum value (35) and the first quartile (98).
+We can also use the boxplot() function to compare the distribution of two variables
+side by side. Figure 5.3 shows the box plots for BIRTHS2010 and DEATHS2010 for
+data.micro that we obtain using the code below.
+&gt; boxplot(data.micro$BIRTHS2010,data.micro$DEATHS2010,
+names=c(’BIRTHS2010’,’DEATHS2010’))
+We do not need to set show.names=T when we are calling box plot for multiple
+variables. We see that the top whisker and the extremities for BIRTHS2010 is longer</p>
+<p>74 5 Exploratory Data Analysis
+●
+●
+●●●●
+●●●●
+●
+●
+●
+●
+●●
+●●
+●●●
+●
+●
+●●●●
+●●●
+●
+●
+●
+●
+●
+●
+●●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●●●●
+●●
+●
+●
+●
+●
+●
+●●●
+●
+●
+●●●●
+●
+●
+●
+●
+●
+●●●
+●
+●
+●
+●●
+●●●●●
+●
+●●●
+●
+●
+●
+●●●
+●●
+●
+●
+●
+●●
+●●●
+●
+●●●●●
+●●
+●
+●●
+●●
+●
+●●●●●
+●
+●
+●
+●
+●●
+●
+●●
+●
+●
+●
+●
+●
+●●●●●●●●
+●
+●
+●
+●
+●
+●
+●●●●●●
+●●
+●●●
+●●
+●
+●●
+●
+●
+●
+●●●
+●
+●
+●
+●
+●
+●●
+●
+●●
+●
+●●
+●●●●
+●
+●
+●
+●
+●●●
+●●
+●●●●
+●
+●
+●
+●
+●●●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+County or equivalent Metropolitan Statistical Area
+0 10000 20000 30000 40000 50000 60000
+Fig. 5.4 Box plot of BIRTHS2010 for all areas
+than that for DEATHS2010. This implies that the BIRTHS2010 variable is more
+spread out than DEATHS2010. We also see that all five statistics for BIRTHS2010 is
+higher than that of DEATHS2010. This implies that the the BIRTH2010 values are
+overall higher than DEATH2010 values.
+The boxplot() function can also compare all variables in the data frame together
+when called with the data frame boxplot(data.micro). On the other hand, we can
+also compute box plots for one variable over data split across another variable. In
+our original data frame, the LSAD variable denotes if the entry corresponds to a
+county or equivalent, metropolitan area, metropolitan statistical area, or micropolitan
+statistical area. We compute the box plot for BIRTHS2010 over the data partition
+below. The output for this function is shown in Fig. 5.4.
+&gt; boxplot(data$BIRTHS2010 ˜ data$LSAD)
+In the figure, we have four box plots corresponding to the four area types, identified
+on the horizontal axis and sharing a common vertical axis. The labels for some of
+the areas are omitted due to lack of space: from the left, the second plot is for
+metropolitan divisions and the fourth is for micropolitan statistical areas. The box
+plots for micropolitan statistical areas appear squished; the number of births in these
+areas is significantly lower than those in other types of areas with a maximum valu</p>
+<p>5.2 Getting a Sense of Data Distribution 75
+data.micro$BIRTHS2010
+Frequency
+0 100 200 300 400 500 600
+0 50 100 150
+Fig. 5.5 Histogram of BIRTHS2010 for micropolitan statistical areas
+of 600. It is the same box plot that we had in Fig. 5.2. The box plots for counties
+and metropolitan statistical areas indicate a sharper skewness of the data with large
+outliers compared to the median. The number of births in the New York-Northern
+New Jersey-Long Island metropolitan area (60,868) is about 79 times greater than
+the median number of births in metropolitan areas (767.5), and is in fact greater than
+the individual populations of 52 % of the counties in the USA.
+5.2.2 Histograms
+Along with box plot, histogram is a powerful tool to visualize the probability distri-
+bution of the data. We can get a sense of the regions in which the data is concentrated
+or not by its peaks and troughs, and if it is spread out in any particular direction.
+We use the hist() function to plot the histogram for the CENSUS population of the
+micropolitan statistical areas data below (output in Fig. 5.5). As with the boxplot()
+function, hist() also returns the values it uses to generate the plot.
+&gt; hist(data.micro$BIRTHS2010)</p>
+<p>76 5 Exploratory Data Analysis
+The histogram consists of a set of bars corresponding to a bucket of data points.
+The height of a bar is the number of data points in that bucket. In this plot, the hist()
+function splits the data into bins or buckets of size 50: (0–50, 50–100, … , 550–600).
+We see that the height of the first bar is 10, so there are 10 data points in the range
+0–50.
+The histogram in Fig. 5.5 visualizes the same data we had in Fig. 5.2 from a
+different perspective. We can infer the same data characteristics; most data points
+are concentrated around the median (136). Also, the bars are clearly not of uniform
+height and most of the shorter bars are to the right. These are the extreme values that
+are much larger than the median and the box plot had represented them by bubbles
+above the top whisker.
+The choice of bin sizes is an important parameter for plotting a histogram. The
+hist() function supports various formulae for this purpose which can be specified
+by the breaks parameter. The default is the Struges’ formula, which is used for the
+histogram in Fig. 5.5. This formula divides the data into equal-sized k bins where
+k = log2n + 1 and n is the number of data points. Other strategies are the Scott and
+Freedman–Diaconis (FD) formulae. We can also specify a user-defined function to
+compute the breaks; a simple instance of this is to just specify the number of breaks.
+We plot the histograms using different break formulae below (output in Fig. 5.6).
+&gt; hist(data.micro$BIRTHS2010,breaks=’sturges’,main=’Struges’)
+&gt; hist(data.micro$BIRTHS2010,breaks=’scott’,main=’Scott’)
+&gt; hist(data.micro$BIRTHS2010,breaks=’fd’,main=’Freedman-Diaconis’)
+&gt; hist(data.micro$BIRTHS2010,breaks=50,main=’50 bins’)
+There are a few additions that we can make to the histograms to see the data from a
+finer perspective. We look at some of these below.
+Rug
+We can further highlight the data distribution by adding a rug to the histogram. A
+rug is simply a series of ticks on the horizontal axis corresponding to the location of
+the data points. The dark shaded areas are where most of the data points are located.
+A rug normally decorates another plot, to show it, we use the rug() function after
+drawing the histogram as follows (output in Fig. 5.7).
+&gt; hist(data.micro$BIRTHS2010,breaks=’FD’)
+&gt; rug(data.micro$BIRTHS2010)
+Density
+A histogram presents a coarse view of the data distribution using the number of data
+points lying in a bin. Sometimes, it is more informative to visualize the smooth
+density of the data. The density() function uses a kernel density estimator (KDE) to
+obtain this output. Similar to the rug, we overlay the density on top of the histogram
+as follows (output in Fig. 5.7).</p>
+<p>5.2 Getting a Sense of Data Distribution 77
+Struges
+data.micro$BIRTHS2010
+Frequency
+0 100 200 300 400 500 600
+0 50 100 150
+Scott
+data.micro$BIRTHS2010
+Frequency
+0 100 200 300 400 500 600
+0 50 100 150
+Freedman−Diaconis
+data.micro$BIRTHS2010
+Frequency
+0 100 200 300 400 500 600
+0 20 40 60 80
+50 bins
+data.micro$BIRTHS2010
+Frequency
+100 200 300 400 500 600
+0 10 20 30 40
+Fig. 5.6 Histogram of BIRTHS2010 for micropolitan statistical areas using different break formulae
+&gt; hist(data.micro$BIRTHS2010,breaks=’FD’,freq=F)
+&gt; points(density(data.micro$BIRTHS2010),type=’l’,col=’red’)
+We use the freq=F flag in the hist() function to replace the vertical scale of frequencies
+with densities.
+Cumulative Histogram
+While a histogram shows the number of data points in a given bin, we often need to
+know the number of data points less than or equal to the range of the bin, e.g., instead
+of knowing how many data points lie in the bin 80–100, we need to know the number
+of data points lie in the range 0–100. This is called the cumulative histogram of the
+data, and as the name suggests, corresponds to the cumulative density function (CDF)
+of the data. This plot contains cumulative counts, where the count of data points i</p>
+<p>bin are added to the next bin. R does not have a standard function to generate the
+cumulative histogram; we create a cumhist() function that manipulates the values
+returned by the histogram() function (output in Fig. 5.9).
+&gt; cumhist = function(x) {
+h = hist(data.micro$BIRTHS2010,’FD’,plot=F)
+h$counts = cumsum(h$counts)
+plot(h)
+}
+&gt; cumhist(data.micro$BIRTHS2010)
+We call the hist() function with the plot=F flag, because we only need the values
+returned by the function and not the plot. We use the cumsum() function to compute
+the cumulative scores and set them back to the data returned by the histogram. The
+cumsum() function computes a cumulative sum of a vector, e.g.,
+&gt; cumsum(c(1,2,3,4))
+[1] 1 3 6 10
+We finally use plot() to plot the cumulative histogram. We do not need to specify
+the axis labels or that we need to use bars to show the output. Being a generic func-
+tion, plot() works with a histogram object and automatically displays the cumulative
+histogram in the right format (Fig. 5.8</p>
+<p>80 5 Exploratory Data Analysis
+5.2.3 Measuring Data Symmetry Using Skewness and Kurtosis
+A histogram gives a visual representation of how the data is distributed. We often
+need an objective measure that summarizes the characteristic of the data. Such a
+measure is useful for comparing if two variables are distributed similarly.
+Skewness is a metric that captures the asymmetry of a numeric variable. Mathe-
+matically, the skewness of a dataset is the third sample moment of the variable about
+the mean, standardized by the sample variance:
+skewness =
+1
+n
+∑
+i
+(x i − ¯x)3
+( 1
+n
+∑
+i (x i − ¯x) 2) 3
+2
+,
+where xi are the individual data points and ¯x is the mean. A variable with zero
+skewness implies that the data is symmetric. Positive skewness implies that the data
+is spread out towards the right, with extreme values larger than the median. Similarly,
+negative skewness implies that the data is spread out towards the left, with extreme
+values smaller than the median. Data sampled from power law distribution would
+have larger positive or negative skewness value.
+We use the skewness() function in the moments package to compute the skewness
+of the data, for an individual variable or a data frame. We calculate the skewness of
+all numerical variables for micropolitan statistical areas below.
+&gt; library(moments)
+&gt; skewness(data.micro[,3:11])
+CENSUS2010POP NPOPCHG_2010 NATURALINC2010
+1.7384473 2.6371220 1.0143676
+BIRTHS2010 DEATHS2010 NETMIG2010
+1.6833753 1.5502585 2.6078737
+INTERNATIONALMIG2010 DOMESTICMIG2010 RESIDUAL2010
+4.4857400 2.3719011 0.9202234
+The skewness is positive for all variables; it implies that all of them are skewed
+towards the right. Some variables are skewed more than others.
+For comparison, we calculate the skewness of all numerical variables for
+metropolitan statistical areas below.
+&gt; skewness(data.metro[,3:11])
+CENSUS2010POP NPOPCHG_2010 NATURALINC2010
+6.677222 4.718376 6.107227
+BIRTHS2010 DEATHS2010 NETMIG2010
+6.469855 6.606957 3.291813
+INTERNATIONALMIG2010 DOMESTICMIG2010 RESIDUAL2010
+8.159912 -6.088828 3.170399
+We see that except for DOMESTICMIG2010, the skewness is positive for all other
+variables. The skewness values for metropolitan areas are larger in magnitude than
+micropolitan areas, which implies that the data for the former is much more spread
+out. We see this effect in the histograms for the CENSUS2010POP variables for the
+two datasets in Fig. 5.10</p>
+<p>While skewness is a measure of the degree and direction of data asymmetry,
+kurtosis 4 captures the sharpness or flatness of the peaks in the data: sharper the peaks,
+lighter the tails, and vice-versa. There are various versions of the kurtosis measure,
+we use Pearson’s kurtosis which is the fourth sample moment of the variable about
+the mean, standardized by the sample variance:
+kurtosis =
+1
+n
+∑
+i (x i − ¯x) 4
+( 1
+n
+∑
+i
+(x i − ¯x)2)2 .
+The standard Gaussian distribution has a kurtosis of 3. This is used as a reference
+point; a data having lower than 3 kurtosis is more peaked than Gaussian distribution,
+vice versa. For that reason, the kurtosis value—3 is called excess kurtosis. 5 Uniform
+distribution has an excess kurtosis of 1.2.
+We use the kurtosis() function in the moments package to compute the actual
+kurtosis of the variables for micropolitan statistical areas below.
+4 Kurtosis comes from the Greek word kurtos meaning arched.
+5 Distributions with zero, positive, and ne</p>
+<p>82 5 Exploratory Data Analysis
+&gt; kurtosis(data.micro[,3:11])
+CENSUS2010POP NPOPCHG_2010 NATURALINC2010
+6.757994 17.459700 9.590567
+BIRTHS2010 DEATHS2010 NETMIG2010
+6.504231 6.819837 21.681844
+INTERNATIONALMIG2010 DOMESTICMIG2010 RESIDUAL2010
+34.850185 22.369340 17.521871
+There are many other measures of data symmetry, including other definitions of
+kurtosis. A popular measure is the Gini coefficient, 6 which captures inequality in
+the dataset. Gini coefficient is widely used in economics to measure the income
+inequality in a country. We will not go into the maths behind the Gini coefficient
+here.7 We use the gini() function from the reldist package to calculate its
+value below.
+&gt; library(reldist)
+&gt; gini(data.metro$CENSUS2010POP)
+[1] 0.6593656
+5.3 Putting It All Together: Outlier Detection
+Outlier detection is a good example of a data analysis task where we can apply
+multiple EDA techniques that we covered in this chapter. Along with missing values,
+outliers play a disruptive role in any nontrivial data analysis task. Outliers are the
+data points that are markedly deviant from rest of the data: extreme values that are
+either too large or too small. These values distort the actual distribution of the data,
+and end up having an adverse effect on our analysis.
+Outliers are commonly caused due to data collection anomalies. As in the case
+of missing data, outliers could be caused by malfunctioning sensors or data entry
+errors in case of manual data collection. On the other hand, the outliers can also
+be genuine abnormal values occurring as a part of the data. This often indicates the
+presence of the data coming from a long-tailed distribution, which means there is
+a large probability of getting values away from the mean. Websites by their traffic,
+languages by their number of speakers, net-worth of individuals, are all examples of
+long-tailed distributions.
+Also, there are cases where the identifying outliers is the goal of our analysis.
+This falls into the area of rare category detection, where we are interested in identi-
+fying rare, infrequently occurring data points. Examples of this include credit card
+fraud detection, the search for extraterrestrial intelligence (the SETI project). Sim-
+ply regarding rarely occurring events as outliers sometimes leads to problems; a
+famous example is the detection of ozone layer over Antarctica. The software in the</p>
+<p>5.3 Putting It All Together: Outlier Detection 83
+NASA Nimbus 7 satellite considered low ozone values over Antarctica as outliers
+and automatically discarded them for many years [1].
+For a given dataset, though, a question that remains is what data points can be
+precisely identified as outliers. There is no clear answer to that. It depends on the
+data distribution and the analysis methodology that we are planning to use. In the
+USA, a person with ten credit cards is certainly not an outlier, but someone with 1497
+valid credit cards might be one.8 An outlier is different from missing data. It does
+not mean that such a data point cannot exist; it merely means that including such a
+data point would skew our analysis. On the other hand, a person working more than
+168 h a week is certainly an outlier caused due to data entry error and should be
+excluded from our analysis.
+One approach of finding outliers is using EDA. Let us look at the survey dataset,
+we introduced in the previous chapter.
+&gt; data = read.csv(’survey-fixed.csv’)
+&gt; summary(data)
+sex height weight handedness exercise
+Female:118 Min. :59.00 Min. : 0.0 Left : 18 Freq:115
+Male :118 1st Qu.:65.27 1st Qu.:150.0 Right:218 None: 24
+NA’s : 1 Median :67.00 Median :169.0 NA’s : 1 Some: 98
+Mean :67.85 Mean :172.9
+3rd Qu.:70.42 3rd Qu.:191.0
+Max. :79.00 Max. :958.0
+smoke
+Heavy: 11
+Never:190
+Occas: 19
+Regul: 17
+There is something anomalous about the weight variable. The maximum value is
+958 lb and the minimum value of the variable is 0, which are both outliers.
+In the left half of Fig. 5.11, we plot a histogram of the height variable to observe
+this. The histogram shows the two outliers: the lone extreme value to the far right of
+the majority of the data. It also shows the zero weight value to the left. We remove
+these values from our analysis.
+The box plot is also a useful outlier detection tool. As we saw earlier, it shows
+the extreme values that are distant from the median as bubbles. In the right half of
+Fig. 5.11, we plot the box plot for the weight variable. It also shows the two outliers
+by the top and bottom bubbles. However, not all extreme values are outliers; while
+we see that a few are concentrated near the top and bottom whisker notches, these
+are still close to the remainder of the data as we see in the histogra</p>
+<p>.4 Chapter Summary
+In this chapter, we looked at different techniques for EDA. Computing the summary
+statistics is usually the first step in EDA. This includes computing the five-number
+summaries of each variable: minimum, first quartile, median, third quartile, maxi-
+mum along with means and standard deviations. We also looked at using the by()
+and split() functions to aggregate and split a data frame by a variable. To get a deeper
+understanding of the dataset, it is necessary to understand the underlying data dis-
+tribution. Box plot is a useful method of visualizing the five-number summary of a
+variable along with the outliers. Histogram is a powerful tool to look deeper into the
+data distribution by creating a bar chart of frequencies of occurrence for different
+buckets of data points. We also looked at skewness() and kurtosis() as two numerical
+measures of the asymmetry and peakedness of the data distribution. Finally, we also
+look at the problem of using EDA techniques to find the outliers in the data</p>
+<p>References
+1. Christie, M. (2001). The Ozone layer: A philosophy of science perspective. United Kingdom:
+Cambridge University Press. (Chap. 6).
+2. Dorfman, R. (1979). A formula for the Gini coefficient. The review of economics and statistics.
+The Review of Economics and Statistics, 61, 146–149.
+3. Most major U.S. cities show population declines. USA Today, June 2011.
+4. Size 8 is the new 7: Why our feet are getting bigger. Time Magazine, Oct 2012.
+5. Sugary sodas high in diabetes-linked compound. <a class="reference external" href="http://abcnews.go.com/Health/Healthday/story">http://abcnews.go.com/Health/Healthday/story</a>
+?id=4508420&amp;page=1#.UUzdKFt34eF. March 2007.
+6. To his credit, charge card king doesn’t cash in. Los Angeles Times, Dec 2004</p>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Beginning_Data_Science_R_Manas</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="c00.html">Beginning_Data_Science_R_Manas_C00</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c01.html">Beginning_Data_Science_R_Manas_C01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c02.html">Beginning_Data_Science_R_Manas_C02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c03.html">Beginning_Data_Science_R_Manas_C03</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c04.html">Beginning_Data_Science_R_Manas_C04</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Beginning_Data_Science_R_Manas_C05</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="c04.html" title="previous chapter">Beginning_Data_Science_R_Manas_C04</a></li>
+      <li>Next: <a href="c06.html" title="next chapter">&lt;no title&gt;</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Leopoldo.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/c05.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

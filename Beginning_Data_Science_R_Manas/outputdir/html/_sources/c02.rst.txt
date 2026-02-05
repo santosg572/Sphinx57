@@ -1,0 +1,611 @@
+Beginning_Data_Science_R_Manas_C02
+==================================
+
+apter 2 Overview of the R Programming Language
+
+In this chapter we present a brief overview of the R with the goal of helping readers who are not very familiar with this language to get started.
+
+En este capítulo presentamos una breve descripción general del R con el objetivo de ayudar a los lectores que no están muy familiarizados con este lenguaje a comenzar.
+
+
+We start with how to install R and use the development tools. We then look at the elements of the R programming language such as operators and data types. We also look at the syntax of different structures such as conditional statements and loops, along with functions. The R programming language has its share of peculiarities; we highlight some of them below. We look at installing and loading R packages from Comprehensive R Archive Network (CRAN). Finally, we will discuss the running R code outside the R console using Rscript.
+
+Comenzamos con la instalación de R y el uso de las herramientas de desarrollo. Luego, analizamos los elementos del lenguaje de programación R, como los operadores y los tipos de datos. También analizamos la sintaxis de diferentes estructuras, como las sentencias condicionales y los bucles, junto con las funciones. El lenguaje de programación R tiene su cuota de peculiaridades; destacamos algunas de ellas a continuación. Analizamos la instalación y la carga de paquetes R desde Comprehensive R Archive Network (CRAN). Por último, analizaremos la ejecución del código R fuera de la consola R mediante Rscript.
+
+
+2.1 Installing R
+
+R is available on most computing platforms such as Windows, GNU/Linux, Mac OS X, and most other variants of UNIX. There are two ways of installing R: downloading an R binary and compiling R from source. The compiled binary executables for major platforms are available for download from the CRAN website http://cran.rstudio.com/.
+
+R está disponible en la mayoría de las plataformas informáticas, como Windows, GNU/Linux, Mac OS X y la mayoría de las variantes de UNIX. Hay dos formas de instalar R: descargar un binario de R y compilar R desde el código fuente. Los ejecutables binarios compilados para las principales plataformas están disponibles para su descarga desde el sitio web de CRAN http://cran.rstudio.com/.
+
+
+R can also be installed using package managers. Ubuntu users can install R using the apt-get package manager.
+
+R también se puede instalar mediante administradores de paquetes. Los usuarios de Ubuntu pueden instalar R utilizando el administrador de paquetes apt-get.
+
+
+$ sudo apt-get install r-base r-base-dev
+
+Similarly, on Mac OS X we can install R using ports.
+
+$ sudo port install R
+
+Being an open source software, the source code for R is also available for download at http://cran.rstudio.com/. Advanced users can create their own binary executables by directly compiling from source as well.
+
+Al ser un software de código abierto, el código fuente de R también está disponible para descargar en http://cran.rstudio.com/. Los usuarios avanzados también pueden crear sus propios ejecutables binarios compilando directamente desde el código fuente.
+
+
+There is an active community of R developers which regularly releases a new version of R. Each version also has a name assigned to it. Except for major releases, the versions of R are usually backward compatible in terms of their functionality. In this book, we use R version 3.1.0.
+
+Existe una comunidad activa de desarrolladores de R que publica periódicamente una nueva versión de R. Cada versión tiene un nombre asignado. A excepción de las versiones principales, las versiones de R suelen ser compatibles con versiones anteriores en cuanto a su funcionalidad. En este libro, utilizamos la versión 3.1.0 de R.
+
+
+Fig. 2.1 R command-line application
+
+2.1.1 Development Tools
+
+The default installation of R on UNIX-based operating systems is in the form of a command-line application called R. We can start this application from a terminal to get a prompt as shown in Fig. 2.1. We can start typing R code at this prompt and see the output in the terminal itself. Alternatively, we can write the R code in an external text editor, and import or source the code in the command-line application. Many text editors such as Emacs and vi have R plugins that provide syntax highlighting and other tools. Although simplistic, this is the primary development environment for many R developers.
+
+La instalación predeterminada de R en los sistemas operativos basados ​​en UNIX se realiza en forma de una aplicación de línea de comandos llamada R. Podemos iniciar esta aplicación desde una terminal para obtener un mensaje como se muestra en la Figura 2.1. Podemos comenzar a escribir el código R en este mensaje y ver el resultado en la propia terminal. Alternativamente, podemos escribir el código R en un editor de texto externo e importar o generar el código en la aplicación de línea de comandos. Muchos editores de texto como Emacs y vi tienen complementos de R que proporcionan resaltado de sintaxis y otras herramientas. Aunque simplista, este es el entorno de desarrollo principal para muchos desarrolladores de R.
+
+
+On Windows, R is installed as a graphical user interface (GUI) application (Fig. 2.2) with a set of development tools, such as a built-in editor. A similar GUI application called R.app also exists for Mac OS X. However, these applications are fairly basic when compared to integrated development environments (IDEs) for other programming languages.
+
+En Windows, R se instala como una aplicación de interfaz gráfica de usuario (GUI) (Fig. 2.2) con un conjunto de herramientas de desarrollo, como un editor integrado. También existe una aplicación GUI similar llamada R.app para Mac OS X. Sin embargo, estas aplicaciones son bastante básicas en comparación con los entornos de desarrollo integrados (IDE) para otros lenguajes de programación.
+
+
+Recently, there are many independent IDEs available for R. One of the most powerful IDEs is RStudio1 . It is available in two editions: a GUI desktop application that runs R on the local machine, and server, where R runs on a remote server and we can interact with it via a web application.
+
+Recientemente, hay muchos IDE independientes disponibles para R. Uno de los IDE más potentes es RStudio1. Está disponible en dos ediciones: una aplicación de escritorio con interfaz gráfica de usuario que ejecuta R en la máquina local y una versión de servidor, donde R se ejecuta en un servidor remoto y podemos interactuar con él a través de una aplicación web.
+
+Fig. 2.2 R on Windows
+
+2.2 R Programming Language
+
+In this section, we briefly overview the R programming language. R is an interpreted language; the expression specified in an R program are executed line by line similar to other interpreted languages such as python or ruby rather than compiling the source code to an executable, as in C++. R is dynamically typed, which means that R infers the data types of the variables based on the context. We do not need to declare variables separately.
+
+En esta sección, presentamos una breve descripción general del lenguaje de programación R. R es un lenguaje interpretado; las expresiones especificadas en un programa R se ejecutan línea por línea de manera similar a otros lenguajes interpretados, como Python o Ruby, en lugar de compilar el código fuente en un ejecutable, como en C++. R tiene tipos dinámicos, lo que significa que infiere los tipos de datos de las variables en función del contexto. No necesitamos declarar las variables por separado.
+
+
+R has a bit of esoteric syntax as compared to most other programming languages. We look at the basic features of R below.
+
+R tiene una sintaxis un poco esotérica en comparación con la mayoría de los demás lenguajes de programación. A continuación, analizaremos las características básicas de R.
+
+
+2.2.1 Operators
+
+R provides arithmetic operators such as addition (+), subtraction (-), multiplication (*), division (/), and exponentiation (ˆ). We enter the expression 3 + 4 at the R console. We do not need to terminate the expressions or lines by a semicolon.
+
+R proporciona operadores aritméticos como suma (+), resta (-), multiplicación (*), división (/) y exponenciación (ˆ). Ingresamos la expresión 3 + 4 en la consola R. No necesitamos terminar las expresiones o líneas con un punto y coma.
+
+
+> 3 + 4
+[1] 7
+
+As expected, R returns the answer as 7. We use an assignment operator to assign the value of an expression to a variable. R has two assignment operators: the conventional assignment operator = which is present in most programming languages, and arrows <- and -> which are specific to R. The expression x = 5 assigns the value 5 to x; the expression x <- 5 and 5 -> x have exactly the same effect. Historically, the arrow operator has been used for assignment in R. However, we do not have to use the arrow operator; apart from nonfamiliarity and typing twice as many characters, <- can also be a cause for errors: x <- 5 vs. x < -5. Throughout this book, we only use the conventional assignment operator (=).
+
+Como era de esperar, R devuelve la respuesta como 7. Usamos un operador de asignación para asignar el valor de una expresión a una variable. R tiene dos operadores de asignación: el operador de asignación convencional = que está presente en la mayoría de los lenguajes de programación, y las flechas <- y -> que son específicas de R. La expresión x = 5 asigna el valor 5 a x; la expresión x <- 5 y 5 -> x tienen exactamente el mismo efecto. Históricamente, el operador de flecha se ha utilizado para la asignación en R. Sin embargo, no tenemos que utilizar el operador de flecha; además de la falta de familiaridad y de escribir el doble de caracteres, <- también puede ser causa de errores: x <- 5 frente a x < -5. A lo largo de este libro, solo usamos el operador de asignación convencional (=).
+
+
+We can create expressions using variables. For instance, we assign the value 5 to the variable x and evaluate the square of x using the exponentiation (ˆ) operator.
+
+Podemos crear expresiones utilizando variables. Por ejemplo, asignamos el valor 5 a la variable x y evaluamos el cuadrado de x utilizando el operador de exponenciación (ˆ).
+
+
+> x = 5
+> xˆ2
+[1] 25
+
+R has peculiar syntax when it comes to variable names. The dot character (.) has a completely different meaning as compared to other programming languages. In R, we can use (.) in the variable names, so x.1 and x.2 are perfectly valid. In practice, the dot operator is used as a visual separator in variable names, similar to underscore in most other programming languages, e.g., the variable prev_sum is conventionally written as prev.sum. Underscores can also be used in R variable names as well, although they are less frequently used in practice as compared to dot.
+
+R tiene una sintaxis peculiar en lo que respecta a los nombres de variables. El carácter de punto (.) tiene un significado completamente diferente en comparación con otros lenguajes de programación. En R, podemos usar (.) en los nombres de variable, por lo que x.1 y x.2 son perfectamente válidos. En la práctica, el operador de punto se utiliza como separador visual en los nombres de variable, de forma similar al guión bajo en la mayoría de los demás lenguajes de programación, por ejemplo, la variable prev_sum se escribe convencionalmente como prev.sum. Los guiones bajos también se pueden utilizar en los nombres de variable de R, aunque se utilizan con menos frecuencia en la práctica en comparación con el punto.
+
+
+2.2.2 Printing Values
+
+Entering an expression on the R console evaluates the expression and then prints its value. Internally, R is calling the print() function with the value of the expression. We can call print() explicitly as well. This is useful when we want to print values for variables in a script.
+
+Al ingresar una expresión en la consola R, se evalúa la expresión y luego se imprime su valor. Internamente, R llama a la función print() con el valor de la expresión. También podemos llamar a print() explícitamente. Esto es útil cuando queremos imprimir valores para variables en un script.
+
+
+> print(3 + 4)
+[1] 7
+
+Note that in the example in the previous subsection, the line x = 5 did not print anything. R does not print the values of expressions when using the assignment operator.
+
+Tenga en cuenta que en el ejemplo de la subsección anterior, la línea x = 5 no imprimió nada. R no imprime los valores de las expresiones cuando se utiliza el operador de asignación.
+
+
+The print() function prints the value of the expression and a new line. However, it is not straightforward to print multiple values using print(), for instance if we want to print the name of the variable along with the value. We need to print the output of the paste() function that concatenates two strings with a space.
+
+La función print() imprime el valor de la expresión y una nueva línea. Sin embargo, no es sencillo imprimir varios valores utilizando print(), por ejemplo, si queremos imprimir el nombre de la variable junto con el valor. Necesitamos imprimir la salida de la función paste() que concatena dos cadenas con un espacio.
+
+
+> print(paste(’the sum is’, 3 + 4))
+[1] "the sum is 7"
+
+There is a simpler function called cat() that can print a list of values, so we do not require to call paste(). As the cat() function does not print the newline character, we need to specify it manually.
+
+Existe una función más simple llamada cat() que puede imprimir una lista de valores, por lo que no necesitamos llamar a paste(). Como la función cat() no imprime el carácter de nueva línea, debemos especificarlo manualmente.
+
+
+> cat(’the sum is’, 3 + 4, ’\n’)
+the sum is 7
+
+2.2.3 Basic Data Types
+
+There are two kinds of data types: scalars that represent single-valued data or composite that represent collections of scalar data. Here we look at the scalar data types in R; we will discuss about the composite data types such as vectors and data frames in Chap. 3.
+
+Existen dos tipos de datos: los escalares, que representan datos de un solo valor, y los compuestos, que representan conjuntos de datos escalares. Aquí analizamos los tipos de datos escalares en R; en el capítulo 3 analizaremos los tipos de datos compuestos, como los vectores y los marcos de datos.
+
+
+R provides multiple scalar data type formats such as numeric, integer, character, logical, and complex. The numeric data type is used to represent floating point numbers while integer data for representing only integer values. We can convert variables from numeric to integer using the as.integer() function.
+
+R ofrece múltiples formatos de tipos de datos escalares, como numéricos, enteros, de caracteres, lógicos y complejos. El tipo de datos numéricos se utiliza para representar números de punto flotante, mientras que los datos enteros se utilizan para representar únicamente valores enteros. Podemos convertir variables de numéricas a enteras utilizando la función as.integer().
+
+
+> as.integer(2.56)
+[1] 2
+
+By default, R uses the numeric data type for integer values as well. We identify the data type of a variable using the class() function.
+
+De manera predeterminada, R también utiliza el tipo de datos numéricos para valores enteros. Identificamos el tipo de datos de una variable mediante la función class().
+
+
+
+> x = 5
+> class(x)
+[1] "numeric"
+
+We can also check if a variable is an integer using the is.integer() function. Such functions, as.datatype() and is.datatype() exist for all the data types mentioned above.
+
+También podemos comprobar si una variable es un número entero utilizando la función is.integer(). Estas funciones, as.datatype() e is.datatype(), existen para todos los tipos de datos mencionados anteriormente.
+
+
+The character data type is used to represent strings. Unlike C or Java, R does not make a distinction between the single character char data type and multicharacter string data type. Additionally, we can use both single and double quotes to enclose strings; in this book, we primarily use single quotes.
+
+El tipo de datos de caracteres se utiliza para representar cadenas. A diferencia de C o Java, R no distingue entre el tipo de datos de un solo carácter char y el tipo de datos de cadena de varios caracteres. Además, podemos utilizar comillas simples y dobles para encerrar cadenas; en este libro, utilizamos principalmente comillas simples.
+
+
+> s1 = "string"
+> s1
+[1] "string"
+> s2 = ’also a string’
+> s2
+[1] "also a string"
+
+We convert between character and numeric variables using the as.character() and as.numeric() functions.
+
+Realizamos conversiones entre variables de caracteres y numéricas utilizando las funciones as.character() y as.numeric().
+
+
+> as.character(2.5)
+[1] "2.5"10
+2 Overview of the R Programming Language
+> as.numeric(’2.5’)
+[1] 2.5
+
+Similar to other programming languages, R also has standard string processing functions such as computing the length of a string, finding substrings, splitting a string based on a character. The stringr library also provides a more consistent and easier to use set of functions for string processing.
+
+Al igual que otros lenguajes de programación, R también tiene funciones estándar de procesamiento de cadenas, como calcular la longitud de una cadena, encontrar subcadenas y dividir una cadena en función de un carácter. La biblioteca stringr también proporciona un conjunto de funciones más consistentes y fáciles de usar para el procesamiento de cadenas.
+
+
+The logical data type represents the boolean values: true and false. R uses two constants TRUE and FALSE to represent boolean values. These values are also represented by abbreviated constants T and F. In this book, we use these abbreviated constants to represent boolean values. R provides the standard boolean operators: and (&), or (|), not (!) along with relational operators such as equal to (==), less than (<) and greater than (>) that operate on numeric variables and return boolean values.
+
+El tipo de datos lógico representa los valores booleanos: verdadero y falso. R utiliza dos constantes TRUE y FALSE para representar valores booleanos. Estos valores también se representan mediante las constantes abreviadas T y F. En este libro, utilizamos estas constantes abreviadas para representar valores booleanos. R proporciona los operadores booleanos estándar: y (&), o (|), no (!) junto con operadores relacionales como igual a (==), menor que (<) y mayor que (>) que operan sobre variables numéricas y devuelven valores booleanos.
+
+R also provides support for representing complex variables that contain a real and imaginary component.
+
+R también proporciona soporte para representar variables complejas que contienen un componente real e imaginario.
+
+
+> z = 2 + 3i
+
+We can directly perform operations on the complex variables.
+
+Podemos realizar operaciones directamente sobre las variables complejas.
+
+
+> zˆ2
+[1] -5+12i
+
+We will not be using complex data types in this book.
+
+No utilizaremos tipos de datos complejos en este libro.
+
+
+2.2.4 Control Structures
+
+R provides control structures such as conditional branches (if-else) and loops. The syntax for if-else is similar to most other programming languages:
+
+R proporciona estructuras de control como ramificaciones condicionales (if-else) y bucles. La sintaxis de if-else es similar a la de la mayoría de los demás lenguajes de programación:
+
+
+> if (x > 0) {
++
+y = ’positive’
++ } else {
++
+y = ’negative or zero’
++ }
+
+In this case, y will be assigned the string ‘positive’ if x > 0 and ’negative or zero’ otherwise.
+
+En este caso, a y se le asignará la cadena ‘positivo’ si x > 0 y ‘negativo o cero’ en caso contrario.
+
+
+
+There are many other ways to write the same statement in R. Firstly, we can use if-else to return a value.
+
+Hay muchas otras formas de escribir la misma declaración en R. En primer lugar, podemos usar if-else para devolver un valor.
+
+
+> y = if (x > 0) ’positive’ else ’negative or zero’
+
+We can also write the same expression using the ifelse() function, where the first argument is the boolean condition, and the second and third arguments are the respective values for the condition being true and false.
+
+También podemos escribir la misma expresión usando la función ifelse(), donde el primer argumento es la condición booleana, y el segundo y tercer argumento son los valores respectivos para que la condición sea verdadera y falsa.
+
+
+> y = ifelse(x > 0, ’positive’, ’negative or zero’)
+
+An extension of the ifelse() function to multiple values is the switch() function.
+
+Una extensión de la función ifelse() a múltiples valores es la función switch().
+
+
+R also provides multiple looping structures as well. The simplest loop is the while loop where we specify the boolean condition along with a body of steps that that are executed each time until the condition is met. The syntax for while loop is not different from that in C. We use the while loop to compute the sum of squares from 1 to 10.
+
+R también proporciona múltiples estructuras de bucle. El bucle más simple es el bucle while, en el que especificamos la condición booleana junto con un conjunto de pasos que se ejecutan cada vez hasta que se cumple la condición. La sintaxis del bucle while no es diferente de la de C. Usamos el bucle while para calcular la suma de los cuadrados de 1 a 10.
+
+
+> total = 0
+> i = 1
+> while (i <= 10) {
++
+total = total + iˆ2
++
+i = i + 1
++ }
+> total
+[1] 385
+
+There are no ++ or += operators in R.
+
+Another useful looping construct is the repeat loop, where there is no boolean condition. The loop continues until a break condition is met; conceptually, the repeat loop is similar to while (T). We compute the same sum of squares from 1 to 10 using a repeat loop.
+
+Otra construcción de bucle útil es el bucle de repetición, en el que no hay ninguna condición booleana. El bucle continúa hasta que se cumple una condición de interrupción; conceptualmente, el bucle de repetición es similar a while (T). Calculamos la misma suma de cuadrados de 1 a 10 utilizando un bucle de repetición.
+
+
+> total = 0
+> i = 1
+> repeat {
++
+total = total + iˆ2
++
+if (i == 10) break
++
+i = i + 1
++ }
+> total
+[1] 385
+
+R also has a powerful for loop that is more similar to for loop of python or Javascript as compared to the for loop in C. In this loop, we iterate over a vector of elements. We use the in operator to access an element of this vector at a time. We will discuss vectors in more detail in Chap. 3; for now, we construct a vector of elements from 1 to 10 as 1:10. We compute the same sum of squares from 1 to 10 using a for loop below.
+
+R también tiene un bucle for poderoso que es más similar al bucle for de Python o Javascript que al bucle for de C. En este bucle, iteramos sobre un vector de elementos. Usamos el operador in para acceder a un elemento de este vector a la vez. Hablaremos de vectores con más detalle en el Capítulo 3; por ahora, construimos un vector de elementos del 1 al 10 como 1:10. Calculamos la misma suma de cuadrados del 1 al 10 usando un bucle for a continuación.
+
+
+
+> total = 0
+> for (i in 1:10) {
++
+total = total + iˆ2
++ }
+> total
+[1] 38512
+2 Overview of the R Programming Language
+
+2.2.5 Functions
+
+R provides strong support for creating functions. In practice, most of the interactions we have with R is through functions: either provided by the base package, or user defined functions containing application logic.
+
+R ofrece un gran soporte para la creación de funciones. En la práctica, la mayoría de las interacciones que tenemos con R se realizan a través de funciones, ya sean proporcionadas por el paquete base o funciones definidas por el usuario que contienen la lógica de la aplicación.
+
+
+The syntax for calling a function in R is similar to most other programming languages. For instance, we use the function sum() to compute the sum of a vector of numbers. This function is provided by the base package.
+
+La sintaxis para llamar a una función en R es similar a la de la mayoría de los demás lenguajes de programación. Por ejemplo, utilizamos la función sum() para calcular la suma de un vector de números. Esta función la proporciona el paquete básico.
+
+
+> sum(1:10)
+[1] 55
+
+R has special syntax for defining functions. As with other programming languages, we specify the function name, parameters along with body of the statements containing a return value. The difference is that we create a function using the function keyword and assign it to a variable. We will later see the reason for this.
+
+R tiene una sintaxis especial para definir funciones. Al igual que en otros lenguajes de programación, especificamos el nombre de la función, los parámetros y el cuerpo de las instrucciones que contienen un valor de retorno. La diferencia es que creamos una función utilizando la palabra clave function y la asignamos a una variable. Más adelante veremos el motivo de esto.
+
+
+We create a function called avg() to compute the average value of a vector of numbers. This is an implementation of the mean() function of the base package. We use the length() function that computes the number of elements or length of a vector.
+
+Creamos una función llamada avg() para calcular el valor promedio de un vector de números. Esta es una implementación de la función mean() del paquete base. Usamos la función length() que calcula la cantidad de elementos o la longitud de un vector.
+
+
+> avg = function(x) {
++
+return(sum(x)/length(x))
++ }
+> avg(1:10)
+[1] 5.5
+
+We do not need to specify the return value explicitly in function; the last evaluated expression is automatically considered as the return value. For one line functions, we do not need to enclose the function body in braces. We can rewrite the same function as:
+
+No necesitamos especificar el valor de retorno explícitamente en la función; la última expresión evaluada se considera automáticamente como el valor de retorno. Para las funciones de una línea, no necesitamos encerrar el cuerpo de la función entre llaves. Podemos reescribir la misma función como:
+
+
+> avg = function(x) sum(x)/length(x)
+> avg(1:10)
+[1] 5.5
+
+In R, functions are treated as first-class objects similar to other data types like numeric, character, or vector. This is a fundamental property of functional programming languages. Although the functional programming paradigm always had a strong niche community, it has become mainstream with the recent widespread adoption of languages like Scala, Clojure, OCaml,
+
+En R, las funciones se tratan como objetos de primera clase similares a otros tipos de datos, como numéricos, de caracteres o vectoriales. Esta es una propiedad fundamental de los lenguajes de programación funcional. Aunque el paradigma de la programación funcional siempre tuvo una comunidad de nicho sólida, se ha convertido en algo común con la reciente adopción generalizada de lenguajes como Scala, Clojure, OCaml,
+
+
+
+The literal name of the function, in our case avg, corresponds to the function object, while the function call avg(1:10) corresponds to a value that is returned by the function when it is evaluated with the input 1:10. We can also assign the function sum to another variable my.function. Calling my.function() has the same effect of calling sum().
+
+El nombre literal de la función, en nuestro caso avg, corresponde al objeto de la función, mientras que la llamada a la función avg(1:10) corresponde a un valor que devuelve la función cuando se evalúa con la entrada 1:10. También podemos asignar la función suma a otra variable my.function. Llamar a my.function() tiene el mismo efecto que llamar a sum().
+
+
+> my.function = sum2.3 Packages
+13
+> my.function(1:10)
+[1] 55
+
+Additionally, we can also pass a function as an argument to other higher-order functions. For instance, we create a function sum.f() that computes the sum of a vector after the function f() has been applied to it. Such a higher-order function should work for any function f(); at the time of defining sum.f(), we do not know what f() is going to be.
+
+Además, también podemos pasar una función como argumento a otras funciones de orden superior. Por ejemplo, creamos una función sum.f() que calcula la suma de un vector después de que se le haya aplicado la función f(). Una función de orden superior de este tipo debería funcionar para cualquier función f(); en el momento de definir sum.f(), no sabemos cuál será f().
+
+
+> sum.f = function(x, f) sum(f(x))
+
+We compute the sum of squares of numbers between 1 and 10 using sum.f() below. As f(), we pass the square function.
+
+Calculamos la suma de los cuadrados de los números entre 1 y 10 usando sum.f() a continuación. Como f(), pasamos la función de cuadrado.
+
+
+> sum.f(1:10, function(x) xˆ2)
+[1] 385
+
+We created the function function(x) xˆ2 without assigning any name to it prior to the function call. Such functions are known as anonymous functions. R provides strong support for functional programming. There are benefits to using this paradigm including concise and cleaner code.
+
+Creamos la función function(x) xˆ2 sin asignarle ningún nombre antes de llamarla. Estas funciones se conocen como funciones anónimas. R ofrece un gran soporte para la programación funcional. El uso de este paradigma tiene ventajas, como un código más conciso y claro.
+
+
+2.3 Packages
+
+A self-contained collection of R functions is called as a package. This is especially useful when providing this package to other users. An R package can also contain datasets along with the dependencies. It is straightforward to create packages for our own R functions [1]. In this section we look at installing and loading other packages.
+
+Una colección autónoma de funciones R se denomina paquete. Esto resulta especialmente útil cuando se proporciona este paquete a otros usuarios. Un paquete R también puede contener conjuntos de datos junto con las dependencias. Es sencillo crear paquetes para nuestras propias funciones R [1]. En esta sección, veremos cómo instalar y cargar otros paquetes.
+
+
+When we start R, the base package is already loaded by default. This package contains basic functions for arithmetic, input/output operations, and other simple tasks. The real power of R lies in its package library. There are thousands of packages available in the CRAN covering a very large number of data analysis methods. We can install these packages from R using the install.packages() function. This function downloads the source files for a package from a CRAN mirror website, builds the package, and stores the package in a local repository. The user does not need to do much for installing a package except for choosing the mirror.
+
+Cuando iniciamos R, el paquete base ya está cargado de forma predeterminada. Este paquete contiene funciones básicas para operaciones aritméticas, de entrada/salida y otras tareas sencillas. El verdadero poder de R reside en su biblioteca de paquetes. Hay miles de paquetes disponibles en CRAN que cubren una gran cantidad de métodos de análisis de datos. Podemos instalar estos paquetes desde R utilizando la función install.packages(). Esta función descarga los archivos fuente de un paquete desde un sitio web espejo de CRAN, crea el paquete y lo almacena en un repositorio local. El usuario no necesita hacer mucho para instalar un paquete, excepto elegir el espejo.
+
+
+As an example, we install the stringr package below. The install.packages() function provides a list of mirrors located around the world. We choose the first option: 0-Cloud.
+
+Como ejemplo, instalamos el paquete stringr que se muestra a continuación. La función install.packages() proporciona una lista de servidores mirror ubicados en todo el mundo. Elegimos la primera opción: 0-Cloud.
+
+
+> install.packages(’stringr’)
+Installing package into /Users/mpathak/Library/R/3.1/library
+(as lib is unspecified)
+--- Please select a CRAN mirror for use in this session ---
+CRAN mirror
+1: 0-Cloud
+2: Argentina (La Plata)14
+2 Overview of the R Programming Language
+3: Argentina (Mendoza)
+5: Australia (Melbourne)
+7: Belgium
+9: Brazil (PR)
+11: Brazil (SP 1)
+13: Canada (BC)
+15: Canada (ON)
+17: Canada (QC 2)
+19: China (Beijing 1)
+21: China (Hefei)
+23: Colombia (Bogota)
+25: Czech Republic
+27: Ecuador
+29: France (Lyon 2)
+31: France (Paris 1)
+33: France (Strasbourg)
+35: Germany (Bonn)
+37: Greece
+39: India
+41: Indonesia (Jember)
+43: Ireland
+45: Italy (Padua)
+47: Japan (Hyogo)
+49: Japan (Tsukuba)
+51: Korea (Seoul 2)
+53: Mexico (Mexico City)
+55: Netherlands (Amsterdam)
+57: New Zealand
+59: Philippines
+61: Portugal
+63: Singapore
+65: South Africa (Cape Town)
+67: Spain (A Corua)
+69: Sweden
+71: Taiwan (Taichung)
+73: Thailand
+75: UK (Bristol)
+77: UK (London)
+79: UK (St Andrews)
+81: USA (CA 2)
+83: USA (IN)
+85: USA (MD)
+87: USA (MO)
+89: USA (OR)
+91: USA (PA 2)
+93: USA (TX 1)
+95: USA (WA 2)
+97: Vietnam
+4: Australia (Canberra)
+6: Austria
+8: Brazil (BA)
+10: Brazil (RJ)
+12: Brazil (SP 2)
+14: Canada (NS)
+16: Canada (QC 1)
+18: Chile
+20: China (Beijing 2)
+22: China (Xiamen)
+24: Colombia (Cali)
+26: Denmark
+28: France (Lyon 1)
+30: France (Montpellier)
+32: France (Paris 2)
+34: Germany (Berlin)
+36: Germany (Goettingen)
+38: Hungary
+40: Indonesia (Jakarta)
+42: Iran
+44: Italy (Milano)
+46: Italy (Palermo)
+48: Japan (Tokyo)
+50: Korea (Seoul 1)
+52: Lebanon
+54: Mexico (Texcoco)
+56: Netherlands (Utrecht)
+58: Norway
+60: Poland
+62: Russia
+64: Slovakia
+66: South Africa(Johannesburg)
+68: Spain (Madrid)
+70: Switzerland
+72: Taiwan (Taipei)
+74: Turkey
+76: UK (Cambridge)
+78: UK (London)
+80: USA (CA 1)
+82: USA (IA)
+84: USA (KS)
+86: USA (MI)
+88: USA (OH)
+90: USA (PA 1)
+92: USA (TN)
+94: USA (WA 1)
+96: Venezuela
+Selection: 1
+trying URL ’http://cran.rstudio.com/src/contrib/
+stringr_0.6.2.tar.gz’ Content type ’application/x-gzip’
+length 20636 bytes (20 Kb) opened URL2.3 Packages
+15
+==================================================
+downloaded 20 Kb
+* installing *source* package stringr ...
+** package stringr successfully unpacked and MD5 sums checked
+** R
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded
+* DONE (stringr)
+
+The messages from install.packages() function confirm that stringr package was installed correctly. We need to call install.packages() for a function only once. After starting R, we use the library() function to load the packages that we need into our workspace. We load the stringr package below.
+
+Los mensajes de la función install.packages() confirman que el paquete stringr se instaló correctamente. Necesitamos llamar a install.packages() para una función solo una vez. Después de iniciar R, usamos la función library() para cargar los paquetes que necesitamos en nuestro espacio de trabajo. Cargamos el paquete stringr a continuación.
+
+
+> library(stringr)
+
+An alternative to library() is the require() function which has the same syntax. We use various packages throughout this book. For each package, we only use the library() function to load it assuming that it has been installed. If that package has not installed already, we require the reader to install it using the install.packages() function.
+
+Una alternativa a library() es la función require(), que tiene la misma sintaxis. En este libro utilizamos varios paquetes. Para cada paquete, solo utilizamos la función library() para cargarlo suponiendo que ya se ha instalado. Si ese paquete aún no se ha instalado, solicitamos al lector que lo instale utilizando la función install.packages().
+
+
+2.3.1 R Help System
+
+Another advantage of using R is that we can access documentation directly from the R console. For any function, we can look up the documentation using the help() function. We look up the documentation for the cat() function below.
+
+Otra ventaja de usar R es que podemos acceder a la documentación directamente desde la consola de R. Para cualquier función, podemos buscar la documentación usando la función help(). Buscamos la documentación de la función cat() a continuación.
+
+
+> help(cat)
+
+Alternatively, we can also look up the documentation using the ? operator.
+Alternativamente, también podemos buscar la documentación utilizando el operador ?.
+
+
+
+> ?cat
+
+Along with documentation, we can also see the example usage of a function using the example() function.
+
+Junto con la documentación, también podemos ver el uso de ejemplo de una función usando la función example().
+
+
+> example(cat)
+cat> iter <- stats::rpois(1, lambda = 10)
+cat> ## print an informative message16
+2 Overview of the R Programming Language
+cat> cat("iteration = ", iter <- iter + 1, "\n")
+iteration = 8
+cat> ## ’fill’ and label lines:
+cat> cat(paste(letters, 100* 1:26), fill = TRUE,
+labels = paste0("{", 1:10, "}:"))
+{1}: a 100 b 200 c 300 d 400 e 500
+{2}: f 600 g 700 h 800 i 900 j 1000
+{3}: k 1100 l 1200 m 1300 n 1400 o 1500
+{4}: p 1600 q 1700 r 1800 s 1900 t 2000
+{5}: u 2100 v 2200 w 2300 x 2400 y 2500
+{6}: z 2600
+
+2.4 Running R Code
+
+In the above examples, we have exclusively used R in the interactive mode, mostly by typing in commands into the R console. This is useful for quickly trying out single R functions and exploring the data. This becomes cumbersome when we have multi-line block of statements or functions that we want to reuse. In this case, we write the R code in a text file, conventionally with the .r extension. This has the added benefit of storing our R code for future use. As an example, we create the file test.r with the code to sum the squares of numbers from 1 to 10.
+
+En los ejemplos anteriores, hemos utilizado exclusivamente R en modo interactivo, principalmente escribiendo comandos en la consola de R. Esto es útil para probar rápidamente funciones individuales de R y explorar los datos. Esto se vuelve complicado cuando tenemos bloques de varias líneas de instrucciones o funciones que queremos reutilizar. En este caso, escribimos el código R en un archivo de texto, convencionalmente con la extensión .r. Esto tiene el beneficio adicional de almacenar nuestro código R para uso futuro. Como ejemplo, creamos el archivo test.r con el código para sumar los cuadrados de los números del 1 al 10.
+
+
+
+# loop.r
+total = 0
+for (i in 1:10) {
+total = total + iˆ2
+}
+print(total)
+
+We use the source() function to run the code from loop.r in the R console.
+
+Usamos la función source() para ejecutar el código de loop.r en la consola R.
+
+
+> source(’loop.r’)
+[1] 385
+
+We need to explicitly use print() to print values when using source(). We can also run the R code without starting the R console using the tool Rscript. We pass the filename containing the source code as the command-line argument to Rscript.
+
+Necesitamos usar print() explícitamente para imprimir valores cuando usamos source(). También podemos ejecutar el código R sin iniciar la consola R usando la herramienta Rscript. Pasamos el nombre del archivo que contiene el código fuente como argumento de la línea de comandos a Rscript.
+
+
+$ Rscript loop.r
+[1] 385
+We can also pass additional command line arguments to Rscript which we can access
+inside loop.r.Reference
+
+Reference
+
+1. Leisch, F. (2009). Creating R packages: A tutorial.
+http://cran.r-project.org/doc/contrib/Leisch-CreatingPackages.pdf.
+
+

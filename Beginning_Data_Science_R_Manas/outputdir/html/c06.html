@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>&lt;no title&gt; &#8212; Beginning_Data_Science_R_Manas 01 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=82a30901"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Beginning_Data_Science_R_Manas_C05" href="c05.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <blockquote>
+<div><p>Beginning_Data_Science_R_Manas_C06</p>
+</div></blockquote>
+<hr class="docutils" />
+<p>6.1 Introduction</p>
+<p>In this chapter we look at the central methodology of data science: creating a statistical
+model. A model is a compact representation of the data and therefore of the underlying
+processes that produce the data. Just as architects create models of buildings to get a
+better understanding of how the various components of a building are laid out, data
+scientists create statistical models to obtain an analogous understanding of the data.</p>
+<p>There are two types of statistical modeling tasks: descriptive and predictive. In
+descriptive modeling, the goal is to identify the relationships between variables to
+learn more about the structure of the data. In predictive modeling, the goal is to
+predict the value of a variable given the remainder of the variables. The variable
+to be predicted is called the dependent or target variable, and the variables used
+for prediction are called independent or predictor variables. The descriptive and
+predictive modeling tasks often go hand in hand: we can use the same modeling
+technique for both types of analysis.</p>
+<p>All models are not equivalent though; being a compact representation, a model
+is almost always a simplified representation of the data. For every model, there is
+an underlying modeling assumption, e.g., in case of linear models, we assume a
+linear relationship between variables. These assumptions place limitations on the
+model in terms of the cases where we can apply it and how to interpret its results.
+It is important to be aware of the modeling assumptions, much like knowing the
+side-effect warnings on a medical drug label.</p>
+<p>In this chapter, we will look at one the most commonly used statistical modeling
+approaches: regression. In the following chapter, we will look at classification. In
+regression, the target variable is numeric, e.g., inches of rain for the day, whereas
+in classification, the target variable is categorical, e.g., weather forecast for the day
+(sunny, cloudy, rain, snow). There is a whole laundry list of modeling approaches for
+regression; we will look at some of the fundamental and frequently used approaches.</p>
+<p>Model building is an iterative process as there are typically multiple modeling
+approaches that are applicable for a given tasks. Even for a single modeling approach,
+there is a list of parameters which we can set to obtain different configuration of the
+model. Model validation is the task of determining how well a model is fitting our
+data. We use a score that we obtain from our validation methodology to compare the
+fit of different models.</p>
+<p>6.1.1 Regression Models</p>
+<p>Regression analysis involves identifying relationships between variables. Given a
+set of independent or predictor variables, our goal is to predict a dependent or target
+variable. In regression analysis, the target variable is numeric, and the predictor
+variables can be numeric, categorical, or ordinal.</p>
+<p>Regression ultimately involves learning a function that computes the predicted
+value of the target variable given the predictor variables. Conventionally, we use the
+symbols x1 , … , xm to denote the m-predictor variables and y to denote the target
+variable. Assuming that the dataset contains n data points, these variables would be
+n dimensional vectors: y = (y1 , … , yn). Using this notation, we have the following
+functional form:</p>
+<p>y = f (x1 , … , xm; w),</p>
+<p>where w is the set of parameters of the model. By substituting the values of x1 , … , xm
+and w in the function f (), we compute the value of y.</p>
+<p>Most regression techniques, and most modeling techniques in general, involve a
+two step process:</p>
+<p>Model Fitting: For a given dataset with variables x1 , … , xm and y we calculate the model parameters w that best meet certain criteria.</p>
+<p>Model Prediction: Given a dataset with the predictor variables x1 , … , xm and model parameters w, we calculate the value of the target variable y. The dataset could be the same one we use for model fitting or it could also be a new dataset.</p>
+<p>Depending on the choice of the f () function, there are hundreds of regression techniques, each with a method for model fitting and model prediction.</p>
+<p>The most commonly used family of techniques is linear regression, where we
+assume f () to be a linear function. In this section we first look at some of the
+techniques for linear regression, and then move on to methods for nonparametric
+regression.</p>
+<p>One advantage of using R is that most functions for regression have similar in-
+terfaces, so that we can switch back and forth between techniques without too much
+effort. This is because most regression functions have similar interfaces in terms of
+their inputs.</p>
+<p>Table 6.1 List of variables in
+automobiles dataset Variable name Description
+make Make of the car
+fuel.type Car fuel type (diesel, gas)
+num.doors Number of doors
+body.style Car body style
+engine.location Front or rear
+wheel.base Length of wheel base
+length Length of the car
+width Width of the car
+height Height of the car
+num.cylinders Number of cylinders
+engine.size Size of car engine
+fuel.system Car fuel system
+horsepower Power rating of the engine
+city.mpg City mileage
+price Price of the car</p>
+<p>Case Study: Car Prices</p>
+<p>We illustrate various regression techniques using a dataset of cars. 1 The dataset lists
+various attributes of a car such as make, engine type, mileage, along with its price.
+Table 6.1 contains the list of variables used in this dataset. We use regression analysis
+to identify the relationship between the attributes of the car and its price. If we are
+able to predict the prices accurately, we can build our own car price estimation service
+like the Kelly Blue Book. For used cars, we only need add more variables such as
+how old is the car, number of miles, and the number of owners.</p>
+<p>We load and attach the dataset in the code below.</p>
+<p>&gt; data = read.csv(’autos.csv’)
+&gt; attach(data)</p>
+<p>6.2 Parametric Regression Models</p>
+<p>Statistical models are of two types: parametric, where we assume a functional re-
+lationship between the predictor and target variables, and nonparametric, where we
+do not assume any such relationship. We will first look at techniques for parametric
+regression.</p>
+<p>1 Data obtained from 1985 Ward’s Automotive Yearbook and is also located in the UCI Machine Learning repository. <a class="reference external" href="http://archive.ics.uci.edu/ml/datasets/Automobile">http://archive.ics.uci.edu/ml/datasets/Automobile</a></p>
+<p>6.2.1 Simple Linear Regression</p>
+<p>Simple linear regression is a special case of linear regression with only one predictor
+variable x and one target variable y. In a dataset with n data points, these variables
+are n-dimensional vectors y = (y1 , … , yn) and x = (x1 , … , xn). In the next sub-
+section we will look at linear regression with multiple predictor variables. In linear
+regression, we assume a linear relationship between target and predictor variables.</p>
+<p>y = f (x; w) = w0 + w1x + ε. (6.1)</p>
+<p>The regression model has two coefficients: w = (w0 , w1 ), and the error term ε.
+We also refer to the coefficients as the intercept and the slope, respectively. The
+linear relationship between the variables is the underlying assumption of the linear
+regression model. This relationship is given by the slope parameter; if the value of
+the x variable changes by 1 unit, the predicted value of the y variable will change by
+w1 units. This is not the case for a nonlinear model like y = w1/x or y = sin(w1x).</p>
+<p>As we discussed earlier, a statistical model is a simplification of the data. A simple
+linear regression model represents our dataset of two n-dimensional variables x and
+y by two numbers w0 and w1 . The error term ε is the error in our prediction. For
+each data point pair (x i , yi ), we have a corresponding error or residual ε i given by
+rearranging Eq. 6.1.</p>
+<p>ε i = yi − w0 − w1x i . (6.2)</p>
+<p>We desire a model that has the minimum error. For that purpose, in the model fitting
+step, we need to choose the model coefficients having the minimum error. In the linear
+regression, we obtain the coefficients having the minimum squared error which is
+also called the least-squares method. The function that we are trying to minimize, in
+this case the sum of squared residuals, is called the loss function.</p>
+<p>w∗ = arg min
+w
+∑
+i
+ε2
+i = arg min
+w0 ,w1
+∑
+i
+(y i − w0 − w1x i ) 2.</p>
+<p>We obtain the following expressions for the optimal values of w0 and w1 using
+differential calculus.2</p>
+<p>w∗
+1 =
+∑
+i (x i − ¯x)(y i − ¯y)
+∑
+i (x i − ¯x) 2 ,
+w∗
+0 = ¯y − w∗
+1 ¯x, (6.3)</p>
+<p>where ¯x and ¯y are the means of variables x and y, respectively.</p>
+<p>2 We set the derivative of the loss function to zero, and solve for w0 and w1 .</p>
+<p>6.2.1.1 Model Fitting Using lm()</p>
+<p>In R we do not need to write code to compute the linear regression coefficients our-
+selves. As with most statistical functions, R has built-in support for linear regression
+through the lm() function. 3 This function takes a formula that denotes the target
+and the predictor variables and outputs a linear regression model object.</p>
+<p>With this background, we perform the simple linear regression analysis on the
+automobiles dataset. We consider horsepower as a predictor variable to predict the
+car price. Intuitively, a more powerful car should have a higher price. We visualize
+this property in the scatter plot shown in Fig. 6.1.</p>
+<p>In the code below, we use the lm() function to perform linear regression with
+the formula price ˜ horsepower. We store the model returned by the lm()
+function in the model object.4</p>
+<p>3 lm() stands for linear model.
+4 By default printing the model object displays the rounded value of coefficients. For precision, it is advisable to use the coefficient values obtained from the coef() function.</p>
+<p>Fig. 6.2 A scatter plot between horsepower and price with the linear regression line</p>
+<p>&gt; model = lm(price ˜ horsepower)
+&gt; coef(model)
+(Intercept) horsepower
+-4630.7022 173.1292</p>
+<p>We observe the model coefficients by printing the model object. Here, we have the
+intercept w0 = −4630.7022 and the slope w1 = 173.1292. The model indicates the
+following relationship between the horsepower rating of the car and its predicted
+price.</p>
+<p>price = 173.1292 × horsepower − 4630.7022 (6.4)</p>
+<p>We can visualize this linear relationship between horsepower and price as a line
+on the scatter plot between these two variables. The slope and intercept of this line is
+the model slope and intercept. We do not need to draw a line with these parameters
+manually; we call the abline() function with the model object after drawing the
+scatter plot. Fig. 6.2 shows the output.</p>
+<p>&gt; plot(horsepower,price)
+&gt; abline(model)</p>
+<p>We make two observations here: firstly, as the slope is positive, the predicted price
+of a car increases with its horsepower rating by a factor of $ 173.13 per horsepower.
+This is consistent with our intuition that more powerful cars have higher prices.</p>
+<p>The second observation is about the negative intercept term in the model. We might
+naively infer that the predicted price of a car with zero horsepower is $ − 4630.70.
+This does not make sense because in the real world, no car will ever have a negative
+price, where the seller pays the buyer an amount to buy the car. The reason for this
+inconsistency is that we never see cars with near-zero horsepower in our dataset,
+or for that matter in car dealerships [1]. The least powerful car that we have in our
+dataset is a Chevrolet with 48 hp. For that car, our predicted price would be $ 3679.50,
+which is not unrealistic.</p>
+<p>It is not necessary to have an intercept term in the linear regression model. The
+interpretation of a model without an intercept is that when the predictor variable is
+zero, the predicted value is also zero. Geometrically, this is equivalent to having
+the regression line passing through the origin. R formulae have special notation for
+models without the intercept: we specify − 1 as a predictor variable. We obtain a
+model without the intercept to predict price given horsepower using the formula
+price ˜ horsepower − 1.</p>
+<p>&gt; lm(price ˜ horsepower - 1)
+Call:
+lm(formula = price ˜ horsepower - 1)
+Coefficients:
+horsepower
+133.7</p>
+<p>The slope of this model is 133.7, which implies that we have the following
+relationship between horsepower and price.</p>
+<p>price = 133.7 × horsepower (6.5)</p>
+<p>It is interesting to compare the models with and without the intercept. The model
+with the intercept has a larger slope because of the large negative intercept term:
+−4630.7022. The latter model has a smaller slope because of the absence of this
+term. Smaller slope implies a flatter line; the predicted prices for lower horsepowers
+will be higher than those for higher horsepowers (Fig. 6.3).</p>
+<p>6.2.1.2 Modeling Categorical Variables</p>
+<p>In linear regression, we can also have categorical variables as predictors. We perform
+simple linear regression on the car price and make below. The make variable takes
+21 values as shown below.</p>
+<p>Fig. 6.3 A scatter plot between horsepower and price and linear regression lines for the two models: with intercept (solid), without intercept (dashed)</p>
+<p>&gt; unique(make)</p>
+<p>[1] alfa-romero audi bmw chevrolet dodge
+[6] honda isuzu jaguar mazda mercedes-benz
+[11] mercury mitsubishi nissan peugot plymouth
+[16] porsche saab subaru toyota volkswagen
+[21] volvo
+21 Levels: alfa-romero audi bmw chevrolet dodge honda isuzu
+jaguar … volvo</p>
+<p>There is no difference in syntax when using numeric and categorical variables in
+the formula. We use lm() to perform the regression using the formula price ˜
+make.</p>
+<p>&gt; model.cat = lm(price ˜ make)</p>
+<p>Call:
+lm(formula = price ˜ make)
+Coefficients:
+(Intercept) makeaudi makebmw makechevrolet
+15498.333 2360.833 10620.417 -9491.333
+6.2 Parametric Regression Models 95
+makedodge makehonda makeisuzu makejaguar
+-7708.208 -7313.641 -6581.833 19101.667
+makemazda makemercedes-benz makemercury makemitsubishi
+-5646.333 18148.667 1004.667 -6258.564
+makenissan makepeugot makeplymouth makeporsche
+-5082.667 -9.242 -7534.905 15902.167
+makesaab makesubaru maketoyota makevolkswagen
+-275.000 -6957.083 -5612.521 -5420.833
+makevolvo
+2564.848</p>
+<p>Instead of assigning a coefficient to the make variable, the model assigns coefficients
+to the individual values of the variable, except for the first one. Internally, the lm()
+function represents the make variable as 20 binary variables; the price for a car
+will be the coefficient for the make of that car plus the intercept. We assume the
+coefficient of the make Alfa-Romero to be zero, so the price of a Alfa-Romero car
+would be equal to the intercept.</p>
+<p>We can see the underlying matrix of variables that are used by lm() with the
+model.matrix() function. The matrix is a data frame with 21 columns, including
+the intercept which has always value 1, and the remaining 20 columns corresponding
+to the values of the make variable. The rows correspond to the cars in the original
+data frame and the entry corresponding to the make of the car is set to 1.</p>
+<p>&gt; model.matrix(model.cat)</p>
+<p>(Intercept) makeaudi makebmw makechevrolet makedodge …
+1 1 0 0 0 0
+2 1 0 0 0 0
+3 1 0 0 0 0
+4 1 1 0 0 0
+5 1 1 0 0 0
+…</p>
+<p>The model matrix for numeric variables, e.g., horsepower will only contain the
+variable and the intercept.</p>
+<p>&gt; model.matrix(lm(price ˜ horsepower))
+(Intercept) horsepower
+1 1 111
+2 1 111
+3 1 154
+4 1 102
+5 1 115
+…</p>
+<p>We can also create a linear regression model for a categorical variable without an
+intercept. In this case, the coefficients are assigned to all values of the variable.</p>
+<p>&gt; lm(price ˜ make - 1)</p>
+<p>Call:
+lm(formula = price ˜ make - 1)
+96 6 Regression
+Coefficients:
+makealfa-romero makeaudi makebmw makechevrolet
+15498 17859 26119 6007
+makedodge makehonda makeisuzu makejaguar
+7790 8185 8916 34600
+makemazda makemercedes-benz makemercury makemitsubishi
+9852 33647 16503 9240
+makenissan makepeugot makeplymouth makeporsche
+10416 15489 7963 31400
+makesaab makesubaru maketoyota makevolkswagen
+15223 8541 9886 10078
+makevolvo
+18063</p>
+<p>The predicted price of a car will be equal to the model coefficient. It is interesting to
+note that for a categorical variable, simple linear regression has an effect of averaging.
+The model coefficient for a value of make is the average price of cars of that make.</p>
+<p>&gt; by(price, make, mean)
+make: alfa-romero
+[1] 15498.33
+————————————————————
+make: audi
+[1] 17859.17
+————————————————————
+make: bmw
+[1] 26118.75
+————————————————————
+make: chevrolet
+[1] 6007
+————————————————————
+make: dodge
+[1] 7790.125
+————————————————————
+make: honda
+[1] 8184.692
+…</p>
+<p>6.2.1.3 Model Diagnostics</p>
+<p>Once we obtain a model, the next question is to know how well it fits the data.
+The model diagnostics are useful in two respects: firstly, we obtain a quantitative
+score for the model fit, which we can use to compare different models fitted over the
+same dataset to see which works best. Secondly, at a fine level, we can also obtain
+more insight into the contributions of individual variables to the model, beyond their
+coefficients. This is useful in selecting which variables to use in a model.</p>
+<p>Apart from the coefficients, the model object stores additional information about
+the linear regression model such as the residual statistics and standard error. We use
+the summary() function to look under the hood of a model. The summary()
+function is generic; as we have seen in Chap. 5 this function also provides summary
+statistics for data frames and variables. Apart from linear regression, this function
+also provides a summary of other types of models.</p>
+<p>We obtain the summary of the simple linear regression model between price and
+horsepower that we fitted above.</p>
+<p>&gt; summary(model)
+Call:
+lm(formula = price ˜ horsepower)
+Residuals:
+Min 1Q Median 3Q Max
+-10296.1 -2243.5 -450.1 1794.7 18174.9
+Coefficients:
+Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept) -4630.70 990.58 -4.675 5.55e-06 <strong>*
+horsepower 173.13 8.99 19.259 &lt; 2e-16 *</strong>
+—
+Signif. codes: 0 <a href="#id1"><span class="problematic" id="id2">**</span></a>* 0.001 ** 0.01 * 0.05 . 0.1 1
+Residual standard error: 4728 on 191 degrees of freedom
+Multiple R-squared: 0.6601, Adjusted R-squared: 0.6583
+F-statistic: 370.9 on 1 and 191 DF, p-value: &lt; 2.2e-16</p>
+<p>The summary() function prints the five-number summary of the model residuals,
+which are the differences between the values of the target variable and the values
+predicted by the model. These are the errors that the model makes in prediction. We
+can also obtain the residuals for a model using the residuals() function.</p>
+<p>&gt; residuals(model)
+1 2 3 4 5
+-1091.63423 1913.36577 -5531.18797 921.52818 2170.84914
+…</p>
+<p>We can also obtain a visual interpretation of the residuals by plotting the model
+object.</p>
+<p>The residual standard error is a measure of how well the model fits the data or
+goodness of fit. It is the square root of the sum or squared residuals normalized by
+the degrees of freedom, which is the difference between the number of data points
+and variables. It is closely related to the root mean squared error (RMSE), which
+is another statistic used to measure the model fit error. For the above model, the
+residual standard error is 4728. We would like to have this as low as possible.</p>
+<p>The R-squared (R2 ) statistic is another measure of model fit. R2 is also called the
+coefficient of determination: it indicates how well the predictor variable is able to
+capture the variation in the target variable about its mean. R2 takes values on a scale
+of 0–1; a score of 0 indicates that the predictor variable does not determine the target
+variable at all, whereas 1 indicates that the predictor variable perfectly determines
+the target variable. The above model has an R2 of 0.6601, indicating that horsepower
+is able to explain over 66 % of the variance in price. Adjusted R2 statistic is the R2
+statistic weighted by a factor involving the degrees of freedom.</p>
+<p>The model summary also provides more information about the predictor variables.
+Apart from the model coefficient for a variable, we also obtain its standard error and a
+measure of confidence given by a t value. Interpreting these terms requires a deeper
+understanding of how linear regression works. Model fitting involves estimating
+the distribution of the model coefficients. The t value is a function of the model
+coefficient and the standard error. 5 The P r( &gt; <a href="#id3"><span class="problematic" id="id4">|t|</span></a>) term indicates the p value which
+is the probability of the model coefficient not being zero. This probability term
+provides a measure of confidence of about the importance of the variable; if the
+model coefficient is zero, this predictor variable is absent from our model.</p>
+<p>6.2.1.4 Model Prediction Using Predict()</p>
+<p>We use the predict() function to obtain model predictions as given by Eq. 6.4.
+The predict() function is generic; apart from linear regression, it provides pre-
+dictions for most types of models. By default, the predictions are computed over the
+dataset we used to fit the model.</p>
+<p>&gt; predict(model)</p>
+<p>1 2 3 4 5 6
+14586.634 14586.634 22031.188 13028.472 15279.151 14413.505
+…</p>
+<p>We can also call predict() with another data frame to obtain its predictions. The
+only requirement is that the new data frame should also have the same predictor
+variable, which in this case is horsepower.</p>
+<p>&gt; new.data = data.frame(horsepower = c(100,125,150,175,200))
+&gt; predict(model,new.data)
+1 2 3 4 5
+12682.21 17010.44 21338.67 25666.90 29995.13</p>
+<p>Just as we have a measure of confidence for the model coefficients, we can also
+obtain confidence intervals (CIs) on the predicted values. The CI as the range in
+which the mean predicted value lies with a certain probability. Conventionally, 95
+and 99 % confidence levels are used in practice. This is a powerful concept; apart
+from having the point estimates for predicted values, the regression model gives us
+a probability distribution of the estimates. The distribution of the estimate has the
+mean equal to point estimate and variance proportional to the size of the CI. Knowing
+the distribution about the predictions is useful in multiple applications from actuarial
+studies to simulations.</p>
+<p>We obtain CIs of predictions by calling predict() with the interval=
+’confidence’ parameter. The confidence level is controlled by the level
+parameter, which is set to 0.95 or 95 % confidence level by default.</p>
+<p>5 The name t value comes from Student’s t distribution.</p>
+<p>&gt; predict(model,new.data,interval=’confidence’)
+fit lwr upr
+1 12682.21 12008.03 13356.40
+2 17010.44 16238.24 17782.65
+3 21338.67 20275.14 22402.20
+4 25666.90 24232.01 27101.79
+5 29995.13 28156.72 31833.53</p>
+<p>The predict() function returns a data frame with fit, lwr, and upr columns.
+The fit column contains the same point estimate that we obtained previously, and the
+lwr and upr variables contain the lower and upper limits of the CIs. For example, for
+the first predicted value, our estimate is 12,682.21 and the 95 % confidence interval
+is [12008.03, 13356.40].</p>
+<p>6.2.2 Multivariate Linear Regression</p>
+<p>In real world applications, there are usually more than one variables that affect the
+target variable. Multivariate linear regression is extension of simple linear regression
+to the case of multiple input variables. Performing linear regression with multiple
+predictor variables has a different interpretation from performing multiple simple
+linear regression analyses with those variables. Here, we are treating the target vari-
+able as a function of the different predictor variables. By doing so, we can observe
+the effect of changing one predictor variable while controlling the values of the other
+predictor variables.</p>
+<p>Given m input variables x1 , … , xm, we use the target variable y using the
+following linear relationship that will serve as our model.</p>
+<p>y = w0 + w1x1 + · · · + wm x m = w0 +
+m∑
+i=1
+wi x i . (6.6)</p>
+<p>Here, we have m + 1 model coefficients w0 , … , wm. Similar to simple linear
+regression, we obtain the coefficients for weights using differential calculus.</p>
+<p>We also use the lm() function to perform multivariate linear regression by spec-
+ifying the multiple predictor variables. Similarly, we use the predict() function to
+obtain predictions as well. In the following example, we perform linear regression
+on price of the car given its length, engine size, horsepower, and mileage (city MPG).</p>
+<p>&gt; lm(price ˜ length + engine.size + horsepower + city.mpg)</p>
+<p>Call:
+lm(formula=price ˜ length+engine.size+horsepower+city.mpg)
+Coefficients:
+(Intercept) length engine.size horsepower city.mpg
+-28480.00 114.58 115.32 52.74 61.51
+100 6 Regression</p>
+<p>This gives us a linear relationship between these five variables:</p>
+<p>price =114.58 × length + 115.32 × engine.size + 52.74 × horsepower
++ 61.51 × city.mpg − 28, 480. (6.7)</p>
+<p>All of the model coefficients are positive, which implies that the predicted car price
+increases by increasing any of these variables. This follows from our previous in-
+tuition that cars with more horsepowers and larger engines have higher prices. As
+length also has a positive coefficient, we observe that bigger cars are also more
+expensive.</p>
+<p>We can observe the controlling aspect of multivariate regression in this example. In
+the simple regression analysis that we had in Eq. 6.4, the price of the car increased by
+a factor of $ 173.13 per horsepower and this has gone down to a much smaller factor
+of $ 52.74 per horsepower in this analysis. This is because in the simple regression
+analysis, we were treating price as a function of horsepower alone. In practice, the
+cars with more horsepower typically also have larger engines that enable them to
+generate that kind of power. In the multivariate regression analysis above, when
+considering the relationship between price and horsepower, we are controlling for
+length, engine size, and city MPG. We can interpret this analysis as the price of the
+car increases by a factor of $ 52.74 per horsepower while keeping the engine size,
+car length, and mileage constant.
+Mileage plays an interesting role here: if we perform simple linear regression on
+price vs. city MPG, we observe that city MPG has a negative coefficient.
+&gt; lm(price ˜ city.mpg)
+Call:
+lm(formula = price ˜ city.mpg)
+Coefficients:
+(Intercept) city.mpg
+35947.4 -894.8
+This implies that the price of the car decreases by a factor of $ −894.80 per MPG.
+This interpretation is misleading; in reality, more powerful cars typically have much
+lower mileage than less powerful cars (Fig. 6.4). As the predicted prices for cars
+increase with more horsepowers, we have the effect of prices decreasing for cars with
+high mileage. The multivariate regression analysis of Eq. 6.7 shows the relationship
+between car price, horsepower, and mileage considered together. From the coefficient
+of the city.mpg variable, we observe that the car price increases by $ 61.51 per
+MPG while controlling for horsepower, engine size, and length variables. Among
+cars of the same power and size, the cars with higher mileage are likely to be more
+expensive.
+6.2 Parametric Regression Models 101
+● ●
+●
+●
+●
+● ● ●
+●
+● ●
+● ●
+●
+● ●
+●
+●
+● ●
+●
+●
+●
+● ● ●
+●
+●
+●
+●
+●
+● ● ● ●
+● ● ● ●
+●
+●
+● ●
+● ●
+●
+●
+● ● ● ●
+● ● ● ● ●
+●
+●
+● ● ● ●
+● ●
+● ●
+●
+●
+● ●
+● ●
+●
+● ● ●
+● ●
+● ●
+●
+●
+● ● ● ● ● ● ● ●
+● ●
+● ●
+● ●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+● ● ●
+●
+● ●
+● ● ●
+● ● ● ●
+● ●
+●
+● ●
+●
+●
+●
+● ●
+●
+●
+● ●
+●
+● ● ●
+● ●
+● ●
+●
+● ●
+● ●
+● ●
+● ●
+● ● ● ● ● ●
+●
+●
+● ● ●
+●
+●
+●
+●
+●
+●
+●
+● ●
+●
+●
+● ●
+●
+●
+●
+● ●
+● ●
+● ●
+●
+●
+●
+●
+●
+50 100 150 200 250
+10 20 30 40 50 60
+horsepower
+city.mpg
+Fig. 6.4 City MPG vs. horsepower
+6.2.3 Log-Linear Regression Models
+————————————————————————————————————-</p>
+<p>Fig. 6.7 LOESS vs. log-linear regression model
+Using an appropriate span is important: having a very small span causes the
+regression function to be simply predict the target variable at that data point. Using
+a large span causes oversmoothing, where the neighborhood for local ﬁtting is so
+large that we end up averaging out the variances in the data points.
+We can also use loess() for multivariate regression. Similar to lm(), we only
+need to specify the predictor and target variables in the formula.
+6.3.2 Kernel Regression
+Kernel regression6 is another nonparametric approach where we compute the value
+of the predictor variable at each data point by taking a weighted average of the target
+variable at all data points. The weights are given by the kernel function, which we
+can think of as a measure of distance between two data points. The data points nearer
+to the candidate data point have high weight and those further away from the data
+6 Kernel regression is also called Nadaraya–Watson kernel regression, due to its coinventors.
+108 6 Regression
+point have low weight. The rate of decrease of weight is controlled by the bandwidth
+parameter. For the data points x1 , … , xn with target values y1 , … , yn, the weighted
+average value at the data point x is given by
+f (x) =
+∑n
+i=1 K(x, xi )y i
+∑n
+i=1 K(x, xi ) .
+In this model, the regression function is the set of values of the predictor variable
+at each data point. Kernel regression is similar to LOESS as both methods use
+weights to compute local predictions. There are important differences though: in
+kernel regression, we use the weighted average to obtain the predicted value, while
+in LOESS we ﬁt a local model at each candidate data point and obtain the predicted
+value from this model.
+There are many kernel functions used in practice. We list a few popular functions
+below with h as the bandwidth parameter.
+1. Gaussian kernel:
+K(x, xi ) = 1
+√2π e− (x−xi )2
+2h2 .
+2. Uniform kernel:
+K(x, xi ) = 1
+2 I
+(∣
+∣
+∣
+∣
+x − x i
+h
+∣
+∣
+∣
+∣ ≤ 1
+)
+.
+3. Triangular kernel:
+K(x, xi ) =
+(
+1 −
+∣
+∣
+∣
+∣
+x − x i
+h
+∣
+∣
+∣
+∣
+)
+I
+(∣
+∣
+∣
+∣
+x − x i
+h
+∣
+∣
+∣
+∣ ≤ 1
+)
+.
+4. Epanechnikov kernel:
+K(x, xi ) = 3
+4
+(
+1 −
+( x − x i
+h
+)2)
+I
+(∣
+∣
+∣
+∣
+x − xi
+h
+∣
+∣
+∣
+∣ ≤ 1
+)
+.
+The np package in R provides an implementation of kernel regression. We use the
+npreg() function to ﬁt a kernel regression model. Similar to lm(), this function
+also takes a formula denoting the predictor and target variables as input. We ﬁt a
+kernel regression model for car mileage and horsepower below.
+&gt; npreg(city.mpg ˜ horsepower)
+Regression Data: 193 training points, in 1 variable(s)
+horsepower
+Bandwidth(s): 1.462226
+Kernel Regression Estimator: Local-Constant
+6.3 Nonparametric Regression Models 109
+Bandwidth Type: Fixed
+Continuous Kernel Type: Second-Order Gaussian
+No. Continuous Explanatory Vars.: 1
+By default, npreg() uses the Gaussian kernel function. We can specify a different
+kernel function using the kernel parameter.
+Also, npreg() automatically selects the bandwidth using crossvalidation as
+well. In the above example the model used a bandwidth of 1.4622. We obtain the
+other model statistics using the summary() function.
+&gt; summary(model.np)
+Regression Data: 193 training points, in 1 variable(s)
+horsepower
+Bandwidth(s): 1.462226
+Kernel Regression Estimator: Local-Constant
+Bandwidth Type: Fixed
+Residual standard error: 2.165175
+R-squared: 0.8848329
+Continuous Kernel Type: Second-Order Gaussian
+No. Continuous Explanatory Vars.: 1
+We observe that the kernel regression model has a residual standard error of 2.1652
+which is better than linear, log-linear, and LOESS regression models for the same
+data. We visualize the regression function in Fig. 6.8.
+We can also use npreg() to perform multivariate regression as well. Similar to
+lm(), we only need to specify the predictor and target variables in the formula.
+6.3.3 Regression Trees
+Decision trees are one of the most widely used models in all of machine learning
+and data mining. A tree is a data structure where we have a root node at the top and
+a set of nodes as its children. The child nodes can also have their own children, or
+be terminal nodes in which case they are called leaf nodes. A tree has a recursive
+structure as any of its node is the root of a subtree comprising the node’s children.
+Binary tree is a special type of tree where every node has at most two children.
+We construct decision trees as a model for our data. In a decision tree, we start with
+the complete dataset at the root. At each node, we divide the dataset by a variable;
+the children of a node contain the different subsets of the data. We assign the mean
+value of the target variable for the data subset at a leaf node, which is our prediction.
+110 6 Regression
+● ●
+●
+●
+●
+● ● ●
+●
+● ●
+● ●
+●
+● ●
+●
+●
+● ●
+●
+●
+●
+● ● ●
+●
+●
+●
+●
+●
+● ● ● ●
+● ● ● ●
+●
+●
+● ●
+● ●
+●
+●
+● ● ● ●
+● ● ● ● ●
+●
+●
+● ● ● ●
+● ●
+● ●
+●
+●
+● ●
+● ●
+●
+● ● ●
+● ●
+● ●
+●
+●
+● ● ● ● ● ● ● ●
+● ●
+● ●
+● ●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+● ● ●
+●
+● ●
+● ● ●
+● ● ● ●
+● ●
+●
+● ●
+●
+●
+●
+● ●
+●
+●
+● ●
+●
+● ● ●
+● ●
+● ●
+●
+● ●
+● ●
+● ●
+● ●
+● ● ● ● ● ●
+●
+●
+● ● ●
+●
+●
+●
+●
+●
+●
+●
+● ●
+●
+●
+● ●
+●
+●
+●
+● ●
+● ●
+● ●
+●
+●
+●
+●
+●
+50 100 150 200 250
+10 20 30 40 50 60
+horsepower
+city.mpg
+Fig. 6.8 Kernel regression
+We can use a decision tree for either regression and classiﬁcation, in which case we
+refer to it as a regression tree or a classiﬁcation tree.
+As an example, let us look at a decision tree modeling the survival rates of the
+passengers aboard the Titanic shown in Fig. 6.9. 7 Initially, we start with the entire
+list of passengers. At the root node, we ﬁrst divide the data by splitting on the sex
+variable: the male passengers go to the left subtree and the female passengers go
+to the right subtree. In the right subtree, we further divide the female passengers
+by class: the passengers in the third class go to the left subtree and passengers in
+the ﬁrst and second classes go to the right subtree. The numbers in the leaf nodes
+denote the survival rates for that group of passengers; we see that only 19.1 % of
+male passengers survived, while 49.07 % of female passengers in the third class, and
+93.2 % of female passengers in the ﬁrst and second classes survived.
+There are many advantages of using decision trees. Firstly, they provide a visual
+representation of the data. This is especially useful for a nontechnical audience.
+7 This decision tree is created using the passenger data obtained from the Encyclopedia Titanica
+[3].
+6.3 Nonparametric Regression Models 111
+Fig. 6.9 Decision tree for
+survival rates of passengers
+aboard the Titanic
+|
+sex=male
+pclass=3rd
+0.191
+0.4907 0.932
+Secondly, decision trees do not require as much data preprocessing as compared to
+other methods.
+When we are using decision trees as our regression model, the problem comes
+down to ﬁnding the best tree that represents our data. Unfortunately, ﬁnding the
+optimal decision tree, i.e., the tree that minimizes the residual standard error or any
+other model ﬁt metric, is computationally infeasible.8 To ﬁnd an optimal decision
+tree, we would need to evaluate all possible tree conﬁgurations consisting of all
+combinations of variable splits at every node. This combinatorial expansion is not
+practical for a dataset with a nontrivial number of variables. In practice, we use a
+greedy strategy for efﬁciently constructing a decision tree. In this strategy, at every
+level of the tree, we choose a variable that splits the data according to a heuristic.
+Intuitively, we require that the two data splits are homogeneous with respect to
+the target variable. For instance, in the Titanic dataset, we chose to split on the
+class variable for female passengers as the survival rates of ﬁrst and second class
+passengers are similar to each other compared to the survival rate for third class
+passengers.
+Some of the commonly used heuristics for creating decision trees include:
+1. Information gain: used in the C4.5 algorithm
+2. Gini coefﬁcient: used in classiﬁcation and regression tree (CART) algorithm
+We use the CART algorithm to create decision trees. In R, this algorithm is imple-
+mented in the rpart package. The rpart() function takes a formula denoting the
+predictor and target variable as input and generates the corresponding decision tree.
+8 The computational complexity of ﬁnding the optimal decision tree is NP-hard.
+112 6 Regression
+We ﬁt a decision tree for price of the car given its length, engine size, horsepower,
+and mileage below.
+&gt; fit = rpart(price ˜ length + engine.size
++ horsepower + city.mpg)
+&gt; fit
+n= 193
+node), split, n, deviance, yval
+* denotes terminal node
+1) root 193 12563190000 13285.030
+2) engine.size&lt; 182 176 3805169000 11241.450
+4) horsepower&lt; 94.5 94 382629400 7997.319
+8) length&lt; 172.5 72 108629400 7275.847 *
+9) length&gt;=172.5 22 113868600 10358.500 *
+5) horsepower&gt;=94.5 82 1299182000 14960.330
+10) length&lt; 176.4 33 444818200 12290.670
+20) city.mpg&gt;=22 21 94343020 10199.330 *
+21) city.mpg&lt; 22 12 97895460 15950.500 *
+11) length&gt;=176.4 49 460773500 16758.270 *
+3) engine.size&gt;=182 17 413464300 34442.060 *
+The rpart() function prints the model in a textual form. We display the decision tree as
+a ﬁgure using the plot() function. We display the node labels using the text() function.
+Figure 6.10 shows the output.
+&gt; plot(fit,uniform=T)
+&gt; text(fit,digits=6)
+We set the uniform and digits parameters for pretty printing.
+One problem with a greedy strategy is that sometimes it creates a complex tree
+with a large number of data splits. Due to this, the subset of data corresponding to a
+leaf node is very small, which might lead to inaccurate predictions. This is equivalent
+to model overﬁtting; to avoid this, we use a pruning strategy to remove unnecessary
+branches of the tree.
+We prune the decision tree using the prune() function of the rpart package
+and specify the level of pruning using the complexity parameter cp. Setting cp = 1
+prunes all nodes of the tree up to the root, while setting cp = 0 does not prune the tree
+at all. We prune the decision tree we obtained above using the parameter cp = 0.1
+and display it in Fig. 6.11. We observe that the decision tree has relatively fewer
+branches.
+&gt; fit.prune = prune(fit,cp=0.1)
+6.3 Nonparametric Regression Models 113
+|
+engine.size&lt; 182
+horsepower&lt; 94.5
+length&lt; 172.5 length&lt; 176.4
+city.mpg&gt;=22
+7275.85 10358.5
+10199.3 15950.5
+16758.3
+34442.1
+Fig. 6.10 Decision tree for predicting the price of a car
+Fig. 6.11 Pruned decision
+tree for predicting the price of
+a car |
+engine.size&lt; 182
+7997.32 14960.3
+34442.1
+horsepower&lt; 94.5
+Apart from CART, there are many other algorithms for creating regression trees.
+There also exist algorithms that combine the output of multiple regression trees. One
+powerful example of this approach is the random forest algorithm available in R
+through the randomForest package.
+114 6 Regression
+6.4 Chapter Summary
+In this chapter, we looked at regression analysis which is one of the most impor-
+tant and commonly used data science tasks. A regression model is used to predict
+a numeric target or dependent variable using one or multiple predictor predictor or
+independent variables. Regression models are classiﬁed into two types: parametric,
+where we assume a particular type of relationship between the variables and non-
+parametric, where we do not explicitly assume such a relationship. In parametric
+models, we looked at simple or single-variable and multivariate linear regression
+where we assume a linear relationship between variables. Similarly, a log-linear
+model assumes a log-linear relationship. In R, we use the lm() function in the base
+package to ﬁt these models and predict() function to obtain model predictions.
+In nonparametric models, we looked at LWR models which combine the output
+of multiple linear regression models which could be parametric or nonparametric. A
+popular LWR model is LOESS that uses local linear or quadratic regression models.
+Kernel regression is another nonparametric model which uses the weighted average
+of neighboring data points as predictor. We use the npreg() function to obtain
+kernel regression models. Finally, we looked at decision tree models for regression
+which learn a tree structure from the data. Thus, at every node of the tree, we split
+the dataset by a variable and make predictions by averaging the target variable values
+at the leaf node. We use the rpart package to ﬁt the decision trees using the CART
+algorithm.
+References
+1. Top 10 least powerful cars on sale in the U.S. <a class="reference external" href="http://wot.motortrend.com/top-10-least-powerful">http://wot.motortrend.com/top-10-least-powerful</a>-
+cars-on-sale-in-the-united-states-242699.html#axzz2T8brud72. Accessed 1 Aug 2014.
+2. Cleveland, W. S. (1979). Robust locally weighted regression and smoothing scatterplots. Journal
+of the American Statistical Association, 74, 829–836.
+3. <a class="reference external" href="http://www.encyclopedia-titanica.org/">http://www.encyclopedia-titanica.org/</a>. Accessed 1 Aug 2014.
+Chapter 7
+Classiﬁcation</p>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Beginning_Data_Science_R_Manas</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="c00.html">Beginning_Data_Science_R_Manas_C00</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c01.html">Beginning_Data_Science_R_Manas_C01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c02.html">Beginning_Data_Science_R_Manas_C02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c03.html">Beginning_Data_Science_R_Manas_C03</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c04.html">Beginning_Data_Science_R_Manas_C04</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c05.html">Beginning_Data_Science_R_Manas_C05</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="c05.html" title="previous chapter">Beginning_Data_Science_R_Manas_C05</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Leopoldo.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/c06.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

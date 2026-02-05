@@ -1,0 +1,339 @@
+Beginning_Data_Science_R_Manas_C03
+=================================
+
+Chapter 3
+Getting Data into R
+
+In this chapter, we look at reading the data into R, which is usually the first data analysis task. It is convenient to read data into R due to its support for reading data from a wide variety of formats.
+
+En este capítulo, analizamos la lectura de datos en R, que suele ser la primera tarea de análisis de datos. Es conveniente leer datos en R debido a su compatibilidad con la lectura de datos en una amplia variedad de formatos.
+
+
+The basic data types in R are designed to make data analysis convenient. Similar to most programming languages, R has support for numeric, character, string, boolean data types. What makes R attractive are the structured data types; in this chapter, we look at two of these: vectors and data frames. Vectors are simply a sequence of elements that are of basic data types such as numeric or character. Data frames are an abstraction for tabular data: The rows represent the data points or observations and the columns represent the variables or the aspects of the data that we are measuring. Data frame is the fundamental data type in R as it is used by most of the standard functions and even across other packages. In this book, we use data frames extensively to store the data. There are many useful functions to slice and dice the data frames which we will discuss in this chapter.
+
+Los tipos de datos básicos en R están diseñados para que el análisis de datos sea más conveniente. De manera similar a la mayoría de los lenguajes de programación, R admite tipos de datos numéricos, de caracteres, de cadena y booleanos. Lo que hace atractivo a R son los tipos de datos estructurados; en este capítulo, veremos dos de ellos: vectores y marcos de datos. Los vectores son simplemente una secuencia de elementos que son de tipos de datos básicos, como numéricos o de caracteres. Los marcos de datos son una abstracción para los datos tabulares: las filas representan los puntos de datos u observaciones y las columnas representan las variables o los aspectos de los datos que estamos midiendo. El marco de datos es el tipo de datos fundamental en R, ya que lo utilizan la mayoría de las funciones estándar e incluso otros paquetes. En este libro, utilizamos ampliamente los marcos de datos para almacenar los datos. Hay muchas funciones útiles para dividir y segmentar los marcos de datos que analizaremos en este capítulo.
+
+
+The simplest format is delimiter-separated files such as comma separated values (CSV). In enterprise environments, the data is usually stored in databases. There are R packages that make it easy to read the data from databases as well. In this chapter, we will look at reading the data from a PostgreSQL database into R using SQL.
+
+El formato más simple son los archivos separados por delimitadores, como los valores separados por comas (CSV). En entornos empresariales, los datos suelen almacenarse en bases de datos. Existen paquetes R que también facilitan la lectura de datos de bases de datos. En este capítulo, veremos cómo leer los datos de una base de datos PostgreSQL en R mediante SQL.
+
+
+The quality of the data is a critical factor in any kind of data analysis.We cannot derive any reasonable inference from the data if the data itself is messy or erroneous. Often enough, the messiness of the data is rather subtle; this introduces biases in our analysis which is hard to detect, and cause problems later. Before we get started with performing the analysis, it is important to look at the data for such errors.
+
+La calidad de los datos es un factor crítico en cualquier tipo de análisis de datos. No podemos sacar ninguna conclusión razonable de los datos si estos son confusos o erróneos. A menudo, el desorden de los datos es bastante sutil, lo que introduce sesgos en nuestro análisis que son difíciles de detectar y causan problemas más adelante. Antes de comenzar a realizar el análisis, es importante examinar los datos para detectar dichos errores.
+
+
+In this chapter we will also look at the three types of variables: numeric, categorical, and ordinal. First, a common source of error is misidentifying the data type for a variable, where we assume a categorical variable such as zip code to be numeric. Second, most nontrivial datasets contain some amount of data entry errors.We will discuss how to identify and correct some of the common patterns of these errors. Finally, most real world datasets also contain missing values. Removing the parts of the data with missing values reduces the size of the dataset.A more effective strategy is data imputation, where we replace the missing values based on the context. At the end of the chapter, we will discuss simple data imputation strategies.
+
+En este capítulo también veremos los tres tipos de variables: numéricas, categóricas y ordinales. En primer lugar, una fuente común de error es la identificación incorrecta del tipo de datos de una variable, donde asumimos que una variable categórica como el código postal es numérica. En segundo lugar, la mayoría de los conjuntos de datos no triviales contienen cierta cantidad de errores de entrada de datos. Analizaremos cómo identificar y corregir algunos de los patrones comunes de estos errores. Por último, la mayoría de los conjuntos de datos del mundo real también contienen valores faltantes. Eliminar las partes de los datos con valores faltantes reduce el tamaño del conjunto de datos. Una estrategia más eficaz es la imputación de datos, donde reemplazamos los valores faltantes en función del contexto. Al final del capítulo, analizaremos estrategias simples de imputación de datos.
+
+
+
+3.1 Reading Data
+
+The first step of any data analysis is to read data into R. In many cases, the data in its original form is not be directly usable for analysis. This is typical in cases where the data is in an unstructured format such as nontabular plain text or a semi-structured format such as web pages. Sometimes, the data might be in nontextual format such as scanned documents.
+
+El primer paso de cualquier análisis de datos es leer los datos en R. En muchos casos, los datos en su forma original no se pueden utilizar directamente para el análisis. Esto es típico en los casos en los que los datos están en un formato no estructurado, como texto simple no tabular o en un formato semiestructurado, como páginas web. A veces, los datos pueden estar en formato no textual, como documentos escaneados.
+
+
+In such cases, it is necessary to transform the data into a more usable representation. This task broadly falls under the category of information extraction. There are two options to convert the data in a nontextual format to a machine  readable format: automated optical character recognition (OCR) or using manual transcription. It is becoming common to use crowdsourcing tools such as Amazon Mechanical Turk and Servio to transcribe the data with high accuracy and low cost. For machine-readable documents, automated information extraction algorithms deal with converting information from unstructured sources to a structured form.
+
+En estos casos, es necesario transformar los datos en una representación más utilizable. Esta tarea se enmarca en la categoría de extracción de información. Hay dos opciones para convertir los datos en un formato no textual a un formato legible por máquina: reconocimiento óptico de caracteres (OCR) automatizado o transcripción manual. Cada vez es más común utilizar herramientas de colaboración colectiva como Amazon Mechanical Turk y Servio para transcribir los datos con gran precisión y bajo coste. En el caso de los documentos legibles por máquina, los algoritmos de extracción de información automatizada se encargan de convertir la información de fuentes no estructuradas a un formato estructurado.
+
+
+Once the data is in a tabular structure, it is convenient to read it into R given its support for a variety of data formats.
+
+Una vez que los datos están en una estructura tabular, es conveniente leerlos en R dado su soporte para una variedad de formatos de datos.
+
+
+3.1.1 Text Files
+
+The simplest format to read data into R is using delimited text files such as CSV and tab-separated values (TSV). These files are used by most spreadsheet applications, databases, and statistical analysis tools either as a base file format or as a data export file format.
+
+El formato más simple para leer datos en R es mediante archivos de texto delimitados, como CSV y valores separados por tabulaciones (TSV). La mayoría de las aplicaciones de hojas de cálculo, bases de datos y herramientas de análisis estadístico utilizan estos archivos como formato de archivo base o como formato de archivo de exportación de datos.
+
+
+A delimiter-separated values file, e.g., Fig. 3.1, contains tabular data: both numbers and text, with each row per line separated by the newline character, and each column-entry of that row separated by the delimiter character. In our example, the columns (make, model, trim, year, price, mpg) are the variables that we are recording about the data. The rows of the file are the observations: individual entries for the variables. Conversely, we can think of a variable as a vector of observations, and the data as a list of variables.This is similar to how data is represented in a relational database table.
+
+Un archivo de valores separados por delimitadores, por ejemplo, la figura 3.1, contiene datos tabulares: tanto números como texto, con cada fila por línea separada por el carácter de nueva línea, y cada entrada de columna de esa fila separada por el carácter delimitador. En nuestro ejemplo, las columnas (marca, modelo, equipamiento, año, precio, mpg) son las variables que estamos registrando sobre los datos. Las filas del archivo son las observaciones: entradas individuales para las variables. Por el contrario, podemos pensar en una variable como un vector de observaciones y los datos como una lista de variables. Esto es similar a cómo se representan los datos en una tabla de base de datos relacional.
+
+
+In a delimiter-separated file, the first row of the file is usually a header row containing the names of the columns.We use the read.table() function to read such files; we use it to read a tab-separated file cars.txt below.
+
+En un archivo separado por delimitadores, la primera fila del archivo suele ser una fila de encabezado que contiene los nombres de las columnas. Usamos la función read.table() para leer dichos archivos; la usamos para leer un archivo separado por tabulaciones cars.txt a continuación.
+
+
+> data = read.table(’cars.txt’,sep=’,’)
+
+We need to provide a delimiter value to the read.table() function. A similar function is read.csv() that assumes the delimiter value is ’,’ which makes it convenient to read CSV files. This function uses the same parameters as read.table() function.
+
+Necesitamos proporcionar un valor delimitador a la función read.table(). Una función similar es read.csv() que supone que el valor delimitador es ”, lo que facilita la lectura de archivos CSV. Esta función utiliza los mismos parámetros que la función read.table().
+
+
+The read.table() function by default assumes that the first row of the file contains the header. If the file does not contain the header, this function would assume the first data row to contain the column names which leads to undesirable effects. Instead of having a column named make, we will end up with a column named Honda. To ensure R does not use the first row as the header, we callread.table() with header = F as a parameter.
+
+La función read.table() asume de forma predeterminada que la primera fila del archivo contiene el encabezado. Si el archivo no contiene el encabezado, esta función asumiría que la primera fila de datos contiene los nombres de las columnas, lo que genera efectos no deseados. En lugar de tener una columna llamada make, terminaremos con una columna llamada Honda. Para asegurarnos de que R no use la primera fila como encabezado, llamamos a read.table() con header = F como parámetro.
+
+
+> data = read.table(’cars.txt’,header=F,sep=’,’)
+
+3.1.1.1 Data Frames
+
+The read.table() function returns an object of the type data.frame. The data.frame data type captures the tabular representation of the data: it contains individual observations or entries as rows and variables as columns. We can also view a data frame as a list of variables with individual observations as rows. Data frame a fundamental data type in R; most of the standard functions use data frames as input parameters and return data frames as well.
+
+La función read.table() devuelve un objeto del tipo data.frame. El tipo de datos data.frame captura la representación tabular de los datos: contiene observaciones o entradas individuales como filas y variables como columnas. También podemos ver un marco de datos como una lista de variables con observaciones individuales como filas. El marco de datos es un tipo de datos fundamental en R; la mayoría de las funciones estándar utilizan marcos de datos como parámetros de entrada y también devuelven marcos de datos.
+
+
+It is convenient to access the data from the data.frame. In the data variable that we read above from cars.csv, we can access the first row by indexing on the first dimension.
+
+Es conveniente acceder a los datos desde el data.frame. En la variable de datos que leímos arriba desde cars.csv, podemos acceder a la primera fila indexando en la primera dimensión.
+
+
+> data[1,]
+make model trim year price mpg
+1 Honda Civic LX 2012 17633 28
+
+Vector is another fundamental data type in R. A vector is just a sequence of numbers; the columns of a data frame are vectors as well. There are multiple ways to construct a vector in R: the c() function creates a vector containing the arguments it is called with, e.g., c(1,1,2,3,5) gives us a vector containing 1, 1, 2, 3, and 5. This function works on strings too. If we need a vector of consecutive numbers, we can use the column operator; 1:10 is shorthand for c(1,2, . . . ,10). The seq(i,j,step) function returns a vector of numbers from i to j that is separated by step, e.g., sep(1,10,2) creates a vector containing odd numbers between 1 and 10. The rep(x,n) function creates a vector containing x repeated n times.
+
+Vector es otro tipo de datos fundamental en R. Un vector es simplemente una secuencia de números; las columnas de un marco de datos también son vectores. Hay varias formas de construir un vector en R: la función c() crea un vector que contiene los argumentos con los que se llama, p. ej., c(1,1,2,3,5) nos da un vector que contiene 1, 1, 2, 3 y 5. Esta función también funciona con cadenas. Si necesitamos un vector de números consecutivos, podemos usar el operador de columna; 1:10 es la abreviatura de c(1,2, . . . ,10). La función seq(i,j,step) devuelve un vector de números de i a j que está separado por un paso, p. ej., sep(1,10,2) crea un vector que contiene números impares entre 1 y 10. La función rep(x,n) crea un vector que contiene x repetido n veces.
+
+
+Vector is a useful data type; we can use vectors to index data frames, e.g., we can access the first three rows using data[1:3,] or the first, third, and fifth row by data[c(1,3,5),].
+
+
+To access a column, we can index on the second dimension, e.g., data[,1] for the first column. However, a more intuitive way to access the columns is by using the $ operator: data$column_name returns the appropriate column on the data frame. For example, to access the column mpg using the $ operator, we can use data$mpg.
+
+> data$mpg
+[1] 28 28 21 26 12
+
+If you do not prefer the $ operator, there are alternative ways to access a data frame column by name.We list some of them below.
+
+> data[[’mpg’]]
+[1] 28 28 21 26 12
+> data[,’mpg’]
+[1] 28 28 21 26 12
+
+When working with data frames, another useful function is attach(). This function adds the column names to the R search path, so we can access them directly, without using the $ operator. This is a convenient shorthand when we are using the same column names over and over again.
+
+> attach(data)
+> mpg
+[1] 28 28 21 26 12
+
+Readers familiar with Matlab, Octave, or the numpy package in Python would immediately compare data frames with matrices. In fact, R does have a separate matrix data type; there are certain similarities between matrices and data frames. An important difference between the two data types is that in a data frame, the columns can contain data of different data types.You can have one column with strings: model in our example, and one with numbers: mpg. It is easy to switch between matrix and data frame types by using the as.matrix() and as.data.frame() functions.
+
+As compared to matrices, data frames are more convenient to use, given that we can index them by column name and, also apply different formatting to individual columns. In this book, we will primarily be using data frames to represent our data.
+
+We can also use the read.table() function to read a remote delimiter separated text file by calling it with a URL. This makes it easy to access a dataset that is published on the web, without the additional step of downloading the file locally.
+
+R also has a set of functions in the foreign package that can access data files exported by other statistics software such as Octave, Stata, SPSS, SAS (see Table 3.1.
+
+R also provides analogous functions write.csv() and write.table(), that write data frames to files. The default arguments to this function outputs the row numbers as well; to disable that, we need to specify the argument row.names=F, e.g.,
+
+> write.csv(data,’output.csv’,row.names=F)
+
+
+
+
+3.1.1.2 Reading Data from Databases
+
+In most large scale data analysis projects, the data is stored in some kind of a database.1 This is usually the case when working in an enterprise. This is because databases are built for managing large scale data well; databases provide a principled way to store the data and corresponding mechanisms to retrieve it.
+
+Although the dominance of SQL-based relational databases has been challenged in recent years by NoSQL solutions, they still remain widely used for storing tabular data. The availability of high quality open source database solutions such as PostgreSQL and MySQL has been helpful for this.
+
+R provides extensive support for accessing data stored in various SQL databases. On one side, there are packages such as DBI and RODBC for connecting to generic database drivers, while on the other side, there are packages for tailored to individual databases such as RPostgreSQL, RMySQL, ROracle, and RSQLite. The API for most of these packages is not very different. R does have good support for accessing data from NoSQL databases such as MongoDB using RMongo package.
+
+We briefly look at accessing data from a SQL database below. As an example, let us assume that we have the data from our file cars.txt stored in a table called cars in PostgreSQL. In the PostgreSQL console, we can inspect this table.
+
+
+
+
+We access this data in the code snippet below. We first obtain a driver from dbDriver() function and then use it to open a connection to the database using the dbConnect() function. We need to provide the database access credentials here. We then use the dbSendQuery() function to send the SQL query select * from cars where make = ‘Honda’ to the connection. The dbSendQuery() function returns the output of the query into a result set object. We then obtain a data frame corresponding to the result set using the fetch() function. Passingn = -1returns all the rows in the result set; passingn = 2will return only the last two elements.
+
+library(RPostgreSQL)
+# create an RPostgreSQL instance
+drv = dbDriver(’PostgreSQL’)
+
+# open the connection
+conn = dbConnect(drv, user = ’username’, password =
+’password’, dbname = ’testdb’, host = ’localhost’)
+
+# Run an SQL statement by creating first a result set
+object rs <- dbSendQuery(conn,
+statement = ’select * from cars where make =
+\’Honda\’’)
+
+# we now fetch all rows from the result set into a
+data frame db.data <- fetch(rs, n = -1)
+
+dbDisconnect(conn)
+
+As expected, the data frame contains the output of the SQL query, with the columns being the variables and rows being the observations.
+
+
+> print(db.data)
+make model trim year price mpg
+1 Honda Civic LX 2012 17633 28
+2 Honda Civic LX 2013 19346 28
+3 Honda Accord EX-L 2013 25609 21
+
+RPostgreSQL has many other useful functions. dbWriteTable (conn,‘new_table’,data) writes a data frame to a table and returns a true value if the write is successful.
+
+In the above example, we performed an operation in the SQL query by using the where clause to find only the rows with make = ‘Honda’. We could have obtained the entire data frame and performed the same computation in R. Whether to perform this computation in SQL or R is a question of efficiency. For large tables, it is usually more efficient to do simple computation such as filtering rows and columns, or aggregation on the database side using SQL. If do the same computation in R, we would need to retrieve the entire table, send it over the network, store it into memory in R, and then iterate over it. Having an index on the column would make the filtering operation orders of magnitude faster when performed in the database.
+
+Using stored procedures takes this view to an extreme, here the business logic, in our case, the statistical analysis itself can be performed inside the database. This provides high processing and bandwidth efficiency as it eliminates the need most of the intermediate data transfers. PostgreSQL has support for PL/R, which is a language for writing stored procedures using R [1].
+
+The sqldf package in R takes the diametrically opposite view. This package provides a mechanism to query R data frames using SQL. It does so by first loading the data frame into a temporary database table, executing the query against it, and deleting the temporary table returning the results. Sqldf can connect to many SQL databases like PostgreSQL; in the absence of a database, it uses SQLite.
+
+Sqldf can also query text files without first loading them into data frames.We can query the data frame containing the cars data to find the average mpg permake type.
+
+> library(sqldf)
+> sqldf(’select make,avg(mpg)from data group by make’)
+make avg(mpg)
+1 Aston Martin 12.00000
+2 Honda 25.66667
+3 Toyota 26.00000
+
+The sqldf function also returns another data frame containing the output of the query. Interestingly, sqldf performs faster than the corresponding R operations in benchmark tests [3]. The utility of sqldf is mainly in its alternative syntax. Readers more comfortable with SQL find it productive to use as compared to the standard data frame functions.
+
+3.2 Cleaning Up Data
+
+After the data is loaded up into R, the next step is to look at data for errors. In the real world, data is usually messy; we cannot expect our data analysis to yield clear results if we use it directly. In this section we will look at how to identify and clean up the errors in the data arising due to data entry errors and missing values. As an example, we use a fictional dataset containing responses of a group of individuals to questions about their health and physical characteristics. This example dataset is a modification to the survey dataset in the MASS package.
+
+Case Study: Health Survey
+
+The dataset contains responses from 257 individuals to a basic health survey containing six questions: The individuals were asked about their sex, height, weight and whether they are left or right handed, whether they exercise and smoke. This is included in the file survey.csv and the first few entries are shown in Fig. 3.2.
+
+
+"sex","height","weight","handedness","exercise","smoke"
+"Female",68,158,"Right","Some","Never"
+"Male",70,256,"Left","None","Regul"
+"Male",NA,204,"Right","None","Occas"
+"Male",63,187,"Right","None","Never"
+"Male",65,168,"Right","Some","Never"
+"Female",68,172,"Right","Some","Never"
+"Male",72,160,"Right","Freq","Never"
+"Female",62,116,"Right","Freq","Never"
+"Male",69,262,"Right","Some","Never"
+"Male",66,189,"Right","Some","Never"
+Fig. 3.2 survey.csv
+
+3.2.1 Identifying Data Types
+
+Let us begin by first looking at the variables: height and weight are numeric values or more generally are called real-valued or quantitative variables. These variables represent a measurable quantity. Quantitative variables occur everywhere in data analysis. Commonly found examples include per capita income, number of touchdowns a player scores in an year, or hat size for a set of individuals.
+
+The sex and handedness variables take two values: male and female, and left- and right-handed, respectively. These are called categorical variables, nominal variables, or simply factors. These type of variables partition the data into disjoint categories, each represented by one of a fixed set of values; in the case of sex, the two categories would be the data points with sex male and those with sex female. Other examples of categorical variables include area or zip code where a person lives, race, blood group, or even words in a document. The main difference between numeric and categorical variables is that we can compare two values of a numeric variable: height 66” is more than 65”, but we cannot similarly compare left- and right-handedness by themselves.
+
+R represents categorical variables using the factor data type. A vector can be converted into a factor by using the as.factor() function. Factors in R are stored differently as compared to numeric variables. Internally, they are stored as a vector of integer values corresponding to a set of levels representing each category. This encoding enforces the factor variables to be treated differently in the data analysis. If the zip code variable is a factor, R would return an error if we tried to compute the average zip code.
+
+The exercise and smoke variables are more subtle; they take values such as “None,” “Some,” “Frequent” for exercise, and “Never,” “Occasionally,” and “Regular.” Although these variables also partition the data, there is an implied relationship between the groups: exercising frequently is more than exercising sometimes which is more than doing no exercise. These variables are called ordinal variables. Movie ratings (on a 0–5 scale), income groups are all examples of ordinal variables. The added structure of ordinal variables plays a key role for many statistical analyses.
+
+
+
+> data$smoke
+[1] Never Regul Occas Never Never Never
+...
+Levels: Heavy Never Occas Regul
+
+In R, a factor can be converted into an ordinal variable using the ordered() function. This function does not know the right order to apply, so it picks them alphabetically. To enforce the order that we have in mind, we can pass the levels vector as follows.
+
+> data$smoke = ordered(data$smoke,
+levels=c(’Never’,’Occas’,’Regul’,’Heavy’))
+[1] Never Regul Occas Never Never Never
+...
+Levels: Never < Occas < Regul < Heavy
+
+3.2.2 Data Entry Errors
+
+Our health survey dataset, like many other datasets, has been collected by a manual process. The data collection involves human participation at many points in the data collection process, and therefore introduces the possibility of data entry errors. Survey data is usually collected from physical media such as paper forms that are converted into digital format using OCR technology, phone or personal interviews, or from a software user interface. In most of such data collection processes, data entry errors do creep in.
+
+The frequency of data entry errors depends on the nature of the task. In typingbased data entry tasks, the typical error rates are 1% per keystroke [4]. At the price of lower entry speeds, such errors can be reduced by using double entry checks: where two data entry operations work on the same task and compare their errors at the end.
+
+Let us look at the sex variable in our dataset. Using our domain knowledge, we assume that this variable can only take “Male” or “Female” as values, and that it should be a factor. The values of sex variable as they appear in our dataset are somewhat more suspect: we use the unique() command to get a listof unique values.
+
+> unique(survey$sex)
+[1] Female Male <NA> F M male female
+Levels: F female Female M male Male
+
+The output of the unique() function tells us that the sex variable contains “Male” and “Female”; but also contains a few occurrences of their variants such as using lower case “female” or a single letter “F” instead of “Female” in the proper case. Such errors occur when different individuals who employ their own notation supervise different parts of the survey, or when the users do not fully comply with the data input guidelines. In other cases, such errors are compounded by the typos occurring during data entry. We see that data$sex has an entry with the value NA as well. We will discuss this in the next subsection.
+
+In our data frame, however, the sex variable is a factor with six levels: F, female, Female, M, male, Male. Any analysis involving this variable will split the data into six categories, which is clearly an error we would want to avoid.We fix this problem by replacing the erroneous values with the correct ones. The which() function selects a subset of the entries of the variable matching a condition. For example, we find the entries where the variable sex has the value ’F’ by:
+
+> which(data$sex == ’F’)
+[1] 210 211 212
+
+The which() function indicates that these three rows have values sex = ’F’. To replace the values of these entries, we use the output of the which function as an index.
+
+> data$sex[which(data$sex == ’F’)] = ’Female’
+
+We can also use the which function to slice the data over multiple variables using the boolean and & and boolean or | operators. For example, we obtain the data points with sex = ’Male’ and weight > 150 below.
+
+> which(data$sex == ’Male’ & data$weight > 150)
+
+It is not necessary to use which() to index a data frame.We can use the boolean expression itself. In our case, the expression data$sex == ’F’ returns a vector of true and false values of the same length as the number of rows in the data frame. When indexed with a data frame or vector, it returns the rows corresponding to the true value.We can replace the sex = ’F’ values in the following way as well.
+
+> data$sex[data$sex == ’F’] = ’Female’
+
+3.2.3 Missing Values
+
+In R, the missing values for a variable are denoted by the NA symbol. Both integer and character variables can take this value. The NA symbol is different from the NaN symbol, which indicates that the value is not a number as a result of an invalid mathematical operation, e.g., divide by zero. NaN indicates that the value is not a number but is present, whereas NA indicates that the value is absent from our data.
+
+There are usually some missing values in any nontrivial data collection exercise. There are many reasons that could give rise to missing values. In some cases, users are not willing to provide all of their inputs. Also, variables that are personally identifiable information (PII), e.g., SSN, could be removed from the dataset for privacy purposes. This is common when the nature of the dataset is personal, such as in health care. In other cases, the inputs that are not recorded and stored properly give rise to missing data. If the data collection is automatic, missing data is often caused due to a sensor failure or data transmission and transcription errors.
+
+The survey dataset contains a few missing entries for the variables sex, height, handedness, and smoke. R provides many useful functions to deal with missing data.
+
+We cannot check if a variable contains NA values by comparing it with NA. This will only return a vector of NA’s.
+
+> data$height == NA
+[1] NA NA NA NA NA ...
+
+is.na() is the appropriate function to use here. We find the entries containing missing values for the variable height by:
+
+> which(is.na(data$height))
+[1] 3 12 15 25 26 29 31 35 58 68 70 81
+83 84 90 92 96 108 121
+[20] 133 157 173 179 203 213 217 225 226
+
+The standard R functions also have support for NA’s. As the height variable contains NA’s, computing mean(data$height) outputs NA. We obtain the mean of the nonmissing or observed values by using the na.rm=T flag.
+
+> mean(data$height, na.rm = T)
+[1] 67.89474
+
+We can use the na.fail() function to check if a data frame or a contains missing values. If it contains any, the function returns an error, otherwise its output is the same as the input. Sometimes, we onlywant to consider the observed values, and ignore the missing values all together. The na.omit() and na.exclude() functions do just that.2 We get a subset of a data frame or a vector that contains observedvalues by
+
+data.observed = na.omit(data)
+
+Removing the entries with missing values is also called list-wise deletion. The above functions deal with performing statistical analysis while removing the missing values. As we are using only a subset of the data, this leads to a data loss. An alternative strategy is called imputation where we replace the missing data values by substituted values obtained using on other information.
+
+Simple data imputation strategies include replacing the missing data for a numerical variable with a constant value. We usually choose the replacement value based on nature of the data. A missing value is equivalent to a zero in some cases, e.g., if we are asking for number of apple pies consumed on that day. The default value could be nonzero for some other cases.We replace the missing values by a constant value by
+
+data$height[is.na(data$height)] = 60
+
+For other variables such as height, replacing by an arbitrary constant value like 5 ft. might not be accurate. One reason is that it is not consistent with the data distribution. Statistical analysis of a large sample of heights for either gender shows that it follows a Gaussian distribution centered around the mean height [2]. It is more accurate to replace the missing height for males and females by their respective mean heights.We use the which() function to first find the mean female height, and then use it with the is.na() function to replace the missing values. We use the same strategy for males.
+
+> female.height = mean(data$height[which(data$sex
+== ’Female’)], na.rm=T)
+
+> data$height[which(data$sex == ’Female’
+& is.na(data$height))] = female.height
+
+For non-numerical categorical variables, there is no equivalent for the mean value. One strategy is to replace the missing value by the mode of the data, which is the most frequently occurring value which is also called the mode.
+
+3.3 Chapter Summary
+
+In this chapter, we first saw various ways to get the data into R. This usually involves conditioning the data so that it is a readily consumable tabular format. Rhas extensive support to load the data from delimiter-separated text files such as CSV and relational databases. Most of the R functions to load data return objects of type data frames. It is easy to access a subset of rows and columns of the data frame and select individual columns with the $ operator.
+
+Once we have data frames loaded into R, the next step is to clean the data. In most nontrivial data analyses, the data suffers from various quality issues such as misidentified data types, data entry errors and missing values. It is important to identify and resolve these issues to maintain the quality of the analysis.
+
+We discussed simple strategies for dealing with missing data such as replacing the missing values with data means and modes. There are many other data imputation strategies that use statistical models to infer the missing data values. Packages such as Amelia II, mitools, and Mice provide implementations for these strategies.
+
+References
+
+Conway, J. E. Pl/r - r procedural language for postgresql. http://www.joeconway.com/plr/. Accessed 1 Aug 2014.
+Cook, J. D. (2008). Distribution of adult heights. http://www.johndcook.com/blog/2008/11/25/ distribution-of-adult-heights/. Accessed 1 Aug 2014.
+sqldf. http://code.google.com/p/sqldf/. Accessed 1 Aug 2014.
+Table of Basic Error Rates in Many Applications. http://panko.shidler.hawaii.edu/HumanErr/Basic.htm. Accessed 1 Aug 2014.
+
+
+
+

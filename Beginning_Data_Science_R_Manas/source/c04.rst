@@ -1,0 +1,511 @@
+Beginning_Data_Science_R_Manas_C04
+==================================
+
+
+Chapter 4
+Data Visualization
+4.1 Introduction
+
+An important step in the data science methodology is obtaining a visual representation of the data. This has multiple advantages: first, as humans, we are better at extracting information from visual cues, so a visual representation is usually more intuitive than a textual representation. Second, data visualization, for the most part, also involves a data summarization step. A visualization provides a concise snapshot of the data. As it is often said, “a picture is worth a thousand words.”
+
+The goal of data visualization is to convey a story to the viewer. This story could be in the form of general trends about the data or an insight. Creating effective data visualizations is similar to being good at storytelling: it involves conveying relevant and interesting information at the right level of detail. This makes the data visualization task more of an art and less of an exact science. Along with the core statistical insights that we intend to present, aesthetics of presentation are equally important. This is not to say that we can hide the lacunae of our analysis by clever presentation tricks. Just like clear writing, clear and effective presentation should make our data analysis transparent, so that the viewer can fully understand and appreciate the complete picture.
+
+One of the major benefits of using R for data analysis is its extensive support for creating high-quality visualizations. The data visualizations created with R have appeared in the New York Times [1] and the Economist, and is standard fare for articles in scientific journals. There are a large number of R functions for visualizing almost all data types, from numerical to categorical data in multiple dimensions. There is also support for displaying the information in a wide variety of formats, from basic point and line plots to bar and pie charts displaying aggregated data, to more complex plots. We can easily control all aspects of the visualization programmatically, as the plotting functions are completely configurable and can be automated via scripting. This is often not the case with many other data visualization tools that use a point-and-click interface.
+
+In this chapter, we look at different types of data visualizations that we can create using R. We start with the plotting functionality in the base R package, and then move to the more sophisticated, yet simple to use, ggplot2 package. We will look
+
+
+
+at specialized plots for exploratory data analysis such as histograms in subsequent chapters. As a case study, we use a dataset from Major League Baseball (MLB).
+
+Case Study: 2012 Major League Baseball Season For our case study, we look at the team statistics for the 2012 regular season of MLB.1 The dataset contains the variables as listed in Table 4.1. This includes the team details, which league and division it plays in, the performance for the team in terms of number of wins and losses, and the estimated total payroll, which is the amount of money (in USD) that the team spent on its players.
+
+In 2012, there were 30 teams in the MLB, each participating in either the American League (AL) or National League (NL). In each of these leagues, there are three divisions: East, West, and Central, making it a total of six divisions. In the regular season, each team played 162 games. The payroll of the teams is spread over a wide range, from a minimum of $ 38 million for Houston Astros to a maximum of $ 198 million for the New York Yankees.
+
+In this case study, one natural question is whether teams with higher payrolls perform better. We aim to get some insight into that through our visualizations. We load the dataset using read.csv(). We use the attach() function so that the individual variables are available as vectors.
+
+> data = read.csv(’teams.csv’)
+> attach(data)
+
+4.2 Basic Visualizations
+
+In this section, we look at creating visualizations using the default graphics package in R.
+
+4.2.1 Scatterplots
+
+The plot() function in R is a versatile function; it can take vectors, a function, or any R object that has a plot() method as input. In its most simplest form, it takes two vectors as input to create a scatterplot. A scatterplot visualizes the relationship between two variables by simply displaying data points with x coordinates as one variable and y coordinates as another variable. Conventionally, the variable on the x axis is the independent variable and the variable on the y axis is thedependent variable.
+
+Independent and Dependent Variables
+
+In data analysis, there are independent variables and dependent variables. The inde- pendent variables are the inputs or something a team management can control, e.g., the team payroll. The dependent variables are the output, or something a team can observe but not directly control, e.g., the number of wins, except for a team that is intentionally losing games. There are also “other” variables that are neither independent nor dependent for the purposes of an analysis. One of the goals of data analysis is to identify the relationship between the dependent and independent variables. We draw a scatterplot between payroll and wins in our dataset. Figure 4.1 shows the output.
+
+> plot(payroll,wins)
+
+The plot has payroll on the x axis and number of wins on the y axis. The data points in the plot are the 30 teams in our dataset. The most interesting part is the interpretation of the plot: there is no apparent linear relationship between the two variables. We have teams with lower payroll having more wins than teams with much higher payrolls. Intuitively, this indicates that simply increasing the payroll does not increase the number of wins. We can dig deeper into this; as we will see in later chapters, there are techniques such as correlation analysis and regression that quantify the linear relationship between variables.
+
+The plot() function automatically selects the axis scales: on the x axis, we have values from 5.0e + 07 or 50 million to 2.0e + 08 or 200 million, with steps of 50 million. 2 On the y axis, we display 60–80 wins, at steps of 10 wins. We have the names of the variables as labels on the two axes. All elements of this plot are customizable.
+
+As we mentioned above, the plot function can be used to draw multiple plots. It takes a type parameter that specifies the type of plot; by default, it is set to “p” or points. Other commonly used values of this parameter are “l” or lines, “b” or both points and lines.
+
+
+
+Fig. 4.1 A scatterplot between payroll and wins
+
+4.2.1.1 Labeling Data Points
+
+As the scatterplot displays all the data points of a dataset, it is a useful tool to visualize data trends. It is often useful to label a few data points in the scatterplot as examples. These could be the extreme points or cases of interest that we would like to highlight in our visualization. We use the identify() function for this purpose. We first create the plot using the plot() function as before.
+
+We can find the data points that we want to label from the scatterplot itself. The identify() function waits for mouse clicks on the plot, as many specified by the n argument. The text displayed on the plot is given by the labels argument. Figure 4.2 shows the output of a scatterplot labeled using the identify() function.
+
+> plot(payroll,wins)
+> id = identify(payroll, wins, labels = code, n = 5)
+
+In this plot, we label five data points using the code variable that contains the three-letter team name acronyms. From the data, we see that the team Washington Nationals (WSN) has the most wins (98). This is greater than many teams with much higher payrolls including the New York Yankees (NYY) and the Philadelphia
+
+
+
+Fig. 4.2 A labeled scatterplot between payroll and wins
+
+Phillies (PHI). A team that stands out is the Oakland Athletics (OAK) because of its consistent performance over the years, despite having a much lower payroll. 3
+
+Apart from labeling individual data points, we can display a piece of text on a plot using the text() function. This function takes the x and y coordinates, and the string that we want to display.
+
+4.2.1.2 Points and Lines
+
+In the above scatterplots, we displayed all the data points together. It is sometimes useful to denote different groups of data points by using different symbols or colors. This helps us in understanding if subsets of the data have different characteristics from the entire data set.
+
+We create a scatterplot using data that are split on the league variable. We denote the teams belonging to the AL by triangles and the teams belonging to the NL by circles. One way to do so would be to first obtain the data points corresponding to either leagues, and then plot them separately. In the code below, we use the which()
+
+Fig. 4.3 A scatterplot between payroll and wins denoting American League (AL) teams by triangles and National League (NL) teams by circles
+
+function to obtain two index vectors in the variables s1 and s2. We use the plot() function to plot the data points corresponding to NL alone, and then use the points() function to overlay the points corresponding to AL. Figure 4.3 shows the output.
+
+> s1 = which(league == ’NL’)
+> s2 = which(league == ’AL’)
+> plot(payroll[s1],wins[s1],xlim=range(payroll),
+ylim=range(wins),xlab=’payroll’,ylab=’wins’)
+> points(payroll[s2],wins[s2],pch=2)
+
+The points() function takes the same as the plot() function: x and y coordinates of the data points. The only difference between the two is that points() does not regenerate the plot; it only adds a layer of new data points on top of the existing plot. We use the pch or plot character parameter to specify the shape that would denote the data points. There are 25 different shapes for pch as showed in Fig. 4.4.
+
+In addition, we can assign characters to pch, e.g., pch=’x’ will plot the data points with the character ’x’. Similarly, we can assign colors to the data points using the col parameter. This can be done using the numeric codes or literal names such as “red.” We can obtain the list of color names using the colors() function. In the code above, we specified additional parameters to the plot function: the xlab and ylab
+
+
+
+parameters denote the labels for the x and y axes, and the xlim and ylim parameters denote their ranges. We did not need to specify xlim and ylim in the first example as the plot function uses the ranges of the input data by default; range(payroll) for the x axis and range(wins) for the y axis. Here, the problem is that we are using the subset payroll[s1] as the x variable, so the plot() function will use its range rather than the range of the entire payroll variable. This will omit the data points in payroll[s2] that fall outside this range, as the points() function does not redraw the axes. Using xlim = range(payroll) and ylim = range(wins) will ensure that all data points appear in the plot.
+
+In R, there are usually multiple ways to do the same thing. We do not have to use the points() function to generate the scatterplot with data points split by a variable such as league. We can simply assign the variable to the pch parameter: by this, we will have a different type of plot character for different value of the splitting variable. We obtain the same plot as Fig. 4.3 in a more concise way below.
+
+> plot(payroll,wins,pch=as.numeric(league),
+xlab=’payroll’,ylab=’wins’))
+
+The as.numeric() function converts a factor into a vector of integers, with a unique integer for each level.
+
+> league[1:5]
+[1] NL NL AL AL NL
+Levels: AL NL
+> as.numeric(league[1:5])
+[1] 2 2 1 1 2
+
+The technique of assigning values to the pch parameter is not restricted to factors. We can similarly draw a scatterplot with data points split on a numeric variable like pct. In the following code, we split the data points on the winning percentage or pct >= 0.5, i.e., the teams with half or more wins.
+
+> plot(payroll,wins,pch=as.numeric(pct >= 0.5))
+
+It is sometimes instructive to add lines to the plot that denote thresholds or trends. In this case, we draw a line at the pct = 0.5 mark to separate the two groups of teams. The teams with pct >= 0.5 will lie above this line and the teams with pct < 0.5 will lie below this line. As all teams play 162 games, pct = 0.5 equals 81 wins. We use the lines() function to draw lines overlaid on the scatterplot. This function takes the x coordinates and the y coordinates of the two end points. As we want to draw a horizontal line spread across the plot, the x coordinate of the end points is the range of the data, and the y coordinate of both end points is 81. Figure 4.5 shows the output.
+
+> lines(range(payroll),c(81,81),lty=2)
+
+
+
+
+We set the lty parameter to 2 to draw a dashed line. Similar to pch, we can set the lty parameter to different values to draw lines of different styles as shown in Fig. 4.6.
+
+If we have a scatterplot with multiple shapes, it is always useful to add a legend that denotes which shape corresponds to which grouping of the data. This helps a new observer in understanding what the plot is about. We add a legend using the legend() function that we call after the scatterplot is created. The legend() function takes as input the position where we would like to display the legend box, a vector of names corresponding to the data grouping, and the pch and col parameters we use to display
+
+
+Fig. 4.7 A scatterplot with a legend
+
+the data points in the plot. We can use the title parameter to display what the data grouping is. We can specify the location of the legend box in two ways: using x and y coordinates or a human-readable label, which is one of “bottomright,” “bottom,” “bottomleft,” “left,” “topleft,” “top,” “topright,” “right,” and “center.” Figure 4.7 shows the output.
+
+> legend(’bottomright’,c(’NL’,’AL’),
+pch=c(1,2),title=’leagues’)
+
+4.2.2 Visualizing Aggregate Values with Bar plots and Pie charts
+
+Bar plot and pie charts are useful tools to visualize aggregated values of a quantitative variable. A bar plot contains a set of bars or rectangles, where the height of the bar corresponds to the value of the variable. Similarly, a pie chart visualizes the aggregated data as sectors of a circle.
+
+We draw bar plots using the barplot() function and pie charts using pie() function. These functions take aggregated values as input. In R, there are multiple functions to aggregate data by a variable; here, we use the by() function.
+
+4.2.2.1 Group Data by a Variable
+
+Let us consider a case where we want to compute the total payrolls for teams at a division or league level. We can use the which() function to first identify the subsets of the data corresponding a group, e.g., which(league == ‘NL’), and then apply the aggregation function to this group:
+
+> sum(payroll[which(league == ’NL’)])
+[1] 1512099665
+
+To obtain the total payroll for teams at each aggregation level, we will need to do the above steps with all values of the league and division variables. This may suffice for variables with a couple of values but it is cumbersome for multivalued variables.
+
+The by() function allows us to perform operations on subsets of data that are split by different values of a variable. This function takes as input the input data, the variable on which we want to split the data, and the function we want to apply to the subsets. Here, the variable is analogous to the GROUP BY clause of a SELECT query in SQL. If we want to compute the total payroll of teams at a league level, we can use the by() function as follows:
+
+> by(payroll,league,sum)
+league: AL [1] 1424254675
+------------------------------------------------------
+league: NL [1] 1512099665
+
+The by() function takes three inputs: the variable that we need to aggregate, the variable we want to group by, and the aggregation function. We can also use the by() function to aggregate on multiple variables by passing a list of variables as the second input.
+
+> by(payroll,list(division,league),sum)
+: Central
+: AL
+:[1] 489326375
+------------------------------------------------------
+: East
+: AL
+:[1] 530789300
+------------------------------------------------------
+: West
+: AL
+:[1] 404139000
+------------------------------------------------------
+: Central
+: NL
+:[1] 476248200
+------------------------------------------------------
+: East
+: NL
+
+4.2 Basic Visualizations 41
+AL NL
+0.0e+00 4.0e+08 8.0e+08 1.2e+09
+
+
+Fig. 4.8 Bar plot comparing total payrolls of American League (AL) and National League (NL)
+teams
+
+:[1] 547594982
+------------------------------------------------------
+: West
+: NL
+:[1] 488256483
+
+The by() function is an example of a higher order function as it takes the aggregation function as an argument. After splitting the data into different groups, by() applies the function specified by the third argument to each group, without even knowing what that function will be ahead of time.
+
+Internally, by() is a wrapper around the tapply() function, which also provides similar output. Other useful higher order functions in R include sapply() and mapply(), which apply a function to each elements of a vector. There are also popular packages such as pylr and funprog that have more sophisticated functions for aggregating data.
+
+4.2.2.2 Bar Plots
+
+The barplot() function consumes the output of the by() function to create the bar plot with the aggregated data. Figure 4.8 shows the output of total payroll for teams at a league level.
+
+> barplot(by(payroll,league,sum))
+
+The bar plot contains bars for each group, which in this case is the AL and NL. The height of a bar corresponds to the total payroll for that group. The barplot() function automatically labels the bars and adds a y axis showing the bar heights. Similar to the plot() function, we can pass a vector as the col parameter to display the bars in different colors.
+
+Both AL and NL consist of three divisions each: Central, East, and West. If we want to split the bars for leagues further into these divisions, we can do so by calling the by() function with list(division,league) as the second parameter. By default, the barplot() function stacks the bars for each division on top of each other, so we need to identify the divisions by color and add a legend that specifies the labeling.
+
+This is where the plotting functionality in the base R package gets a bit tricky; often, the boxplot() function does not leave enough space to add a legend. We need to first modify the configuration of the graphical parameters using the par() function. We call the par() function with the parameter xpd = T, which indicates that the plot area can be expanded later. We then tweak the mar parameter that holds a vector containing the bottom, left, top, and right margins respectively. We make another call to par() and add four to the right margin, to create some real estate on the right of the bar plot.
+
+After the margins have been set, we first call the barplot() and legend() functions. We need to manually set the position of the legend box using the x and y coordinates. By default, the barplot() function stacks the bars in an alphabetical order of the grouping variable, which in this case is division. Figure 4.9 shows the bar plot that we obtain using the code below.
+
+> par(xpd=T, mar=par()$mar + c(0,0,0,4))
+> barplot(by(payroll,list(division,league),sum),
+col=2:4)
+> legend(2.5,8e8,c(’Central’,’East’,’West’), fill=2:4)
+
+Having stacked bars makes it difficult to compare the values for different divisions. To display the bars besides each other, we need to call barplot() with the parameter beside = T. Figure 4.10 shows the output.
+
+> par(xpd=T, mar=par()$mar + c(0,0,0,4))
+> barplot(by(payroll,list(division,league),sum),col=
+2:4,beside=T)
+> legend(8.5,3e8,c(’Central’,’East’,’West’),fill=2:4)
+
+4.2.2.3 Pie Charts
+
+A pie chart is an alternative visualization that shows the aggregated value of a variable computed over different subgroups of the data. The aggregated values for different subgroups are shown as a portion of the whole. Here, the circle represents the
+
+
+
+Fig. 4.9 Bar plot comparing total payrolls of American League (AL) and National League (NL)
+teams
+
+aggregated value computed over the entire dataset, and slices or sectors represent those computed over different data subgroups. 4
+
+A pie chart conveys exactly the same information as a bar plot: both provide aggregated values for a variable over different data subgroups. Also, both the charts use geometric area to indicate this: rectangles for bar plots and sectors for pie charts. In addition, there is an advantage to bar plots as they have a scale on the y axis that allows us to easily compare the heights of different bars. It is more difficult to visually compare the areas of slices, especially across different pie charts. In statistics, the use of pie charts has been discouraged for this reason [2; 5]. Nevertheless, pie charts remain widely used in business and popular media.
+
+We draw a pie chart using the pie() function. Similar to barplot(), this function also consumes aggregated data that is the output of the by() function. We create a pie chart of total payrolls of AL and NL teams below. 5 Figure 4.11 shows the output.
+
+> pie(by(as.numeric(payroll), league, sum))
+
+
+
+Fig. 4.10 Bar plot comparing total payrolls of American League (AL) and National League (NL)
+teams
+
+The pie chart consists of a circle with two slices, a shaded one corresponding to the NL and an unfilled one corresponding to the AL. The slice for NL is larger, implying the total payroll for NL teams is greater than that of the AL teams. This is consistent with the bar plot that we had in Fig. 4.8.
+
+We can also use the pie() function to draw a pie chart of the payroll of teams split by division and league by simply calling the by() function to group on these two variables. In this case, the pie() function does not automatically label the slices, so we need to call it with a vector of labels ourselves.
+
+> labels = c(’AL Central’, ’AL East’, ’AL West’,
+’NL Central’, ’NL East’, ’NL West’)
+> pie(as.numeric(by(payroll,list(division,league),
+sum)),labels)
+
+
+4.2.3 Common Plotting Tasks
+4.2.3.1 Multiple Plots
+
+We often need to display multiple visualizations together. This could be the same type of plot drawn on different subsets of the dataset or different type of plots drawn on the same dataset. The mfrow parameter of the par() function allows us to draw multiple plots in a grid. This parameter takes a vector of two elements that denote the number of rows and columns of the plot.
+
+In the code below, we draw two plots side by side by setting mfrow to one row and two columns: c(1,2). As an example, we then draw separate scatterplots for payroll versus wins for NL and AL teams. We label the plots by setting a title using the main parameter of the plot() function. Figure 4.13 shows the output.
+
+> par(mfrow=c(1,2))
+> s1 = which(league == ’NL’)
+> s2 = which(league == ’AL’)
+> plot(payroll[s1],wins[s1],main=’NL’,xlab=’payroll’,
+ylab=’wins’)
+> plot(payroll[s2],wins[s2],main=’AL’,xlab=’payroll’,
+ylab=’wins’)
+
+In general, we can display any visualization in the grid including those generated by the barplot() and pie() functions. We can continue to call the plot() function to replace the plots displayed in the grid. The lifetime of the grid is till the plot window is open; after that, we need to call the par() function with the mfrow parameter again
+
+
+
+4.2.3.2 Saving Plots to Files
+
+When the plot() function is invoked, it draws the plot on the onscreen display. The lifetime of this plot is only till the window is open. In most data analysis tasks, we would also need to persist the plot somewhere, so that we can use it later in a presentation, report, or a book. R has support for saving the plot in multiple file formats. Using this functionality is not very intuitive for beginners, but it is fairly simple.
+
+R has a concept of a graphics device, which is conceptually similar to a physical output peripheral like a display or a printer. When the plot() function is invoked, R sends the data corresponding to the plot over, and the graphics device generates the plot. The default graphics driver is X11 that displays the plot in a window frame.
+
+To save the plot to a file, we need to use a graphics device corresponding to the file format we are interested in. For most plots, it is recommended to use lossless file formats like PNG or PDF. 6 Table 4.2 has the list of available graphics devices. To save a plot to a file format such as PDF, we first open a device using the pdf() function called with the output file name. After we are done, we call the the dev.off() function that closes the device and completes writing the plot to the file. It then sets the display device back to the default, which will display the next plot in a window. We write one of our plots to a file “plot.pdf” below.
+
+> pdf(’plot.pdf’)
+> plot(payroll,wins)
+> dev.off()
+
+The above mechanism is also useful when we have a script that automatically generates the plots. If the plot is already displayed in a window, an alternative way to save it to a file is using the dev.copy() function. As above, there are several variants of this function for each file format. We use the one for PDF below; by default, this function saves the plot to the file Rplot.pdf.
+
+
+
+
+
+> plot(payroll,wins)
+> dev.copy2pdf()
+
+4.3 Layered Visualizations Using ggplot2
+
+The plotting functions that we discussed in the previous section are from the R base package. This is not the only way to obtain visualizations in R. Other popular visualization packages include lattice and ggplot2. The ggplot2 package [6] stands out because of its conceptually different approach of dealing with visualizations.
+
+The ggplot2 visualization package is based on the theory of grammar of graphics [7] and derives its name from the same theory. In this framework, a visualization is divided into four components or layers:
+
+1. Data to be visualized
+2. Aesthetics of the visualization: e.g., color, shape, and scale
+3. Geometric objects: e.g., points, lines, and polygons
+4. Statistical transformation: e.g., smoothing and binning
+
+The ggplot2 package allows us to specify each of these components separately. This makes it convenient to create complex and multilayered visualizations. We can even create different visualizations by replacing only some of the visualization components. Also, the ggplot2 framework takes care of the supporting features such as creating the legend.
+
+This concept of layers is different from the base graphics package where we need to specify all the details of the visualization in the plot() function including positions of individual elements. There is nothing inadequate about the base graphics package; we can use it to generate the same visualizations that we can generate using ggplot2. The latter gains from its modular framework when we want to create complex visualizations with multiple layers. In the base graphics package, we usually need to configure a few parameters to create visualizations of the same aesthetic appeal. In general, the visualizations created using the default settings of ggplot2 tend to look nicer. The only downside of ggplot2 is that it is not designed for efficiency: it is many times slower than the base graphics package. This is not an issue with small-to-medium-sized datasets, but can be one when dealing with large datasets.
+
+The ggplot2 package has two functions: qplot() and ggplot() that we use to create the visualizations. The qplot() function has a similar interface to plot(), while the ggplot() function provides the full grammar of graphics interface. We first look at the qplot() function.
+
+4.3.1 Creating Plots Using qplot()
+
+Just like the plot() function, we can use the qplot() function to draw a scatterplot between two variables. We draw a scatterplot between team payrolls and wins below. Figure 4.14 shows the output. As the ggplot2 package is not part of the base R distribution, we first need to include it by calling library(ggplot2).
+
+
+
+Fig. 4.14 Scatterplot between team payrolls and wins generated by qplot()
+
+> library(ggplot2)
+> qplot(payroll, wins)
+
+This scatterplot has the same visualization that we had in Fig. 4.1; qplot() adds a gray background and a grid by default.
+
+qplot() has many parameters that we can use to configure the plot. The col and shape parameters control the color and geometric shape that are used to denote the points in the scatterplot. To identify the teams by their leagues and divisions, we set these parameters with the league and division variables. Figure 4.15 shows the output.
+
+> qplot(payroll,wins,col=league,shape=division)
+
+In the visualization, the AL and NL teams are denoted using red and blue colors respectively, and the teams from Central, East, and West divisions are denoted using circles, triangles, and squares, respectively. We can identify all the six combinations of league and divisions using these two colors and three shapes. qplot() also automatically adds a legend to the right. This is convenient considering the extra work we needed to add a legend manually using the legend() function. 
+
+
+
+We can use the qplot() function to draw bar plots as well. We need to specify two things: the variable that we want to group the data as the input data, and the variable we want to aggregate as the weight parameter. The aggregation functionality is built into qplot(); we do not need to use the by() function as we did with the plot() function. We draw a bar plot for total payroll for teams per league below. Figure 4.16 shows the output.
+
+> qplot(league,weight=payroll,ylab=’payroll’)
+
+
+Fig. 4.16 Bar plot of total payrolls of the two leagues
+
+qplot() has a fill parameter that we can use to specify the color of the bars. We can create a stacked bar plot by setting a variable to the fill parameter, which is similar to setting the col and shape parameter that we did above. We split the bars further by division below. Figure 4.17 shows the output.
+
+> qplot(league,weight=payroll,ylab=’payroll’, fill=division)
+
+Similar to the scatterplot, the qplot() function automatically adds a legend identifying the divisions by fill color.
+
+The layout of the stacked bars is controlled by the position parameter of the qplot() function. We can stack the bars side by side by setting it to ‘dodge’. Figure 4.18 shows the output.
+
+> qplot(league,weight=payroll,ylab=’payroll’,
+fill=division,position=’dodge’)
+
+qplot() can also be used to generate pie charts by changing bar plots to polar coordinates
+
+
+
+Fig. 4.17 Bar plot of total payrolls of the two leagues split by division
+
+Another advantage of qplot() is that we do not need to use par() to display variants of a visualization in a grid. We use the facet parameter of the qplot() function to specify a formula containing variables with which we want to vary the visualization. We create bar plots for the total payroll per division for the two leagues using the formula . ˜ league.7 Figure 4.19 shows the output. There is no need for a legend because all division and league combinations are already labeled.
+
+> qplot(division,weight=payroll,ylab=’payroll’,
+facets= . ˜ league)
+
+The facet parameter works for other visualizations generated by the qplot() function including scatterplots.
+
+
+4.3.2 ggplot(): Specifying the Grammar of the Visualization
+
+As we discussed above, the ggplot package is based on the grammar of graphics. Using the ggplot() function, we can specify individual elements of the visualization separately. The syntax for ggplot() is different from that of qplot(), although the same visualizations can be generated by both functions.
+
+The basic unit of a visualization is the ggplot object. It is the abstract representation of the plot object and only contains the data frame that we are interested in visualizing. We create this object using the ggplot() function. This does not create any visualization by itself.
+
+> p = ggplot(data)
+
+To create a visualization, we need to add other plot elements such as aesthetics and layers. The aesthetics include the variables, geometric shapes, and colors that we want to display, and layers contain information about how to display them. We create a scatterplot between team payroll and wins below by specifying these variables using the aes() function and adding a points layer using the layers() function. The output is identical to Fig. 4.15 we obtained using qplot().
+
+
+
+> p + aes(payroll,wins,shape=division,col=league)
++ layer(’point’)
+
+This syntax is a bit esoteric: we use the + operator to add components to the ggplot object. We can also create a grid by adding the facet_grid() function.
+
+We create bar plots by specifying the layer as bar. We also need to set the variable that we want to display as the weight parameter in the aesthetics component. The ylab() function specifies the label of the y axis. The output is identical to Fig. 4.17.
+
+> p + aes(league,weight=payroll,fill=division)
++ ylab(’payroll’) + layer(’bar’,position=’dodge’)
+
+We reuse the same ggplot object p for drawing both the scatter and bar plot.
+
+4.3.3 Themes
+
+Although the default theme of ggplot suffices for most purposes, sometimes we might want to customize our visualization to a particular color and font combination. A bonus feature of the ggplot package is that it comes built-in with a set of visualization themes through the ggthemes package.
+
+There are many themes available in the ggthemes package, including those used in popular publications such as the Economist and the Wall Street Journal. 8 To apply a theme, we need to use the appropriate theme function as a layer to the ggplot object. As an example, we add The Economist theme in the code below. Figure 4.20 shows the output.
+
+> library(ggthemes)
+> p + aes(payroll,wins,shape=division,col=league)
++ layer(’point’) + theme_economist()
+
+The output visualization contains a scatterplot with a blue background similar to a visualization appearing in The Economist magazine.
+
+4.4 Interactive Visualizations Using Shiny
+
+In all of the techniques that we discussed so far, the visualization output is in the form of a static image that can be displayed on screen or saved as an image file. To allow users to explore the data analysis on their own, it is useful to create interactive visualizations. This requires creation of a user interface (UI) that captures the user inputs. There are a few packages that allow us to create interactive visualizations in R such as rggobi, iplot, gWidgetsWWW2, and shiny. In this section, we look at creating a Web application in shiny.
+
+Shiny is a more recent R package that allows us to create interactive UIs in the form of Web applications. A major benefit of creating Web applications is that a large number of users can access the interactive visualization through their Web browsers without requiring to install any software package including R and downloading the data.
+
+One advantage of shiny is that we can create rich Web applications entirely in R and without writing any HTML or Javascript code. Although, it is possible to specify the UI using an HTML page, if needed; in this section, we will look at creating a Web application in R itself. A shiny application consists of two R scripts: ui.r and server.r. The ui.r script contains a specification of the UI elements including the layout of the controls and the output. The server.r script contains the application logic that generates the plot.
+
+
+
+Fig. 4.20 Scatterplot between team payroll and wins with The Economist theme
+
+In the discussion below, we only scratch the surface of creating an interactive visualization; shiny has a fairly rich feature set that we can use to create complex Web applications. The official tutorial [4] is a good place to learn more about the advanced features of shiny.
+
+
+As an example, we create an interactive visualization to allow users to access the MLB dataset through a scatterplot between team payroll and wins. We allow the users to identify the data points in the scatterplot by league and division. To do so, we need two UI elements: we choose to go with two check boxes that group the data points by league and division, respectively.
+
+
+We are interested in creating an interactive visualization as shown in Fig. 4.21. We specify the UI in the ui.r script below. This script contains one function shinyUI() and we need to add UI elements as its parameters. We define a page with sidebar in order to have the controls in the left panel and the plot in the remainder of the window.
+
+
+
+Fig. 4.21 A shiny Web application
+
+We specify the header of the page using the headerPanel() function, and the sidebar and the main panels using the sidebarPanel() and mainPanel() functions, respectively. In each of these functions, we specify the controls for the respective panels; the two check boxes: league and division for the sidebar and the plot element payroll.wins itself for the main panel. This script is intended to run independently and so, it first needs to load the shiny package.
+
+# ui.r
+library(shiny)
+shinyUI(pageWithSidebar(
+headerPanel(’payroll vs wins’),
+sidebarPanel(
+helpText(’Group by’),
+checkboxInput(’league’, ’League’, FALSE),
+checkboxInput(’division’, ’Division’, FALSE)
+
+58 4 Data Visualization
+mainPanel(
+plotOutput(’payroll.wins’)
+)
+))
+
+
+Apart from check boxes, shiny supports a wide variety of UI elements including text boxes, drop-down lists, and sliders.
+
+
+The purpose of the server.r script is to access the user inputs provided by the UI and generate the appropriate plots. This script contains the shinyServer() function that takes another anonymous function with UI inputs and outputs as its input. The inputs and outputs are available as the input and output data frames; we can access the checkboxes through input$league and input$division variables, and we need to assign the plot object to the output$payroll.wins variable. We create the plot using the renderPlot() function. We load our data set separately using the read.csv() function.
+
+
+Although any R visualization package can be used to create plots for shiny applications, we use the ggplot2 package here. There are certain advantages of this choice; as we shall see later, the modular interface of ggplot allows us to add layers for the visualization in response to the user input. In the renderPlot() function, we first create a ggplot object, and add payroll and wins as variables, and a scatterplot. As we have seen in the previous section, this creates a scatterplot with payroll and wins, with none of the data points highlighted. If the check boxes for league and division are set to true, we add additional layers to the ggplot object for highlighting the data points by color and shape. To display the ggplot object as a scatterplot, we finally use the print() function.
+
+# server.r
+
+
+library(shiny)
+library(ggplot2)
+data = read.csv(’teams.csv’)
+shinyServer(function(input,output) {
+output$payroll.wins = renderPlot({
+p = ggplot(data)
+p = p + aes(payroll,wins) + layer(’point’)
+if (input$league == ’TRUE’) {
+p = p + aes(col=league)
+}
+if (input$division == ’TRUE’) {
+p = p + aes(shape=division)
+
+4.5 Chapter Summary and Further Reading 59
+print(p)
+})
+})
+
+
+The Web applications created using shiny are reactive: the plot output changes immediately in response to changing the user input, without reloading the Web page. Internally, this works by calling the shinyServer() function each time there is a change in the user input. We do not need to write custom code for this; the shiny Web framework handles the user events automatically.
+
+
+The shiny package makes it simple to run and test the Web application. We only need to invoke the runApp() function with the path of the directory containing the ui.r and server.r scripts. We run the Web application located in the shiny-app/directory below.
+
+
+> runApp(’shiny-app/’)
+Listening on port 8100
+
+
+This function starts the shiny Web server inside the R process. The Web application is available at http://localhost:8100/ by default. The runApp() function also opens the default Web browser with the Web application automatically; otherwise, we need to open a Web browser and point it to this URL.
+
+
+The above method is adequate for developing and testing Web applications. The shiny-server package 9 is more appropriate for running shiny applications in production.
+
+
+4.5 Chapter Summary and Further Reading
+
+In this chapter, we looked at different ways of visualizing the data in R. Some of the commonly used visualizations include scatterplots, bar plots, and pie charts. Using the R base package, we can create these visualizations using the plot(), barplot(), and pie() functions. The base package is usually adequate for creating simple visualizations but it can become cumbersome when creating the more complex ones.
+
+
+The ggplot2 package allows for creating complex visualizations easily because of its multilayered design, with each layer representing an aspect of the visualization. The ggplot2 package provides two functions, qplot() and ggplot(), to create the visualizations. The visualizations mentioned so far are mostly static; the shiny package allows us to display our visualization as an interactive Web application that can change based on the user inputs.
+
+
+The visualizations we saw in this chapter are for datasets with relatively small number of data points and variables. The ggobi package supports creating visualizations for high-dimensional datasets. The bigvis package allows for creating visualizations for large datasets up to 100 million data points in a few seconds. We can also visualize nonrelational data in R: the igraph package allows for visualizing network structures such as a social network. The maps and ggmaps packages can be used to create visualizations of geographical data superimposed on a map of an area.
+
+
+References
+
+http://blog.revolutionanalytics.com/2011/03/how-the-new-york-times-uses-r-for-data-visualization.html
+http://www.stevefenton.co.uk/Content/Pie-Charts-Are-Bad/.
+Lewis, M. (2004). Moneyball: The art of winning an unfair game. New York: W. W. Norton & Company.
+Teach yourself shiny. http://shiny.rstudio.com/tutorial/.
+Tufte, E. (2001). The visual display of quantitative information. Cheshire: Graphics Press.
+Wickham, H. (2009). ggplot2: Elegant graphics for data analysis. Use R!. New York: Springer.
+Wilkinson, L. (2005). The grammar of graphics. New York:Springer.
+
+
+
+
+
