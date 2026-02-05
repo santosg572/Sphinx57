@@ -32,7 +32,12 @@ Contenido
 
    conjuntos_de_numeracion
    vectores_matrices
-
+   introduccion
+   instalacion_ayuda
+   r_comoc_calculadora
+   vectores_R
+   funciones
+   script
 
 
 

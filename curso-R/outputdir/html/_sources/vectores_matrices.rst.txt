@@ -1,5 +1,5 @@
-Vectores y Matrices
-===================
+Vectores y Matrices en Matemàticas
+==================================
 
 Se define un vector como: :math:`(x_1, x_2, ..., x_n)` con :math:`x_i \in \mathbb{R}`
 
@@ -24,5 +24,26 @@ Se define una matriz como:
    a_{m1} & a_{m2}  & \cdots & a_{mn}  \\
    \end{pmatrix}
 
+Decimos que la matriz es de tamaño :math:`m \times n`.
 
+Dadas dos matrices de tamaño :math:`m \times n` se define la operación:
+
+.. math::
+
+   \begin{pmatrix}
+   a_{11} & a_{12}  & \cdots & a_{1n}  \\
+   a_{21} & a_{22}  & \cdots & a_{2n}  \\
+   \cdots  & \cdots & \cdots & \cdots  \\
+   a_{m1} & a_{m2}  & \cdots & a_{mn}  \\
+   \end{pmatrix} = \begin{pmatrix}
+   b_{11} & b_{12}  & \cdots & b_{1n}  \\
+   b_{21} & b_{22}  & \cdots & b_{2n}  \\
+   \cdots  & \cdots & \cdots & \cdots  \\
+   b_{m1} & b_{m2}  & \cdots & b_{mn}  \\
+   \end{pmatrix} = \begin{pmatrix}
+   a_{11}+b_{11} & a_{12}+b_{12}  & \cdots & a_{1n}+b_{1n}  \\
+   a_{21}+b_{21} & a_{22}+b_{22}  & \cdots & a_{2n}+b_{2n}  \\
+   \cdots  & \cdots & \cdots & \cdots  \\
+   a_{m1}+b_{m1} & a_{m2}+b_{m2}  & \cdots & a_{mn}+b_{mn}  \\
+   \end{pmatrix}
 

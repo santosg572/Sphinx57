@@ -14,6 +14,7 @@
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Vectores y Matrices" href="vectores_matrices.html" />
     <link rel="prev" title="Introducción al Lenguaje de Programación “R”" href="curso.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -34,25 +35,30 @@
             
   <section id="conjuntos-de-numeracion">
 <h1>Conjuntos de Numeración<a class="headerlink" href="#conjuntos-de-numeracion" title="Link to this heading">¶</a></h1>
-<p>Conjuntos de los Números Naturales: <span class="math notranslate nohighlight">\(\mathbb{N} = \{1, 2, 3, . . . \}\)</span></p>
+<p>Conjunto de los Números Naturales: <span class="math notranslate nohighlight">\(\mathbb{N} = \{1, 2, 3, . . . \}\)</span></p>
 <p>Operaciones con los números naturales</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\text{Si } n, m \in  \mathbb{N}, \text{ entonces } n + m \in  \mathbb{N},  n \times m = nm \in  \mathbb{N}\\\text{Si } n, m \in  \mathbb{N},  \text{ entonces } n + m = m + n\\ \text{Si } n, m, k \in  \mathbb{N},  \text{ entonces } n + (m + k) = (n + m) + k\end{aligned}\end{align} \]</div>
-<p>Conjuntos de los Números Enteros: <span class="math notranslate nohighlight">\(\mathbb{Z} = \{..., -2, -1, 0, 1, 2, 3, . . . \}\)</span></p>
-<p>Conjuntos de los Números Racionales: <span class="math notranslate nohighlight">\(\mathbb{Q} = \{ \frac{p}{q} | p, q \in \mathbb{Z} \text{ y } q \neq
+<p>1. Si <span class="math notranslate nohighlight">\(n, m \in  \mathbb{N}\)</span>, entonces <span class="math notranslate nohighlight">\(n + m \in  \mathbb{N},  n \times m =
+nm \in  \mathbb{N}\)</span></p>
+<ol class="arabic simple" start="2">
+<li><p>Si <span class="math notranslate nohighlight">\(n, m \in  \mathbb{N}\)</span>, entonces <span class="math notranslate nohighlight">\(n + m = m + n\)</span></p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(n, m, k \in  \mathbb{N}\)</span>, entonces <span class="math notranslate nohighlight">\(n + (m + k) = (n + m) + k\)</span></p></li>
+</ol>
+<p>Conjunto de los Números Enteros: <span class="math notranslate nohighlight">\(\mathbb{Z} = \{..., -2, -1, 0, 1, 2, 3, . . . \}\)</span></p>
+<p>Conjunto de los Números Racionales: <span class="math notranslate nohighlight">\(\mathbb{Q} = \{ \frac{p}{q} | p, q \in \mathbb{Z} \text{ y } q \neq
 0 \}\)</span>:</p>
-<p>Conjuntos de los Números Irracionales: <span class="math notranslate nohighlight">\(\mathbb{I} = \{..., \pi, e, \sqrt(2), ... \}\)</span></p>
-<p>Conjuntos de los Números Reales: <span class="math notranslate nohighlight">\(Q \cup I\)</span></p>
+<p>Conjunto de los Números Irracionales: <span class="math notranslate nohighlight">\(\mathbb{I} = \{..., \pi, e, \sqrt{2}, ... \}\)</span></p>
+<p>Conjunto de los Números Reales: <span class="math notranslate nohighlight">\(\mathbb{R} = \mathbb{Q} \cup \mathbb{I}\)</span></p>
 <p>Se cumple lo siguiente:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\mathbb{Q} \cap \mathbb{I}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{Q} \cap \mathbb{I}=\o\)</span></p></li>
 </ul>
-<p>Conjunto de los Números Complejo: <span class="math notranslate nohighlight">\(\mathbb{C} = \{ a+ib | a,b \mathbb{R} \text{ y } i = \sqrt{-1}\)</span></p>
-<p>Si <span class="math notranslate nohighlight">\(z_1=a_1 + i b_1, z_2 = a_2 + i b_2 \in \mathbb{C}\)</span> se definen ls operaciones:</p>
+<p>Conjunto de los Números Complejo: <span class="math notranslate nohighlight">\(\mathbb{C} = \{ a+ib | a,b \mathbb{R} \text{ y }
+i = \sqrt{-1} \}\)</span></p>
+<p>Si <span class="math notranslate nohighlight">\(z_1=a_1 + i b_1, z_2 = a_2 + i b_2 \in \mathbb{C}\)</span> se definen las operaciones:</p>
 <ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(z_1 + z_2 = (a_1 + a_2) + i (b_1 + b_2)\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(z_1 z_2 = (a1a2 − b1b2) + i(b1a2 + a1b2)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(z_1 z_2 = (a_1a_2 −__b__b2) + i__b__a2 +__a__b2)\)</span></p></li>
 </ol>
 <p>Tambien se define el conjugado y la norma de un número complejo como sigue.</p>
 <ul class="simple">
@@ -92,6 +98,7 @@
   <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="curso.html">Introducción al Lenguaje de Programación “R”</a><ul>
       <li>Previous: <a href="curso.html" title="previous chapter">Introducción al Lenguaje de Programación “R”</a></li>
+      <li>Next: <a href="vectores_matrices.html" title="next chapter">Vectores y Matrices</a></li>
   </ul></li>
   </ul></li>
 </ul>
