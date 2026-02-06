@@ -18,7 +18,6 @@ have begun to appear. For problems such as speech recognition, algorithms based 
 approaches that have been attempted to date. In the field known as data mining, machine learning algorithms are being used 
 routinely to discover valuable knowledge from large commercial databases containing equipment maintenance records, loan 
 applications, financial transactions, medical records, and the like. As our understanding of computers continues to mature, it
-
 seems inevitable that machine learning will play an increasingly central role in computer science and computer technology.
 
 A few specific achievements provide a glimpse of the state of the art: programs have been developed that successfully learn to 
@@ -47,18 +46,14 @@ Let us begin our study of machine learning by considering a few learning tasks. 
 learning broadly, to include any .computer program that improves its performance at some task through experience. Put more 
 precisely,
 
-A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its 
-performance at tasks in T, as measured by P, improves with experience E.
-
-Definition:
+Definicion. A computer program is said to learn from experience E with respect to some class of tasks T and performance measure 
+P, if its performance at tasks in T, as measured by P, improves with experience E.
 
 For example, a computer program that learns to play checkers might improve its performance as measured by its abiliry to win at 
 the class of tasks involving playing checkers games, through experience obtained by playing games against itself. In general, 
 to have a well-defined learning problem, we must identity these
 
-0
-
-Learning to recognize spoken words.
+* Learning to recognize spoken words.
 
 All of the most successful speech recognition systems employ machine learning in some form. For example, the SPHINXsystem 
 (e.g., Lee 1989) learns speaker-specific strategies for recognizing the primitive sounds (phonemes) and words from the observed 
@@ -66,21 +61,21 @@ speech signal. Neural network learning methods (e.g., Waibel et al. 1989) and me
 Lee 1989) are effective for automatically customizing to,individual speakers, vocabularies, microphone characteristics, 
 background noise, etc. Similar techniques have potential applications in many signal-interpretation problems.
 
-0 Learning to drive an autonomous vehicle.
+* Learning to drive an autonomous vehicle.
 
 Machine learning methods have been used to train computer-controlled vehicles to steer correctly when driving on a variety of 
 road types. For example, the ALVINN system (Pomerleau 1989) has used its learned strategies to drive unassisted at 70 miles per 
 hour for 90 miles on public highways among other cars. Similar techniques have possible applications in many sensor-based 
 control problems.
 
-0 Learning to classify new astronomical structures.
+* Learning to classify new astronomical structures.
 
 Machine learning methods have been applied to a variety of large databases to learn general regularities implicit in the data. 
 For example, decision tree learning algorithms have been used by NASA to learn how to classify celestial objects from the 
 second Palomar Observatory Sky Survey (Fayyad et al. 1995). This system is now used to automatically classify all objects in 
 the Sky Survey, which consists of three terrabytes of image data.
 
-0 Learning to play world-class backgammon.
+* Learning to play world-class backgammon.
 
 The most successful computer programs for playing games such as backgammon are based on machiie learning algorithms. For 
 example, the world's top computer program for backgammon, TD-GAMMON(Tesauro 1992, 1995). learned its strategy by playing over 
@@ -93,65 +88,80 @@ three features: the class of tasks, the measure of performance to be improved, a
 
 A checkers learning problem:
 
-Task T: playing checkers 0 Performance measure P: percent of games won against opponents Training experience E: playing 
-practice games against itself
+* Task T: playing checkers 
+
+* Performance measure P: percent of games won against opponents 
+* Training experience E: playing practice games against itself
 
 We can specify many learning problems in this fashion, such as learning to recognize handwritten words, or learning to drive a 
 robotic automobile autonomously.
 
 A handwriting recognition learning problem:
 
-0 Task T: recognizing and classifying handwritten words within images 0 Performance measure P: percent of words correctly 
+* Task T: recognizing and classifying handwritten words within images  
+* Performance measure P: percent of words correctly 
 classified
 
-Artificial intelligence Learning symbolic representations of concepts. Machine learning as a search problem. Learning as an 
+* Artificial intelligence 
+Learning symbolic representations of concepts. Machine learning as a search problem. Learning as an 
 approach to improving problem solving. Using prior knowledge together with training data to guide learning.
 
-Bayesian methods Bayes' theorem as the basis for calculating probabilities of hypotheses. The naive Bayes classifier. 
+* Bayesian methods 
+
+Bayes' theorem as the basis for calculating probabilities of hypotheses. The naive Bayes classifier. 
 Algorithms for estimating values of unobserved variables.
 
-Computational complexity theory Theoretical bounds on the inherent complexity of different learning tasks, measured in terms of 
+* Computational complexity theory 
+
+Theoretical bounds on the inherent complexity of different learning tasks, measured in terms 
+of 
 the computational effort, number of training examples, number of mistakes, etc. required in order to learn.
 
-Control theory Procedures that learn to control processes in order to optimize predefined objectives and that learn to predict 
+* Control theory 
+
+Procedures that learn to control processes in order to optimize predefined objectives and that learn to 
+predict 
 the next state of the process they are controlling.
 
-0
+* Information theory 
 
-0
+Measures of entropy and information content. Minimum description length approaches to learning. Optimal 
+codes and their relationship to optimal training sequences for encoding a hypothesis. 
 
-Information theory Measures of entropy and information content. Minimum description length approaches to learning. Optimal 
-codes and their relationship to optimal training sequences for encoding a hypothesis. Philosophy Occam's razor, suggesting that 
+* Philosophy 
+
+Occam's razor, suggesting that 
 the simplest hypothesis is the best. Analysis of the justification for generalizing beyond observed data.
 
-Psychology and neurobiology The power law of practice, which states that over a very broad range of learning problems, people's 
+* Psychology and neurobiology 
+
+The power law of practice, which states that over a very broad range of learning problems, 
+people's 
 response time improves with practice according to a power law. Neurobiological studies motivating artificial neural network 
 models of learning.
 
-0
+* Statistics 
 
-Statistics Characterization of errors (e.g., bias and variance) that occur when estimating the accuracy of a hypothesis based 
+Characterization of errors (e.g., bias and variance) that occur when estimating the accuracy of a hypothesis based 
 on a limited sample of data. Confidence intervals, statistical tests.
 
 TABLE 1.2 Some disciplines and examples of their influence on machine learning.
 
-0
-
-Training experience E: a database of handwritten words with given classifications
+* Training experience E: a database of handwritten words with given classifications
 
 A robot driving learning problem:
 
-Task T: driving on public four-lane highways using vision sensors 0 Performance measure P: average distance traveled before an 
-error (as judged by human overseer) 0 Training experience E: a sequence of images and steering commands recorded while 
+* Task T: driving on public four-lane highways using vision sensors 
+* Performance measure P: average distance traveled before 
+an 
+error (as judged by human overseer) 
+* Training experience E: a sequence of images and steering commands recorded while 
 observing a human driver
-
-0
 
 Our definition of learning is broad enough to include most tasks that we would conventionally call "learning" tasks, as we use 
 the word in everyday language. It is also broad enough to encompass computer programs that improve from experience in quite 
-straightforward ways. For example, a database system
-
-that allows users to update data entries would fit our definition of a learning system: it improves its performance at 
+straightforward ways. For example, a database system that allows users to update data entries would fit our definition of a 
+learning system: it improves its performance at 
 answering database queries, based on the experience gained from database updates. Rather than worry about whether this type of 
 activity falls under the usual informal conversational meaning of the word "learning," we will simply adopt our technical 
 definition of the class of programs that improve through experience. Within this class we will find many types of problems that 
@@ -185,7 +195,6 @@ examples. For example, the learner might rely on the teacher to select informati
 for each. Alternatively, the learner might itself propose board states that it finds particularly confusing and ask the teacher 
 for the correct move. Or the learner may have complete control over both the board states and (indirect) training 
 classifications, as it does when it learns by playing against itself with no teacher
-
 present. Notice in this last case the learner may choose between experimenting with novel board states that it has not yet 
 considered, or honing its skill by playing minor variations of lines of play it currently finds most promising. Subsequent 
 chapters consider a number of settings for learning, including settings in which training experience is provided by a random 
@@ -212,23 +221,19 @@ We now have a fully specified learning task.
 
 A checkers learning problem:
 
-0
+* Task T: playing checkers
 
-0
+* Performance measure P: percent of games won in the world tournament
 
-0
-
-Task T: playing checkers
-
-Performance measure P: percent of games won in the world tournament
-
-Training experience E: games played against itself
+* Training experience E: games played against itself
 
 In order to complete the design of the learning system, we must now choose
 
 1. the exact type of knowledge to be,learned
 
-2. a representation for this target knowledge 3. a learning mechanism
+2. a representation for this target knowledge 
+
+3. a learning mechanism
 
 1.2.2 Choosing the Target Function
 
@@ -297,19 +302,18 @@ training data the program will require in order to choose among the alternative 
 discussion brief, let us choose a simple representation: for any given board state, the function will be calculated as a linear 
 combination of the following board features:
 
-c
+* xl: the number of black pieces on the board 
+* x2: the number of red pieces on the board 
+* x3: the number of black kings on the board 
+* x4: the number of red kings on the board
+* x5: the number of black pieces threatened by red (i.e., which can be captured on red's next turn) 
+X6: the number of red pieces  threatened by black
 
-c
+Thus, our learning program will represent c(b) as a linear function of the form
 
-xl: the number of black pieces on the board x2: the number of red pieces on the board 0 xs: the number of black kings on the 
-board 0 x4: the number of red kings on the board
+.. math::
 
-x5: the number of black pieces threatened by red (i.e., which can be captured on red's next turn) X6: the number of red pieces 
-threatened by black
-
-Thus, our learning program will represent c(b) as a linear function of the
-
-form
+   \hat{V}(b) = w_0 + w_1 x_1 + + w_2 x_2 + w_3 x_3 + w_4 x_4 + w_5 x_5 + w_6 x_6 
 
 where wo through W6 are numerical coefficients, or weights, to be chosen by the learning algorithm. Learned values for the 
 weights w l through W6 will determine the relative importance of the various board features in determining the value of the 
@@ -321,15 +325,19 @@ learning task is now
 
 Partial design of a checkers learning program:
 
-Task T: playing checkers
+* Task T: playing checkers
 
-Performance measure P: percent of games won in the world tournament
+* Performance measure P: percent of games won in the world tournament
 
-Training experience E: games played against itself
+* Training experience E: games played against itself
 
-Targetfunction: V:Board + 8
+* Targetfunction: V:Board + 8
 
-Targetfunction representation
+* Target function representation
+
+.. math::
+
+   \hat{V}(b) = w_0 + w_1 x_1 + + w_2 x_2 + w_3 x_3 + w_4 x_4 + w_5 x_5 + w_6 x_6
 
 The first three items above correspond to the specification of the learning task, whereas the final two items constitute design 
 choices for the implementation of the learning program. Notice the net effect of this set of design choices is to reduce the 
@@ -343,10 +351,16 @@ training value Vtrain(b)for b. In other words, each training example is an order
 instance, the following training example describes a board state b in which black has won the game (note x2 = 0 indicates that 
 red has no remaining pieces) and for which the target function value VZrain(b)is therefore +100.
 
+.. math::
+
+   x_1 = 3, x_2 = 0, x_3=1, x_4=0, x_5 = 0, x_6=0, +100
+
 Below we describe a procedure that first derives such training examples from the indirect training experience available to the 
 learner, then adjusts the weights wi to best fit these training examples.
 
-1.2.4.1 ESTIMATING TRAINING VALUES Recall that according to our formulation of the learning problem, the only training 
+1.2.4.1 ESTIMATING TRAINING VALUES 
+
+Recall that according to our formulation of the learning problem, the only training 
 information available to our learner is whether the game was eventually won or lost. On the other hand, we require training 
 examples that assign specific scores to specific board states. While it is easy to assign a value to board states that 
 correspond to the end of the game, it is less obvious how to assign training values to the more numerous intermediate board 
@@ -361,9 +375,11 @@ be ? (~uccessor(b)),where ? is the learner's current approximation to V and wher
 following b for which it is again the program's turn to move (i.e., the board state following the program's move and the 
 opponent's response). This rule for estimating training values can be summarized as
 
-~ u l kfor estimating training values.
+Rule for estimating training values.
 
-V,,,i. (b) c c(~uccessor(b))
+.. mat::
+
+   V_{train}\leftarrow \widehat{V}(Successor(b))
 
 While it may seem strange to use the current version of f to estimate training values that will be used to refine this very 
 same function, notice that we are using estimates of the value of the Successor(b) to estimate the value of board state b. 
@@ -371,10 +387,16 @@ Intuitively, we can see this will make sense if ? tends to be more accurate for 
 under certain conditions (discussed in Chapter 13) the approach of iteratively estimating training values based on estimates of 
 successor state values can be proven to converge toward perfect estimates of Vtrain.
 
-1.2.4.2 ADJUSTING THE WEIGHTS All that remains is to specify the learning algorithm for choosing the weights wi to^ best fit 
+1.2.4.2 ADJUSTING THE WEIGHTS 
+
+All that remains is to specify the learning algorithm for choosing the weights wi to^ best fit 
 the set of training examples {(b,Vtrain(b))}.As a first step we must define what we mean by the bestfit to the training data. 
 One common approach is to define the best hypothesis, or set of weights, as that which minimizes the squarg error E between the 
 training values and the values predicted by the hypothesis V .
+
+.. math::
+
+   E \equiv \sum_{(b,V_{train} (b)\in \text´{training example}} (V_{train}(b) - \hat{V}(b))^2
 
 Thus, we seek the weights, or equivalently the c , that minimize E for the observed training examples. Chapter 6 discusses 
 settings in which minimizing the sum of squared errors is equivalent to finding the most probable hypothesis given the observed 
@@ -390,9 +412,14 @@ follows:
 
 LMS weight update rule.
 
-For each training example (b, Kmin(b))
+For each training example :math:`(b, V_{train}(b))`
 
-Use the current weights to calculate ?(b) For each weight mi, update it as
+* Use the current weights to calculate :math:`\hat{V}(b)` 
+* For each weight :math:``w_i`, update it as
+
+.. math::
+
+   w_i \leftarrow  w_i + \ni (V_{train}(b) - \hat{V}(b)) x_i
 
 Here q is a small constant (e.g., 0.1) that moderates the size of the weight update. To get an intuitive understanding for why 
 this weight update rule works, notice that when the error (Vtrain(b)- c(b)) is zero, no weights are changed. When (V,,ain(b)- 
@@ -407,30 +434,26 @@ least squared error approximation to the &,in values (as discussed in Chapter 4)
 The final design of our checkers learning system can be naturally described by four distinct program modules that represent the 
 central components in many learning systems. These four modules, summarized in Figure 1.1, are as follows:
 
-0
-
-The Performance System is the module that must solve the given performance task, in this case playing checkers, by using the 
+* The Performance System is the module that must solve the given performance task, in this case playing checkers, by using the 
 learned target function(s). It takes an instance of a new problem (new game) as input and produces a trace of its solution 
 (game history) as output. In our case, the
-
 strategy used by the Performance System to select its next move at each step is determined by the learned p evaluation 
 function. Therefore, we expect its performance to improve as this evaluation function becomes increasingly accurate.
 
-e The Critic takes as input the history or trace of the game and produces as output a set of training examples of the target 
+* The Critic takes as input the history or trace of the game and produces as output a set of training examples of the target 
 function. As shown in the diagram, each training example in this case corresponds to some game state in the trace, along with 
 an estimate Vtrai,of the target function value for this example. In our example, the Critic corresponds to the training rule 
 given by Equation (1.1).
 
-The Generalizer takes as input the training examples and produces an output hypothesis that is its estimate of the target 
+* The Generalizer takes as input the training examples and produces an output hypothesis that is its estimate of the target 
 function. It generalizes from the specific training examples, hypothesizing a general function that covers these examples and 
 other cases beyond the training examples. In our example, the Generalizer corresponds to the LMS algorithm, and the output 
 hypothesis is the function f described by the learned weights wo,.. . , W6.
 
-The Experiment Generator takes as input the current hypothesis (currently learned function) and outputs a new problem (i.e., 
+* The Experiment Generator takes as input the current hypothesis (currently learned function) and outputs a new problem (i.e., 
 initial board state) for the Performance System to explore. Its role is to pick new practice problems that will maximize the 
 learning rate of the overall system. In our example, the Experiment Generator follows a very simple strategy: It always 
 proposes the same initial game board to begin a new game. More sophisticated strategies
-
 could involve creating board positions designed to explore particular regions of the state space.
 
 Together, the design choices we made for our checkers program produce specific instantiations for the performance system, 
