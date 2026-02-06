@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html lang="sp" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Pruebas Estadísticas &#8212; документација curso-R_publico 01</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=cb95fe6c"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Индекс" href="genindex.html" />
+    <link rel="search" title="Претрага" href="search.html" />
+    <link rel="next" title="REGRESIÓN LINEAL SIMPLE Y CORRELACIÓN" href="regresion_lineal_simple.html" />
+    <link rel="prev" title="Paginas Interesantes de Internet" href="paginas_interesantes.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="pruebas-estadisticas">
+<h1>Pruebas Estadísticas<a class="headerlink" href="#pruebas-estadisticas" title="Link to this heading">¶</a></h1>
+<section id="t-test">
+<h2>t.test<a class="headerlink" href="#t-test" title="Link to this heading">¶</a></h2>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">t.test</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">alternative</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;two.sided&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;less&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;greater&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">mu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">paired</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">var.equal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">conf.level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.95</span><span class="p">,</span><span class="w"> </span><span class="kc">...</span><span class="p">)</span>
+
+<span class="c1">## S3 method for class &#39;formula&#39;</span>
+<span class="nf">t.test</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">subset</span><span class="p">,</span><span class="w"> </span><span class="n">na.action</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">na.pass</span><span class="p">,</span><span class="w"> </span><span class="kc">...</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="wilcox-test">
+<h2>wilcox.test<a class="headerlink" href="#wilcox-test" title="Link to this heading">¶</a></h2>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">wilcox.test</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">,</span>
+<span class="w">         </span><span class="n">alternative</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;two.sided&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;less&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;greater&quot;</span><span class="p">),</span>
+<span class="w">         </span><span class="n">mu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">paired</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">exact</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">correct</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">         </span><span class="n">conf.int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">conf.level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.95</span><span class="p">,</span>
+<span class="w">         </span><span class="n">tol.root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1e-4</span><span class="p">,</span><span class="w"> </span><span class="n">digits.rank</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">Inf</span><span class="p">,</span><span class="w"> </span><span class="kc">...</span><span class="p">)</span>
+
+<span class="c1">## S3 method for class &#39;formula&#39;</span>
+<span class="nf">wilcox.test</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">subset</span><span class="p">,</span><span class="w"> </span><span class="n">na.action</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">na.pass</span><span class="p">,</span><span class="w"> </span><span class="kc">...</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="aov">
+<h2>aov<a class="headerlink" href="#aov" title="Link to this heading">¶</a></h2>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">aov</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">projections</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">qr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w"> </span><span class="n">contrasts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">,</span><span class="w"> </span><span class="kc">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Ejemplo 1.</strong></p>
+<p>Consideremos la muestra y chequemos las prueba estadística: <span class="math notranslate nohighlight">\(H_o: \mu = 58\)</span> con <span class="math notranslate nohighlight">\(H_a: \mu \neq 58\)</span></p>
+<p>58 51 58 56 61 58 47 44 57 64 48 44</p>
+<p>Utilizando la funcion <code class="docutils literal notranslate"><span class="pre">t.test()</span></code> obtenemos:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="w">     </span><span class="n">One</span><span class="w"> </span><span class="n">Sample</span><span class="w"> </span><span class="n">t</span><span class="o">-</span><span class="n">test</span>
+
+<span class="n">data</span><span class="o">:</span><span class="w">  </span><span class="n">muestra</span>
+<span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-2.1331</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">11</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">-</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05628</span>
+<span class="n">alternative</span><span class="w"> </span><span class="n">hypothesis</span><span class="o">:</span><span class="w"> </span><span class="n">true</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">equal</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="m">58</span>
+<span class="m">95</span><span class="w"> </span><span class="n">percent</span><span class="w"> </span><span class="n">confidence</span><span class="w"> </span><span class="n">interval</span><span class="o">:</span>
+<span class="w">   </span><span class="m">49.53399</span><span class="w"> </span><span class="m">58.13267</span>
+<span class="n">sample</span><span class="w"> </span><span class="n">estimates</span><span class="o">:</span>
+<span class="n">mean</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">x</span>
+<span class="m">53.83333</span>
+</pre></div>
+</div>
+<p>Ahora utilizando la teoría matemática de estadistica se tiene:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}\\t = \frac{\bar{x} - \mu_o}{\sigma_{\bar{x}}}\\\alpha = 0.05\\t=  -2.133065\\pvalue= 2*pt(t, 11) =  0.05627924\\q = qt(1-\alpha/2,11)\end{aligned}\end{align} \]</div>
+<p>Intervalo de confianza esta dado por:</p>
+<div class="math notranslate nohighlight">
+\[[ \bar{x} - q * \sigma_{\bar{x}}, \bar{x} + q * \sigma_{\bar{x}} ]\]</div>
+<p>[ 49.53399  ,  58.13267 ]</p>
+<p><strong>Ejemplo: Prueba de Hipotesis de la diferencia entre dos medias poblacionales:</strong></p>
+<p>Varianza poblacionales iguales:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}s_p^2 = \frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1 + n_2-2}\\t = \frac{(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)_0}{\sqrt{\frac{s_p^2}{n_1} + \frac{s_p^2}{n_2} }}\end{aligned}\end{align} \]</div>
+<p>el cual, cuando <span class="math notranslate nohighlight">\(H_o\)</span> es verdadero, es distribuido como una t-Student's con <span class="math notranslate nohighlight">\(n_1+n_2-2\)</span> grados de libertad.</p>
+<p><strong>Varianza Poblaciones No iguales</strong></p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}t' = \frac{(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)_0}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}\\t'_{1-(\alpha/2)} = \frac{w_1t_1 + w_2t_2}{w_1 + w_2}\end{aligned}\end{align} \]</div>
+<p>donde <span class="math notranslate nohighlight">\(w_1=s_1^2/n_1, w_2=s_2^2/n_2, t_1 = t_{1-(\alpha/2)}\)</span>, para <span class="math notranslate nohighlight">\(n_1-1\)</span> grados de libertad, y <span class="math notranslate nohighlight">\(t_2=t_{1-(\alpha/2)}\)</span>
+para <span class="math notranslate nohighlight">\(n_2-1\)</span> grados de libertad.</p>
+<p><strong>Ejemplo:</strong></p>
+<p>Consideremos las muestras: x=c(61, 57, 49, 55, 57, 58, 49, 52, 54, 59, 61, 61) y y=c(63, 53, 63, 71, 67, 55, 60, 58, 60, 58, 74, 64).
+Entonces aplica`ndo la funcion <code class="docutils literal notranslate"><span class="pre">t.test()</span></code> se obtiene:</p>
+<blockquote>
+<div><p>Welch Two Sample t-test</p>
+</div></blockquote>
+<dl>
+<dt>data:  x and y</dt><dd><p>t = -2.7745, df = 19.702, p-value = 0.01181</p>
+</dd>
+<dt>alternative hypothesis: true difference in means is not equal to 0</dt><dd><dl class="simple">
+<dt>95 percent confidence interval:</dt><dd><p>-10.661441  -1.505225</p>
+</dd>
+</dl>
+<p>sample estimates:
+mean of x mean of y</p>
+<blockquote>
+<div><p>56.08333  62.16667</p>
+</div></blockquote>
+</dd>
+</dl>
+<p>Aplicando la teoría matemática se obtiene:</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">curso-R_publico</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Тражи" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Навигација</h3>
+<p class="caption" role="heading"><span class="caption-text">Regresión Múltiple y Correlación</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="analisis_varianza.html">Análisis de Varianza</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clase_may0825.html">Clase de mayo 8 de 2025</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distribuciones_estandar.html">Distribuciones de Probabilidad Estandar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distribuciones-probabilidad.html">Distribuciones de Probabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="estadistica_no_par.html">Estadística NO Paramétrica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="factores.html">Factores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="funciones_paralelas.html">Funciones Paralelas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ggplot_doc02.html">Ejemplo-2 ggplot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="paginas_interesantes.html">Paginas Interesantes de Internet</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pruebas Estadísticas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regresion_lineal_simple.html">REGRESIÓN LINEAL SIMPLE Y CORRELACIÓN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regresion_multiple.html">REGRESIÓN MÚLTIPLE Y CORRELACIÓN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subset-transform-within.html">subset, transform y within</a></li>
+<li class="toctree-l1"><a class="reference internal" href="temario.html">TEMARIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Vectores-Logicos.html">Vectores lógicos</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="paginas_interesantes.html" title="претходна глава">Paginas Interesantes de Internet</a></li>
+      <li>Next: <a href="regresion_lineal_simple.html" title="наредна глава">REGRESIÓN LINEAL SIMPLE Y CORRELACIÓN</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Leopoldo.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/Pruebas_estadisticas.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

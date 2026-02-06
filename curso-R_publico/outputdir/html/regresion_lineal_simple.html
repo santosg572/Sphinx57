@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html lang="sp" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>REGRESIÓN LINEAL SIMPLE Y CORRELACIÓN &#8212; документација curso-R_publico 01</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=cb95fe6c"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Индекс" href="genindex.html" />
+    <link rel="search" title="Претрага" href="search.html" />
+    <link rel="next" title="REGRESIÓN MÚLTIPLE Y CORRELACIÓN" href="regresion_multiple.html" />
+    <link rel="prev" title="Pruebas Estadísticas" href="Pruebas_estadisticas.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="regresion-lineal-simple-y-correlacion">
+<h1>REGRESIÓN LINEAL SIMPLE Y CORRELACIÓN<a class="headerlink" href="#regresion-lineal-simple-y-correlacion" title="Link to this heading">¶</a></h1>
+<p>Supongamos que para varlor <span class="math notranslate nohighlight">\(x_i\)</span> se obtiene un valor <span class="math notranslate nohighlight">\(y_i\)</span> para i=1,...,n y tambien supongamos que:</p>
+<div class="math notranslate nohighlight">
+\[\mu_{y|x} = \beta_0 + \beta_1 x\]</div>
+<p>es decir la media de los valores de y para cada <span class="math notranslate nohighlight">\(x_i\)</span> esta en una linea recta.</p>
+<p>Luego el modelos se escribe como:</p>
+<div class="math notranslate nohighlight">
+\[y = \beta_0 + \beta_1 x + \varepsilon\]</div>
+<p>luego</p>
+<div class="math notranslate nohighlight">
+\[\varepsilon = y - (\beta_0 + \beta_1 x)
+= y - \mu_{y|x}\]</div>
+<img alt="fig_9_2_1.png" src="fig_9_2_1.png" />
+<p>EXAMPLE 9.3.1</p>
+<p>Després et al. (A-1) point out that the topography of adipose tissue (AT) is associated with metabolic
+complications considered as risk factors for cardiovascular disease. It is important, they state, to measure the
+amount of intraabdominal AT as part of the evaluation of the cardiovascular-disease risk of an individual.
+Computed tomography (CT), the only available technique that precisely and reliably measures the amount of deep
+abdominal AT, however, is costly and requires irradiation of the subject. In addition, the technique is not
+available to many physicians. Després and his colleagues conducted a study to develop equations to predict the
+amount of deep abdominal AT from simple anthropometric measurements. Their subjects were men between the ages of
+18 and 42 years who were free from metabolic disease that would require treatment.</p>
+<p>Among the measurements taken on each subject were deep abdominal AT obtained by CT and waist circumference as
+shown in Table 9.3.1. A question of interest is how well one can predict and estimate deep abdominal AT from
+knowledge of the waist circumference. This question is typical of those that can be answered by means of
+regression analysis. Since deep abdominal AT is the variable about which we wish to make predictions and
+estimations, it is the dependent variable. The variable waist measurement, knowledge of which will be used to make
+the predictions and estimations, is the independent variable.</p>
+<p>EVALUACIÓN DE LA ECUACIÓN DE REGRESIÓN</p>
+<p>EXAMPLE 9.4.1</p>
+<p>Refer to Example 9.3.1. We wish to know if we can conclude that, in the population from which our sample was
+drawn, X and Y are linearly related.</p>
+<img alt="tabla_9_4_1.png" src="tabla_9_4_1.png" />
+<p><strong>Estimación del coeficiente de determinación poblacional</strong></p>
+<img alt="equ_9_4_3.png" src="equ_9_4_3.png" />
+<p><strong>EL MODELO DE CORRELACIÓN</strong></p>
+<p><strong>EXAMPLE 9.7.1</strong></p>
+<p>The purpose of a study by Kwast-Rabben et al. (A-7) was to analyze somatosensory evoked potentials (SEPs) and
+their interrelations following stimulation of digits I, III, and V in the hand. The researchers wanted to
+establish reference criteria in a control population. Thus, healthy volunteers were recruited for the study. In
+the future this information could be quite valuable as SEPs may provide a method to demonstrate functional
+disturbances in patients with suspected cervical root lesion who have pain and sensory symptoms. In the study,
+stimulation below-pain-level intensity was applied to the ﬁngers.</p>
+<p>Recordings of spinal responses were made with electrodes ﬁxed by adhesive electrode cream to the subject’s skin.
+One of the relationships of interest was the correlation between a subject’s height (cm) and the peak spinal
+latency (Cv) of the SEP. The data for 155 measurements are shown in Table 9.7.1.</p>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">curso-R_publico</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Тражи" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Навигација</h3>
+<p class="caption" role="heading"><span class="caption-text">Regresión Múltiple y Correlación</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="analisis_varianza.html">Análisis de Varianza</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clase_may0825.html">Clase de mayo 8 de 2025</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distribuciones_estandar.html">Distribuciones de Probabilidad Estandar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distribuciones-probabilidad.html">Distribuciones de Probabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="estadistica_no_par.html">Estadística NO Paramétrica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="factores.html">Factores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="funciones_paralelas.html">Funciones Paralelas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ggplot_doc02.html">Ejemplo-2 ggplot2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="paginas_interesantes.html">Paginas Interesantes de Internet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pruebas_estadisticas.html">Pruebas Estadísticas</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">REGRESIÓN LINEAL SIMPLE Y CORRELACIÓN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regresion_multiple.html">REGRESIÓN MÚLTIPLE Y CORRELACIÓN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subset-transform-within.html">subset, transform y within</a></li>
+<li class="toctree-l1"><a class="reference internal" href="temario.html">TEMARIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Vectores-Logicos.html">Vectores lógicos</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="Pruebas_estadisticas.html" title="претходна глава">Pruebas Estadísticas</a></li>
+      <li>Next: <a href="regresion_multiple.html" title="наредна глава">REGRESIÓN MÚLTIPLE Y CORRELACIÓN</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Leopoldo.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/regresion_lineal_simple.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
