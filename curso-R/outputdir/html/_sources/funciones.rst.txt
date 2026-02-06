@@ -7,6 +7,27 @@ Estas funciones aceptan parametros de entrada para realizar sus calculos.
 
 **Ejemplos**
 
++-----------+--------------------------------------------------------------------+
+| Función   | Significado                                                        |
++===========+====================================================================+
+| *sum()*   | calcula la suma de los elementos de un vector o matriz             |
++-----------+--------------------------------------------------------------------+
+| *mean()*  | calcula la media aritmética de los elementos de un vector o matriz |
++-----------+--------------------------------------------------------------------+
+| *getwd()* | te dice en que folder estas guardando tus datos                    |                                                      
++-----------+--------------------------------------------------------------------+
+| *setwd()* | cambia tu folder de trabajo                                        |                                                      
++-----------+--------------------------------------------------------------------+
+| *max()*   | encuentra el máximo                                                |                                                      
++-----------+--------------------------------------------------------------------+
+| *min()*   | encuentra el mínimo                                                |                                                      
++-----------+--------------------------------------------------------------------+
+
+
+
+
+
+
 * sum() - calcula la suma de los elementos de un vector o matriz
 
 * mean() - calcula la media aritmética de los elementos de un vector o matriz
