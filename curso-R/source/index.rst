@@ -10,5 +10,6 @@ Introducción al Lenguaje de Programación "R"
    :maxdepth: 2
    :caption: Contents:
 
-   curso
+   Regresion_lineal
+   funciones_rep_sample
 

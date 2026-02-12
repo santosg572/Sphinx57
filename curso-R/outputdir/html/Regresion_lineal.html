@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Regresión Lineal &#8212; Introducción al Lenguaje de Programación &#34;R&#34; 01 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=82a30901"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Introducción al Lenguaje de Programación “R”" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="regresion-lineal">
+<h1>Regresión Lineal<a class="headerlink" href="#regresion-lineal" title="Link to this heading">¶</a></h1>
+<p>Consideremos dos variables <strong>X</strong> y <strong>Y</strong> que desan explicar una variable <strong>W</strong> por una ecuación lineal:</p>
+<div class="math notranslate nohighlight">
+\[W = a + b X + c Y\]</div>
+<p>Donde <span class="math notranslate nohighlight">\(a,b,c\)</span> son constantes que se desean calcular.</p>
+<p>Se tiene una muestra de <strong>X</strong>: <span class="math notranslate nohighlight">\(x_1, x_2,..., x_n\)</span> y una muestra de <strong>Y</strong>: <span class="math notranslate nohighlight">\(y_1, y_2, ..., y_n\)</span>
+y la medidads correspondientes de <strong>W</strong>: <span class="math notranslate nohighlight">\(w_1, w_2, ..., w_n\)</span></p>
+<p>Para encontrar los valores de <span class="math notranslate nohighlight">\(a,b,c\)</span> se pueden resolver por dos métodos.</p>
+<p><strong>Método 1</strong> Contruir la matriz A dada por:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{pmatrix}
+1 &amp; 1 &amp; ... &amp; 1 \\
+x_1 &amp; x_2  &amp; ... &amp; x_n \\
+y_1 &amp; y_2  &amp; ... &amp; y_n \\
+\end{pmatrix}   \begin{pmatrix}
+1 &amp; x_1 &amp; y_1  \\
+1 &amp; x_2 &amp; y_2 \\
+\vdots &amp; \vdots &amp; \vdots \\
+1 &amp; x_n &amp; y_n
+\end{pmatrix} = \begin{pmatrix}
+n &amp; \sum_{i=1}^n x_i &amp; \sum_{i=1}^n y_i  \\
+\sum_{i=1}^n x_i &amp; \sum_{i=1}^n x_i^2 &amp; \sum_{i=1}^n x_i y_i \\
+\sum_{i=1}^n y_i  &amp; \sum_{i=1}^n x_i y_i &amp; \sum_{i=1}^n y_i^2
+\end{pmatrix}\end{split}\]</div>
+<p>y contruyamos el vector columna B dado por:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{pmatrix}
+1 &amp; 1 &amp; ... &amp; 1 \\
+x_1 &amp; x_2  &amp; ... &amp; x_n \\
+y_1 &amp; y_2  &amp; ... &amp; y_n \\
+\end{pmatrix}   \begin{pmatrix}
+w_1   \\
+w_2  \\
+\vdots  \\
+w_n
+\end{pmatrix}= \begin{pmatrix}
+\sum_{i=1}^n w_i   \\
+\sum_{i=1}^n x_iw_i   \\
+\sum_{i=1}^n y_i w_i
+\end{pmatrix}\end{split}\]</div>
+<p>Entonces se tiene la ecuación:</p>
+<div class="math notranslate nohighlight">
+\[AX = B\]</div>
+<p>done</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}X =  \begin{pmatrix}
+a  \\
+b  \\
+c  \\
+\end{pmatrix}\end{split}\]</div>
+<p>Multipliquemos la ecuacion por la inversa de la matriz A:</p>
+<div class="math notranslate nohighlight">
+\[A^{-1}AX = A^{-1}B \Rightarrow X=A^{-1}B\]</div>
+<p>y con esto obtenemos el valor de las constantes.</p>
+<p><strong>Método 2</strong> Aplicar la función de R: <strong>lm()</strong></p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">W</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Y</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nf">summary</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Introducción al Lenguaje de Programación "R"</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Regresión Lineal</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Introducción al Lenguaje de Programación “R”</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Leopoldo.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/Regresion_lineal.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
