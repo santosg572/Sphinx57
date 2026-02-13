@@ -12,4 +12,5 @@ Introducción al Lenguaje de Programación "R"
 
    Regresion_lineal
    funciones_rep_sample
+   funciones_probabilidad
 

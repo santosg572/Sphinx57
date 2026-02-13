@@ -24,3 +24,6 @@ Ejemplos:
    sample(c(0,1), 100, replace = TRUE)
 
    sample(c('M', 'F'), 100, replace = TRUE)
+
+   paste(sample(c('A', 'B', 'C', 'D'), 100, replace = TRUE), collapse='')
+

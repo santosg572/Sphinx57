@@ -1,0 +1,1344 @@
+c01
+===
+
+After 60 years, Artiﬁcial Intelligence (AI) has now reached industry and the consciousness of the population. The impressive 
+successes and new AI methods are now so relevant that they should be taught even in a basic course. In about 30 new pages, I report 
+mainly on deep learning, a consistent further development of neural networks, which ﬁnally enables image processing systems to 
+recognize almost any object in pixel images. Among other beneﬁts, this lead to the ﬁrst computer program that could beat one of the 
+world’s best Go players.
+
+Después de 60 años, la Inteligencia Artificial (IA) ha llegado a la industria y a la conciencia de la población. Los impresionantes 
+éxitos y los nuevos métodos de IA son tan relevantes que deberían enseñarse incluso en un curso básico. En unas 30 páginas nuevas, 
+informo principalmente sobre el aprendizaje profundo, un desarrollo continuo de las redes neuronales que finalmente permite a los 
+sistemas de procesamiento de imágenes reconocer casi cualquier objeto en imágenes de píxeles. Entre otros beneficios, esto condujo al 
+primer programa informático capaz de vencer a uno de los mejores jugadores de Go del mundo.
+
+In the new section on Deep Learning, we must not leave out a short report about the fascinating new subarea of creativity. For the 
+ﬁrst time neural networks can creatively generate texts, music pieces, and even paintings in the style of the old masters. These 
+achievements are based on many years of research on neural networks and machine learning. Practical AI has developed into an 
+engineering discipline in which programs are developed in large industrial teams by experts from various specializations.
+
+En la nueva sección sobre aprendizaje profundo, no podemos dejar de lado un breve informe sobre la fascinante nueva subárea de la 
+creatividad. Por primera vez, las redes neuronales pueden generar textos, piezas musicales e incluso pinturas de forma creativa al 
+estilo de los grandes maestros. Estos logros se basan en muchos años de investigación sobre redes neuronales y aprendizaje automático. 
+La IA práctica se ha convertido en una disciplina de ingeniería en la que los programas se desarrollan en grandes equipos industriales 
+por expertos de diversas especialidades.
+
+Self-driving cars, service robots, and smart homes—which are all applications of AI—will greatly change our lives. However, in 
+addition to great rays of hope, there will be a dark side. Though we live in a time of rapid technological progress, we have long 
+since exceeded the limits of growth. We must therefore think about sustainability when implementing each new invention. In Chap. 1, I 
+would like to give you some food for thought about this topic.
+
+Los coches autónomos, los robots de servicio y los hogares inteligentes —todas aplicaciones de la IA— cambiarán nuestras vidas 
+enormemente. Sin embargo, además de grandes esperanzas, habrá un lado oscuro. Aunque vivimos en una época de rápido progreso 
+tecnológico, hace tiempo que hemos superado los límites del crecimiento. Por lo tanto, debemos pensar en la sostenibilidad al 
+implementar cada nuevo invento. En el capítulo 1, me gustaría ofrecerles algunas ideas para reflexionar sobre este tema.
+
+Other new additions to the book include a section on performance evaluation of clustering algorithms and two practical examples 
+explaining Bayes’ theorem and its relevance in everyday life. Finally, in a section on search algorithms, we analyze the cycle check, 
+explain route planning for car navigation systems, and brieﬂy introduce Monte Carlo Tree Search.
+
+Otras novedades del libro incluyen una sección sobre la evaluación del rendimiento de algoritmos de agrupamiento y dos ejemplos 
+prácticos que explican el teorema de Bayes y su relevancia en la vida cotidiana. Finalmente, en una sección sobre algoritmos de 
+búsqueda, analizamos la comprobación de ciclo, explicamos la planificación de rutas para sistemas de navegación de automóviles y 
+presentamos brevemente la búsqueda de árboles de Monte Carlo.
+
+All known errors have been corrected and updates have been made in many places.
+
+Se han corregido todos los errores conocidos y se han realizado actualizaciones en muchos lugares.
+
+I would like to sincerely thank the readers who have given me feedback and all those who contributed to this new edition through 
+proofreading and suggestions. I would especially like to thank Adrian Batzill for the route planning measurements
+and graphs, as well as Nate Black, Nicole Dathe, Markus Schneider, Robin Lehmann, Ankita Agrawal, Wenzel Massag, Lars Berge, Jonas 
+Lang, and Richard Cubek.
+
+Quisiera agradecer sinceramente a los lectores que me han enviado sus comentarios y a todos aquellos que contribuyeron a esta nueva 
+edición con correcciones y sugerencias. Agradezco especialmente a Adrian Batzill por las mediciones y gráficos de planificación de 
+rutas, así como a Nate Black, Nicole Dathe, Markus Schneider, Robin Lehmann, Ankita Agrawal, Wenzel Massag, Lars Berge, Jonas Lang y 
+Richard Cubek.
+
+
+**Preface to the First Edition**
+
+Artiﬁcial Intelligence (AI) has the deﬁnite goal of understanding intelligence and building intelligent systems. However, the 
+methods and formalisms used on the way to this goal are not ﬁrmly set, which has resulted in AI consisting of a multitude of 
+subdisciplines today. The difﬁculty in an introductory AI course lies in conveying as many branches as possible without losing too 
+much depth and precision.
+
+La Inteligencia Artificial (IA) tiene como objetivo definido comprender la inteligencia y construir sistemas inteligentes. Sin 
+embargo, los métodos y formalismos utilizados para alcanzar este objetivo no están firmemente definidos, lo que ha dado lugar a que la 
+IA actual se componga de una multitud de subdisciplinas. La dificultad en un curso introductorio de IA radica en abarcar el mayor 
+número posible de ramas sin perder demasiada profundidad y precisión.
+
+Russell and Norvig’s book [RN10] is more or less the standard introduction into AI. However, since this book has 1,152 pages, and 
+since it is too extensive and costly for most students, the requirements for writing this book were clear: it should be an accessible 
+introduction to modern AI for self-study or as the foundation of a 4-hour lecture, with at most 300 pages. The result is in front of 
+you.
+
+El libro de Russell y Norvig [RN10] es prácticamente la introducción estándar a la IA. Sin embargo, dado que tiene 1152 páginas y es 
+demasiado extenso y costoso para la mayoría de los estudiantes, los requisitos para escribirlo eran claros: debía ser una introducción 
+accesible a la IA moderna para autoaprendizaje o como base para una clase de 4 horas, con un máximo de 300 páginas. El resultado está 
+a la vista.
+
+In the space of 300 pages, a ﬁeld as extensive as AI cannot be fully covered. To avoid turning the book into a table of contents, I 
+have attempted to go into some depth and to introduce concrete algorithms and applications in each of the following branches: agents, 
+logic, search, reasoning with uncertainty, machine learning, and neural networks.
+
+En 300 páginas, un campo tan extenso como la IA no puede abarcarse por completo. Para evitar convertir el libro en un índice, he 
+intentado profundizar en él e introducir algoritmos y aplicaciones concretos en cada una de las siguientes ramas: agentes, lógica, 
+búsqueda, razonamiento con incertidumbre, aprendizaje automático y redes neuronales.
+
+
+The ﬁelds of image processing, fuzzy logic, and natural language processing are not covered in detail. The ﬁeld of image processing, 
+which is important for all of computer science, is a stand-alone discipline with very good textbooks, such as [GW08]. Natural language 
+processing has a similar status. In recognizing and generating text and spoken language, methods from logic, probabilistic reasoning, 
+and neural networks are applied. In this sense this ﬁeld is part of AI. On the other hand, computer linguistics is its own extensive 
+branch of computer science and has much in common with formal languages. In this book we will point to such appropriate systems in 
+several places, but not give a systematic introduction. For a ﬁrst introduction in this ﬁeld, we refer to Chaps. 22 and 23 in 
+[RN10]. Fuzzy logic, or fuzzy set theory, has developed into a branch of control theory due to its primary application in automation 
+technology and is covered in the corresponding books and lectures. Therefore we will forego an introduction here.
+
+Los campos de procesamiento de imágenes, lógica difusa y procesamiento del lenguaje natural no se tratan en detalle. El campo del 
+procesamiento de imágenes, importante para toda la informática, es una disciplina independiente con excelentes libros de texto, como 
+[GW08]. El procesamiento del lenguaje natural tiene un estatus similar. Para reconocer y generar texto y lenguaje hablado, se aplican 
+métodos de la lógica, el razonamiento probabilístico y las redes neuronales. En este sentido, este campo forma parte de la IA. Por 
+otro lado, la lingüística computacional es una rama extensa de la informática y tiene mucho en común con los lenguajes formales. En 
+este libro, señalaremos dichos sistemas apropiados en varios lugares, pero no ofreceremos una introducción sistemática. Para una 
+primera introducción en este campo, nos remitimos a los capítulos 22 y 23 en [RN10]. La lógica difusa, o teoría de conjuntos difusos, 
+se ha convertido en una rama de la teoría de control debido a su aplicación principal en la tecnología de automatización y se trata en 
+los libros y conferencias correspondientes. Por lo tanto, prescindiremos de una introducción aquí.
+
+The dependencies between chapters of the book are coarsely sketched in the graph shown below. To keep it simple, Chap. 1, with the 
+fundamental introduction for all further chapters, is left out. As an example, the thicker arrow from
+2 to 3 means that propositional logic is a prerequisite for understanding predicate logic. The thin arrow from 9 to 10 means that 
+neural networks are helpful for understanding reinforcement learning, but not absolutely necessary. Thin backward arrows should make 
+clear that later chapters can give more depth of understanding to topics which have already been learned.
+
+Las dependencias entre los capítulos del libro se esquematizan a grandes rasgos en el gráfico que se muestra a continuación. Para 
+simplificar, se omite el capítulo 1, con la introducción fundamental para todos los capítulos posteriores. Por ejemplo, la flecha más 
+gruesa del 2 al 3 indica que la lógica proposicional es un prerrequisito para comprender la lógica de predicados. La flecha delgada 
+del 9 al 10 indica que las redes neuronales son útiles para comprender el aprendizaje por refuerzo, pero no son absolutamente 
+necesarias. Las flechas delgadas hacia atrás deben aclarar que los capítulos posteriores pueden profundizar la comprensión de los 
+temas ya estudiados.
+
+
+This book is applicable to students of computer science and other technical natural sciences and, for the most part, requires high 
+school level knowledge of mathematics. In several places, knowledge from linear algebra and multidimensional analysis is needed. For a 
+deeper understanding of the contents, actively working on the exercises is indispensable. This means that the solutions should only be 
+consulted after intensive work with each problem, and only to check one’s solutions, true to Leonardo da Vinci’s motto “Study without 
+devotion damages the brain”. Somewhat more difﬁcult problems are marked with ✻, and especially difﬁcult ones with ✻✻. Problems 
+which require programming or special computer science knowledge are labeled with ➝.
+
+Este libro es aplicable a estudiantes de informática y otras ciencias naturales técnicas y, en su mayoría, requiere conocimientos de 
+matemáticas de nivel secundario. En varios casos, se requieren conocimientos de álgebra lineal y análisis multidimensional. Para una 
+comprensión más profunda del contenido, es indispensable trabajar activamente en los ejercicios. Esto significa que las soluciones 
+solo deben consultarse después de un trabajo intensivo con cada problema, y ​​solo para comprobar las propias soluciones, fiel al lema 
+de Leonardo da Vinci: «El estudio sin dedicación daña el cerebro». Los problemas algo más difíciles están marcados con ✻, y 
+especialmente los difíciles con ✻✻. Los problemas que requieren programación o conocimientos especializados de informática están 
+marcados con ➝.
+
+
+On the book’s website at http://www.hs-weingarten.de/~ertel/aibook digital materials for the exercises such as training data for 
+learning algorithms, a page with references to AI programs mentioned in the book, a list of links to the covered topics, a clickable 
+list of the bibliography, an errata list, and presentation slides for lecturers can be found. I ask the reader to please send 
+suggestions, criticisms, and tips about errors directly to ertel@hs-weingarten.de.
+
+En el sitio web del libro, http://www.hs-weingarten.de/~ertel/aibook, se pueden encontrar materiales digitales para los ejercicios, 
+como datos de entrenamiento para algoritmos de aprendizaje, una página con referencias a los programas de IA mencionados en el libro, 
+una lista de enlaces a los temas tratados, una lista interactiva de la bibliografía, una lista de erratas y diapositivas de 
+presentación para los profesores. Les ruego a los lectores que envíen sus sugerencias, críticas y consejos sobre errores directamente 
+a ertel@hs-weingarten.de.
+
+This book is an updated translation of my German book “Grundkurs Künstliche Intelligenz” published by Vieweg Verlag. My special thanks 
+go to the translator Nathan Black who in an excellent trans-Atlantic cooperation between Germany and California via SVN, Skype, and 
+Email produced this text. I am grateful to Franz Kurfeß, who introduced me to Nathan; to MatthewWight for proofreading the translated 
+book and to Simon Rees from Springer Verlag for his patience.
+
+Este libro es una traducción actualizada de mi libro en alemán «Grundkurs Künstliche Intelligenz», publicado por Vieweg Verlag. 
+Agradezco especialmente al traductor Nathan Black, quien, en una excelente colaboración transatlántica entre Alemania y California a 
+través de SVN, Skype y correo electrónico, elaboró ​​este texto. Agradezco a Franz Kurfeß, quien me presentó a Nathan; a Matthew Wight 
+por la corrección del libro traducido y a Simon Rees de Springer Verlag por su paciencia.
+
+
+I would like to thank my wife Evelyn for her support and patience during this time-consuming project. Special thanks go to Wolfgang 
+Bibel and Chris Lobenschuss, who carefully corrected the German manuscript. Their suggestions and discussions lead to many 
+improvements and additions. For reading the corrections and other valuable services, I would like to thank Richard Cubek, Celal Döven, 
+Joachim Feßler, Nico Hochgeschwender, Paul Kirner, Wilfried Meister, Norbert Perk, Peter Radtke, Markus Schneider, Manfred Schramm, 
+Uli Stärk, Michel Tokic, Arne Usadel, and all interested students. My thanks also go out to Florian Mast for the priceless cartoons 
+and very effective collaboration.
+
+Quisiera agradecer a mi esposa Evelyn por su apoyo y paciencia durante este proyecto que nos llevó mucho tiempo. Un agradecimiento 
+especial a Wolfgang Bibel y Chris Lobenschuss, quienes corrigieron cuidadosamente el manuscrito alemán. Sus sugerencias y debates 
+dieron lugar a numerosas mejoras y adiciones. Por la lectura de las correcciones y otros valiosos servicios, quisiera agradecer a 
+Richard Cubek, Celal Döven, Joachim Feßler, Nico Hochgeschwender, Paul Kirner, Wilfried Meister, Norbert Perk, Peter Radtke, Markus 
+Schneider, Manfred Schramm, Uli Stärk, Michel Tokic, Arne Usadel y a todos los estudiantes interesados. También agradezco a Florian 
+Mast por las invaluables caricaturas y su eficaz colaboración.
+
+ I hope that during your studies this book will help you share my 
+fascination with Artiﬁcial Intelligence.
+
+Espero que durante sus estudios este libro le ayude a compartir mi fascinación por la Inteligencia Artificial.
+
+**1. Introduction**
+
+**1.1 What is Artiﬁcial Intelligence**
+
+The term artiﬁcial intelligence stirs emotions. For one thing there is our fascination with intelligence, which seemingly imparts to 
+us humans a special place among life forms. Questions arise such as “What is intelligence?”, “How can one measure intelligence?”, or 
+“How does the brain work?”. All these questions are meaningful when trying to understand artiﬁcial intelligence. However, the central 
+question for the engineer, especially for the computer scientist, is the question of the intelligent machine that behaves like a 
+person, showing intelligent behavior.
+
+El término inteligencia artificial despierta emociones. Por un lado, está nuestra fascinación por la inteligencia, que aparentemente 
+nos otorga a los humanos un lugar especial entre las formas de vida. Surgen preguntas como "¿Qué es la inteligencia?", "¿Cómo se puede 
+medir la inteligencia?" o "¿Cómo funciona el cerebro?". Todas estas preguntas son significativas al intentar comprender la 
+inteligencia artificial. Sin embargo, la pregunta central para el ingeniero, especialmente para el informático, es la cuestión de la 
+máquina inteligente que se comporta como una persona, mostrando un comportamiento inteligente.
+
+
+The attribute artiﬁcial might awaken much different associations. It brings up fears of intelligent cyborgs. It recalls images from 
+science ﬁction novels. It raises the question of whether our highest good, the soul, is something we should try to understand, model, 
+or even reconstruct.
+
+El atributo artificial podría despertar asociaciones muy diversas. Evoca temores a los cíborgs inteligentes. Recuerda imágenes de 
+novelas de ciencia ficción. Plantea la pregunta de si nuestro bien supremo, el alma, es algo que deberíamos intentar comprender, 
+modelar o incluso reconstruir.
+
+With such different offhand interpretations, it becomes difﬁcult to deﬁne the term artiﬁcial intelligence or AI simply and 
+robustly. Nevertheless I would like to try, using examples and historical deﬁnitions, to characterize the ﬁeld of AI. In 1955, John 
+McCarthy, one of the pioneers of AI, was the ﬁrst to deﬁne the term artiﬁcial intelligence, roughly as follows:
+
+Con tantas interpretaciones improvisadas, resulta difícil definir el término inteligencia artificial o IA de forma sencilla y 
+contundente. Sin embargo, me gustaría intentar, utilizando ejemplos y definiciones históricas, caracterizar el campo de la IA. En 
+1955, John McCarthy, uno de los pioneros de la IA, fue el primero en definir el término inteligencia artificial, aproximadamente de la 
+siguiente manera:
+
+The goal of AI is to develop machines that behave as though they were intelligent.
+
+El objetivo de la IA es desarrollar máquinas que se comporten como si fueran inteligentes.
+
+To test this deﬁnition, the reader might imagine the following scenario. Fifteen or 
+sosmallroboticvehiclesaremovingonanenclosedfourbyfourmetersquaresurface. One can observe various behavior patterns. Some vehicles form 
+small groups with relatively little movement. Others move peacefully through the space and gracefully avoid any collision. Still 
+others appear to follow a leader. Aggressive behaviors are also observable. Is what we are seeing intelligent behavior?
+
+Para comprobar esta definición, el lector podría imaginar el siguiente escenario. Unos quince vehículos robóticos pequeños se 
+desplazan sobre una superficie cuadrada cerrada de cuatro por cuatro metros. Se pueden observar diversos patrones de comportamiento. 
+Algunos vehículos forman grupos pequeños con relativamente poco movimiento. Otros se mueven pacíficamente por el espacio y evitan con 
+gracia cualquier colisión. Otros parecen seguir a un líder. También se observan comportamientos agresivos. ¿Es lo que observamos un 
+comportamiento inteligente?
+
+According to McCarthy’s deﬁnition, the aforementioned robots can be described as intelligent. The psychologist Valentin Braitenber 
+has shown that this seeminglycomplexbehaviorcanbeproducedbyverysimpleelectricalcircuits[Bra84]. So-called Braitenberg vehicles have 
+two wheels, each of which is driven by an independent electric motor. The speed of each motor is inﬂuenced by a light sensor on the 
+front of the vehicle as shown in Fig. 1.1. The more light that hits the sensor, the faster the motor runs. Vehicle 1 in the left part 
+of the ﬁgure, according to its conﬁguration, moves away from a point light source. Vehicle 2 on the other hand moves toward the 
+light source. Further small modiﬁcations can create other behavior patterns, such that with these very simple vehicles we can realize 
+the impressive behavior described above.
+
+Según la definición de McCarthy, los robots mencionados pueden describirse como inteligentes. El psicólogo Valentin Braitenber ha 
+demostrado que este comportamiento aparentemente complejo puede ser producido por circuitos eléctricos muy simples [Bra84]. Los 
+llamados vehículos Braitenberg tienen dos ruedas, cada una de las cuales es impulsada por un motor eléctrico independiente. La 
+velocidad de cada motor está influenciada por un sensor de luz en la parte delantera del vehículo, como se muestra en la Fig. 1.1. 
+Cuanta más luz llega al sensor, más rápido funciona el motor. El vehículo 1 en la parte izquierda de la figura, según su 
+configuración, se aleja de una fuente de luz puntual. El vehículo 2, por otro lado, se acerca a la fuente de luz. Pequeñas 
+modificaciones adicionales pueden crear otros patrones de comportamiento, de modo que con estos vehículos muy simples podemos lograr 
+el impresionante comportamiento descrito anteriormente.
+
+Clearly the above deﬁnition is insufﬁcient because AI has the goal of solving difﬁcult practical problems which are surely too 
+demanding for the Braitenberg vehicle. In the Encyclopedia Britannica [Bri91] one ﬁnds a Deﬁnition that goes like:
+
+Es evidente que la definición anterior es insuficiente, ya que la IA tiene como objetivo resolver problemas prácticos complejos que, 
+sin duda, son demasiado exigentes para el sistema Braitenberg. En la Enciclopedia Británica [Bri91] se encuentra una definición que 
+dice así:
+
+AI is the ability of digital computers or computer controlled robots to solve problems that are normally associated with the higher 
+intellectual processing capabilities of humans …
+
+La IA es la capacidad de las computadoras digitales o de los robots controlados por computadora para resolver problemas que 
+normalmente están asociados con las capacidades superiores de procesamiento intelectual de los humanos…
+
+But this deﬁnition also has weaknesses. It would admit, for example, that a computer with large memory that can save a long text and 
+retrieve it on demand displays intelligent capabilities, for memorization of long texts can certainly be considered a higher 
+intellectual processing capability of humans, as can, for example, the quick multiplication of two 20-digit numbers. According to this 
+deﬁnition, then, every computer is an AI system. This dilemma is solved elegantly by the following deﬁnition by Elaine Rich [Ric83]:
+
+Pero esta definición también presenta debilidades. Admitiría, por ejemplo, que una computadora con gran memoria, capaz de guardar un 
+texto largo y recuperarlo cuando se necesite, muestra capacidades inteligentes, ya que la memorización de textos largos puede 
+considerarse, sin duda, una capacidad de procesamiento intelectual superior en los humanos, al igual que, por ejemplo, la 
+multiplicación rápida de dos números de 20 dígitos. Según esta definición, toda computadora es un sistema de IA. Este dilema se 
+resuelve elegantemente con la siguiente definición de Elaine Rich [Ric83]:
+
+Artiﬁcial Intelligence is the study of how to make computers do things at which, at the moment, people are better.
+
+La inteligencia artificial es el estudio de cómo lograr que las computadoras hagan cosas en las que, actualmente, la gente es mejor.
+
+Rich, tersely and concisely, characterizes what AI researchers have been doing for the last 50 years. Even in the year 2050, this 
+deﬁnition will be up to date.
+
+De forma concisa, rica y concisa, describe lo que los investigadores de IA han estado haciendo durante los últimos 50 años. Incluso en 
+el año 2050, esta definición seguirá vigente.
+
+Tasks such as the execution of many computations in a short amount of time are the strong points of digital computers. In this regard 
+they outperform humans by many multiples. In many other areas, however, humans are far superior to machines. For instance, a person 
+entering an unfamiliar room will recognize the surroundings within fractions of a second and, if necessary, just as swiftly make 
+decisions and plan actions. To date, this task is too demanding for autonomous 1 robots. According to Rich’s deﬁnition, this is 
+therefore a task for AI. In fact, research on autonomous robots is an important, current theme in AI. Construction of chess computers, 
+on the other hand, has lost relevance because they already play at or above the level of grandmasters.
+
+Tareas como la ejecución de numerosos cálculos en poco tiempo son los puntos fuertes de las computadoras digitales. En este sentido, 
+superan a los humanos con creces. Sin embargo, en muchas otras áreas, los humanos son muy superiores a las máquinas. Por ejemplo, una 
+persona que entra en una habitación desconocida reconocerá el entorno en fracciones de segundo y, de ser necesario, tomará decisiones 
+y planificará acciones con la misma rapidez. Hasta la fecha, esta tarea es demasiado exigente para los robots autónomos. Según la 
+definición de Rich, esta es, por lo tanto, una tarea para la IA. De hecho, la investigación sobre robots autónomos es un tema 
+importante y actual en IA. La construcción de computadoras de ajedrez, por otro lado, ha perdido relevancia porque ya juegan al nivel 
+de los grandes maestros o por encima de ellos.
+
+1 An autonomous robot works independently, without manual support, in particular without remote control.
+
+It would be dangerous, however, to conclude from Rich’s deﬁnition that AI is only concerned with the pragmatic implementation of 
+intelligent processes. Intelligent systems, in the sense of Rich’s deﬁnition, cannot be built without a deep understanding of human 
+reasoning and intelligent action in general, because of which neuroscience (see Sect. 1.1.1) is of great importance to AI. This also 
+shows that the other cited deﬁnitions reﬂect important aspects of AI.
+
+Sin embargo, sería arriesgado concluir, a partir de la definición de Rich, que la IA solo se ocupa de la implementación pragmática de 
+procesos inteligentes. Los sistemas inteligentes, en el sentido de la definición de Rich, no pueden construirse sin una comprensión 
+profunda del razonamiento humano y la acción inteligente en general, por lo que la neurociencia (véase la sección 1.1.1) es de gran 
+importancia para la IA. Esto también demuestra que las demás definiciones citadas reflejan aspectos importantes de la IA.
+
+A particular strength of human intelligence is adaptivity. We are capable of adjusting to various environmental conditions and change 
+our behavior accordingly through learning. Precisely because our learning ability is so vastly superior to that of computers, machine 
+learning is, according to Rich’s deﬁnition, a central subﬁeld of AI.
+
+Una fortaleza particular de la inteligencia humana es la adaptabilidad. Somos capaces de adaptarnos a diversas condiciones ambientales 
+y modificar nuestro comportamiento en consecuencia mediante el aprendizaje. Precisamente porque nuestra capacidad de aprendizaje es 
+tan superior a la de las computadoras, el aprendizaje automático es, según la definición de Rich, un subcampo central de la IA.
+
+**1.1.1 Brain Science and Problem-Solving**
+
+Through research of intelligent systems we can try to understand how the human brain works and then model or simulate it on the 
+computer. Many ideas and principles in the ﬁeld of neural networks (see Chap. 9) stem from brain science with the related ﬁeld of 
+neuroscience.
+
+Mediante la investigación de sistemas inteligentes, podemos intentar comprender el funcionamiento del cerebro humano y luego modelarlo 
+o simularlo en la computadora. Muchas ideas y principios en el campo de las redes neuronales (véase el capítulo 9) se derivan de la 
+neurociencia, un campo relacionado con la neurociencia.
+
+A very different approach results from taking a goal-oriented line of action,starting from a problem and trying to ﬁnd the most 
+optimal 
+solution. How humans solve the problem is treated as unimportant here. The method, in this approach, is secondary. First and foremost 
+is the optimal intelligent solution to the problem. Rather than 
+employing a ﬁxe dmetho d(suc has,fo rexample ,predicat elogic )A Ihas as its constant goal the creation of intelligent agents for as 
+many 
+different tasks as possible. Because the tasks may be very different, it is unsurprising that the methods currently employed in AI are 
+often also quite different. Similar to medicine, which encompasses many different, often life-saving diagnostic and therapy 
+procedures, AI also offers a broad palette of effective solutions for widely varying applications. For mental inspiration, consider 
+Fig. 1.2. Just as in medicine, there is no universal method for all application areas of AI, rather a great number of possible 
+solutions for the great number of various everyday problems, big and small.
+
+Un enfoque muy diferente resulta de adoptar una línea de acción orientada a objetivos, comenzando por un problema y tratando de 
+encontrar la solución más óptima. Cómo los humanos resuelven el problema se trata como algo sin importancia aquí. El método, en este 
+enfoque, es secundario. Lo primero y más importante es la solución inteligente óptima al problema. En lugar de emplear un método fijo 
+(tal como tiene, por ejemplo, predicado elógica), tiene como objetivo constante la creación de agentes inteligentes para tantas tareas 
+diferentes como sea posible. Debido a que las tareas pueden ser muy diferentes, no es sorprendente que los métodos que se emplean 
+actualmente en IA a menudo también lo sean. Al igual que la medicina, que abarca muchos procedimientos de diagnóstico y terapia 
+diferentes, a menudo vitales, la IA también ofrece una amplia gama de soluciones efectivas para aplicaciones muy variadas. Para 
+inspiración mental, considere la Fig. 1.2. Al igual que en la medicina, no existe un método universal para todas las áreas de 
+aplicación de la IA, sino una gran cantidad de posibles soluciones para la gran cantidad de diversos problemas cotidianos, grandes y 
+pequeños.
+
+Cognitive science is devoted to research into human thinking at a somewhat higher level. Similarly to brain science, this ﬁeld 
+furnishes practical AI with many important ideas. On the other hand, algorithms and implementations lead to further important 
+conclusions about how human reasoning functions. Thus these three ﬁelds beneﬁt from a fruitful interdisciplinary exchange. The 
+subject of this book, however, is primarily problem-oriented AI as a subdiscipline of computer science.
+
+La ciencia cognitiva se dedica a la investigación del pensamiento humano a un nivel superior. Al igual que la neurociencia, este campo 
+proporciona a la IA práctica numerosas ideas importantes. Por otro lado, los algoritmos y las implementaciones conducen a conclusiones 
+importantes sobre el funcionamiento del razonamiento humano. Por lo tanto, estos tres campos se benefician de un fructífero 
+intercambio interdisciplinario. Sin embargo, el tema de este libro es principalmente la IA orientada a problemas como subdisciplina de 
+la informática.
+
+There are many interesting philosophical questions surrounding intelligence and artiﬁcial intelligence. We humans have consciousness; 
+that is, we can think about ourselves and even ponder that we are able to think about ourselves. How does consciousness come to be? 
+Many philosophers and neurologists now believe that the mind and consciousness are linked with matter, that is, with the brain. The 
+question of whether machines could one day have a mind or consciousness could at some point in the future become relevant. The 
+mind-body 
+problem in particular concerns whether or not the mind is bound to the body. We will not discuss these questions here. The interested 
+reader may consult [Spe98,Spe97] and is invited, in the course of AI technology studies, to form a personal opinion about these 
+questions.
+
+Existen muchas cuestiones filosóficas interesantes en torno a la inteligencia y la inteligencia artificial. Los humanos tenemos 
+consciencia; es decir, podemos pensar sobre nosotros mismos e incluso considerar que somos capaces de pensar sobre nosotros mismos. 
+¿Cómo surge la consciencia? Muchos filósofos y neurólogos creen actualmente que la mente y la consciencia están vinculadas con la 
+materia, es decir, con el cerebro. La cuestión de si las máquinas podrían algún día tener mente o consciencia podría cobrar relevancia 
+en el futuro. El problema mente-cuerpo, en particular, se refiere a si la mente está o no ligada al cuerpo. No abordaremos estas 
+cuestiones aquí. El lector interesado puede consultar [Spe98, Spe97] y está invitado, en el curso de los estudios sobre tecnología de 
+IA, a formarse una opinión personal sobre estas cuestiones.
+
+**1.1.2 The Turing Test and Chatterbots**
+
+Alan Turing made a name for himself as an early pioneer of AI with his deﬁnition of an intelligent machine, in which the machine in 
+question must pass the following test. The test person Alice sits in a locked room with two computer terminals. One terminal is 
+connected to a machine, the other with a non-malicious person Bob. Alice can type questions into both terminals. She is given the task 
+of deciding, after ﬁve minutes, which terminal belongs to the machine. The machine passes the test if it can trick Alice at least 30% 
+of the time [Tur50]. The large language models described in Sect. 9.8 that work with deep learning, such as ChatGPT, pass this simple 
+original form of the test with ease.
+
+Alan Turing se hizo un nombre como pionero de la IA con su definición de una máquina inteligente, en la que la máquina en cuestión 
+debe pasar la siguiente prueba. La persona de prueba, Alice, se sienta en una habitación cerrada con dos terminales de computadora. 
+Una terminal está conectada a una máquina, la otra con una persona no maliciosa, Bob. Alice puede escribir preguntas en ambas 
+terminales. Se le da la tarea de decidir, después de cinco minutos, qué terminal pertenece a la máquina. La máquina pasa la prueba si 
+puede engañar a Alice al menos el 30% del tiempo [Tur50]. Los grandes modelos de lenguaje descritos en la Secc. 9.8 que funcionan con 
+aprendizaje profundo, como ChatGPT, pasan esta forma original y simple de la prueba con facilidad.
+
+While the test is very interesting philosophically, for practical AI, which deals with problem-solving, it is not a very relevant 
+test. The reasons for this are similar to those mentioned above related to Braitenberg vehicles (see Exercise 1).
+
+Si bien la prueba es muy interesante filosóficamente, para la IA práctica, que se ocupa de la resolución de problemas, no es una 
+prueba muy relevante. Las razones son similares a las mencionadas anteriormente en relación con los vehículos de Braitenberg (véase el 
+Ejercicio 1).
+
+The AI pioneer and social critic Joseph Weizenbaum developed a program named Eliza, which is meant to answer a test subject’s 
+questions like a human psychologist [Wei66]. He was in fact able to demonstrate success in many cases. Supposedly his secretary often 
+had long discussions with the program. Today in the Internet there are many so-called chatterbots, some of whose initial responses are 
+quite impressive. After a certain amount of time, however, their artiﬁcial nature becomes apparent. Some of these programs are 
+actually capable of learning, while others possess extraordinary knowledge of various subjects, for example geography or software 
+development. There are already commercial applications for chatterbots in online customer support and there may be others in the ﬁeld 
+of e-learning. It is conceivable that the learner and the e-learning system could communicate through a chatterbot. The reader may 
+wish to compare several chatterbots and evaluate their intelligence in Exercise 1.1.
+
+El pionero de la IA y crítico social Joseph Weizenbaum desarrolló un programa llamado Eliza, diseñado para responder a las preguntas 
+de un sujeto de prueba como un psicólogo humano [Wei66]. De hecho, logró demostrar su éxito en muchos casos. Supuestamente, su 
+secretaria solía mantener largas conversaciones con el programa. Hoy en día, en internet existen muchos de los llamados chatterbots, 
+algunas de cuyas respuestas iniciales son bastante impresionantes. Sin embargo, después de cierto tiempo, su naturaleza artificial se 
+hace evidente. Algunos de estos programas son realmente capaces de aprender, mientras que otros poseen conocimientos extraordinarios 
+en diversas materias, por ejemplo, geografía o desarrollo de software. Ya existen aplicaciones comerciales para chatterbots en la 
+atención al cliente en línea y podría haber otras en el ámbito del aprendizaje electrónico. Es concebible que el alumno y el sistema 
+de aprendizaje electrónico puedan comunicarse a través de un chatterbot. El lector puede comparar varios chatterbots y evaluar su 
+inteligencia en el Ejercicio 1.1.
+
+
+**1.2 The History of AI**
+
+AI draws upon many past scientiﬁc achievements which are not mentioned here, for AI as a science in its own right has only existed 
+since the middle of the twentieth century. Table 1.1, with the most important AI milestones, and a graphical representation of the 
+main movements of AI in Fig. 1.3 complement the following text.
+
+La IA se basa en numerosos logros científicos pasados ​​que no se mencionan aquí, ya que la IA, como ciencia propia, solo existe desde 
+mediados del siglo XX. La Tabla 1.1, con los hitos más importantes de la IA, y una representación gráfica de sus principales avances 
+en la Fig. 1.3 complementan el texto siguiente.
+
+**1.2.1 The First Beginnings**
+
+In the 1930s Kurt Gödel, Alonso Church, and Alan Turing laid important foundations for logic and theoretical computer science. Of 
+particular interest for AI are Gödel’s theorems. The completeness theorem states that ﬁrst-order predicate logic is complete. This 
+means that every true statement that can be formulated in predicate logic is provable using the rules of a formal calculus. On this 
+basis, automatic theorem provers could later be constructed as implementations of formal calculi. With the incompleteness theorem, 
+Gödel showed that in higher-order logics there exist true statements that are unprovable. 2 With this he uncovered painful limits of 
+formal systems.
+
+En la década de 1930, Kurt Gödel, Alonso Church y Alan Turing sentaron bases importantes para la lógica y la informática teórica. De 
+particular interés para la IA son los teoremas de Gödel. El teorema de completitud establece que la lógica de predicados de primer 
+orden es completa. Esto significa que todo enunciado verdadero que pueda formularse en la lógica de predicados es demostrable mediante 
+las reglas de un cálculo formal. Sobre esta base, los demostradores automáticos de teoremas podrían construirse posteriormente como 
+implementaciones de cálculos formales. Con el teorema de incompletitud, Gödel demostró que en las lógicas de orden superior existen 
+enunciados verdaderos que son indemostrables. 2 Con esto, descubrió los dolorosos límites de los sistemas formales.
+
+
+Alan Turing’s proof of the undecidability of the halting problem also falls into this time period. He showed that there is no program 
+that can decide whether a given arbitrary program (and its respective input) will run in an inﬁnite loop. With this Turing also 
+identiﬁed a limit for intelligent programs. It follows, for example, that there will never be a universal program veriﬁcation 
+system.3 
+
+La prueba de Alan Turing sobre la indecidibilidad del problema de la detención también se enmarca en este período. Demostró que ningún 
+programa puede decidir si un programa arbitrario dado (y su respectiva entrada) se ejecutará en un bucle infinito. Con esto, Turing 
+también identificó un límite para los programas inteligentes. De ello se deduce, por ejemplo, que nunca habrá un sistema universal de 
+verificación de programas.
+
+
+2 Higher-order logics are extensions of predicate logic, in which not only variables, but also function symbols or predicates can 
+appear as terms in a quantiﬁcation. Indeed, Gödel only showed that any system that is based on predicate logic and can formulate 
+Peano arithmetic is incomplete.
+
+3 This statement applies to “total correctness”, which implies a proof of correct execution as well as a proof of termination for 
+every valid input.
+
+In the 1940s, based on results from neuroscience, McCulloch, Pitts, and Hebb designed the ﬁrst mathematical models of neural 
+networks. However, computers at that time lacked sufﬁcient power to simulate simple brains.
+
+En la década de 1940, basándose en resultados de la neurociencia, McCulloch, Pitts y Hebb diseñaron los primeros modelos matemáticos 
+de redes neuronales. Sin embargo, las computadoras de la época carecían de la potencia suficiente para simular cerebros simples.
+
+**1.2.2 Logic Solves (Almost) All Problems**
+
+AI as a practical science of thought mechanization could of course only begin once there were programmable computers. This was the 
+case in the 1950s. Newell and Simon introduced Logic Theorist, the ﬁrst automatic theorem prover, and thus also showed that with 
+computers, which actually only work with numbers, one can also process symbols. At the same time McCarthy introduced, with the 
+language LISP, a programming language specially created for the processing of symbolic structures. Both of these systems were 
+introduced in 1956 at the historic Dartmouth Conference, which is considered the birthday of AI.
+
+La IA como ciencia práctica de la mecanización del pensamiento solo pudo comenzar con la aparición de computadoras programables. Esto 
+ocurrió en la década de 1950. Newell y Simon introdujeron Logic Theorist, el primer demostrador automático de teoremas, y así 
+demostraron que las computadoras, que en realidad solo funcionan con números, también pueden procesar símbolos. Al mismo tiempo, 
+McCarthy introdujo LISP, un lenguaje de programación especialmente creado para el procesamiento de estructuras simbólicas. Ambos 
+sistemas se presentaron en 1956 en la histórica Conferencia de Dartmouth, considerada el nacimiento de la IA.
+
+
+In the US, LISP developed into the most important tool for the implementation of symbol-processing AI systems. Thereafter the logical 
+inference rule known as resolution developed into a complete calculus for predicate logic.
+
+En EE. UU., LISP se convirtió en la herramienta más importante para la implementación de sistemas de IA de procesamiento de símbolos. 
+Posteriormente, la regla de inferencia lógica conocida como resolución se convirtió en un cálculo completo para la lógica de 
+predicados.
+
+In the 1970s the logic programming language PROLOG was introduced as the European counterpart to LISP. PROLOG offers the advantage of 
+allowing direct programming using Horn clauses, a subset of predicate logic. Like LISP, PROLOG has data types for convenient 
+processing of lists.
+
+En la década de 1970, se introdujo el lenguaje de programación lógica PROLOG como contraparte europea de LISP. PROLOG ofrece la 
+ventaja de permitir la programación directa mediante cláusulas Horn, un subconjunto de la lógica de predicados. Al igual que LISP, 
+PROLOG cuenta con tipos de datos para un procesamiento de listas más sencillo.
+
+
+Until well into the 1980s, a breakthrough spirit dominated AI, especially among many logicians. The reason for this was the string of 
+impressive achievements in symbol processing. With the Fifth Generation Computer Systems project in Japan and the ESPRIT program in 
+Europe, heavy investment went into the construction of intelligent computers.
+
+Until well into the 1980s, a breakthrough spirit dominated AI, especially among many logicians. The reason for this was the string of 
+impressive achievements in symbol processing. With the Fifth Generation Computer Systems project in Japan and the ESPRIT program in 
+Europe, heavy investment went into the construction of intelligent computers.
+
+
+
+For small problems, automatic provers and other symbol-processing systems sometimes worked very well. The combinatorial explosion of 
+the search space, however, deﬁned a very narrow window for these successes. This phase of AI was described in [RN10] as the “Look, 
+Ma, no hands!” era.
+
+Para problemas pequeños, los probadores automáticos y otros sistemas de procesamiento de símbolos a veces funcionaban muy bien. Sin 
+embargo, la explosión combinatoria del espacio de búsqueda definió un margen muy estrecho para estos éxitos. Esta fase de la IA se 
+describió en [RN10] como la era "¡Mira, mamá, sin manos!".
+
+Because the economic success of AI systems fell short of expectations, funding for logic-based AI research in the United States fell 
+dramatically during the 1980s.
+
+Debido a que el éxito económico de los sistemas de IA no cumplió con las expectativas, la financiación para la investigación en IA 
+basada en la lógica en los Estados Unidos cayó drásticamente durante la década de 1980.
+
+**1.2.3 The New Connectionism**
+
+During this phase of disillusionment, computer scientists, physicists, and Cognitive scientists were able to show, using computers 
+which were now sufﬁciently powerful, that mathematically modeled neural networks are capable of learning using training examples, to 
+perform tasks which previously required costly programming. Because of the fault-tolerance of such systems and their ability to 
+recognize patterns, considerable successes became possible, especially in pattern recognition. Facial recognition in photos and 
+handwriting recognition are two example applications. The system Nettalk was able to learn speech from example texts [SR86]. Under the 
+name connectionism, a new subdiscipline of AI was born.
+
+Durante esta fase de desilusión, informáticos, físicos y científicos cognitivos demostraron, mediante computadoras ya suficientemente 
+potentes, que las redes neuronales modeladas matemáticamente son capaces de aprender, utilizando ejemplos de entrenamiento, para 
+realizar tareas que antes requerían una programación costosa. Gracias a la tolerancia a fallos de estos sistemas y a su capacidad para 
+reconocer patrones, se lograron avances considerables, especialmente en el reconocimiento de patrones. El reconocimiento facial en 
+fotos y el reconocimiento de escritura a mano son dos ejemplos de aplicaciones. El sistema Nettalk fue capaz de aprender el habla a 
+partir de textos de ejemplo [SR86]. Bajo el nombre de conexionismo, nació una nueva subdisciplina de la IA.
+
+
+Connectionism boomed since the end of the 1980s and the subsidies ﬂowed. But soon even here feasibility limits became obvious. The 
+neural networks could acquire impressive capabilities, but it was usually not possible to capture the learned concept in simple 
+formulas or logical rules. Attempts to combine neural nets with logical rules or the knowledge of human experts met with great 
+difﬁculties. Additionally, no satisfactory solution to the structuring and modularization of the networks was found.
+
+El conexionismo experimentó un auge desde finales de la década de 1980 y los subsidios abundaron. Pero pronto, incluso en este caso, 
+se hicieron evidentes los límites de viabilidad. Las redes neuronales podían adquirir capacidades impresionantes, pero por lo general 
+no era posible plasmar el concepto aprendido en fórmulas simples o reglas lógicas. Los intentos de combinar las redes neuronales con 
+reglas lógicas o el conocimiento de expertos humanos se toparon con grandes dificultades. Además, no se encontró una solución 
+satisfactoria para la estructuración y modularización de las redes.
+
+
+**1.2.4 Reasoning Under Uncertainty**
+
+AI as a practical, goal-driven science searched for a way out of this crisis. One 
+wishedtounitelogic’sabilitytoexplicitlyrepresentknowledgewithneuralnetworks’ strength in handling uncertainty. Several alternatives 
+were suggested.
+
+AI as a practical, goal-driven science searched for a way out of this crisis. One 
+wishedtounitelogic’sabilitytoexplicitlyrepresentknowledgewithneuralnetworks’ strength in handling uncertainty. Several alternatives 
+were suggested.
+
+
+
+The most promising, probabilistic reasoning, works with conditional probabilities for propositional calculus formulas. Since then many 
+diagnostic and expert systems have been built for problems of everyday reasoning using Bayesian networks. The success of Bayesian 
+networks stems from their intuitive comprehensibility, the clean semantics of conditional probability, and from the centuries-old, 
+mathematically grounded probability theory.
+
+El razonamiento probabilístico más prometedor funciona con probabilidades condicionales para fórmulas de cálculo proposicional. Desde 
+entonces, se han desarrollado numerosos sistemas de diagnóstico y expertos para problemas de razonamiento cotidiano mediante redes 
+bayesianas. El éxito de las redes bayesianas se debe a su comprensibilidad intuitiva, la semántica clara de la probabilidad 
+condicional y la teoría de la probabilidad, con siglos de antigüedad y fundamento matemático.
+
+
+The weaknesses of logic, which can only work with two truth values, can be solved by fuzzy logic, which pragmatically introduces 
+inﬁnitely many values between zero and one. Though even today its theoretical foundation is not totally ﬁrm, it is being 
+successfully utilized, especially in control engineering.
+
+Las debilidades de la lógica, que solo puede funcionar con dos valores de verdad, pueden resolverse mediante la lógica difusa, que 
+introduce pragmáticamente una infinidad de valores entre cero y uno. Aunque aún hoy su fundamento teórico no es del todo sólido, se 
+está utilizando con éxito, especialmente en la ingeniería de control.
+
+
+A much different path led to the successful synthesis of logic and neural networks under the name hybrid systems. For example, neural 
+networks were employed to learn heuristics for reduction of the huge combinatorial search space in proof discovery [SE90].
+
+Un camino muy diferente condujo a la exitosa síntesis de lógica y redes neuronales bajo el nombre de sistemas híbridos. Por ejemplo, 
+se emplearon redes neuronales para aprender heurísticas que permitieran reducir el enorme espacio de búsqueda combinatoria en el 
+descubrimiento de pruebas [SE90].
+
+
+
+Methods of decision tree learning from data also work with probabilities. Systems like CART, ID3, and C4.5 can quickly and 
+automatically build very accurate decision trees which can represent propositional logic concepts and then be used as expert systems. 
+Today they are favorite among machine learning techniques (Sect. 8.6).
+
+Los métodos de aprendizaje de árboles de decisión a partir de datos también funcionan con probabilidades. Sistemas como CART, ID3 y 
+C4.5 pueden construir de forma rápida y automática árboles de decisión muy precisos que pueden representar conceptos de lógica 
+proposicional y posteriormente utilizarse como sistemas expertos. Actualmente, son los preferidos entre las técnicas de aprendizaje 
+automático (Sección 8.6).
+
+Since about 1990, data mining has been developed as a subdiscipline of AI in the area of statistical data analysis for extraction of 
+knowledge from large databases. Data mining brings no new techniques to AI, rather it introduces the requirement of using large 
+databases to gain explicit knowledge. One application with great market potential is steering ad campaigns of big businesses based on 
+analysis of many millions of purchases by their customers. Typically, machine learning techniques such as decision tree learning come 
+into play here.
+
+Desde aproximadamente 1990, la minería de datos se ha desarrollado como una subdisciplina de la IA en el área del análisis estadístico 
+de datos para la extracción de conocimiento de grandes bases de datos. La minería de datos no aporta nuevas técnicas a la IA, sino que 
+introduce la necesidad de utilizar grandes bases de datos para obtener conocimiento explícito. Una aplicación con gran potencial de 
+mercado es la gestión de campañas publicitarias de grandes empresas basadas en el análisis de millones de compras de sus clientes. En 
+este contexto, suelen utilizarse técnicas de aprendizaje automático, como el aprendizaje de árboles de decisión.
+
+
+**1.2.5 Distributed,Autonomous,and Learning Agents**
+
+Distributed artiﬁcial intelligence, DAI, has been an active area research since about 1985. One of its goals is the use of parallel 
+computers to increase the efﬁciency of problem solvers. It turned out, however, that because of the high computational complexity of 
+most problems, the use of “intelligent” systems is more beneﬁcial than parallelization itself.
+
+La inteligencia artificial distribuida (IAD) ha sido un área de investigación activa desde aproximadamente 1985. Uno de sus objetivos 
+es el uso de computadoras paralelas para aumentar la eficiencia de quienes resuelven problemas. Sin embargo, debido a la alta 
+complejidad computacional de la mayoría de los problemas, el uso de sistemas "inteligentes" resulta más beneficioso que la 
+paralelización misma.
+
+
+A very different conceptual approach results from the development of autonomous software agents and robots that are meant to cooperate 
+like human teams. As with the aforementioned Braitenberg vehicles, there are many cases in which an individual agent is not capable of 
+solving a problem, even with unlimited resources. Only the cooperation of many agents leads to the intelligent behavior or to the 
+solution of a problem. An ant colony or a termite colony is capable of erecting buildings of very high architectural complexity, 
+despite the fact that no single ant comprehends how the whole thing ﬁts together. This is similar to the situation of provisioning 
+bread for a large city like New York [RN10]. There is no central planning agency for bread, rather there are hundreds of bakers that 
+know their respective areas of the city and bake the appropriate amount of bread at those locations.
+
+Un enfoque conceptual muy diferente resulta del desarrollo de agentes de software autónomos y robots diseñados para cooperar como 
+equipos humanos. Al igual que con los vehículos Braitenberg mencionados anteriormente, existen muchos casos en los que un agente 
+individual no es capaz de resolver un problema, incluso con recursos ilimitados. Solo la cooperación de muchos agentes conduce al 
+comportamiento inteligente o a la solución de un problema. Una colonia de hormigas o de termitas es capaz de erigir edificios de gran 
+complejidad arquitectónica, a pesar de que ninguna hormiga comprende cómo encaja todo el conjunto. Esto es similar a la situación del 
+aprovisionamiento de pan para una gran ciudad como Nueva York [RN10]. No existe una agencia central de planificación para el pan, sino 
+que existen cientos de panaderos que conocen sus respectivas zonas de la ciudad y hornean la cantidad adecuada de pan en esas 
+ubicaciones.
+
+Active skill acquisition by robots is an exciting area of current research. There are robots today, for example, that independently 
+learn to walk or to perform various motor skills related to soccer (Chap. 10). Cooperative learning of multiple robots to solve 
+problems together is still in its infancy.
+
+La adquisición activa de habilidades por parte de robots es un área de investigación actual muy interesante. Hoy en día, por ejemplo, 
+existen robots que aprenden de forma independiente a caminar o a realizar diversas habilidades motoras relacionadas con el fútbol 
+(Cap. 10). El aprendizaje cooperativo de varios robots para resolver problemas juntos aún está en sus inicios.
+
+**1.2.6 AI Grows Up**
+
+At the turn of the millennium, AI was by no means a universal solution, but it offered a manageable number of tools for a broad range 
+of tasks. Most of these tools are well developed and are available as ﬁnished software libraries, often with convenient user 
+interfaces. The selection of the right tool and its sensible use in each individual case is left to the AI developer or knowledge 
+engineer. Like any other artisanship, this requires a solid education, which this book is meant to promote.
+
+A principios del milenio, la IA no era en absoluto una solución universal, pero ofrecía un número razonable de herramientas para una 
+amplia gama de tareas. La mayoría de estas herramientas están bien desarrolladas y disponibles como bibliotecas de software completas, 
+a menudo con interfaces de usuario prácticas. La selección de la herramienta adecuada y su uso racional en cada caso individual queda 
+en manos del desarrollador de IA o del ingeniero de conocimiento. Como cualquier otra actividad artesanal, esto requiere una sólida 
+formación, que este libro pretende promover.
+
+
+More than nearly any other science, AI is interdisciplinary, for it draws upon interesting discoveries from such diverse ﬁelds as 
+logic, operations research, statistics, control engineering, image processing, linguistics, philosophy, psychology, and neurobiology. 
+On top of that, there is the subject area of the particular application. To successfully develop an AI project is therefore not always 
+so simple, but almost always extremely exciting.
+
+Más que casi cualquier otra ciencia, la IA es interdisciplinaria, ya que se nutre de descubrimientos interesantes de campos tan 
+diversos como la lógica, la investigación operativa, la estadística, la ingeniería de control, el procesamiento de imágenes, la 
+lingüística, la filosofía, la psicología y la neurobiología. A esto se suma el área temática de la aplicación específica. Por lo 
+tanto, desarrollar con éxito un proyecto de IA no siempre es sencillo, pero casi siempre resulta sumamente emocionante.
+
+**1.2.7 The Deep Learning Breakthrough**
+
+Research on neural networks dates back to the very beginning of AI, to some extent with observable success. However, the great 
+breakthrough had yet to be reached, because a very important problem, object recognition in images, could not be solved
+for many years. This changed rapidly between 2006 and 2016. Researchers found a handful of tricks (Sect. 9.3) which allowed them to 
+train backpropagation networks with more than three layers of neurons successfully.
+
+La investigación sobre redes neuronales se remonta a los inicios de la IA, con cierto éxito observable. Sin embargo, el gran avance 
+aún no se había alcanzado, ya que un problema crucial, el reconocimiento de objetos en imágenes, no pudo resolverse durante muchos 
+años. Esto cambió rápidamente entre 2006 y 2016. Los investigadores descubrieron algunos trucos (Sección 9.3) que les permitieron 
+entrenar con éxito redes de retropropagación con más de tres capas de neuronas.
+
+Suddenly the object recognition problem was solved and the door to building autonomous systems stood wide open. Today, household 
+service robots and fully autonomousdrivingarewithinreach.Driverassistancesystemswithverygoodobject 
+recognitionandtrackingarealreadyinuse,andAIsystemsonPCandsmartphonecan easily identify speciﬁc individuals in family photos. Through 
+these impressive, easily recognized accomplishments, machine learning and thus all of AI have intensely gained in signiﬁcance.
+
+De repente, el problema del reconocimiento de objetos se resolvió y la puerta a la construcción de sistemas autónomos quedó abierta de 
+par en par. Hoy en día, los robots de servicio doméstico y la conducción totalmente autónoma están al alcance. Los sistemas de 
+asistencia al conductor con excelente reconocimiento y seguimiento de objetos ya están en uso, y los sistemas de IA en ordenadores y 
+smartphones pueden identificar fácilmente a personas específicas en fotos familiares. Gracias a estos impresionantes logros, 
+fácilmente reconocibles, el aprendizaje automático y, por ende, toda la IA han cobrado gran importancia.
+
+DeeplearningisalsoshowingitsadvantagesinMedicine.Fordiagnosticprocesses which produce images, such as MRT and CT scans, the error rate 
+of deep learning systems for diagnosing certain illnesses is already much lower than that of doctors.
+
+El aprendizaje profundo también está mostrando sus ventajas en medicina. En los procesos de diagnóstico que producen imágenes, como 
+las resonancias magnéticas y las tomografías computarizadas, la tasa de error de los sistemas de aprendizaje profundo para 
+diagnosticar ciertas enfermedades ya es mucho menor que la de los médicos.
+
+ **1.2.8 The AI Revolution**
+
+Around the year 2010 after about 25 years of research on neural networks, scientists could start harvesting the fruits of their 
+research. The very powerful deep learning networks can for example learn to classify images with very high accuracy. Since image 
+classiﬁcation is of crucial importance for all types of smart robots, this initiated the AI revolution which in turn leads to smart 
+self-driving cars and service robots.
+
+Alrededor del año 2010, tras unos 25 años de investigación sobre redes neuronales, los científicos pudieron empezar a cosechar los 
+frutos de su investigación. Las potentes redes de aprendizaje profundo pueden, por ejemplo, aprender a clasificar imágenes con gran 
+precisión. Dado que la clasificación de imágenes es crucial para todo tipo de robots inteligentes, esto inició la revolución de la IA, 
+que a su vez dio lugar a los coches autónomos inteligentes y a los robots de servicio.
+
+**1.3 AI and Society**
+
+There have been many scientiﬁc books and science ﬁction novels written on all aspects of this subject. Due to great advances in AI 
+research, we have been on the brink of the age of autonomous robots and the Internet of Things since roughly 2005. Thus we are 
+increasingly confronted with AI in everyday life. The reader, who may soon be working as an AI developer, must also deal with the 
+social impact of this work. As an author of a book on AI techniques, I have the crucial task of examining this topic. I would like to 
+deal with some particularly important aspects of AI which are of great practical relevance for our lives.
+
+Se han escrito numerosos libros científicos y novelas de ciencia ficción sobre todos los aspectos de este tema. Gracias a los grandes 
+avances en la investigación de la IA, nos encontramos al borde de la era de los robots autónomos y el Internet de las Cosas desde 
+aproximadamente 2005. Por lo tanto, nos enfrentamos cada vez más a la IA en la vida cotidiana. El lector, que pronto podría trabajar 
+como desarrollador de IA, también debe abordar el impacto social de este trabajo. Como autor de un libro sobre técnicas de IA, tengo 
+la crucial tarea de examinar este tema. Me gustaría abordar algunos aspectos particularmente importantes de la IA que son de gran 
+relevancia práctica para nuestras vidas.
+
+
+**1.3.1 Does AI Destroy Jobs?**
+
+In January 2016, the World Economic Forum published a study [SS16], frequently cited by the German press, predicting that “industry 
+4.0” would destroy over ﬁve million jobs in the next 5 years. This forecast is hardly surprising because automation in factories, 
+ofﬁces, administration, transportation, in the home, and in many other areas has led to continually more work being done by 
+computers, machines, and robots. AI has been one of the most important factors in this trend since about 2010.
+
+En enero de 2016, el Foro Económico Mundial publicó un estudio [SS16], frecuentemente citado por la prensa alemana, que predecía que 
+la «industria 4.0» destruiría más de cinco millones de empleos en los próximos cinco años. Este pronóstico no sorprende, ya que la 
+automatización en fábricas, oficinas, administración, transporte, el hogar y muchas otras áreas ha llevado a que cada vez más trabajo 
+sea realizado por computadoras, máquinas y robots. La IA ha sido uno de los factores más importantes de esta tendencia desde 
+aproximadamente 2010.
+
+Presumably, the majority of people would gladly leave physically hard, dirty and unhealthy jobs and tasks to machines. Thus automation 
+is a complete blessing for humanity, assuming it does not result in negative side effects, such as harm to the environment. Many of 
+the aforementioned unpleasant jobs can be done faster, more precisely, and above all cheaper by machines. This seems almost like a 
+trend toward paradise on Earth, where human beings do less and less unpleasant work and have correspondingly more time for the good 
+things in life. This seems almost like a trend toward paradise on earth. We have to do less and less unpleasant work and in turn have 
+more time for the good things in life. 4 All the while, we would enjoy the same (or potentially even increasing) prosperity, for the 
+economy would not employ these machines if they did not markedly raise productivity.
+
+Presumiblemente, la mayoría de las personas dejaría con gusto los trabajos y tareas físicamente duros, sucios e insalubres a las 
+máquinas. Por lo tanto, la automatización es una bendición total para la humanidad, siempre que no tenga efectos secundarios 
+negativos, como el daño al medio ambiente. Muchos de los trabajos desagradables mencionados anteriormente pueden ser realizados con 
+mayor rapidez, precisión y, sobre todo, a menor costo por las máquinas. Esto parece casi una tendencia hacia el paraíso terrenal, 
+donde los seres humanos realizan cada vez menos trabajos desagradables y, en consecuencia, tienen más tiempo para las cosas buenas de 
+la vida. 4 Al mismo tiempo, disfrutaríamos de la misma prosperidad (o incluso podría aumentarla), ya que la economía no emplearía 
+estas máquinas si no aumentaran notablemente la productividad.
+
+Unfortunately we are not on the road to paradise. For several decades, we have worked more than 40 hours per week, have been stressed, 
+complained of burnout and other sicknesses, and suffered a decline in real wages. How can this be, if productivity is continually 
+increasing? Many economists say that the reason for this is competitive pressure. In an effort to compete and deliver the lowest 
+priced goods to market, companies need to lower production costs and thus lay off workers. This results in the aforementioned 
+unemployment. In order to avoid a drop in sales volume due to reduced prices, more products need to be manufactured and sold. The 
+economy must grow!
+
+Lamentablemente, no estamos en el camino al paraíso. Durante décadas, hemos trabajado más de 40 horas semanales, hemos estado 
+estresados, nos hemos quejado de agotamiento y otras enfermedades, y hemos sufrido una disminución de los salarios reales. ¿Cómo es 
+posible si la productividad aumenta continuamente? Muchos economistas afirman que la razón es la presión competitiva. Para competir y 
+ofrecer los productos más baratos al mercado, las empresas necesitan reducir los costos de producción y, por lo tanto, despedir 
+trabajadores. Esto resulta en el desempleo mencionado. Para evitar una caída en el volumen de ventas debido a la reducción de precios, 
+es necesario fabricar y vender más productos. ¡La economía debe crecer!
+
+If the economy continues to grow in a country in which the population is no longer growing (as is the case in most modern 
+industrialized countries), each citizen must necessarily consume more. For that to happen, new markets must be created,5  and 
+marketing has the task of convincing us that we want the new products. This isallegedly–the only way to “sustainably” ensure 
+prosperity. Apparently there seems to be no escape from this growth/consumption spiral. This has two fatal consequences. For one 
+thing, this increase in consumption should make people happier, but it is having quite the opposite effect: mental illness is 
+increasing.
+
+Si la economía sigue creciendo en un país donde la población ya no crece (como ocurre en la mayoría de los países industrializados 
+modernos), cada ciudadano necesariamente debe consumir más. Para ello, se deben crear nuevos mercados, y el marketing tiene la tarea 
+de convencernos de que queremos los nuevos productos. Esta es, supuestamente, la única manera de garantizar la prosperidad de forma 
+sostenible. Aparentemente, no parece haber escapatoria a esta espiral de crecimiento/consumo. Esto tiene dos consecuencias fatales. 
+Por un lado, este aumento del consumo debería hacer más felices a las personas, pero está teniendo el efecto contrario: las 
+enfermedades mentales están aumentando.
+
+
+Even more obvious and, above all, fatal, are economic growth’s effects on our living conditions. It is no secret that the earth’s 
+growth limit has long been exceeded [MMZM72,Ran12], and that we are overexploiting nature’s nonrenewable resources. We are therefore 
+living at the expense of our children and grandchildren, who consequently will have poorer living conditions than we have today. It is 
+also known that every additional dollar of economic growth is an additional burden on the environment–for example, through additional 
+CO 2 concentration in the atmosphere and the resulting climate change [Pae16]. We are destroying our own basis of existence. Thus it 
+is obvious that we should abandon this path of growth for the sake of a livable future. But how?
+
+Aún más obvios y, sobre todo, fatales, son los efectos del crecimiento económico en nuestras condiciones de vida. No es ningún secreto 
+que el límite de crecimiento de la Tierra se ha superado hace mucho tiempo [MMZM72, Ran12] y que estamos sobreexplotando los recursos 
+no renovables de la naturaleza. Por lo tanto, vivimos a expensas de nuestros hijos y nietos, quienes, en consecuencia, tendrán peores 
+condiciones de vida que las actuales. También es sabido que cada dólar adicional de crecimiento económico supone una carga adicional 
+para el medio ambiente, por ejemplo, a través de una mayor concentración de CO₂ en la atmósfera y el consiguiente cambio climático 
+[Pae16]. Estamos destruyendo nuestra propia base de existencia. Por lo tanto, es obvio que debemos abandonar esta senda de crecimiento 
+en aras de un futuro habitable. Pero ¿cómo?
+
+
+4 Those of us, such as scientists, computer scientists, and engineers, who enjoy it may of course continue our work.
+
+5 Many EU and German Ministry of Education and Research funding programs, for example, require that scientists who submit proposals
+show evidence that their research will open up new markets.
+
+Let’s think back to the road to paradise that AI is supposedly preparing for us. Apparently, as we practice it, it does not lead to 
+paradise. Understanding this problem and ﬁnding the right path is one of the central tasks of today. Because of inherent 
+complexities, this problem cannot be fully dealt 
+with in an introductory AI textbook. However, I would like to provide the reader with a little food for thought.
+
+Recordemos el camino al paraíso que la IA supuestamente nos prepara. Al parecer, al practicarlo, no conduce al paraíso. Comprender 
+este problema y encontrar el camino correcto es una de las tareas centrales hoy en día. Debido a su complejidad inherente, este 
+problema no puede abordarse en su totalidad en un libro de texto introductorio de IA. Sin embargo, me gustaría ofrecer al lector 
+algunas ideas para la reflexión.
+
+Although productivity is growing steadily in almost all areas of the economy, workers are required to work as hard as ever. They do 
+not beneﬁt from the increase in productivity. So, we must ask, where do the proﬁts go? Evidently not to the people to whom they are 
+owed, i.e., the workers. Instead, part of the proﬁts is spent on investment and thus on further growth and the rest is taken by the 
+capital owners, while employees work the same hours for declining real wages [Pik14]. This leads to ever-increasing capital 
+concentration among a few rich individuals and private banks, while, on the other hand, increasing poverty around the world is 
+creating political tensions that result in war, expulsion, and ﬂight.
+
+Aunque la productividad crece de forma constante en casi todas las áreas de la economía, los trabajadores deben trabajar con la misma 
+intensidad que siempre. No se benefician del aumento de la productividad. Por lo tanto, debemos preguntarnos: ¿adónde van las 
+ganancias? Evidentemente, no a quienes las deben, es decir, a los trabajadores. En cambio, parte de las ganancias se destina a la 
+inversión y, por lo tanto, a un mayor crecimiento, y el resto se lo llevan los propietarios del capital, mientras que los empleados 
+trabajan las mismas horas por salarios reales cada vez más bajos [Pik14]. Esto conduce a una concentración de capital cada vez mayor 
+entre unos pocos ricos y bancos privados, mientras que, por otro lado, el aumento de la pobreza en todo el mundo está creando 
+tensiones políticas que resultan en guerras, expulsiones y huidas.
+
+What is missing is a fair and just distribution of proﬁts. How can this be achieved? Politicians and economists are continually 
+trying to optimize our economic system, but politics has not offered a sustainable solution, and too few economists are investigating 
+this highly exciting economic question. Obviously the attempt to optimize the parameters of our current capitalist economic system has 
+not lead to a more equitable distribution of wealth, but to the opposite.
+
+Lo que falta es una distribución justa y equitativa de las ganancias. ¿Cómo lograrla? Políticos y economistas intentan continuamente 
+optimizar nuestro sistema económico, pero la política no ha ofrecido una solución sostenible, y muy pocos economistas investigan esta 
+apasionante cuestión económica. Obviamente, el intento de optimizar los parámetros de nuestro actual sistema económico capitalista no 
+ha conducido a una distribución más equitativa de la riqueza, sino a lo contrario.
+
+
+This is why economists and ﬁnancial scientists must begin to question the system and look for alternatives. We should ask ourselves 
+how to change the rules and laws of the economy so that all people proﬁt from increased productivity. A growing community of 
+economists and sustainability scientists have offered interesting solutions, a few of which I will brieﬂy describe here.
+
+Por eso, los economistas y los científicos financieros deben empezar a cuestionar el sistema y buscar alternativas. Deberíamos 
+preguntarnos cómo cambiar las reglas y leyes de la economía para que todos se beneficien de una mayor productividad. Una creciente 
+comunidad de economistas y científicos de la sostenibilidad ha ofrecido soluciones interesantes, algunas de las cuales describiré 
+brevemente aquí.
+
+Problem Number One is the creation of ﬁat money by the banks. New moneywhich is needed, among other things, to keep our growing 
+economy going–is now being created by private banks. This is made possible by the fact that banks have to own only a small part, 
+namely, the minimum cash reserve ratio, of the money they give as loans. In the EU in 2016, the minimum cash reserve ratio is one 
+percent.
+
+El problema número uno es la creación de dinero fiduciario por parte de los bancos. El nuevo dinero, necesario, entre otras cosas, 
+para mantener nuestra economía en crecimiento, ahora lo crean los bancos privados. Esto es posible porque los bancos solo deben poseer 
+una pequeña parte, concretamente el coeficiente mínimo de reserva de efectivo, del dinero que otorgan en préstamos. En la UE, en 2016, 
+el coeficiente mínimo de reserva de efectivo era del uno por ciento.
+
+States then borrow this money from private banks in the form of government bonds and thus fall into debt. This is how our current 
+government debt crises have developed. This problem can be solved easily by prohibiting creation of money by the banks by increasing 
+the minimum cash reserve ratio to 100%. State central banks will then get back the monopoly on creating money, and the newly created 
+money can be used directly by the state for the purposes of social welfare. It should be evident that this simple measure would 
+signiﬁcantly ease the problem of public debt.
+
+Los Estados luego toman prestado este dinero de bancos privados en forma de bonos del Estado, endeudándose así. Así es como se han 
+desarrollado nuestras actuales crisis de deuda pública. Este problema se puede resolver fácilmente prohibiendo la creación de dinero 
+por parte de los bancos mediante el aumento del coeficiente de caja mínimo al 100 %. Los bancos centrales estatales recuperarían 
+entonces el monopolio de la creación de dinero, y el dinero recién creado podría ser utilizado directamente por el Estado para fines 
+de bienestar social. Debería ser evidente que esta simple medida aliviaría significativamente el problema de la deuda pública.
+
+
+Further interesting components of such an economic reform could be the 
+conversionofthecurrentinterestratesystemtotheso-callednaturaleconomicorder[GP58], and the introduction of the “economy for the common 
+good” [Fel14] and the biophysical economy [GK09,Küm11]. The practical implementation of the economy for the common good would involve 
+a tax reform, the most important elements of which would be the abolition of the income tax and substantially increased value-added 
+tax on energy and resource consumption. We would thus arrive at a highly prosperous, more sustainable human world with less 
+environmental damage and more local trade. The reader may study the literature and assess whether the ideas quoted here are 
+interesting and, if necessary, help to make the required changes.
+
+Otros componentes interesantes de dicha reforma económica podrían ser la conversión del actual sistema de tipos de interés al llamado 
+orden económico natural [GP58] y la introducción de la «economía del bien común» [Fel14] y la economía biofísica [GK09, Küm11]. La 
+implementación práctica de la economía del bien común implicaría una reforma fiscal, cuyos elementos más importantes serían la 
+abolición del impuesto sobre la renta y un aumento sustancial del impuesto al valor añadido sobre el consumo de energía y recursos. De 
+este modo, alcanzaríamos un mundo humano altamente próspero y más sostenible, con menos daño ambiental y un mayor comercio local. El 
+lector puede estudiar la bibliografía y evaluar si las ideas aquí citadas son interesantes y, de ser necesario, contribuir a 
+implementar los cambios necesarios.
+
+To conclude this section, I would like to quote the famous physicist Stephen Hawking. In a community-driven interview on 
+www.reddit.com, he gave the following answer to whether he had any thoughts about unemployment caused by automation:
+
+Para concluir esta sección, me gustaría citar al famoso físico Stephen Hawking. En una entrevista comunitaria en www.reddit.com, 
+respondió lo siguiente a la pregunta de si tenía alguna opinión sobre el desempleo causado por la automatización:
+
+If machines produce everything we need, the outcome will depend on how things are distributed. Everyone can enjoy a life of luxurious 
+leisure if the machine-produced wealth is shared, or most people can end up miserably poor if the machine-owners successfully lobby 
+against wealth redistribution. So far, the trend seems to be toward the second option, with technology driving ever-increasing 
+inequality.
+
+Si las máquinas producen todo lo que necesitamos, el resultado dependerá de cómo se distribuyan las cosas. Todos pueden disfrutar de 
+una vida de lujo si la riqueza producida por las máquinas se comparte, o la mayoría puede acabar en la miseria si los dueños de las 
+máquinas presionan con éxito contra la redistribución de la riqueza. Hasta ahora, la tendencia parece inclinarse hacia la segunda 
+opción, con la tecnología impulsando una desigualdad cada vez mayor.
+
+Another Hawking quotation is also ﬁtting. During the same interview, 6 to an AI professor’s question about which moral ideas he 
+should impart to his students, Hawking answered:
+
+Otra cita de Hawking también es pertinente. Durante la misma entrevista, a la pregunta de un profesor de IA sobre qué ideas morales 
+debería impartir a sus estudiantes, Hawking respondió:
+
+…Please encourage your students to think not only about how to create AI, but also about how to ensure its beneﬁcial use.
+
+…Anime a sus estudiantes a pensar no sólo en cómo crear IA, sino también en cómo garantizar su uso beneficioso.
+
+As a consequence we should question the reasonableness of AI applications such as the export of intelligent cruise missiles to 
+“allied” Arab states, the deployment of humanoid combat robots, etc.
+
+Como consecuencia de ello, deberíamos cuestionar la razonabilidad de aplicaciones de IA como la exportación de misiles de crucero 
+inteligentes a estados árabes “aliados”, el despliegue de robots de combate humanoides, etc.
+
+**1.3.2 AI and Transportation**
+
+In the past 130 years, automotive industry engineers have made great strides. In Germany, one out of every two people owns their own 
+car. These cars are highly reliable. This makes us very mobile and we use this very convenient mobility in work, everyday life and 
+leisure. Moreover, we are dependent on it. Today, we cannot get by without a motor vehicle, especially in rural areas with weak public 
+transportation infrastructure, as, for instance, in Upper Swabia, where the author and his students live.
+
+En los últimos 130 años, los ingenieros de la industria automotriz han logrado grandes avances. En Alemania, una de cada dos personas 
+posee su propio automóvil. Estos vehículos son altamente confiables. Esto nos brinda gran movilidad y la usamos en el trabajo, la vida 
+diaria y el ocio. Además, dependemos de él. Hoy en día, no podemos sobrevivir sin un vehículo motorizado, especialmente en zonas 
+rurales con infraestructura de transporte público deficiente, como, por ejemplo, en la Alta Suabia, donde viven el autor y sus 
+estudiantes.
+
+
+The next stage of increased convenience in road transportation is now imminent. In a few years, we will be able to buy electric 
+self-driving cars, i.e., robotic cars, which will autonomously bring us to almost any destination. All passengers in the robotic car 
+would be able to read, work, or sleep during the trip. This is possible on public transit already, but passengers in a robotic car 
+would be able to do this at any time and on any route.
+
+La siguiente etapa de mayor comodidad en el transporte por carretera es inminente. En pocos años, podremos comprar coches eléctricos 
+autónomos, es decir, coches robóticos, que nos llevarán de forma autónoma a casi cualquier destino. Todos los pasajeros del coche 
+robótico podrán leer, trabajar o dormir durante el viaje. Esto ya es posible en el transporte público, pero los pasajeros de un coche 
+robótico podrán hacerlo en cualquier momento y en cualquier ruta.
+
+
+Autonomous vehicles that can operate independently could also travel without passengers. This will lead to yet another increase in 
+convenience: robotic taxis. Via a smartphone app, we will be able to order the optimal taxi, in terms of size and equipment, for any 
+conceivable transportation purpose. We will be able to choose whether we want to travel alone in the taxi or whether we are willing to 
+share a ride with other passengers. We will not need our own car anymore. All associated responsibilities
+and expenses, such as refueling, technical service, cleaning, searching for parking, buying and selling, and garage rent, are void, 
+which saves us money and effort.
+
+Los vehículos autónomos que puedan operar de forma independiente también podrían viajar sin pasajeros. Esto traerá consigo otra mayor 
+comodidad: los taxis robot. A través de una aplicación para smartphone, podremos solicitar el taxi óptimo, en cuanto a tamaño y 
+equipamiento, para cualquier propósito de transporte. Podremos elegir si queremos viajar solos o compartir el viaje con otros 
+pasajeros. Ya no necesitaremos nuestro propio coche. Se eliminan todas las responsabilidades y gastos asociados, como repostaje, 
+servicio técnico, limpieza, búsqueda de aparcamiento, compraventa y alquiler de garaje, lo que nos ahorra dinero y esfuerzo.
+
+6 https://www.reddit.com/user/Prof-Stephen-Hawking.
+
+Besides the immediate gains in comfort and convenience, robotic cars will offer other signiﬁcant advantages. For example, according 
+to a McKinsey study [GHZ14], we will need far fewer cars and, above all, far fewer parking places in the era of self-driving cars, 
+which will lead to an immense reduction in resource consumption. According to a Lawrence Berkeley National Laboratory study [GS15], 
+electric self-driving cars will cause a 90% reduction in green house emissions per passenger mile due to the vehicles’ energy 
+efﬁciency and the optimized ﬁt between the vehicle and its purpose. Due to their optimal resource utilization, robotic taxis will be 
+much more environmentally friendly than, for example, heavy buses, which often run at low capacity, especially in rural areas. 
+Overall, robot taxis will contribute dramatically to energy savings and thus, among other things, to a signiﬁcant improvement in CO2  
+and climate problems.
+
+Además de las ganancias inmediatas en comodidad y conveniencia, los autos robóticos ofrecerán otras ventajas significativas. Por 
+ejemplo, según un estudio de McKinsey [GHZ14], necesitaremos muchos menos autos y, sobre todo, muchas menos plazas de aparcamiento en 
+la era de los autos autónomos, lo que conducirá a una inmensa reducción en el consumo de recursos. Según un estudio del Laboratorio 
+Nacional Lawrence Berkeley [GS15], los autos eléctricos autónomos causarán una reducción del 90% en las emisiones de gases de efecto 
+invernadero por milla de pasajero debido a la eficiencia energética de los vehículos y el ajuste optimizado entre el vehículo y su 
+propósito. Debido a su utilización óptima de los recursos, los taxis robóticos serán mucho más respetuosos con el medio ambiente que, 
+por ejemplo, los autobuses pesados, que a menudo funcionan a baja capacidad, especialmente en áreas rurales. En general, los taxis 
+robóticos contribuirán drásticamente al ahorro de energía y, por lo tanto, entre otras cosas, a una mejora significativa en los 
+problemas de CO2 y climáticos.
+
+Passenger safety will be much higher than it is today. Experts currently estimate future accident rates between zero and ten percent 
+compared to today. Emotional driving (“road rage”), distracted driving, and driving under the inﬂuence of drugs and alcohol will no 
+longer exist.
+
+La seguridad de los pasajeros será mucho mayor que hoy. Los expertos estiman que las tasas de accidentes futuras se situarán entre el 
+0 % y el 10 % en comparación con la actualidad. La conducción emocional (ira al volante), la conducción distraída y la conducción bajo 
+los efectos de las drogas y el alcohol ya no existirán.
+
+Taxi drivers losing their jobs is often cited as a disadvantage of robotic cars. It is almost certain that there will no longer be 
+taxi drivers from about 2030 onward, but that is not necessarily a problem. As explained in the previous section, our society just 
+needs to deal with the newly gained productivity properly.
+
+La pérdida de empleo de los taxistas se suele citar como una desventaja de los coches robotizados. Es casi seguro que ya no habrá 
+taxistas a partir de 2030, pero eso no es necesariamente un problema. Como se explicó en la sección anterior, nuestra sociedad 
+simplemente necesita gestionar adecuadamente la nueva productividad.
+
+In addition to the many advantages mentioned above, robotic cars have two critical problems. Firstly, the so-called rebound effect 
+will nullify at least some of the gains in resource, energy, and time savings. Shorter driving times as well as more comfortable and 
+cheaper driving will tempt us to drive more. We can only deal with this problem by rethinking our attitude toward consumption and 
+quality of life. Do we have to use the entire time saved for more activities? Here we are all invited to critical reﬂection.
+
+Además de las numerosas ventajas mencionadas, los coches robóticos presentan dos problemas críticos. En primer lugar, el llamado 
+efecto rebote anulará al menos parte del ahorro de recursos, energía y tiempo. La reducción de los tiempos de conducción, así como una 
+conducción más cómoda y económica, nos tentará a conducir más. Solo podemos abordar este problema replanteándonos nuestra actitud 
+hacia el consumo y la calidad de vida. ¿Debemos dedicar todo el tiempo ahorrado a más actividades? Aquí estamos todos invitados a la 
+reflexión crítica.
+
+
+Another problem we should take seriously is that the robotic cars will need to be networked. In principle, this gives hackers and 
+terrorists the ability to access and manipulate the vehicles’ controls through security holes in their network protocols. If a hacker 
+manages to do this once, he could repeat the attack on a grand scale, potentially bringing entire vehicle ﬂeets to a halt, causing 
+accidents, spying on vehicle occupants, or initiating other criminal actions. Here, as in other areas, such as home automation and the 
+Internet of Things, IT security experts will be needed to ensure the highest possible security guarantees using tools of the trade 
+such as cryptographic methods. By the way, improved machine learning algorithms will be useful in detecting hacking attacks.
+
+Otro problema que debemos tomar en serio es que los coches robóticos necesitarán estar conectados en red. En principio, esto permite a 
+hackers y terroristas acceder y manipular los controles de los vehículos a través de vulnerabilidades en sus protocolos de red. Si un 
+hacker logra hacerlo una vez, podría repetir el ataque a gran escala, potencialmente paralizando flotas enteras de vehículos, 
+provocando accidentes, espiando a los ocupantes de los vehículos o iniciando otras acciones delictivas. En este ámbito, como en otros, 
+como la domótica y el Internet de las Cosas, se necesitarán expertos en seguridad informática para garantizar las máximas garantías de 
+seguridad posibles utilizando herramientas especializadas como los métodos criptográficos. Por cierto, los algoritmos mejorados de 
+aprendizaje automático serán útiles para detectar ataques de hackers.
+
+
+We face a completely different problem in that learning-capable automotive AI systems are becoming increasingly more complex, even 
+reaching superhuman intelligence for specialized tasks. In Sect.9.3.3, we will discuss this problem and its grave practical 
+consequences.
+
+Nos enfrentamos a un problema completamente diferente: los sistemas de IA automotriz con capacidad de aprendizaje son cada vez más 
+complejos, alcanzando incluso una inteligencia sobrehumana para tareas especializadas. En la sección 9.3.3, analizaremos este problema 
+y sus graves consecuencias prácticas.
+
+
+**1.3.3 Service Robotics**
+
+In a few years, shortly after self-driving cars, the next bit of consumption bait on the shelves of electronics stores will be service 
+robots. Recently the Google subsidiary Boston Dynamics provided an impressive example in its humanoid robot Atlas.7  Like the new 
+cars, service robots offer a large gain in comfort and convenience which we would probably like to enjoy. One need only to imagine 
+such a robot dutifully cleaning and scrubbing after a party from night until morning without a grumble. Or think of the help that an 
+assistance robot like Marvin, shown in Fig. 1.4, could provide to the elderly 8 or to people with disabilities [SPR+16].
+
+En unos años, poco después de los coches autónomos, el próximo cebo de consumo en las estanterías de las tiendas de electrónica serán 
+los robots de servicio. Recientemente, Boston Dynamics, filial de Google, ofreció un ejemplo impresionante con su robot humanoide 
+Atlas.<sup>7</sup> Al igual que los coches nuevos, los robots de servicio ofrecen una gran ventaja en comodidad y conveniencia que 
+probablemente nos gustaría disfrutar. Basta con imaginar a un robot así limpiando y fregando diligentemente después de una fiesta 
+desde la noche hasta la mañana sin quejarse. O pensar en la ayuda que un robot de asistencia como Marvin, mostrado en la Fig. 1.4, 
+podría prestar a las personas mayores o con discapacidad [SPR+16].
+
+In contrast to the robotic cars, however, these beneﬁts come with costlier tradeoffs. Completely new markets would be created, more 
+natural resources and more energy would be consumed, and it is not even certain that people’s lives would be simpliﬁed by the use of 
+service robots in all areas. One of the ﬁrst applicationsfor robots like Atlas, developed by Boston Dynamics in contract with Google, will probably be military combat.
+
+Sin embargo, a diferencia de los coches robóticos, estos beneficios conllevan contrapartidas más costosas. Se crearían mercados 
+completamente nuevos, se consumirían más recursos naturales y energía, y ni siquiera es seguro que la vida de las personas se 
+simplificaría con el uso de robots de servicio en todas las áreas. Una de las primeras aplicaciones para robots como Atlas, 
+desarrollado por Boston Dynamics en colaboración con Google, probablemente será el combate militar.
+
+ 7 https://youtu.be/rVlhMGQgDkY.
+
+8 In the coming demographic shift, assistance robots could become important for the elderly and thus for our whole society.
+
+
+It is therefore all the more important that, before these robots come to market, we engage in social discourse on this topic. Science 
+ﬁction ﬁlms, such as “Ex Machina” (2015) with its female androids, the chilling “I, Robot” (2004), or the humorous “Robot and Frank” 
+(2012), which depicts the pleasant side of a service robot as an old man’s helper, can also contribute to such a discussion.
+
+Por lo tanto, es aún más importante que, antes de que estos robots salgan al mercado, participemos en el debate social sobre este 
+tema. Películas de ciencia ficción como «Ex Machina» (2015), con sus androides, la escalofriante «Yo, Robot» (2004), o la humorística 
+«Robot y Frank» (2012), que muestra el lado agradable de un robot de servicio como ayudante de un anciano, también pueden contribuir a 
+este debate.
+
+ **1.4 Agents**
+
+Although the term intelligent agents is not new to AI, only in recent years has it gained prominence through [RN10], among others. 
+Agent denotes rather generally a system that processes information and produces an output from an input. These agents may be 
+classiﬁed in many different ways.
+
+Aunque el término «agentes inteligentes» no es nuevo en la IA, solo en los últimos años ha cobrado relevancia gracias a [RN10], entre 
+otros. El término «agente» se refiere, de forma bastante general, a un sistema que procesa información y produce una salida a partir 
+de una entrada. Estos agentes pueden clasificarse de diversas maneras.
+
+In classical computer science, software agents are primarily employed (Fig.1.5). In this case the agent consists of a program that 
+calculates a result from user input.
+
+En la informática clásica, se emplean principalmente agentes de software (Fig. 1.5). En este caso, el agente consiste en un programa 
+que calcula un resultado a partir de la entrada del usuario.
+
+In robotics, on the other hand, hardware agents (also called autonomous robots) are employed, which additionally have sensors and 
+actuators at their disposal (Fig.1.6). The agent can perceive its environment with the sensors. With the actuators it carries out 
+actions and changes its environment.
+
+En robótica, por otro lado, se emplean agentes hardware (también llamados robots autónomos), que además disponen de sensores y 
+actuadores (Fig. 1.6). El agente puede percibir su entorno gracias a los sensores. Con los actuadores, realiza acciones y modifica su 
+entorno.
+
+With respect to the intelligence of the agent, there is a distinction between reﬂex agents, which only react to input, and agents 
+with memory, which can also include the past in their decisions. For example, a driving robot that through its sensors knows its exact 
+position (and the time) has no way, as a reﬂex agent, of determining its
+velocity. If, however, it saves the position, at short, discrete time steps, it can thus easily calculate its average velocity in the 
+previous time interval.
+
+Respecto a la inteligencia del agente, existe una distinción entre agentes reflejos, que solo reaccionan a la entrada, y agentes con 
+memoria, que también pueden incluir el pasado en sus decisiones. Por ejemplo, un robot conductor que, a través de sus sensores, conoce 
+su posición exacta (y la hora), como agente reflejo, no tiene forma de determinar su velocidad. Sin embargo, si guarda la posición en 
+intervalos de tiempo cortos y discretos, puede calcular fácilmente su velocidad promedio en el intervalo de tiempo anterior.
+
+If a reﬂex agent is controlled by a deterministic program, it represents a function of the set of all inputs to the set of all 
+outputs. An agent with memory, on the other hand, is in general not a function. Why? (See Exercise1.5.) Reﬂex agents are sufﬁcient 
+in cases where the problem to be solved involves a Markov decision process. This is a process in which only the current state is 
+needed to determine the optimal next action (see Chap.10).
+
+Si un agente reflejo está controlado por un programa determinista, representa una función del conjunto de todas las entradas al 
+conjunto de todas las salidas. Un agente con memoria, por otro lado, generalmente no es una función. ¿Por qué? (Véase el Ejercicio 
+1.5). Los agentes reflejos son suficientes cuando el problema a resolver implica un proceso de decisión de Markov. Este es un proceso 
+en el que solo se necesita el estado actual para determinar la siguiente acción óptima (véase el Cap. 10).
+
+A mobile robot which should move from room 112 to room 179 in a building takes actions different from those of a robot that should 
+move to room 105. In other words, the actions depend on the goal. Such agents are called goal based.
+
+Un robot móvil que debe desplazarse de la habitación 112 a la 179 en un edificio realiza acciones diferentes a las de un robot que 
+debe desplazarse a la habitación 105. En otras palabras, las acciones dependen del objetivo. Estos agentes se denominan basados ​​en 
+objetivos.
+
+**Example 1.1** A spam ﬁlter is an agent that puts incoming emails into wanted or unwanted (spam) categories, and deletes any 
+unwanted 
+emails. Its goal as a goalbased agent is to put all emails in the right category. In the course of this not-so-simple task, the agent 
+can occasionally make mistakes. Because its goal is to classify all emails correctly, it will attempt to make as few errors as 
+possible. However, that is not always what the user has in mind. Let us compare the following two agents. Out of 1,000 emails, Agent 1 
+makes only 12 errors. Agent 2, on the other hand, makes 38 errors with the same 1,000 emails. Is it therefore worse than Agent 1? The 
+errors of both agents are shown in more detail in the following table, the so-called “confusion matrix”:
+
+Ejemplo 1.1 Un filtro de spam es un agente que clasifica los correos electrónicos entrantes en categorías de deseados o no deseados 
+(spam) y elimina los no deseados. Su objetivo, como agente basado en objetivos, es clasificar todos los correos electrónicos en la 
+categoría correcta. En esta tarea, que no es tan sencilla, el agente puede cometer errores ocasionalmente. Dado que su objetivo es 
+clasificar todos los correos correctamente, intentará cometer la menor cantidad de errores posible. Sin embargo, esto no siempre es lo 
+que el usuario tiene en mente. Comparemos los dos agentes siguientes. De 1000 correos electrónicos, el Agente 1 solo comete 12 
+errores. El Agente 2, por otro lado, comete 38 errores con los mismos 1000 correos electrónicos. ¿Es, por lo tanto, peor que el Agente 
+1? Los errores de ambos agentes se muestran con más detalle en la siguiente tabla, la denominada «matriz de confusión»:
+
+ Agent 1 in 
+fact makes fewer errors than Agent 2, but those few errors are severe because the user loses 11 potentially important 
+emails. Because there are in this case two types of errors of differing severity, each error should be weighted with the appropriate 
+cost factor (see Sect.7.3.5 and Exercise2).
+
+De hecho, el Agente 1 comete menos errores que el Agente 2, pero estos son graves, ya que el usuario pierde 11 correos electrónicos 
+potencialmente importantes. Dado que en este caso hay dos tipos de errores de distinta gravedad, cada uno debe ponderarse con el 
+factor de coste adecuado (véase la Sección 7.3.5 y el Ejercicio 2).
+
+The sum of all weighted errors gives the total cost caused by erroneous decisions. The goal of a cost-based agent is to minimize the 
+cost of erroneous decisions in the long term, that is, on average. In Sect.7.3, we will become familiar with the medical diagnosis 
+system LEXMED as an example of a cost-based agent.
+
+La suma de todos los errores ponderados da el coste total causado por decisiones erróneas. El objetivo de un agente basado en costes 
+es minimizar el coste de las decisiones erróneas a largo plazo, es decir, en promedio. En la sección 7.3, nos familiarizaremos con el 
+sistema de diagnóstico médico LEXMED como ejemplo de un agente basado en costes.
+
+Analogously, the goal of a utility-based agent is to maximize the utility derived from correct decisions in the long term, that is, on 
+average. The sum of all decisions weighted by their respective utility factors gives the total utility.
+
+De forma análoga, el objetivo de un agente basado en la utilidad es maximizar la utilidad derivada de decisiones correctas a largo 
+plazo, es decir, en promedio. La suma de todas las decisiones, ponderadas por sus respectivos factores de utilidad, da como resultado 
+la utilidad total.
+
+Of particular interest in AI are Learning agents, which are capable of changing themselves given training examples or through positive 
+or negative feedback, such that the average utility of their actions grows over time (see Chap.8).
+
+De particular interés en la IA son los agentes de aprendizaje, que son capaces de cambiarse a sí mismos dados ejemplos de 
+entrenamiento o mediante retroalimentación positiva o negativa, de modo que la utilidad promedio de sus acciones crece con el tiempo 
+(ver Cap. 8).
+
+As mentioned in Sect.1.2.5, distributed agents are increasingly coming into use, whose intelligence are not localized in one agent, 
+but rather can only be seen through cooperation of many agents.
+
+Como se menciona en la sección 1.2.5, cada vez se utilizan más agentes distribuidos, cuya inteligencia no está localizada en un solo 
+agente, sino que solo puede verse a través de la cooperación de muchos agentes.
+
+The design of an agent is oriented, along with its objective, strongly toward its environment, or alternately its picture of the 
+environment, which strongly depends on it sensors. The environment is observable if the agent always knows the complete 
+stateoftheworld.Otherwisetheenvironmentisonlypartiallyobservable.Ifanaction always leads to the same result, then the environment is 
+deterministic. Otherwise it is nondeterministic. In a discrete environment only ﬁnitely many states and actions occur, whereas a 
+continuous environment boasts inﬁnitely many states or actions.
+
+El diseño de un agente, junto con su objetivo, se orienta fuertemente hacia su entorno, o alternativamente hacia su imagen del 
+entorno, la cual depende en gran medida de sus sensores. El entorno es observable si el agente siempre conoce el estado completo del 
+mundo. De lo contrario, el entorno solo es parcialmente observable. Si una acción siempre conduce al mismo resultado, el entorno es 
+determinista. De lo contrario, es no determinista. En un entorno discreto solo ocurre un número finito de estados y acciones, mientras 
+que un entorno continuo presenta un número infinito de estados o acciones.
+
+**1.5 Knowledge-Based Systems**
+
+An agent is a program that implements a mapping from perceptions to actions. For simple agents this way of looking at the problem is 
+sufﬁcient. For complex applications in which the agent must be able to rely on a large amount of information and is meant to do a 
+difﬁcult task, programming the agent can be very costly and unclear how to proceed. Here AI provides a clear path to follow that will 
+greatly simplify the work.
+
+Un agente es un programa que implementa una correlación entre percepciones y acciones. Para agentes simples, esta forma de abordar el 
+problema es suficiente. Para aplicaciones complejas, donde el agente debe basarse en una gran cantidad de información y debe realizar 
+una tarea compleja, programarlo puede resultar muy costoso y no tener claro cómo proceder. En este caso, la IA proporciona una ruta 
+clara que simplifica enormemente el trabajo.
+
+
+First we separate knowledge from the system or program, which uses the knowledge to, for example, reach conclusions, answer queries, 
+or come up with a plan. This system is called the inference mechanism. The knowledge is stored in a knowledge base (KB). Acquisition 
+of knowledge in the knowledge base is denoted Knowledge Engineering and is based on various knowledge sources such as human experts, 
+the knowledge engineer, and databases. Active learning systems can also acquire knowledge through active exploration of the world (see 
+Chap. 10). In Fig. 1.7, the general architecture of knowledge-based systems is presented.
+
+Primero, separamos el conocimiento del sistema o programa, que lo utiliza para, por ejemplo, llegar a conclusiones, responder 
+preguntas o elaborar un plan. Este sistema se denomina mecanismo de inferencia. El conocimiento se almacena en una base de 
+conocimiento (KB). La adquisición de conocimiento en la base de conocimiento se denomina Ingeniería del Conocimiento y se basa en 
+diversas fuentes de conocimiento, como expertos humanos, el ingeniero del conocimiento y bases de datos. Los sistemas de aprendizaje 
+activo también pueden adquirir conocimiento mediante la exploración activa del mundo (véase el capítulo 10). En la figura 1.7 se 
+presenta la arquitectura general de los sistemas basados ​​en el conocimiento.
+
+
+Moving toward a separation of knowledge and inference has several crucial advantages. The separation of knowledge and inference can 
+allow inference systems to be implemented in a largely application-independent way. For example, application of a medical expert 
+system to other diseases is much easier by replacing the knowledge base rather than by programming a whole new system.
+
+Avanzar hacia la separación del conocimiento y la inferencia presenta varias ventajas cruciales. Esta separación permite implementar 
+sistemas de inferencia de forma prácticamente independiente de la aplicación. Por ejemplo, la aplicación de un sistema experto médico 
+a otras enfermedades es mucho más sencilla al reemplazar la base de conocimiento que al programar un sistema completamente nuevo.
+
+
+Through the decoupling of the knowledge base from inference, knowledge can be stored declaratively. In the knowledge base there is 
+only a description of the knowledge, which is independent from the inference system in use. Without this clear separation, knowledge 
+and processing of inference steps would be interwoven, and any changes to the knowledge would be very costly.
+
+Al desvincular la base de conocimiento de la inferencia, el conocimiento puede almacenarse declarativamente. En la base de 
+conocimiento solo existe una descripción del conocimiento, independiente del sistema de inferencia utilizado. Sin esta clara 
+separación, el conocimiento y el procesamiento de los pasos de inferencia estarían entrelazados, y cualquier modificación del 
+conocimiento sería muy costosa.
+
+
+Formal language as a convenient interface between man and machine lends itself to the representation of knowledge in the knowledge 
+base. In the following chapters, we will get to know a whole series of such languages. First, in Chaps.2 and 3, there are 
+propositional calculus and ﬁrst-order predicate logic (PL1). But other formalisms such as probabilistic logic and decision trees are 
+also presented. We start with propositional calculus and the related inference systems. Building on that, we
+will present predicate logic, a powerful language that is accessible by machines and very important in AI.
+
+El lenguaje formal, como interfaz conveniente entre el hombre y la máquina, facilita la representación del conocimiento en la base de 
+conocimientos. En los siguientes capítulos, conoceremos una serie completa de estos lenguajes. Primero, en los capítulos 2 y 3, se 
+presentan el cálculo proposicional y la lógica de predicados de primer orden (PL1). Pero también se presentan otros formalismos como 
+la lógica probabilística y los árboles de decisión. Comenzamos con el cálculo proposicional y los sistemas de inferencia relacionados. 
+A partir de ahí, presentaremos la lógica de predicados, un lenguaje potente, accesible para las máquinas y muy importante en la IA.
+
+
+As an example for a large-scale knowledge-based system, we want to refer to the software agent “Watson”. Developed at IBM together 
+with a number of universities, Watson is a question answering program, that can be fed with clues given in natural language. It works 
+on a knowledge base comprising four terabytes of hard disk storage, including the full text of Wikipedia [FNA+09]. Watson was 
+developed within IBM’s DeepQA project which is characterized in [Dee11] as follows:
+
+Como ejemplo de un sistema basado en el conocimiento a gran escala, nos referimos al agente de software "Watson". Desarrollado en IBM 
+junto con varias universidades, Watson es un programa de preguntas y respuestas que puede alimentarse con pistas proporcionadas en 
+lenguaje natural. Funciona sobre una base de conocimiento de cuatro terabytes de almacenamiento en disco duro, que incluye el texto 
+completo de Wikipedia [FNA+09]. Watson se desarrolló en el marco del proyecto DeepQA de IBM, que se describe en [Dee11] de la 
+siguiente manera:
+
+
+The DeepQA project at IBM shapes a grand challenge in Computer Science that aims to illustrate how the wide and growing accessibility 
+of natural language content and the integration and advancement of Natural Language Processing, Information Retrieval, Machine 
+Learning, Knowledge Representation and Reasoning, and massively parallel computation can drive open-domain automatic Question 
+Answering technology to a point where it clearly and consistently rivals the best human performance.
+
+El proyecto DeepQA de IBM plantea un gran desafío en la ciencia informática que pretende ilustrar cómo la amplia y creciente 
+accesibilidad al contenido del lenguaje natural y la integración y el avance del procesamiento del lenguaje natural, la recuperación 
+de información, el aprendizaje automático, la representación y el razonamiento del conocimiento y la computación paralela masiva 
+pueden llevar la tecnología de respuesta a preguntas automáticas de dominio abierto a un punto en el que rivalice de manera clara y 
+consistente con el mejor desempeño humano.
+
+
+In the U.S. television quiz show “Jeopardy!”, in February 2011, Watson defeated the two human champions Brad Rutter and Ken Jennings 
+in a two-game, combinedpointmatchandwontheonemilliondollarprice.OneofWatson’sparticularstrengths was its very fast reaction to the 
+questions with the result that Watson often hit the buzzer (using a solenoid) faster than its human competitors and then was able to 
+give the ﬁrst answer to the question.
+
+En el concurso televisivo estadounidense "Jeopardy!", en febrero de 2011, Watson derrotó a los dos campeones humanos Brad Rutter y Ken 
+Jennings en un partido de puntos combinado de dos juegos y ganó el premio de un millón de dólares. Una de las fortalezas particulares 
+de Watson fue su reacción muy rápida a las preguntas con el resultado de que Watson a menudo golpeaba el timbre (usando un solenoide) 
+más rápido que sus competidores humanos y luego podía dar la primera respuesta a la pregunta.
+
+The high-performance and short reaction times of Watson were due to an implementation on 90 IBM Power 750 servers, each of which 
+contains 32 processors, resulting in 2880 parallel processors.
+
+El alto rendimiento y los cortos tiempos de reacción de Watson se debieron a una implementación en 90 servidores IBM Power 750, cada 
+uno de los cuales contiene 32 procesadores, lo que da como resultado 2880 procesadores paralelos.
+
+
+**1.6 Exercises**
+
+Exercise 1.1 Test the Large Language Models (LLMs) ChatGPT (https://chat. openai.com) and Bard (https://bard.google.com) for their 
+intelligence. Note down a starting question and measure the time you need for the different programs until you can say for sure that 
+it is not a human. Try to assess whether the systems pass the Turing test. Look for studies that may prove that LLMs pass the Turing 
+test.
+
+Ejercicio 1.1: Comprueba la inteligencia de los Grandes Modelos de Lenguaje (LLM) ChatGPT (https://chat.openai.com) y Bard 
+(https://bard.google.com). Anota una pregunta inicial y mide el tiempo que necesitan los diferentes programas hasta que puedas afirmar 
+con certeza que no son humanos. Intenta evaluar si los sistemas superan la prueba de Turing. Busca estudios que puedan demostrar que 
+los LLM superan la prueba de Turing.
+
+ Exercise 1.2 Give reasons for the unsuitability of the Turing test as a deﬁnition of “artiﬁcial 
+intelligence” in practical AI.
+
+Ejercicio 1.2 Dé razones de por qué la prueba de Turing no es adecuada como definición de “inteligencia artificial” en la IA práctica.
+
+➳ Exercise 1.3 Many well-known inference processes, learning processes, etc. are NP-complete or even undecidable. What does this mean 
+for AI?
+
+Exercise 1.4
+
+(a) Why is a deterministic agent with memory not a function from the set of all inputs to the set of all outputs, in the mathematical 
+sense?
+
+(b) How can one change the agent with memory, or model it, such that it becomes equivalent to a function but does not lose its memory?
+
+Exercise 1.5 Let there be an agent with memory that can move within a plane. From its sensors, it receives at clock ticks of a regular 
+interval Δt its exact position (x, y) in Cartesian coordinates.
+
+(a) Give a formula with which the agent can calculate its velocity from the current time t and the previous measurement of t − Δt.
+
+(b) How must the agent be changed so that it can also calculate its acceleration?
+
+Provide a formula here as well.
+
+❄ Exercise 1.6
+
+(a) Determine for both agents in Example 1.1 the costs created by the errors and compare the results. Assume here that having to 
+manually delete a spam email costs one cent and retrieving a deleted email, or the loss of an email, costs one dollar.
+
+(b) Determine for both agents the proﬁt created by correct classiﬁcations and compare the results. Assume that for every desired 
+email recognized, a proﬁt of one dollar accrues and for every correctly deleted spam email, a proﬁt of one cent.
+
+
