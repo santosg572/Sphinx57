@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+
+<html lang="sp" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>CONN functional connectivity toolbox: RRID:SCR_009550, Version 22 &#8212; документација conn_tutorial 01</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=cb95fe6c"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Индекс" href="genindex.html" />
+    <link rel="search" title="Претрага" href="search.html" />
+    <link rel="prev" title="conn_tutorial documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="conn-functional-connectivity-toolbox-rrid-scr-009550-version-22">
+<h1>CONN functional connectivity toolbox: RRID:SCR_009550, Version 22<a class="headerlink" href="#conn-functional-connectivity-toolbox-rrid-scr-009550-version-22" title="Link to this heading">¶</a></h1>
+<p>Abstract: CONN is a Matlab-based cross-platform software for the computation, display, and analysis of functional connectivity in fMRI
+(fcMRI). Version 22 brings a number of updates and additions to previous releases. Some of the main new procedures and tools include
+new interactive analyses exploring the entire brain-wide functional connectome, with a focus on descriptions of commonalities as well
+as heterogeneity of functional connectivity patterns across subjects and experimental conditions (similar to AFNI instacorr but across
+all subjects in a study; available in 2nd -level fc-MVPA summary tab), new preprocessing options for normalizing anatomical and
+functional volumes in the presence of anatomical lesions (available in Setup.Preprocessing), new displays for ROI-to-ROI connectivity
+and contingency table data (in ROI-to-ROI results explorer), as well as the ability to create automated text, distributed under a
+public domain dedication license, describing in detail the specific preprocessing, denoising, 1st - and 2nd - level analyses steps
+performed on each individual CONN project (available in Tools.WriteMethods).</p>
+<p>Overview</p>
+<p>CONN is a Matlab-based cross-platform software for the computation, display, and analysis of functional connectivity in fMRI (fcMRI).
+Connectivity measures include seed-to-voxel connectivity maps, ROI-to-ROI connectivity matrices, graph properties of connectivity
+networks, generalized psychophysiological interaction models (gPPI), intrinsic connectivity, local correlation, global correlation,
+inter-hemispheric correlation, independent component analyses (ICA), functional connectivity multivariate pattern analyses (fc-MVPA),
+and dynamic component analyses (dyn-ICA).</p>
+<p>CONN is available for resting state data (rsfMRI) as well as task-related designs. It covers the entire pipeline from raw fMRI data to
+hypothesis testing, including spatial coregistration, ART-based scrubbing, aCompCor strategy for control of physiological and movement
+confounds, first-level connectivity estimation, and second-level random-effect analyses and hypothesis testing.</p>
+<p>Note: a standalone version of CONN for linux64 systems (precompiled including both SPM and CONN) that does not require Matlab
+installed or a Matlab license can be downloaded from www.nitrc.projects/conn.</p>
+<p>OS-specific notes: On Mac OS/X use “ctrl-click” instead of “right-click” to bring contextual menus in the CONN gui; If the default GUI
+display fonts are too small click on Tools-&gt;GUI settings to change the GUI font size (your choice of font sizes will be kept across
+CONN sessions and across toolbox updates); When using VNC to connect remotely to Linux machines type in Matlab’s command window opengl
+software right after starting Matlab if you experience VNC crashes when displaying 3d renderings or when printing;</p>
+<p>General</p>
+<p>In order to perform connectivity analyses using this toolbox you will need:</p>
+<p>Functional data. Either resting-state or task designs can be analyzed.</p>
+<p>Structural data. At least one anatomical volume for each subject (this is used mostly for plotting purposes but also to derive the
+gray/white/CSF masks used in the aCompCor confound removal method)</p>
+<p>ROI definitions. A series of files defining seeds of interest. ROIs can be defined from mask images, text files defining a list of MNI
+positions, or multiple-label images. The toolbox also provides a series of default pre-defined regions of interest that that will be
+loaded automatically. These include a series of seed areas useful for investigating resting state connectivity –regions characterizing
+DMN, dorsal attention network, executive control network, etc.-, as well as a complete brain parcellation including 91 cortical areas
+and 15 subcortical areas from the FSL Harvard-Oxford Atlas as well as 26 cerebellar areas from the AAL atlas. See the
+conn/utils/otherrois/ folder for additional/optional ROI files, including Brodmann areas, large-voxel parcellations, etc.</p>
+<p>tip: To try out the toolbox in the absence of any data, select Help. Sample Data in the CONN gui in order to automatically download
+and process the NYU test-retest dataset</p>
+<p>The toolbox operation is divided in four sequential steps:</p>
+<p>Setup: Defines basic experiment information, data locations, regions of interest (seeds), temporal covariates, and second-level
+models. Optionally, perform functional and anatomical preprocessing steps if necessary, including realignment, slice-timing
+correction, coregistration/normalization, segmentation, outlier identification, and smoothing.</p>
+<p>Denoising: Define, explore, and remove possible confounds in the BOLD signal, including motion, physiological and other noise sources.</p>
+<p>Analyses: Perform first-level analyses. Define the seeds of interest and explore the functional connectivity of different sources
+separately for each subject. Define ICA, voxel-to-voxel analyses, dynamic analyses, etc.</p>
+<p>Results: Perform second-level analyses. Define group analyses and perform population-level inferences from the resulting connectivity
+measures of each first-level analysis.</p>
+<p>Each of these steps can be defined interactively using the toolbox GUI or programmatically using scripts and conn_batch functionality.
+In addition, and both when using the GUI or batch processes, all of the analyses can be performed locally on a single computer, or
+they can be distributed among multiple computers in a cluster environment. Currently CONN supports Sun Grid Engine (SGE), Open Grid
+Scheduler (OGS/GE) and other Grid Engine implementations, PBS/Torque, LSF, and Slurm batch queuing systems. The following sections
+describe the experiment definition and analysis steps when using the GUI on a local computer in more detail. See
+Help.Documentation.Info:batch processing for additional information on batch scripts, or see Help.Documentation.Info:grid computing as
+well as Tools.Grid settings for additional information on cluster environments.</p>
+<p>General help resources In the CONN GUI select Help.Search to easily search through a database of user questions/answers, select
+Help.Updates to check and update CONN to the latest available release, select Help.Documentation for general documentation, and
+Help.Web for additional resources.</p>
+<p>Step one: setup (defines experiment information, file sources for</p>
+<p>functional data, structural data, regions of interest, and other covariates)</p>
+<p>Click on Project.Load to load an existing CONN</p>
+<p>Or click on the Project.New (blank) button to start a new project</p>
+<p>Note: If the data has initially been defined/analyzed in SPM you can skip several of the steps explained below to import your data by
+using instead the automatic Import functionality. If you want to use this functionality select the option Project.New (import) instead
+of Project.New (blank) when creating your project, and then choose the source and format of your input data (DICOM files, a set of SPM
+first-level analyses, a BIDS dataset, or a fMRIPrep preprocessed dataset) and CONN will automatically import several relevant data
+files automatically from those sources (and you can then proceed to manually import any additional files or data if necessary).</p>
+<p>Basic experimental info Setup</p>
+<p>Click on the Basic button on the left side, enter experiment information (Number of subjects, TR, number of sessions per subject, and
+acquisition type). If the same number of sessions was acquired for every subject enter a single number in Number of sessions,
+otherwise enter the subject-specific values (one value per subject). If your data was acquired continuously select ‘continuous’ in
+Acquisition type, and if you used sparse sampling select ‘sparse’ (this will skip hrf-convolution when computing task effects). If
+your data was acquired using different TR values, enter NaN in the TR field and CONN will read this information from the
+RepetitionTime field of a sidecar .json file associated with each functional run NIFTI .nii file.</p>
+<p>Structural files Setup</p>
+<p>Click on the Structural button on the left side to load the structural images. Click sequentially on each subject and select the
+associated anatomical image (one anatomical volume per subject). If you have multiple anatomical volumes per subject (e.g. one per
+session/scan), select ‘Multiple anatomical scans per subject’ and then enter the corresponding session-specific anatomical volumes.
+Anatomical volumes should typically be coregistered to the functional and ROI volumes for each subject (e.g. if using MNI-space
+normalized functional volumes you should enter here the normalized anatomical volume). Alternatively you may enter the raw
+(subject-space) anatomical volumes and transform them to your desired target space (e.g. MNI) using ‘structural tools: individual
+preprocessing step’ or ‘Preprocessing’ (see Notes on Structural, Functional, and ROI files coregistration section below).</p>
+<p>GUI tip 1: The “Find” in the “Select functional data files” window can be used to search for all files within the target folder
+recursively. Change the “Filter” window to narrow the search.</p>
+<p>GUI tip 2: If multiple subjects are selected in the “Subjects” list, and the number of files selected in the “Select functional data
+files” window matches the number of subjects, each subject is assigned one single file from the list</p>
+<p>If your structural volumes have been preprocessed using Freesurfer (<a class="reference external" href="https://surfer.nmr.mgh.harvard.edu/">https://surfer.nmr.mgh.harvard.edu/</a>), you may enter here the T1 or
+brainmask volumes in the subject-specific mri folder generated by Freesurfer. The toolbox will identify the associated surf folder
+containing the estimated cortical surfaces and it will display at this point a 3d-rendering of the pial surface (and this will allow
+you to obtain connectivity measures on the cortical surface; see Options Setup section below).</p>
+<p>Functional files Setup</p>
+<p>Click on Functional button on the left side, from the right side panel, select the functional images (4D NIFTI .nii files, or multiple
+3D NIFTI .nii or ANALYZE .img files). This will take a second to load, check the middle panel (Functional data setup) to make sure the
+correct volumes are loaded. The brain display in the “Functional data setup” window shows the first (left) and last (right) scan for
+the selected subject/session (as in the figure above). The functional images are expected to be already pre-processed (realigned and
+smoothed), as well as coregistered with the structural and ROI volumes. If they are not, you may select ‘functional tools: individual
+preprocessing step’ or ‘Preprocessing’ to perform the appropriate preprocessing steps (see Notes on Structural, Functional, and ROI
+files coregistration section below). Clicking on ‘functional tools: check registration’ displays the coregistration between the
+functional and structural volumes for the selected subjects/sessions.</p>
+<p>Preprocessing functional &amp; structural data</p>
+<p>After defining your raw Functional and Structural data, using Setup.Preprocessing you may run any combination of preprocessing steps
+(e.g. realignment, normalization, segmentation, outlier detection, etc.). Select individual spatial preprocessing steps or select one
+of the provided default pipelines (defaultMNI for analyses in MNI-space, and defaultSS for analyses in subject-space or surface-based
+analyses), add, remove, or resort individual steps if you wish to better tailor it to your data or planned analyses, and then click
+‘Ok’ to run the entire sequence of spatial preprocessing steps on all of the defined subjects or on a subset of subjects. For
+reference, CONN’s defaultMNI pipeline consists of the following steps: functional realignment and unwarping, slice-timing correction,
+outlier detection, structural segmentation&amp;normalization, functional normalization, and smoothing. If your functional and structural
+data has been already preprocessed using SPM or other software you may simply skip all or any unnecessary preprocessing steps here.
+See www.conntoolbox.org/fmri-methods/preprocessing-pipeline and “help conn_batch” for details about all of the different</p>
+<p>preprocessing steps available in CONN</p>
+<p>Notes:</p>
+<p>Typically, after selecting all structural, functional, and ROI files in the Setup step, and further applying any additional spatial
+preprocessing if necessary, all of the structural, functional, and ROI files should be coregistered to each other (in the same space;
+e.g. MNI-space)1 . This will happen, for example, when using CONN’s initial spatial preprocessing pipeline (defaultMNI), which will
+result in both functional and structural files being in MNI-space (note that all of the ROIs provided in the toolbox conn/rois folder
+are also defined in MNI-space).</p>
+<p>In some cases you might want to relax this condition and use structural/functional/ROI files that might not be all in the same space
+(e.g. using subject-specific ROI files, surface-based analyses, etc.). The toolbox uses separate ROI-level and voxel-level pipelines,
+and the tables below show typical configurations of Structural/Functional/ROI files that one would select depending on the desired
+analysis option within each of these pipelines. For example, if you want to perform volume-based analyses on MNI-space for voxel-level
+analyses, but use subject-specific ROIs for ROI-level analyses, you will only need to have the functional files coregistered to the
+structural files (both normalized in MNI-space), and separately the functional files (ROI extraction option) coregistered to the ROI
+files (typically in subject-space).</p>
+<p>1</p>
+<p>although not necessarily having the same dimensions or resolution (i.e. coregistered, but not necessarily resliced to the same
+reference space)</p>
+<p>If your structural or functional files are not in the desired space or they have not been yet spatially preprocessed, you may (during
+the Setup step) apply any combination of structural segmentation, structural segmentation&amp;normalization, functional removal of intial
+scans, functional realignment, functional realignment&amp;unwarp, functional realignment&amp;unwarp&amp;B0correction, functional slice timing
+correction, functional coregistration to structural volumes, functional normalization, functional outlier detection (ARTbased
+scrubbing), and functional smoothing steps to your structural/functional files using the tools: individual preprocessing step menu on
+each of the Structural and Functional tabs, or from Setup.Preprocessing:</p>
+<p>Methods used when preprocessing functional &amp; structural data</p>
+<p>After preprocessing your Functional and Structural data click on the ‘Methods’ button to have CONN generate an automated description
+of the specific procedures and methods used during preprocessing. This description is distributed under a public domain dedication
+license and it can be copied/pasted verbatim to your manuscript Methods section (or modified and/or used in any other way) without
+requiring any permission from us.</p>
+<p>In the Methods GUI select the log of the preprocessing pipeline that you would like to describe (and, optionally, any additional CONN
+steps that you would like to include in the description). Select ‘export to html’ or ‘export to Word’ to export these descriptions
+directly to a .html or .docx file. An example of such description would be the following (the specific details will vary depending on
+your choice of preprocessing pipeline or steps):</p>
+<p>Copy and paste the section below to your manuscript Methods section. This text is distributed under a Public Domain Dedication license
+(CC0 1.0) and it can be used, copied, modified, and distributed freely.</p>
+<p>Methods</p>
+<p>Results included in this manuscript come from analyses performed using CONN [1] (RRID:SCR_009550) release</p>
+<p>19.a [2] and SPM [3] (RRID:SCR_007037) release 12.7771.</p>
+<p>Preprocessing: Functional and anatomical data were preprocessed using a flexible preprocessing pipeline[4]  including realignment with
+correction of susceptibility distortion interactions, slice timing correction, outlier detection, direct segmentation and MNI-space
+normalization, and smoothing. Functional data were realigned using SPM realign &amp; unwarp procedure[5] , where all scans were
+coregistered to a reference image (first scan of the first session) using a least squares approach and a 6 parameter (rigid body)
+transformation[6] , and resampled using b-spline interpolation to correct for motion and magnetic susceptibility interactions.
+Temporal misalignment between different slices of the functional data (acquired in interleaved Siemens order) was corrected following
+SPM slice-timing correction (STC) procedure[7,8] , using sinc temporal interpolation to resample each slice BOLD timeseries to a
+common mid-acquisition time. Potential outlier scans were identified using ART [9] as acquisitions with framewise displacement above
+0.5 mm or global BOLD signal changes above 3 standard deviations[10,11] , and a reference BOLD image was computed for each subject by
+averaging all scans excluding outliers. Functional and anatomical data were normalized into standard MNI space, segmented into grey
+matter, white matter, and CSF tissue classes, and resampled to 2 mm isotropic voxels following a direct normalization procedure
+[11,12] using SPM unified segmentation and normalization algorithm [13,14] with the default IXI-549 tissue probability map template.
+Last, functional data were smoothed using spatial convolution with a Gaussian kernel of 8 mm full width half maximum (FWHM).</p>
+<p>References</p>
+<p>Whitfield-Gabrieli, S., &amp; Nieto-Castanon, A. (2012). Conn: a functional connectivity toolbox for correlated and anticorrelated brain
+networks. Brain connectivity, 2(3), 125-141.</p>
+<p>[1]</p>
+<p>[2] Nieto-Castanon, A. &amp; Whitfield-Gabrieli, S. (2019). CONN functional connectivity toolbox: RRID SCR_009550, release 19.
+doi:10.56441/hilbertpress.1927.9364.</p>
+<p>[3] Penny, W. D., Friston, K. J., Ashburner, J. T., Kiebel, S. J., &amp; Nichols, T. E. (Eds.). (2011). Statistical parametric mapping:
+the analysis of functional brain images. Elsevier.</p>
+<p>[4] Nieto-Castanon, A. (2020). FMRI minimal preprocessing pipeline. In Handbook of functional connectivity Magnetic Resonance Imaging
+methods in CONN (pp. 3–16). Hilbert Press.</p>
+<p>[5] Andersson, J. L., Hutton, C., Ashburner, J., Turner, R., &amp; Friston, K. J. (2001). Modeling geometric deformations in EPI time
+series. Neuroimage, 13(5), 903-919.</p>
+<p>[6] Friston, K. J., Ashburner, J., Frith, C. D., Poline, J. B., Heather, J. D., &amp; Frackowiak, R. S. (1995). Spatial registration and
+normalization of images. Human brain mapping, 3(3), 165-189.</p>
+<p>[7] Henson, R. N. A., Buechel, C., Josephs, O., &amp; Friston, K. J. (1999). The slice-timing problem in event-related fMRI. NeuroImage,
+9, 125.</p>
+<p>[8] Sladky, R., Friston, K. J., Tröstl, J., Cunnington, R., Moser, E., &amp; Windischberger, C. (2011). Slice-timing effects and their
+correction in functional MRI. Neuroimage, 58(2), 588-594.</p>
+<p>[9] Whitfield-Gabrieli, S., Nieto-Castanon, A., &amp; Ghosh, S. (2011). Artifact detection tools (ART). Cambridge, MA. Release Version,
+7(19), 11.</p>
+<p>[10] Power, J. D., Mitra, A., Laumann, T. O., Snyder, A. Z., Schlaggar, B. L., &amp; Petersen, S. E. (2014). Methods to detect,
+characterize, and remove motion artifact in resting state fMRI. Neuroimage, 84, 320-341.</p>
+<p>[11] Nieto-Castanon, A. (2022). Preparing fMRI Data for Statistical Analysis. In M. Filippi (Ed.). fMRI techniques and protocols.
+Springer. doi:10.48550/arXiv.2210.13564</p>
+<p>[12] Calhoun, V.D., Wager, T.D., Krishnan, A., Rosch, K.S., Seymour, K.E., Nebel, M.B., Mostofsky, S.H., Nyalakanai, P. and Kiehl, K.
+(2017). The impact of T1 versus EPI spatial normalization templates for fMRI data analyses (Vol. 38, No. 11, pp. 5331-5342).</p>
+<p>[13] Ashburner, J., &amp; Friston, K. J. (2005). Unified segmentation. Neuroimage, 26(3), 839-851.</p>
+<p>[14] Ashburner, J. (2007). A fast diffeomorphic image registration algorithm. Neuroimage, 38(1), 95-113.</p>
+<p>ROI files Setup</p>
+<p>Click on the ROIs button on the left side to load ROI mask files (.img or .nii volumes), MNI coordinate files (.tal text files), or
+atlas files (.nii files with multiple labels, or 4d files with multiple masks). ROI files can be assigned separately to each subject
+(for subject-specific ROIs) or commonly across all subjects (normalizedspace ROIs). From each ROI, CONN may extract an average BOLD
+signal timeseries within the ROI voxels (extract average timeseries option), multiple timeseries from a Principal Component
+decomposition of the BOLD signal within ROI voxels (extract PCA decomposition option), or a weighted sum of the BOLD signal within ROI
+voxels (weighting each voxel timeseries by a different factor; extract weighted sum timeseries option). Also you may indicate which
+dataset, among potentially multiple alternative functional datasets, each ROI BOLD signal is to be computed from (‘from functional
+dataset #’ field; see Other files Setup section below).</p>
+<p>Running the structural or functional segmentation Preprocessing step will automatically fill-in the first three ROIs in this tab
+(Gray/White/CSF) with the corresponding subject-specific masks. By default all new projects in CONN are set up to extract a Principal
+Component decomposition from both the White and CSF regions which can later be used during the Denoising step to implement aCompCor
+(removal of White/CSF noise components).</p>
+<p>When starting a new project all files in the rois toolbox folder (./conn/rois) will be imported as initial regions of interest. This
+folder includes: 1) atlas.nii/.txt/.info, an atlas of cortical and subcortical areas from the FSL Harvard-Oxford Atlas, as well as
+cerebellar areas from the AAL atlas; and 2) networks.nii/.txt/.info, an atlas of a few commonly used networks and areas (e.g. Default
+Mode MPFC/PCC/RLP/LLP areas)</p>
+<p>Default ROIs. atlas.nii (left, 132 ROIs) and networks.nii (right, 31 ROIs across 8 networks).</p>
+<p>To import new ROIs, click below the last ROI listed and enter the appropriate information. To remove an existing ROI from this list
+right-click on an ROI and select “remove”. When importing subject-specific ROIs click sequentially on each subject and select the
+corresponding ROI file. When importing subject-independent ROI files, select all subjects simultaneously and then select the
+corresponding ROI file or simply uncheck the Subject-specific ROI option before selecting a single ROI file.</p>
+<p>Select “Subject-specific ROI” and/or “Session-specific ROI” to specify whether you would like to enter different ROI files for each
+subject and/or each session.</p>
+<p>Load the grey matter, white matter and CSF mask for each subject if they already exist (if left blank, the toolbox will generate these
+masks by performing segmentation on the structural image for each subject)</p>
+<p>ROI files should be coregistered to the provided structural and functional volumes of this subject (they could be defined in
+normalized space, or they could be defined in subject-space). Click on ROI tools: check registration to display the coregistration
+between the selected ROI(s) and the structural or functional volumes (see Notes on Structural, Functional, and ROI files
+coregistration section below for additional options).</p>
+<p>The default dimensions (number of PCA components to be extracted) for each ROI can be changed when selecting the extract PCA
+decomposition option. In the following steps (denoising, analyses), you can later select the number of components among the extracted
+ones you wish to use in the connectivity analyses. If one dimensions is chosen for a ROI the time-series of interest is defined by the
+average BOLD activation within the ROI voxels. If more than one dimension is chosen for a ROI the time-series of interest are defined
+as the principal eigenvariates of the time-series within the ROI voxels (note: PCA decomposition is performed after removal of
+task-effects and first-level covariates when selecting the regress-out covariates option).</p>
+<p>Select “mask with grey matter” on selected ROIs to further restrict these ROIs’ voxels to those voxels within the estimated grey
+matter mask for each subject.</p>
+<p>Select “multiple ROIs” if the ROI file contains multiple labels (e.g. atlas file TD.img provided in roi folder), or multiple
+disconnected sets (e.g. functionally-defined ROI composed of multiple clusters, and you wish to use each cluster as a separate seed).</p>
+<p>Other files Setup</p>
+<p>Click on Other button on the left side, from the middle panel select an existing secondary dataset that you would like to import or
+select ‘New dataset’ to define a new secondary dataset. Secondary datasets are where any additional subject- and session- specific
+image files that may be useful or relevant to your study are defined. For example, if you wish to define an alternative set of
+functional volumes that you would like to be used as sources when extracting ROI-level BOLD signal estimates for some particular ROI,
+that dataset can be defined in this tab, assigned a label, and then in the Setup.ROIs tab you would only have to specify which
+particular ROI(s) you would like to extract data from this particular dataset.</p>
+<p>By default the toolbox will automatically define a dataset named ‘unsmoothed volumes’ pointing to the unsmoothed functional volumes
+(using the SPM-convention for unsmoothed volumes, same filenames without the initial ‘s’ in the file name) and this dataset will be
+the one used unless specified otherwise when extracting ROI-level BOLD signal timeseries for all ROIs, in order to avoid “spillage”
+from nearby regions (see ROI files Setup section above). You may also create a new secondary dataset named ‘VDM’ to define subject and
+session-specific .vdm files for susceptibility distortion correction which can later be used by the realign&amp;unwarp preprocessing step.
+A secondary dataset named ‘FMAP’ can also be created to enter fieldmap files for each subject and session, which can later be used by
+the ‘creation of VDM files’ preprocessing step to automatically compute the above .vdm files. A secondary dataset named ‘TPM’ can also
+be used to enter subject-specific TPM (Tissue Probability Maps) which can later be used by the functional/structural normalization
+preprocessing steps. Other secondary datasets may be arbitrarily created to store different versions of the functional data. For
+example, the default preprocessing pipeline in CONN will create a secondary dataset named ‘original data’ pointing to the original
+functional data (before running any preprocessing steps), and a dataset named ‘MNI-space data’ pointing to the data in MNI-space
+(before smoothing). If at some point you need to revert your functional data to a previous state (e.g. original data) simply select
+the option ‘move datasets’ and transfer the ‘original data’ dataset to the main functional dataset.</p>
+<p>Rest or task conditions Setup</p>
+<p>Click on the Conditions button on the left side to define your experimental conditions. CONN will typically compute separate
+connectivity measures for each individual condition that you define in this tab. Here you specify how each individual condition is
+defined (is it associated with BOLD data from one or multiple runs? Does it cover the entire run or only some blocks or events during
+the run? etc.)</p>
+<p>Add any new condition to the ‘conditions’ list by clicking on the ‘+’ button there. Then enter the name of your condition in the
+‘Condition’ field, and then select a combination of subjects and sessions in the ‘Subjects’ and ‘Sessions’ lists and specify how this
+condition is defined for these subjects/sessions:</p>
+<p>Select ‘condition spans entire selected session(s)’ if the condition spans the entire duration of these session(s), e.g. during a
+resting state run</p>
+<p>Select ‘condition is not present in selected session(s)’ if the condition is not present at any time during these session(s), e.g. in
+a pre- post- design, the ‘pre’ condition is not present in the second functional session, and the ‘post’ condition is not present in
+the first functional session</p>
+<p>Select ‘task designs: condition present at blocks/events during these session(s)’ for task designs. In this case you will need to then
+specify the onsets and durations of the blocks or events associated with this condition during these session(s). See the table below
+for a few examples of condition onset/duration specification. For complex designs, condition information can also be imported using
+the ‘functional tools. Import condition info from text file(s)’ menu from BIDS _events.tsv files, SPM .mat files, or custom .csv or
+.txt files (see help conn_importcondition for additional details)</p>
+<p>Select ‘hierarchical designs: condition defined as a function of other conditions’ to define secondor higher- order conditions in a
+multi-level design. In this case you will need to specify how this (output) condition is defined as a function of other (input)
+conditions. Available options are: average across input conditions; standard deviation across input conditions; minimum across input
+conditions; maximum across input conditions; regressor in linear model fitting input conditions; and custom function across input
+conditions. These options are particularly useful in the context of nonlinear relationships between the input and output conditions.
+For linear relationships it is simpler to define the specific between-conditions contrast later in the second-level results tab,
+without the need to manually define those contrasts at this point.</p>
+<p>Additional options: Right-click on the conditions list to delete or replicate a condition; select condition tools to enter all
+condition information simultaneously from a text file, or to copy or move a condition to the first-</p>
+<p>level covariates list (e.g. when you are not interested in obtaining task-specific measures of functional connectivity, but want
+instead to use Fair et al. method for estimating resting-state connectivity from blockor event-related designs). Optionally, you may
+also define a temporal modulation factor (in condition-specific temporal modulation; this defaults to a timeseries defined by
+hrf-convolvution of the condition blocks/events) in order to perform gPPI analyses for task-related designs, or analyze potential
+temporal-modulation in fcMRI measures. You may also enter for each condition a condition-specific band-pass filter (in
+condition-specific filter) as a way to explore potential frequency- modulation of fcMRI measures2 .</p>
+<p>2</p>
+<p>If you want to explore frequency-dependent variations in fcMRI measures, but do not wish to specify a series of frequency filters
+manually, you may select filter-bank in the Temporal filter field, and enter there the desired number of frequency filters. This will
+partition the frequency band defined in the Denoising step into n equally-sized frequency regions, and it will automatically create
+one condition associated with each of these frequency bands. This allows you to use between-condition effects/contrasts as a way to
+analyzing potential frequency-dependent differences in any of your fcMRI measures.</p>
+<p>First-level (within-subjects) covariates Setup</p>
+<p>Click on the Covariates:First-level button to define first level covariates such as realignment parameters to be used in the
+first-level BOLD model. For each covariate select a .txt or .mat file (for each subject and session) containing the covariate time
+series (e.g. select the realignment parameters file rp_*.txt to include the movement parameters as covariates).</p>
+<p>When importing .txt files they should contain as many rows of number as scans for any given subject/session, and an arbitrary number
+of columns (columns are separated by spaces). When importing .mat files they should contain a single variable (arbitrarily named)
+consisting of a matrix with as many rows as scans for any given subject/session and arbitrary number of columns.</p>
+<p>If you want to obtain aggregated subject-level measures of some of your first-level covariates (e.g. to compute the maximum amount of
+movement for each subject, or the number of outlier scans for each subject) you may do so by selecting each first-level measure in the
+covariates list and clicking on covariate tools: compute summary measures.</p>
+<p>Running some of the functional Preprocessing steps will automatically create or fill-in several first-level covariates in this tab. In
+particular, running the outlier scan identification ART-based scrubbing step will automatically create a first-level covariate named
+‘scrubbing’ containing the offending scans for each subject/session (this variable can later be used during the Denoising step to
+perform scrubbing), and running any of the functional realignment steps will automatically create a first-level covariate named
+‘realignment’ containing the 6 rigid-body parameters characterizing the estimated subject motion for each subject/session (this
+variable can also be later used during the Denoising step to perform regression of residual movementrelated effects). Also during ART
+preprocessing step a covariate named ‘QC_timeseries’ is created containing two timeseries (BOLD global signal changes, in z-score
+units, and framewise displacement, in mm units) that can be used for computing other quality control measures (e.g. using the
+‘covariate tools. Compute new/derived second-level covariates’ menu) and/or for later changing the choice of outlier thresholds (using
+the ‘covariate tools. Compute new/derived first-level covariates’ menu and recomputing the ‘scrubbing’ first-level covariate).</p>
+<p>Second-level (between-subjects) covariates Setup</p>
+<p>Click on the Covariates:Second-level button to define groups and subject-level regressors (e.g. behavioral measures). Click on the
+empty space below the last variable in the Covariates list to add a new variable. For each variable enter the corresponding subject
+values in the values field (one number per subject). Use 1/0 to define subject groups, or continuous values for between-subject
+regression models. Missing values may be indicated using the special symbol NaN (second-level analyses that contain a variable with
+missing values will automatically disregard the corresponding subjects’ data). Some examples of second-level covariates definitions
+are below:</p>
+<p>Second-level covariates example</p>
+<p>Tip: In addition to simple lists of numbers like the examples above, the values field will also accept any valid Matlab syntax (e.g.
+[ones(1,5) zeros(1,5)] or (1:10)&lt;=5 would produce the same values as the Patients example above). You may also refer to variables in
+Matlab workspace by name, or refer to other already-defined secondlevel covariates by name (e.g. in the example above the covariate
+Controls could also be defined simply entering in the values field AllSubjects –Patients).</p>
+<p>By default the variable ‘AllSubjects’ is always created when starting a new project. In addition, running some of the Preprocessing or
+Denoising steps will automatically create or fill-in several second-level covariates in</p>
+<p>this tab. In particular, running the outlier scan identification ART-based scrubbing step will automatically create second-level
+covariates named ‘QC_MeanMotion’, ‘QC_MaxMotion’, ‘QC_MeanGSchange’, ‘QC_MaxGSchange’, ‘QC_ValidScans’, and ‘QC_InvalidScans’
+containing the mean (across valid scans only) and maximum inter-scan movement (framewise displacement), the mean (across valid scans
+only) and maximum global signal change, the number of valid &amp; invalid scans observed for each subject/session. Similarly, running the
+Denoising step will automatically create second-level covariates named ‘QC_BOLDstd’, ‘QC_GCOR’, and ‘QC_dof’, containing the BOLD
+signal standard deviation (averaged across all voxels), global correlation index (average correlation coefficient between every pair
+of voxels across the entire brain), and effective degrees of freedom after denoising, for each subject/condition. Any of these
+variables can later be used during the Second-level analyses step for additional control over potential between-subject differences in
+motion/outliers, or to help identify and remove potential outlier subjects.</p>
+<p>Second-level covariates can be defined at any time in the analyses (changes to any of other “Setup” options requires rerunning all the
+analyses steps, while changes to the second-level covariates do not). In addition, using the covariate tools menu, you can also import
+covariates from a file (.txt, .csv, .tsv, or .mat files), discretize an existing covariate into new dichotomous covariates (e.g. from
+a ‘group’ covariate with three levels, it will create new ‘group1’, ‘group2’, and ‘group3’ covariates), define new covariates
+characterizing the interaction between other existing covariates (from a ‘age’ and ‘gender’ covariate it will create a new
+‘age*gender’ interaction covariate), or orthogonalize a covariate against one or several of your other covariates (e.g. you may
+‘center’ a between-subjects variable by orthogonalizing it against the constant –all subjects- term).</p>
+<p>GUI tip: Use Tools-&gt;Calculator on the main CONN gui to visualize and analyze your current 2nd -level covariates (e.g. look at
+potential between-group differences in subject movement, levels of association between your different subject-level measures, etc.).
+The way to define 2nd -level analyses in the calculator is the same as that of the main CONN gui 2nd -level results view (see Step 4
+below)</p>
+<p>Options Setup</p>
+<p>Click on the Options button for additional analysis options. Select the type of analyses that you wish to perform (ROI-to-ROI,
+seed-to-voxel, and voxel-to-voxel). For voxel-based analyses define the desired analysis space (by default volume-based analyses using
+isotropic 2mm voxels; you may indicate surfacebased analyses only if you have selected Freesurfer generated structural volumes for all
+of your subjects) as well as the type of analysis mask to be used (by default a gray matter template mask).</p>
+<p>Last select if you wish optional/additional output files to be created by the toolbox during the Setup and Denoising steps (these are
+files that are not necessary for any of the CONN-based analyses, but could be useful for example if you plan to export some of the
+toolbox intermediate results to other packages; e.g. confound-corrected BOLD timeseries, first-level seed-to-voxel r- or p-maps,
+etc.).</p>
+<p>When finished defining the experiment data in the Setup tab press Done in order to run the Setup processing pipeline.</p>
+<p>This will import the functional data for each session. If the gray/white/CSF ROIs have not been defined before, this step will perform
+segmentation of the structural data in order to define these masks (in this case, after this process is finished come back to Setup to
+inspect the resulting ROIs for possible inconsistencies). Last, this step will also extract the voxel-level and ROI-level time-series
+for each session (performing PCA on the within-ROI activations when appropriate). All of this information will be then propagated to
+the Denoising tab (see below) which will become active/available allowing you to proceed with the next step in your
+processing/analysis pipeline (denoising your data).</p>
+<p>If, at some later point after having already run this Setup step, you need to go back and modify any of the information in the Setup
+tab (with the exception of Setup.Covariates 2nd -level), after making those changes in the Setup tab remember to click on Done again
+in order to propagate those changes to the Denoising tab again (you may select the option ‘do not overwrite (skip already processed
+subjects/ROIs)’ if the modifications in the Setup tab consisted simply in adding new subjects and/or defining new ROIs, since in those
+cases there is no need to repeat this step for the already processed subjects/ROIs). Note that the same will need to be done in the
+Denoising tab in order to propagate those changes to the first-level analysis tab, etc.</p>
+<p>The Save / Save as button will save the CONN project setup configurations in a .mat file, which can be loaded later (Load button).
+Note that in addition to your manually saving your project, this .mat file will also be automatically saved each time the Done button
+is pressed on any of the Setup, Denoising, First-level analyses, or Second-level results tabs.</p>
+<p>Step two: denoising (define, explore, and remove possible confounds)</p>
+<p>Click on the DENOISING tab. This step applies linear regression and band-pass filtering in order to remove unwanted motion,
+physiological, and other artifactual effects from the BOLD signal before computing connectivity measures. By default the system will
+start with three different sources of possible confounders: 1) BOLD signal from the white matter and CSF masks (5 dimensions each); 2)
+any previously-defined withinsubject covariate (realignment and scrubbing parameters); and 3) the main condition effects (condition
+blocks convolved with hrf). For each of the selected possible confounds you may change the number of dimensions (specifying how many
+temporal components are being used), the derivatives order (specifying how many successive orders of temporal derivatives are included
+in the model), and the order of polynomial expansion (specifying how many powers of each temporal component are to be used). For
+example, the realignment confound (derived from the estimated subject motion parameters) is defined by default by 6 dimensions, and
+the derivative order is set to 1 indicating that in addition the first-order temporal derivative of the motion parameters should also
+be used as covariates. Similarly, the White Matter confound is defined by default by 5 dimensions and 0 derivative order (indicating
+that 5 PCA temporal components are being used, with not additional temporal derivative terms).</p>
+<p>By default and unless specified otherwise all new projects that use the default CONN preprocessing steps will be automatically set up
+to use a combination of aCompCor (White and CSF ROIs, 5 components each), scrubbing (as many regressors as identified invalid scans),
+motion regression (12 regressors: 6 motion parameters + 6 first-order temporal derivatives), and filtering in the Denoising step. In
+addition for task designs the main effect of task (direct BOLD signal changes associated with the presence/absence of a task) are also
+regressed out during this step unless specified otherwise. Additional/alternative denoising steps can be specified by
+adding/substituting effects listed in the ‘confounds’ list. For example GSR is performed when introducing the GrayMatter ROI as an
+additional regressor; ICA denoising is performed when entering in the confounds list the ROIs associated with all noise components
+identified during ICA (see ICA analyses below, method (3) of ROI definition).</p>
+<p>The “Preview results” window in the right panel shows the total variance explained (r-square) by each of the possible confounding
+sources (for the selected subject/session data). The histogram plot at the center displays the voxel-to-voxel connectivity (r values)
+before, and after confound removal. Typically confounds introduce a positive bias in connectivity measures so the histogram of
+original connectivity values can appear “shifted” to the right. After confound removal the distribution of connectivity values appears
+approximately centered. Clicking on the “Quality Control” button allows the creation of a number of quality control plots</p>
+<p>to evaluate the quality of the denoising procedure and easily identify potential outlier subjects. All of the settings in the
+Denoising tab can be modified and the associates changes in the observed histograms and spatial maps are estimated and displayed in
+real time. Images are displayed in neurological format, hovering over the image will display voxel locations and reference areas3 .</p>
+<p>Enter the band-pass filter information in the bottom-left box (two numbers, in Hz, defining the band-pass frequency window of
+interest), as well as any additional desired denoising options (detrending removes linear/quadratic/cubic trends within each
+functional session, and despiking applies a squashing function to reduce the influence of potential outlier scans).</p>
+<p>By default CONN uses a regBP procedure for denoising (regression followed by band-pass filtering). Choose simultaneous if you prefer
+to use a simult procedure (simultaneous regression and band-pass filtering), or select individual elements in the ‘confounds’ list and
+mark the Filtered checkbox to select only a subset of regressors that should be regressed only within the frequency band of interest
+(using regBP and setting all regressors to filtered is exactly equivalent to using simult)</p>
+<p>When finished, press the Done button. This will filter the functional data and remove the effect of the defined confounds on all brain
+voxels and regions of interest, and create condition-specific timeseries (voxel- and ROI- level) by concatenating the samples/scans
+for each condition across all sessions.</p>
+<p>As with other steps, if, at some later point after having already run this Denoising step, you need to go back and modify any of the
+information in the Setup or Denoising tabs (e.g. adding more subjects, or modifying the denoising settings), remember to click Done
+again in this tab in order to propagate those changes from the Denoising to the First-level analyses tab again (you may select the
+option ‘do not overwrite (skip already processed subjects/ROIs)’ if the modifications in the Setup tab consisted simply in adding new
+subjects and/or defining new ROIs, since in those cases there is no need to repeat this step for the already processed subjects/ROIs).</p>
+<p>3</p>
+<p>You may click on Tools-&gt;Gui settings to change the default atlas used when displaying labels associated with each spatial location
+(background reference atlas), as well as the default background image used in these displays (background anatomical image)</p>
+<p>Methods used when denoising functional data</p>
+<p>After denoising your Functional data click on the ‘Methods’ button to have CONN generate an automated description of the specific
+procedures and methods used during denoising. This description is distributed under a public domain dedication license and it can be
+copied/pasted verbatim to your manuscript Methods section (or modified and/or used in any other way) without requiring any permission
+from us.</p>
+<p>In the Methods GUI select the ‘describe Denoising (1st -level) steps” option (and, optionally, any additional CONN steps that you
+would like to include in the description). Select ‘export to html’ or ‘export to Word’ to export these descriptions directly to a
+.html or .docx file. An example of such description would be the following (the specific details will vary depending on your choice of
+denoising procedures):</p>
+<p>Copy and paste the section below to your manuscript Methods section. This text is distributed under a Public Domain Dedication license
+(CC0 1.0) and it can be used, copied, modified, and distributed freely.</p>
+<p>Methods</p>
+<p>Results included in this manuscript come from analyses performed using CONN [1] (RRID:SCR_009550) release 19.a[2]  and SPM [3]
+(RRID:SCR_007037) release 12.7771.</p>
+<p>Denoising: In addition, functional data were denoised using a standard denoising pipeline [4] including the regression of potential
+confounding effects characterized by white matter timeseries (5 CompCor noise components), CSF timeseries (5 CompCor noise
+components), motion parameters and their first order derivatives (12 factors)[5] , outlier scans (below 30 factors)[6] , session
+effects and their first order derivatives (2 factors), and linear trends (2 factors) within each functional run, followed by bandpass
+frequency filtering of the BOLD timeseries [7] between 0.008 Hz and 0.09 Hz. CompCor [8,9] noise components within white matter and
+CSF were estimated by computing the average BOLD signal as well as the largest principal components orthogonal to the BOLD average,
+motion parameters, and outlier scans within each subject's eroded segmentation masks. From the number of noise terms included in this
+denoising strategy, the effective degrees of freedom of the BOLD signal after denoising were estimated to range from 31 to 45.8
+(average 43.6) across all subjects[10] .</p>
+<p>References</p>
+<p>Whitfield-Gabrieli, S., &amp; Nieto-Castanon, A. (2012). Conn: a functional connectivity toolbox for correlated and anticorrelated brain
+networks. Brain connectivity, 2(3), 125-141.</p>
+<p>[1]</p>
+<p>[2] Nieto-Castanon, A. &amp; Whitfield-Gabrieli, S. (2019). CONN functional connectivity toolbox: RRID SCR_009550, release</p>
+<ol class="arabic simple" start="19">
+<li><p>doi:10.56441/hilbertpress.1927.9364.</p></li>
+</ol>
+<p>[3] Penny, W. D., Friston, K. J., Ashburner, J. T., Kiebel, S. J., &amp; Nichols, T. E. (Eds.). (2011). Statistical parametric mapping:
+the analysis of functional brain images. Elsevier.</p>
+<p>[4] Nieto-Castanon, A. (2020). FMRI denoising pipeline. In Handbook of functional connectivity Magnetic Resonance Imaging methods in
+CONN (pp. 17–25). Hilbert Press.</p>
+<p>[5] Friston, K. J., Williams, S., Howard, R., Frackowiak, R. S., &amp; Turner, R. (1996). Movement-related effects in fMRI time-series.
+Magnetic resonance in medicine, 35(3), 346-355.</p>
+<p>[6] Power, J. D., Mitra, A., Laumann, T. O., Snyder, A. Z., Schlaggar, B. L., &amp; Petersen, S. E. (2014). Methods to detect,
+characterize, and remove motion artifact in resting state fMRI. Neuroimage, 84, 320-341.</p>
+<p>[7] Hallquist, M. N., Hwang, K., &amp; Luna, B. (2013). The nuisance of nuisance regression: spectral misspecification in a common
+approach to resting-state fMRI preprocessing reintroduces noise and obscures functional connectivity. Neuroimage, 82, 208-225.</p>
+<p>[8] Behzadi, Y., Restom, K., Liau, J., &amp; Liu, T. T. (2007). A component based noise correction method (CompCor) for BOLD and perfusion
+based fMRI. Neuroimage, 37(1), 90-101.</p>
+<p>[9] Chai, X. J., Nieto-Castanon, A., Ongur, D., &amp; Whitfield-Gabrieli, S. (2012). Anticorrelations in resting state networks without
+global signal regression. Neuroimage, 59(2), 1420-1428.</p>
+<p>[10] Nieto-Castanon, A. (2022). Preparing fMRI Data for Statistical Analysis. In M. Filippi (Ed.). fMRI techniques and protocols.
+Springer. doi:10.48550/arXiv.2210.13564</p>
+<p>Step three: first-level analyses (define and explore functional</p>
+<p>connectivity measures for each subject)</p>
+<p>On the ‘Analysis’ list select an already-defined first-level analysis (e.g. to view or modify its settings), or click on ‘new’ to add
+a new first-level analysis to this list. Available analysis types are:</p>
+<p>SBC (Seed-Based Connectivity): These analyses compute seed-based correlation maps characterizing functional connectivity between one
+or several seed ROIs and the rest of the brain.</p>
+<p>For details about SBC measures in CONN see Nieto-Castanon, A. (2020). Handbook of fcMRI methods in CONN. Boston, MA: Hilbert Press RRC
+(ROI-to-ROI Connectivity): These analyses compute ROI-to-ROI correlation matrices characterizing functional connectivity between a set
+of regions of interest.</p>
+<p>For details about RRC measures in CONN see Nieto-Castanon, A. (2020). Handbook of fcMRI methods in CONN. Boston, MA: Hilbert Press
+gPPI (generalized psychophysiological interactions): These analyses compute gPPI maps characterizing</p>
+<p>task-related modulation of functional connectivity (e.g. task-related changes in connectivity during eventrelated designs).</p>
+<p>For details about gPPI see McLaren, D. G., Ries, M. L., Xu, G., &amp; Johnson, S. C. (2012). A generalized form of context-dependent
+psychophysiological interactions (gPPI): a comparison to standard approaches. Neuroimage, 61(4), 1277-1286</p>
+<p>temporal modulation (generalized physiological interactions): These analyses compute gPPI maps characterizing the association between
+dynamic changes in functional connectivity strength and any user-defined factors/timeseries (e.g. changes in connectivity associated
+with heart rate).</p>
+<p>For details about temporal modulation analyses see Friston, K. J., Buechel, C., Fink, G. R., Morris, J., Rolls, E., &amp; Dolan, R. J.
+(1997). Psychophysiological and modulatory interactions in neuroimaging. Neuroimage, 6(3), 218-229</p>
+<p>group-ICA (Independent Component Analyses): These analyses compute a series of spatial maps (and associated BOLD timeseries)
+characterizing the BOLD response across a set of independent spatial components or networks.</p>
+<p>For details about group-ICA see Calhoun, V. D., Adali, T., Pearlson, G. D., &amp; Pekar, J. J. (2001). A method for making group
+inferences from functional MRI data using independent component analysis. Human brain mapping, 14(3), 140-151</p>
+<p>group-PCA (Principal Component Analyses): These analyses compute a series of spatial maps (and associated BOLD timeseries)
+characterizing the BOLD response across a set of orthogonal spatial components or networks.</p>
+<p>For details about group-PCA see Andersen, A. H., Gash, D. M., &amp; Avison, M. J. (1999). Principal component analysis of the dynamic
+response measured by fMRI: a generalized linear systems framework. Magnetic Resonance Imaging, 17(6), 795-815</p>
+<p>fc-MPVA (functional connectivity Multi-Variate Pattern Analyses): These analyses compute a series of spatial maps (and associated
+connectivity patterns) characterizing the connectivity between each voxel and the rest of the brain.</p>
+<p>For details about fc-MVPA see Nieto-Castanon, A. (2022). Brain-wide connectome inferences using functional connectivity MultiVariate
+Pattern Analyses (fc-MVPA). PLOS Computational Biology</p>
+<p>ICC (intrinsic connectivity) computes intrinsic connectivity maps characterizing network centrality at each voxel (root mean square of
+correlation coefficient values between a voxel and the rest of the brain).</p>
+<p>For details about ICC see Martuzzi, R., Ramani, R., Qiu, M., Shen, X., Papademetris, X., &amp; Constable, R. T. (2011). A whole-brain
+voxel based measure of intrinsic connectivity contrast reveals local changes in tissue connectivity with anesthetic without a priori
+assumptions on thresholds or regions of interest. Neuroimage, 58(4), 1044-1050</p>
+<p>GCOR (global correlation) computes global correlation maps characterizing at each voxel the average of all correlation coefficient
+values between this voxel and the rest of the brain.</p>
+<p>For details about GCOR see Saad, Z. S., Reynolds, R. C., Jo, H. J., Gotts, S. J., Chen, G., Martin, A., &amp; Cox, R. W. (2013).
+Correcting brain-wide correlation differences in resting-state FMRI. Brain connectivity, 3(4), 339-352</p>
+<p>LCOR (local correlation) computes local correlation maps characterizing local-coherence (average of all short-range connections) at
+each voxel.</p>
+<p>For details about LCOR see Deshpande, G., LaConte, S., Peltier, S., &amp; Hu, X. (2009). Integrated local correlation: a new measure of
+local coherence in fMRI data. Human brain mapping, 30(1), 13-23</p>
+<p>IHC (inter-hemispheric correlation) computes correlation maps characterizing the connectivity strength between the two hemispheres at
+each voxel (fisher-transformed correlation between each voxel and the voxel at the same anatomical location in the contralateral
+hemisphere).</p>
+<p>For details about IHC see Jin, X., Liang, X., &amp; Gong, G. (2020). Functional integration between the two</p>
+<p>brain hemispheres: evidence from the homotopic functional connectivity under resting state. Frontiers in Neuroscience, 14 RSIM (radial
+similarity) computes three maps characterizing the spatial gradients (along x/y/z directions) of the seed-based connectivity patterns
+at each voxel.</p>
+<p>For details about RSIM see Whitfield-Gabrieli, S., &amp; Nieto-Castanon, A. (2012). Conn: A functional connectivity toolbox for correlated
+and anticorrelated brain networks. Brain connectivity, 2(3), 125-141 RCOR (radial correlation) computes three maps characterizing the
+spatial gradients (along x/y/z directions) of the short-range connections at each voxel.</p>
+<p>For details about RCOR see Goelman, G. 2004. Radial correlation contrast: a functional connectivity MRI contrast to map changes in
+local neuronal communication. Neuroimage, 23(4), 1432-1439 ALFF (amplitude of low frequency fluctuations) computes a spatial map
+characterizing the low-frequency BOLD signal variability at each voxel.</p>
+<p>For details about ALFF see Yang, H., Long, X. Y., Yang, Y., Yan, H., Zhu, C. Z., Zhou, X. P., ... &amp; Gong, Q.</p>
+<p>Y. (2007). Amplitude of low frequency fluctuation within visual areas revealed by resting-state functional MRI. Neuroimage, 36(1),
+144-152 fALFF (fractional amplitude of low frequency fluctuations) computes a spatial map characterizing the ratio between
+low-frequency and total BOLD signal variability at each voxel.</p>
+<p>For details about fALFF see Zou, Q. H., Zhu, C. Z., Yang, Y., Zuo, X. N., Long, X. Y., Cao, Q. J., ... &amp; Zang,</p>
+<p>Y. F. (2008). An improved approach to detection of amplitude of low-frequency fluctuation (ALFF) for resting-state fMRI: fractional
+ALFF. Journal of neuroscience methods, 172(1), 137-141 dyn-ICA (dynamic independent component analysis) computes ROI-to-ROI
+connectivity maps and associated temporal connectivity changes characterizing the dynamic changes in functional connectivity within
+independent subsets of functional connections.</p>
+<p>For details about dyn-ICA see Nieto-Castanon, A. (2020). Handbook of fcMRI methods in CONN. Boston, MA: Hilbert Press See
+conn-toolbox.org documentation for additional information about these measures/analyses and their implementation in CONN.</p>
+<p>SBC, RRC, gPPI, and temporal modulation analyses</p>
+<p>When defining a new SBC analysis select from the ‘all ROIs’ list the sources (seeds) of interest and click the arrow to move these to
+the ‘selected seeds/sources’ list. Similarly, in RRC analyses enter in the ‘selected seeds/sources’ list all of the ROIs that you
+would like to be included in the ROI-to-ROI connectivity matrix.</p>
+<p>For each seed/source you may optionally also indicate the number of dimensions to be analyzed (e.g. when extracting multiple
+components from a ROI), whether you want to include derivative terms, and the number of frequency bands if you wish to obtain for this
+particular ROI/seed a simple decomposition of the connectivity estimates power spectrum.</p>
+<p>The right panel (“Preview results”) displays the connectivity measures for each subject/condition/source. Analyses here are performed
+in real-time (any changes in the “Define sources” definitions affect directly the results displayed in the “Preview” window). The
+measures displayed in the “Preview results” brain image correspond to the connectivity measure selected (r if correlation is selected,
+beta if regression is selected). The threshold value is also defined in the same units (in the figure above, voxels with correlation
+coefficients</p>
+<p>above 0.25 are shown/colored). For volume-based analyses images are displayed in neurological format (click on the image to see the
+voxel locations and Brodmann areas). For surface-based analyses images are displayed on the fsaverage brain. After the analyses have
+been run you may also click on the Plot subjects button to access additional display of the computed connectivity measures for each
+individual subject.</p>
+<p>In the context of multiple of a task- design or multiple conditions the default behavior is to use a weighted General Linear Model
+(weighted GLM) for weighted regression/correlation measures of the conditionspecific association between the seed/source BOLD
+timeseries and each voxel or target ROI BOLD timeseries. This model is appropriate both for resting state as well as task-related
+designs. When using weighted GLM click on Weights to change the relative weighting of the scans within each condition (by default
+condition-specific weights are defined from the hrf-convolved blocks/events for each condition). In addition to the standard bivariate
+correlation measure for functional connectivity analyses, you may also select regression measures, as well as define whether you want
+to compute bivariate measures –analyzing individual seed/sources separately-, or semipartial/multivariate –where all of the
+sources/ROIs are entered jointly into the general linear model to estimate their unique contributions-.</p>
+<p>An alternative approach for event-related designs is to select gPPI analyses instead. PPI analyses compute the interaction between the
+seed/source BOLD timeseries and a chosen condition-specific interaction factor when predicting each voxel or target ROI BOLD
+timeseries. In addition, generalized PPI will include the interaction factors from all conditions simultaneously in the estimation
+model in order to better account for between-condition overlaps. Click on gPPI analysis of selected task factors to define which
+conditions to be included simultaneously in the gPPI model. You may choose all task conditions, for example, to perform standard gPPI
+analyses, or you may select no conditions (or click Cancel) to perform standard PPI (singlecondition) analyses. Click on source
+timeseries and select first-level design matrix instead if you want to view the design matrix associated with this gPPI analysis. The
+term highlighted in red in this display is the one that characterizes the interaction term for the selected subject and condition.</p>
+<p>In the context of temporal modulation analyses click on temporal modulation analysis of selected task factors and select when prompted
+the desired factor (e.g. select an ROI to perform standard physiophysiological interaction analyses, or select any user-defined
+first-level covariate to estimate the association between changes in this covariate and functional connectivity strength) 4 . If you
+enter a first-level covariate that contains multiple timeseries, the model will include equally the main and interaction terms for all
+of the timeseries, but the last timeseries will be considered the effect-of-interest (the estimated interaction with this term will be
+passed to the second-level results tab) and the others will be considered control covariates (their interaction are still included in
+the model and estimated, but their magnitude is not stored/saved). Click on source timeseries and select first-level design matrix
+instead if you want to view the design matrix associated with this temporal modulation analysis. The term highlighted in red is the
+one that characterizes the interaction term for the selected subject and condition.</p>
+<p>For all of these analyses you may use the Analysis options menu to change the type of connectivity measure to be computed (ROI-to-ROI,
+seed-to-voxel, or both).</p>
+<p>When finished defining/exploring the connectivity analyses press Done. This will perform the defined analyses for all subjects,
+constructing seed-to-voxel connectivity maps for each selected source(s), and/or complete ROI-to-ROI connectivity matrices for these
+sources, for each subject and for each condition. Firstlevel results (beta maps and correlation maps when appropriate) are also
+exported as nifti volumes (one per Subject/Condition/Source combination) in the results/firstlevel folder.</p>
+<p>4</p>
+<p>Note that the PPI/gPPI models used by CONN follow the implementation in FSL, where the interaction factor is convolved with the
+hemodynamic response function and the linear interactions are modeled on the resulting BOLD-level signal; c.f. SPM-style
+implementation which deconvolves the BOLD timeseries instead and the interactions are modeled on the resulting &quot;neural&quot;-level signal.
+Also note that PPI effects (interaction terms in PPI model) are always relative to the baseline state (the baseline state is defined
+by the zero values of the interaction term), so they provide a relative measure of connectivity characterizing differential
+task-specific effects, rather than an absolute measure of connectivity such as that estimated using standard functional connectivity
+analyses (e.g. weighted correlation measures).</p>
+<p>As with other steps, if, at some later point after having already run this first-level analysis, you need to go back and modify any of
+the information in the Setup, Denoising, or this analysis’ options in the first-level analysis tab, remember to select this
+first-level analysis and click Done again in this tab in order to propagate those changes from the First-level analyses tab to the
+Second-level results tab again (you may select the option ‘do not overwrite (skip already processed subjects/ROIs)’ if the
+modifications in the Setup tab consisted simply in adding new subjects and/or defining new ROIs, since in those cases there is no need
+to repeat this step for the already processed subjects/ROIs).</p>
+<p>Group-ICA, group-PCA, fc-MVPA, and other network analyses</p>
+<p>Unlike most connectivity measures (such as SBC, RRC, IC, LCOR, GCOR, etc.), where connectivity measures can be computed separately and
+independently for each subject, group-ICA/PCA/MVPA analyses use information from the entire sample to then derive meaningful
+subject-specific measures.</p>
+<p>Group-ICA (Independent Component Analyses) identifies a number of networks of highly functionallyconnected areas. CONN’s
+implementation uses Calhoun’s group-level ICA approach (Calhoun et al. 2001), with variance normalization pre-condititioning, optional
+subject-level dimensionality reduction, subject/condition concatenation of BOLD signal data along temporal dimension, group-level
+dimensionality reduction (to the target number of dimensions/components), fastICA for estimation of independent spatial components,
+and GICA3 backprojection for individual subject-level spatial map estimation.</p>
+<p>When defining a new group-ICA analysis you may edit the number of factors field to modify the number of independent components
+estimated. Optionally you may also edit the 1st-level dimensionality reduction field to specify the degree of subject-level
+dimensionality reduction desired (number of subject-specific SVD components retained when characterizing the voxel-to-voxel
+connectivity matrix for each subject/condition; set to inf for no dimensionality reduction). Optionally check the masked analysis
+checkbox and select a mask image file for masked-ICA analyses (in masked ICA the data is masked to consider only the connectivity
+between voxels within the mask and voxels across the entire brain). You may also edit the choice of nonlinear contrast function in
+fastICA (G1 for tanh, G2 for gauss, and G3 for pow3) and the choice of backprojection algorithm (GICA1 or GICA3).</p>
+<p>Group-PCA (Principal Component Analyses) analyses are identical to group-ICA above, but skipping the fastICA reorientation of
+group-level components and using instead the maximal-variance spatial components determined by a group-level dimensionality reduction
+step. All other steps, including back-projection, are performed identically to group-ICA.</p>
+<p>fc-MPVA (functional connectivity MultiVariate Pattern Analyses) create a set of fc-MVPA eigenpattern score maps characterizing the
+connectivity patterns between each individual voxel and the rest of the brain for each individual subject and condition (this
+representation is defined by performing separately for each voxel a Singular Value Decomposition of the variability in connectivity
+patterns between this voxel and the rest of the brain across all subjects and conditions; see Nieto-Castanon 2022 for details). The
+resulting lowdimensional representation optimally characterizes arbitrary connectivity patterns, and it allows you to investigate
+connectivity differences across subjects simply running second-level multivariate analyses on the resulting eigenpattern maps.</p>
+<p>When defining a new fc-MVPA analysis edit the number of factors field to modify the number of eigenpattern</p>
+<p>scores computed. Keep in mind that later (during second-level analyses) you may select all or a subset of the estimated eigenpatterns
+to be included in your second-level analyses. Optionally edit the 1st-level dimensionality reduction field to modify the degree of
+dimensionality reduction used to characterize the voxel-to-voxel connectivity matrix for each subject (number of subject-specific SVD
+components retained when characterizing this matrix; set to inf for no dimensionality reduction). Optionally check the masked analysis
+checkbox and select a mask image file for masked-MVPA analyses (in masked MVPA the data is masked to consider only, at each voxel
+across the entire brain, the connectivity between this voxel and voxels within the mask).</p>
+<p>For all other connectivity measures derived from the voxel-to-voxel correlation matrix (IC, GCOR, LCOR, RCOR, RSIM) you may optionally
+edit the 1st-level dimensionality reduction field to specify the degree of subject-level dimensionality reduction desired (number of
+subject-specific SVD components retained when characterizing the voxel-to-voxel connectivity matrix separately for each
+subject/condition; set to inf for no dimensionality reduction).</p>
+<p>For all connectivity measures (except group-ICA/group-PCA/fc-MVPA) you may also optionally select the normalization option to convert
+the distribution of computed measures across all voxels to a N(0,1) Gaussian distribution separately for each subject and condition
+(this is useful, for example, when computing centrality measures and wishing to control for potential global network-cost differences
+between subjects or conditions, but keep in mind that this control will remove global differences in these measures across subjects or
+conditions so it may be detrimental if such global differences are meaningful).</p>
+<p>In addition, for LCOR analyses you may specify the level of locality by editing the kernel size (mm) field. In these analyses each
+voxel neighbourhood is defined as a probabilistic region (an isotropic Gaussian kernel with user-defined width), and you may define in
+the kernel size field the size of the local averaging window (Gaussian FWHM in mm).</p>
+<p>When finished defining/exploring the connectivity analyses press Done. This will perform the defined analyses for all subjects,
+estimating the resulting maps for each subject and for each condition. First-level results (beta maps) are also exported as NIFTI
+volumes (one per Subject/Condition/Measure combination) in the results/firstlevel folder.</p>
+<p>As with other steps, if, at some later point after having already run this first-level analysis, you need to go back and modify any of
+the settings or previous information (in Setup/Denoising tabs), after propagating those changes to this level click Done again in this
+tab in order to propagate those changes from this Firstlevel analyses tab to the Second-level results tab again.</p>
+<p>Dynamic ICA analyses</p>
+<p>Dynamic connectivity analyses (Nieto-Castanon, 2016) explore dynamic properties (temporal modulation) of the ROI-to-ROI connectivity
+matrix identifying a number of circuits of connections that are similarlymodulated across time. Dyn-ICA performs an Independent
+Component Analysis of the connectivity timeseries (strength of connectivity between each pair of ROIs at any given timepoint),
+returning a number of independent components/circuits, and associated connectivity-changes timeseries, best characterizing the
+observed functional connectivity modulation across time.</p>
+<p>When defining a new dyn-ICA analysis, select the ROIs to be included in this analyses in the allROIs list, and click on ‘&lt;’ to enter
+these into the Sources list. Define the number of desired factors in Number of factors. Enter an optional low-pass filter threshold
+value (in seconds) in smoothing kernel in order to focus the estimated temporal modulation factors on the desired low-frequency range
+(similar to window-length in sliding-window approaches; set to 0s for no filtering).</p>
+<p>When finished defining the dynamic analyses press Done. This will estimate the dynamic-ICA components and propagate the resulting
+measures to the second-level analysis tab.</p>
+<p>Methods used in 1 st -level analyses</p>
+<p>After running 1st -level analyses click on the ‘Methods’ button to have CONN generate an automated description of the specific
+procedures and methods used in these analyses. This description is distributed under a public domain dedication license and it can be
+copied/pasted verbatim to your manuscript Methods section (or modified and/or used in any other way) without requiring any permission
+from us.</p>
+<p>In the Methods GUI select the ‘describe Analysis (1st -level) steps” option and click on the specific 1st -level analyses that you
+would like to include in the description. Select ‘export to html’ or ‘export to Word’ to export these descriptions directly to a .html
+or .docx file. An example of such description would be the following (the specific details will vary depending on the specific 1st
+-level analyses selected as well as the specific choices within each analysis):</p>
+<p>Copy and paste the section below to your manuscript Methods section. This text is distributed under a Public Domain Dedication license
+(CC0 1.0) and it can be used, copied, modified, and distributed freely.</p>
+<p>Methods</p>
+<p>Results included in this manuscript come from analyses performed using CONN [1] (RRID:SCR_009550) release 19.a[2]  and SPM [3]
+(RRID:SCR_007037) release 12.7771.</p>
+<p>First-level analysis SBC: Seed-based connectivity maps (SBC) and ROI-to-ROI connectivity matrices (RRC) were estimated characterizing
+the patterns of functional connectivity with 32 HPC-ICA network ROIs[2] . Functional connectivity strength was represented by
+Fisher-transformed bivariate correlation coefficients from a weighted general linear model (weighted-GLM[4] ), defined separately for
+each pair of seed and target areas, modeling the association between their BOLD signal timeseries. Individual scans were weighted by a
+boxcar signal characterizing each individual task or experimental condition convolved with an SPM canonical hemodynamic response
+function and rectified.</p>
+<p>First-level analysis LCOR: Local Correlation maps (LCOR) characterizing local coherence at each voxel were estimated as the weighted
+average of all short-range connections between a voxel and a 25 mm FWHM Gaussian neighborhood area[5] . Short-range connections were
+computed from the matrix of bivariate correlation coefficients between the BOLD timeseries from each pair of voxels, estimated using a
+singular value decomposition of the z-score normalized BOLD signal (subject-level SVD) with 64 components separately for each subject
+and condition[1] .</p>
+<p>References</p>
+<p>Whitfield-Gabrieli, S., &amp; Nieto-Castanon, A. (2012). Conn: a functional connectivity toolbox for correlated and anticorrelated brain
+networks. Brain connectivity, 2(3), 125-141.</p>
+<p>[1]</p>
+<p>[2] Nieto-Castanon, A. &amp; Whitfield-Gabrieli, S. (2019). CONN functional connectivity toolbox: RRID SCR_009550, release</p>
+<ol class="arabic simple" start="19">
+<li><p>doi:10.56441/hilbertpress.1927.9364.</p></li>
+</ol>
+<p>[3] Penny, W. D., Friston, K. J., Ashburner, J. T., Kiebel, S. J., &amp; Nichols, T. E. (Eds.). (2011). Statistical parametric mapping:
+the analysis of functional brain images. Elsevier.</p>
+<p>[4] Nieto-Castanon, A. (2020). Functional Connectivity measures. In Handbook of functional connectivity Magnetic Resonance Imaging
+methods in CONN (pp. 26–62). Hilbert Press.</p>
+<p>[5] Deshpande, G., LaConte, S., Peltier, S., &amp; Hu, X. (2009). Integrated local correlation: a new measure of local coherence in fMRI
+data. Human brain mapping, 30(1), 13-23.</p>
+<p>Step four: second-level results (define and explore contrasts of interest</p>
+<p>and group-level analyses)</p>
+<p>Second-level analysis can be defined in the RESULTS (2nd -level) tab. CONN’s second-level analyses use a multivariate General Linear
+Model (GLM) for modeling your data across multiple subjects, and a likelihood ratio test (LRT) for testing specific hypothesis about
+the data. For a mathematical description of these analyses see Nieto-Castanon, A. (2020). General Linear Model. In Handbook of
+functional connectivity Magnetic Resonance Imaging methods in CONN (pp. 63–82). Hilbert Press.</p>
+<p>The options below apply to all second-level analyses in CONN, irrespective of the type of first-level connectivity measure used (e.g.
+for the analyses of SBC connectivity maps, RRC connectivity matrices, etc.)</p>
+<p>A second-level model can be defined in CONN by selecting the corresponding descriptive question in the blue area. For example:</p>
+<ul class="simple">
+<li><p>‘does the average connectivity differ from zero?’ will perform a one-sample t-test across all subjects</p></li>
+<li><p>‘does the average connectivity within MALE subjects differ from zero?’ will perform a one-sample t-test across all male subjects</p></li>
+</ul>
+<p>(this question will be available only when you have defined in the Setup.Covariates (2nd -level) tab one group covariate -with 0/1
+values only -, in this example a MALE group covariates)</p>
+<ul class="simple">
+<li><p>‘does the average connectivity differ between MALE and FEMALE subjects?’ will perform a two-sample t-test (this question will be</p></li>
+</ul>
+<p>available only when you have defined in the Setup.Covariates (2nd -level) tab two non-overlapping group covariates, in this example
+MALE and FEMALE group covariates)</p>
+<ul class="simple">
+<li><p>‘does the correlation between connectivity and AGE differ from zero?’ will perform a bivariate regression analysis (this question</p></li>
+</ul>
+<p>will be available only when you have defined in the Setup.Covariates (2nd -level) tab a continuous covariate, in this example AGE)</p>
+<ul class="simple">
+<li><p>‘does the connectivity differences between MALE and FEMALE subjects depend on AGE?’ will perform a test of sex-by-age interactions</p></li>
+</ul>
+<p>(this question will be available only when the three variables above have been defined in Setup.Covariates (2nd -level) as well as
+their interactions terms -e.g. by selecting those three covariates and then click on ‘covariate tools. Create interaction(s) of
+selected covariates’ in the same Setup.Covariates (2nd -level) tab)</p>
+<p>In addition, you may also select additional control variables for your analyses by clicking on the ‘…’ menu within the blue area and
+selecting the associated 2nd -level covariates (defined in Setup.Covariates (2nd -level), and characterizing any continuous or group
+variable).</p>
+<p>In addition, if you have multiple conditions, you may also select a description of what aspects of your conditions you would like to
+test in the second prompt within the blue area. For example:</p>
+<ul class="simple">
+<li><p>‘Analysis of seed-based connectivity change between PRE and POST’ together with ‘does the average connectivity-change differ from</p></li>
+</ul>
+<p>zero?’ will perform a paired t-test comparing connectivity across the PRE and POST conditions (this question will be available only
+when your project has defined in Setup.Conditions two different conditions, in this example PRE and POST conditions)</p>
+<ul class="simple">
+<li><p>‘Analysis of seed-based connectivity change between PRE and POST’ together with ‘does the average connectivity-change differ between</p></li>
+</ul>
+<p>MALE and FEMALE subjects?’ will test the time-bysex interaction in a mixed within/between subjects ANOVA (this question will be
+available only when your project has defined in Setup.Conditions two different conditions, in this example PRE and POST conditions, as
+well as two non-overlapping groups covariates in Setup.Covariates (2nd level), in this example MALE and FEMALE covariates)</p>
+<p>Last, if you have multiple first-level analyses, you may also select the name of your 1st -level analysis in the first prompt of the
+blue area to apply the same test to different connectivity measures.</p>
+<p>Alternatively, if you prefer, you may define the same analyses (instead of by selecting the corresponding descriptive question in the
+blue area) by manually selecting the 2nd -level covariates that you would like to include in your model in the ‘subject effects’ list
+below that, and specifying a contrast across these selected covariates in the ‘between-subjects contrast’ field (e.g. select PATIENTS
+and CONTROLS and enter a [-1 1] contrast to compare the two groups). If you have multiple conditions, you may also manually select the
+conditions that you would like to include in your analysis in the ‘conditions’ list and specify the corresponding contrast across the
+selected conditions in the ‘between-conditions contrast’ field (e.g. select conditions TASK and REST and enter a [1 -1] contrast to
+compare the two conditions). Similarly, in SBC analyses, multiple ROIs/sources can be selected simultaneously in order to analyze
+connectivity results across several seeds/ROIs by specifying the contrast in ‘between source contrast” (e.g. select both “PCC” and
+“Angular Gyrus” sources and enter a [1 -1] contrast to compare the connectivity between these two seeds, or enter [1,0; 0,1] contrast
+to investigate regions functionally connected to any of these two seeds).</p>
+<p>Each of these contrasts (between-subjects, between-conditions, and between-sources) can be defined as a single vector (e.g. [1,-1],
+for T-statistics) or as matrix (e.g. [1,0; 0,1], for F-statistics, where multiple contrasts are entered separated by ‘;’). In general,
+contrast matrices containing several rows are equivalent to an OR conjunction test on any of the individual row contrasts.</p>
+<p>Both between-condition and between-source contrasts represent within-subject effects and the second-level analyses will correspond to
+multivariate/repeated-measures analyses of the selected effects. Specifically, the second-level model will be a general linear model
+that includes as regressors the selected terms in the “Subject effects” list. The outcome variable will be the within-subjects linear
+combination(s) of effects specified by the “between-conditions” and ”between-sources” contrasts, applied to the first-level
+connectivity-measure volumes (for the seed-to-voxel analyses) or to the first-level connectivity-measure matrix (for the ROI-toROI
+analyses). For F-contrasts, voxel-level analyses are implemented as repeated-measures analyses using ReML estimation of covariance
+components and evaluated through F-statistical parameter maps, and ROIlevel analyses are implemented as multivariate analyses and
+evaluated through F- or Wilks lambda statistics depending on the dimensionality of the within- and between- subjects contrasts. The
+following table illustrates a few common second-level design examples:</p>
+<p>ROI-to-ROI analyses (ROI-to-ROI functional connectivity matrices)</p>
+<p>When selecting ROI-to-ROI Connectivity analyses in the results (2nd -level) tab (or when selecting any other first-level connectivity
+measure that also computes ROI-to-ROI maps), the default behavior is to perform analyses encompassing the entire ROI-to-ROI
+connectivity matrix. After selecting the desired type of analyses (e.g. specifying the subject-effects, between-subject contrasts,
+etc.) select the option Group-analysis results (all ROIs) and click on compute results to compute this 2nd -level analysis (or display
+results to display the results if these analyses have already been computed). That will launch a results explorer window where you can
+specify your choice of inferential method and error rate threshold used to display the results:</p>
+<p>ROI-to-ROI results explorer window</p>
+<p>By default the results explorer window uses FNC (functional network connectivity) to identify significant effects within clusters of
+connections, while appropriately correcting for multiple comparisons in the context of the entire set of ROI-to-ROI connections
+evaluated. Click on ‘standard settings for cluster-based</p>
+<p>inferences #1: functional network connectivity’ if you prefer to select a different approach. Available inferential methods are:</p>
+<ul class="simple">
+<li><p>standard settings for cluster-based inferences #1: functional network connectivity. Significance is determined at the level of</p></li>
+</ul>
+<p>clusters/groups of connections. Clusters of connections are defined using a hierarchical clustering approach to first group ROIs into
+meaningful networks (groups of ROIs), and then grouping all connections between the same two networks (for each pair of networks,
+including within- and between- network connectivity). Results are corrected across multiple comparisons using FDR across the entire
+set of possible pairwise clusters.</p>
+<ul class="simple">
+<li><p>standard settings for cluster-based inferences #2: spatial pairwise clustering. Significance is determined at the level of</p></li>
+</ul>
+<p>clusters/groups of connections. Clusters of connections are defined as connected components in the 2D binary image resulting from
+thresholding the ROI-to-ROI connectivity matrix at some user-defined connection-level threshold. The ROI-to-ROI matrix is sorted
+automatically to take into account functional similarity between ROIs and anatomical proximity. Results are corrected across multiple
+comparisons by performing randomization/permutation analyses.</p>
+<ul class="simple">
+<li><p>standard settings for cluster-based inferences #3: threshold free cluster enhancement. Significance is determined at the level of</p></li>
+</ul>
+<p>clusters/groups of connections. Clusters of connections are defined as connected components in the 2D binary image resulting from
+thresholding the ROI-to-ROI connectivity matrix at a TFCE threshold (TFCE scores at each connection combine connection and cluster
+statistics into a single measure). The appropriate TFCE threshold is determined using randomization/permutation analyses, to guarantee
+the desired maximum familywise error rate.</p>
+<ul class="simple">
+<li><p>Alternative settings for connection-level inferences: parametric univariate statistics. Significance is determined at the level of</p></li>
+</ul>
+<p>individual connections. Results are corrected across multiple comparisons using FDR across the entire set of possible pairwise
+connections.</p>
+<ul class="simple">
+<li><p>Alternative settings for ROI-level inferences: parametric multivariate statistics. Significance is determined at the level of</p></li>
+</ul>
+<p>individual ROIs (considering the cluster/group of connections between a given ROI and all other ROIs). Results are corrected across
+multiple comparisons using FDR across the entire set of ROIs.</p>
+<ul class="simple">
+<li><p>Alternative settings for network-level inferences: network based statistics. Significance is determined at the level of individual</p></li>
+</ul>
+<p>networks (considering the cluster/group of connections defined as connected subgraphs within the graph of all suprathreshold
+ROI-to-ROI connections). Results are corrected across multiple comparisons using randomization/permutation analyses.</p>
+<p>For any of the above methods you may click on the ‘show details’ checkbox to display and modify any of the individual parameters used
+in these options (e.g. individual connection-level thresholds, cluster-level p-values, etc.). For more mathematical details about any
+of the above methods, see Nieto-Castanon, A. (2020). Cluster-level inferences. In Handbook of functional connectivity Magnetic
+Resonance Imaging methods in CONN (pp. 83–104). Hilbert Press. doi:10.56441/hilbertpress.2207.6603</p>
+<p>Click on ‘analysis of ### connections among ### ROIs’ if you want to restrict the ROI-to-ROI matrix to only consider the connections
+between a subset of ROIs.</p>
+<p>Click on ‘ROIs sorted using hierarchical clustering’ for methods #1-#3 above if you prefer to sort (for methods #2 or #3) or cluster
+(for method #1) the ROIs in your ROI-to-ROI connectivity matrix differently.</p>
+<p>Click on individual clusters in the bottom list to select individual clusters of significant connections. The following methods are
+available for displaying only the selected significant clusters / connections:</p>
+<p>ring display shows connections among all ROIs distributed in a ring matrix display shows the ROI-to-ROI connectivity matrix
+connections display shows a graphical list of all significant connections brain display shows connections as lines between ROIs
+displayed in the brain</p>
+<p>ring display</p>
+<p>connections display</p>
+<p>matrix display</p>
+<p>brain display</p>
+<p>Click on ‘import values’ to import individual connectivity values within each significant connection separately for each subject into
+your CONN project as a set of new second-level covariates.</p>
+<p>Click on ‘export mask’ to export a matrix NIFTI file containing the mask of suprathreshold connections in these second-level analysis
+results Click on ‘export data’ to export this analysis’ data as a 4D matrix NIFTI file the data (ROI-to-ROI connectivity matrices for
+each subject and condition)</p>
+<p>Click on ‘plot effects’ to compute effect-sizes (e.g. connectivity values within each group) averaged across all connections within
+each significant cluster</p>
+<p>ROI-to-ROI analyses (connectivity with individual ROIs)</p>
+<p>When selecting ROI-to-ROI analyses in the results (2nd -level) tab, it is also possible to perform analysis restricted to the
+connectivity between an individual ROI and all of the other ROIs. After selecting the desired type of analyses (e.g. specifying the
+subject-effects, between-subject contrasts, etc.) select the option Groupanalysis results (individual ROIs) to compute this 2nd -level
+analysis.</p>
+<p>In the ‘Seed/Sources’ list select the individual seed that you would like to analyze. The brain display at the right shows an axial
+view of the ROI-to-ROI second-level analysis results estimated in real time for the selected seed ROI. These results can be
+thresholded at the desired p-value threshold, using uncorrected p-values or FDR-corrected p-values (corrected for multiple comparisons
+across all of the selected target ROIs; use p-FDR&lt;0.05 for appropriate multiple comparisons correction only for this individual
+analysis).</p>
+<p>The list at the bottom of this figure shows the statistics associated with the analysis of the connectivity between the chosen seed
+ROI and each individual target ROI. Right-click on this list if you wish to restrict the list of target ROIs being included in this
+analysis to a different set of ROIs (this choice affects the FDRcorrected p-values of the results).</p>
+<p>Images are displayed in neurological format. Select Display 3d to view a 3d-rendered display of the suprathreshold ROI-level results.
+For each target ROI the list at the bottom of the figure displays the connectivity contrast effect sizes (between the selected source
+–or linear combination of sources- and each target), as well as T/F/X- values, uncorrected p-values, and FDR-corrected p- values for
+the specified second-level analysis. Right-clicking on this table allows you to export this table to a .txt, .csv, or .mat file.
+Select Display Values or Import Values to display/import the estimated ROI-to-ROI connectivity values for each subject and for each
+selected condition between the selected seed and target ROIs. Importing these values will create new second-level covariates
+containing these connectivity values for each subject for further analyses.</p>
+<p>ROI-to-ROI analyses (graph measures)</p>
+<p>When selecting ROI-to-ROI analyses in the results (2nd -level) tab, it is also possible to perform graphanalysis of the resulting
+ROI-to-ROI connectivity matrices. After selecting the desired type of analyses (e.g. specifying the subject-effects, between-subject
+contrasts, etc.) click on Graph theory results to compute this 2nd -level analysis on the available graph measures.</p>
+<p>graph theory results explorer window</p>
+<p>Last by clicking graph-theory a graphical display is shown allowing the users to test (for the selected between-subjects and
+between-condition contrasts) measures of efficiency, centrality, and cost/degree, associated with an ROI-to-ROI connectivity network.
+Click on ‘Network nodes’ to limit the ROI-to-ROI network analyzed to that defined by a subset of ROIs. The ‘Network edges’ option
+allows the definition of the connectivity threshold above which two ROIs are considered connected, and it can be defined based on
+correlation scores, zscores, or cost values. For each ROI the list at the bottom of the figure displays the corresponding measure
+effect size (global efficiency, local effiency, or cost), as well as T- values, uncorrected p-values, and FDR-corrected p- values for
+the specified second-level analysis. The graphical display and second-level results can be thresholded using either uncorrected or
+FDR-corrected p- values, and it can be set to display one-sided or two-sided results. Right-clicking on the brain display shows
+additional display options, including 3d-rendered views of the analyzed network of connectivity.</p>
+<p>Seed-Based Connectivity analyses (functional connectivity maps)</p>
+<p>When selecting Seed-Based Connectivity analyses in the results (2nd -level) tab (or when selecting any other first-level connectivity
+measure that also computes voxel-level maps), after selecting the desired type of analyses (e.g. specifying the subject-effects,
+between-subject contrasts, etc.) click on compute results to compute this 2nd -level analysis (or display results to display the
+results if these analyses have already been computed). That will launch a results explorer window where you can specify your choice of
+inferential method and error rate threshold used to display the results:</p>
+<p>Voxel-level results explorer window</p>
+<p>By default the results explorer window uses RFT (random field theory) parametric statistics to identify significant effects within
+clusters of voxels, while appropriately correcting for multiple comparisons across</p>
+<p>the entire brain. Click on ‘standard settings for cluster-based inferences #1: random field theory parametric statistics’ if you
+prefer to select a different approach. Available inferential methods are:</p>
+<ul class="simple">
+<li><p>standard settings for cluster-based inferences #1: random field theory parametric statistics. Significance is determined at the</p></li>
+</ul>
+<p>level of clusters/groups of voxels. Clusters are defined as connected components in the 3D binary image resulting from thresholding
+the voxel-level statistics at some user-defined voxel-level threshold. Results are corrected across multiple comparisons using FWE or
+FDR across the entire set of voxels within the analysis mask (whole brain).</p>
+<ul class="simple">
+<li><p>standard settings for cluster-based inferences #2: permutation/randomization analyses. Same options as above, but cluster-level</p></li>
+</ul>
+<p>statistics and multiple comparison corrections are obtained using randomization/permutation analyses.</p>
+<ul class="simple">
+<li><p>standard settings for cluster-based inferences #3: threshold free cluster enhancement. Same options as above, but voxels are</p></li>
+</ul>
+<p>thresholded using a TFCE threshold (TFCE scores combine voxel and cluster statistics into a single measure). The appropriate TFCE
+threshold is determined using randomization/permutation analyses, to guarantee the desired maximum familywise error rate.</p>
+<p>For any of the above methods you may click on the ‘show details’ checkbox to display and modify any of the individual parameters used
+in these options (e.g. individual voxel-level thresholds, cluster-level p- values, etc.). For more mathematical details about any of
+the above methods, see Nieto-Castanon, A. (2020). Clusterlevel inferences. In Handbook of functional connectivity Magnetic Resonance
+Imaging methods in CONN (pp. 83–104). Hilbert Press. doi:10.56441/hilbertpress.2207.6603</p>
+<p>Click on individual clusters in the bottom list to select significant clusters. The following methods are available for displaying
+only the selected significant clusters / areas:</p>
+<p>surface display shows areas projected on the cortical surface of an ICBM template brain volume display shows areas as 3D ‘blobs’</p>
+<p>slice display shows areas across individual slices of an ICBM template T1w structural image glass display shows areas in MIP
+glass-brain display</p>
+<p>network display shows connectivity between areas and the rest of the brain</p>
+<p>When clicking on ‘display network’ a window appears where you may select your choice of subjects (or between-subjects contrast),
+conditions, and display type you would like to use when displaying connectivity between the selected clusters and the rest of the
+brain. For example, the default options (shown in image below) will display the connectivity between the selected cluster and the rest
+of the brain, computed during the rest condition, averaged across all subjects, and shown projected onto the cortical surface.</p>
+<p>Click on ‘import values’ to import individual connectivity values within each significant cluster separately for each subject into
+your CONN project as a set of new second-level covariates.</p>
+<p>Click on ‘export mask’ to export a volume NIFTI file containing the mask of suprathreshold clusters in these second-level analysis
+results.</p>
+<p>Click on ‘plot effects’ to compute effect-sizes (e.g. connectivity values within each group) averaged across all voxels within each
+significant cluster</p>
+<p>Group-ICA analyses</p>
+<p>Select ICA.Summary to explore the estimated ICA networks/components. The top-left table lists several properties of each network
+(spatial variability/kurtosis/skewness, and temporal variability/frequency). The top-right display shows the group-level maps (ICA
+spatial components) for the selected networks/components. These maps may be thresholded based on a z-score threshold for display
+purposes (factor loadings are centered and normalized across all voxels to compute z-scores). The bottom display shows the BOLD signal
+timeseries associated with each network (ICA temporal components) for the selected subject/condition. By default ICA components are
+sorted by their relative overlap with gray matter areas (last networks/components may be loading more heavily on white or CSF areas,
+which are often identified as noise components)</p>
+<p>networks match-to-template summary display</p>
+<p>In addition selecting ICA tools. Spatial match to template computes the correlation between each grouplevel spatial map and a CONN’s
+default networks file or a user-defined mask file, which can be used to identify networks of interest. In addition, hovering over the
+top-right plot displays the factor loadings at each</p>
+<p>voxel, as well as the networks/components with the highest loadings at each voxel, which is another common way to identify networks of
+interest. The top-right display can also be selected to show the associated ICA parcellation maps. Parcellations are computed by
+finding, among the selected networks/components, the one that shows the highest factor loading at each voxel, and thresholding the
+resulting maps using the chosen zscore threshold. Parcellations may be computed across all networks/components or only across a subset
+of the estimated networks simply by selecting the desired subset of networks in the top-left table. The resulting parcellations can
+also be exported to a file (e.g. to be used as ROIs) by selecting the ICA tools. Create ICA parcellation ROI file option.</p>
+<p>Tip: some times it is desirable to define ROIs from some or all of the ICA networks for additional analyses (e.g. within- and between-
+network connectivity analyses, ICA denoising, etc.) There are three ways in CONN to define meaningful ROIs from ICA results (and all
+of these methods are commonly used in the literature):</p>
+<p>1) thresholded second-level analyses: from ICA.SpatialComponent analyses (see section below), in the results explorer window define
+the desired thresholds (e.g. in terms of T- statistics from a one-sample t-test of the individual subject-level maps) and use ‘export
+mask’ to create a mask of suprathreshold areas, then in Setup.ROIs import the resulting mask.ROI.nii file as a new ROI atlas file</p>
+<p>2) thresholded group-level maps: from the ICA.Summary tab, select one or several networks, define the desired zscore threshold, and
+use ‘ICA tools. Create ICA parcellation file’ to create a new ROI file, then again import the resulting file in Setup.ROIs as a new
+ROI atlas file</p>
+<p>and 3) weighted/unthresholded group-level maps: in Setup.ROIs select ‘ROI tools. Add ICA-network ROIs’ to define a new set of ROIs
+directly form the group-level spatial masks, using these maps as weighted/probabilisticROIs (one ROI per network)</p>
+<p>Generally the advantage of method (3) is that the resulting ROI timeseries and connectivity maps more closely represent the properties
+of the networks identified in the ICA procedure (when using this method, the extracted ROI timeseries for each network will be exactly
+the same as the ICA temporal component timeseries, and if using these ROIs as seeds in multivariate analyses the resulting
+seed-to-voxel maps will be exactly the same as the individual subject-level spatial maps estimated in the ICA procedure for each
+network), while the advantage of methods (1) and (2) is that they allow breaking individual networks into potentially multiple
+separate clusters/areas (e.g. for additional within-network or between-network connectivity analyses).</p>
+<p>Select ICA.SpatialComponents to analyze the subject-level maps for each network/component. Secondlevel analyses can be defined in the
+same way as for any other voxel-level measure (e.g. seed-to-voxel connectivity maps). These analyses enter the estimated subject-level
+spatial maps for each subject/condition/network into standard second-level analyses in order, for example, to display the average map
+across all subjects for a given network, or compare these networks across subjects and/or conditions. Select compute results to
+perform the desired second-level analyses, threshold the resulting statistical maps using a combination of height- and extent-
+thresholds, perform non-parametric analyses, or additional display and analysis options.</p>
+<p>Select ICA.TemporalComponents to analyze properties of the BOLD signal timeseries associated with each network/component. For each
+network/component, the temporal variability as well as the frequency (center of mass in spectral power) of these BOLD signal
+timeseries are computed for each subject and for each condition. Second-level analyses can be defined in the same way as for any other
+individual measure, for example, to compute the average of these measures across all subjects or to compare these measures across
+subjects or conditions.</p>
+<p>fc-MVPA analyses</p>
+<p>Select MVPA.Summary to explore the entire functional connectome (voxel-to-voxel connectivity values) and characterize its diversity
+across subjects and/or conditions using the estimated fc-MVPA eigenpattern scores.</p>
+<p>Click (or click and drag) on the left display to select a seed voxel. The display in the middle will change accordingly to show the
+connectivity with that seed voxel, for the selected condition (e.g. during rest, when selecting in the ‘conditions’ list the rest
+condition) and the selected subjects (e.g. averaged across all subjects, when selecting in the ‘Subjects’ list the ‘All Subjects’
+option). In addition to describing the seed-based connectivity map on average / commonly across all subjects, this display can also be
+used to identify the principal axes of variability across subjects and/or across conditions in these seed-based connectivity maps.
+These principal axes of variability are characterized by fc-MVPA separately for each seed voxel as a set of eigenpatterns (principal
+components of the functional connectivity with that voxel across subjects and conditions), and they can be displayed by selecting in
+the ‘Subjects’ list the ’Low- and High-scoring subjects’ option and then selecting in the ‘fc-MVPA scores’ list an individual
+eigenpattern (numbered from 1 to the total number of components estimated by fc-MVPA). The display in the middle will then show two
+seed-based connectivity maps, computed as the average seed-based connectivity separately for subjects above the median score
+(high-scoring subjects) or below it (low-scoring subjects). Differences between these two groups of subjects characterize what aspects
+of functional connectivity differ the most between subjects or conditions. You can also select the option ‘High vs. Low
+between-subjects contrast’ to only display the difference in connectivity between these two groups of subjects, or the ‘High-scoring
+subjects’ or ‘Low-scoring subjects’ to display these two groups separately (in addition this GUI can also be used to define any
+arbitrary secondlevel contrast across the same seed-based connectivity maps by selecting the ‘Custom between-subjects contrast’
+option; e.g. to look at the association between seed-based connectivity with an individual voxel and a behavioral variable).</p>
+<p>In addition you may select display 3D to compute these maps across the entire brain and display them projected onto the 3D cortical
+surface (this will also generate a NIFTI file containing these maps for additional analyses and/or exporting them to other software
+packages). Select export data to export NIFTI files containing the original seed-based connectivity maps for the selected seed voxel
+separately for each individual subject, or select import values to import the selected eigenpattern scores for each subject for the
+selected seed as a new 2nd -level covariate (available in Setup.Covariates 2nd -level).</p>
+<p>Select MVPA.Group-analyses to perform brain-wide connectome inferences, evaluating differences between subjects and/or conditions in
+the entire functional connectome.</p>
+<p>Second-level analyses can be defined in the same way as for any other voxel-level measure (e.g. seed-tovoxel connectivity maps). These
+analyses enter the estimated subject-level eigenpattern score maps for each subject/condition/network into standard second-level
+analyses as a proxy for the entire functional connectome in order analyze the connectivity patterns at all voxels across subjects
+and/or conditions. Results will indicate those voxels where the connectivity between those voxels and the rest of the brain show a
+significant effect across subjects or across conditions (e.g. a significant difference between two groups of subjects in functional
+connectivity).</p>
+<p>Select the desired number of eigenpatterns in the MVPA components list (e.g. selecting the component 10 will enter the first 10
+components in your fc-MVPA second-level analysis). The recommended value to include in 2nd -level analysis is 10 (with lower values if
+needed to keep at least a 10:1 ratio between subjects and components; see fc-MVPA manuscript for details)</p>
+<p>After selecting the desired type of analyses (e.g. specifying the subject-effects, between-subject contrasts, etc.) click on compute
+results to compute this 2nd -level analysis (or display results to display the results if these analyses have already been computed).
+That will launch a results explorer window where you can specify your choice of inferential method and error rate threshold used to
+display the fc-MVPA results (the recommended setting for fc-MVPA inferences are the non-parametric options ‘standard settings for
+clusterbased inferences #2: permutation/randomization analyses’ or ‘standard settings for cluster-based inferences #3: threshold free
+cluster enhancement’).</p>
+<p>Supra-threshold clusters in this display will indicate those areas with significant functional connectivity effects (e.g. significant
+differences between two groups). In addition, to display effect-sizes, describing the specific effects found within each individual
+cluster (e.g. differences in connectivity between two groups in the connectivity between an individual cluster and the rest of the
+brain), select a significant cluster and then click on the ‘Network view’ option. Change the ‘subjects’ option to ‘display same
+between-subjects contrast as in current analysis’ and then click ‘Ok’.</p>
+<p>Dynamic ICA analyses</p>
+<p>Select dyn-ICA.Summary to explore the estimated dynamic circuits/components. The top-left table lists several properties of each
+circuit (spatial variability/kurtosis/skewness, and temporal variability/frequency). The top-right display shows the group-level maps
+(ICA spatial components) for the selected circuits/components. These maps represent an ROI-to-ROI connectivity matrix with the factor
+loadings associated with each individual connection for each circuit color coded. These maps may be thresholded based on a z-score
+threshold for display purposes (factor loadings are centered and normalized across all connections to compute z-scores). The bottom
+display shows the connectivity modulation timeseries associated with each circuit (ICA temporal components) for the selected
+subject/condition. Hovering over the top-right plot displays the factor loadings at each connection, as well as the
+circuits/components with the highest loadings for each connection, which can be used to identify circuits of interest.</p>
+<p>The top-right display can also be selected to show the associated estimated dynamic connectivity. From the estimated ICA decomposition
+the connectivity timeseries can be reconstructed showing the ROI-to-ROI connectivity matrix at each timepoint during each subject
+scan. The top-right display shows in this case the estimated ROI-to-ROI connectivity matrix modulation over time, and the bottom plot
+shows the ROI-to-ROI connectivity values over time for any selected connection (ROI pair). Select in the ‘Subjects’ list the desired
+subject to display. You may switch between displaying the full connectivity at each timepoint or only the contribution from one or a
+subset of circuits/components (by selecting the ‘display the selected circuit(s) contribution only’ option). Click on ‘Play’ to browse
+through the selected subject scans displaying the observed dynamic connectivity matrix at each timepoint.</p>
+<p>Select dyn-ICA.SpatialComponents to analyze the subject-level connectivity matrices for each circuit/component. These connectivity
+matrices define circuits / groups of connections, that share similar changes in functional connectivity across time. Second-level
+analyses can be defined in the same way as for any other ROI-to-ROI measure. These analyses enter the estimated subject-level spatial
+maps (representing ROI-to-ROI connectivity modulation matrices) for each subject/condition/circuit into standard second-level analyses
+in order, for example, to display the average map across all subjects for a given circuit, or compare these circuits across subjects
+and/or conditions. Select compute results to perform the desired second-level analyses across all ROIs, threshold the resulting
+statistical maps using a combination of connection- and seed- or network- level thresholds, perform non-parametric analyses, or
+additional display and analysis options. You may also select Graph Theory to perform additional analyses of network-theoretical
+measures of the resulting circuits across subjects and/or conditions.</p>
+<p>Select dyn-ICA.TemporalComponents to analyze properties of the connectivity-modulation timeseries associated with each
+circuit/component. For each circuit/component, the temporal average, temporal variability, as well as the frequency (center of mass in
+spectral power) of these connectivity-modulation timeseries are computed for each subject and for each condition. Second-level
+analyses can be defined in the same way as for any other individual measure to, for example, compute the average of these measures
+across all subjects or compare these measures across subjects or conditions.</p>
+<p>Methods used in 2 nd -level analyses</p>
+<p>When including 2nd -level GLM analysis results from CONN, click on the ‘Methods’ button to have CONN generate an automated description
+of the specific procedures and methods used in these analyses. This description is distributed under a public domain dedication
+license and it can be copied/pasted verbatim to your manuscript Methods section (or modified and/or used in any other way) without
+requiring any permission from us.</p>
+<p>In the Methods GUI select the ‘describe Results (2nd -level) steps” option and click on the specific 1st -level analysis measure
+included in your 2nd -level analyses, as well as in the specific thresholding choice used in your group-level analyses. Select ‘export
+to html’ or ‘export to Word’ to export these descriptions directly to a .html or .docx file. An example of such description would be
+the following (the specific details will vary depending on the specific 1st -level and 2nd -level analyses selected as well as the
+specific choices within those analyses):</p>
+<p>Copy and paste the section below to your manuscript Methods section. This text is distributed under a Public Domain Dedication license
+(CC0 1.0) and it can be used, copied, modified, and distributed freely.</p>
+<p>Methods</p>
+<p>Results included in this manuscript come from analyses performed using CONN [1] (RRID:SCR_009550) release 19.a[2]  and SPM [3]
+(RRID:SCR_007037) release 12.7771.</p>
+<p>Group-level analyses were performed using a General Linear Model (GLM[4] ). For each individual voxel a separate GLM was estimated,
+with first-level connectivity measures at this voxel as dependent variables (one independent sample per subject and one measurement
+per task or experimental condition, if applicable), and groups or other subject-level identifiers as independent variables.
+Voxel-level hypotheses were evaluated using multivariate parametric statistics with random-effects across subjects and sample
+covariance estimation across multiple measurements. Inferences were performed at the level of individual clusters (groups of
+contiguous voxels). Cluster-level inferences were based on parametric statistics from Gaussian Random Field theory[5,6] . Results were
+thresholded using a combination of a clusterforming p &lt; 0.001 voxel-level threshold, and a familywise corrected p-FDR &lt; 0.05
+cluster-size threshold[7] .</p>
+<p>References</p>
+<p>Whitfield-Gabrieli, S., &amp; Nieto-Castanon, A. (2012). Conn: a functional connectivity toolbox for correlated and anticorrelated brain
+networks. Brain connectivity, 2(3), 125-141.</p>
+<p>[1]</p>
+<p>[2] Nieto-Castanon, A. &amp; Whitfield-Gabrieli, S. (2019). CONN functional connectivity toolbox: RRID SCR_009550, release</p>
+<ol class="arabic simple" start="19">
+<li><p>doi:10.56441/hilbertpress.1927.9364.</p></li>
+</ol>
+<p>[3] Penny, W. D., Friston, K. J., Ashburner, J. T., Kiebel, S. J., &amp; Nichols, T. E. (Eds.). (2011). Statistical parametric</p>
+<p>mapping: the analysis of functional brain images. Elsevier.</p>
+<p>[4] Nieto-Castanon, A. (2020). General Linear Model. In Handbook of functional connectivity Magnetic Resonance Imaging methods in CONN
+(pp. 63–82). Hilbert Press.</p>
+<p>[5] Worsley, K. J., Marrett, S., Neelin, P., Vandal, A. C., Friston, K. J., &amp; Evans, A. C. (1996). A unified statistical approach for
+determining significant signals in images of cerebral activation. Human brain mapping, 4(1), 58-73.</p>
+<p>[6] Nieto-Castanon, A. (2020). Cluster-level inferences. In Handbook of functional connectivity Magnetic Resonance Imaging methods in
+CONN (pp. 83–104). Hilbert Press.</p>
+<p>[7] Chumbley, J., Worsley, K., Flandin, G., &amp; Friston, K. (2010). Topological FDR for neuroimaging. Neuroimage, 49(4), 3057-3064.</p>
+<p>References</p>
+<p>1. Andersen, A. H., Gash, D. M., &amp; Avison, M. J. (1999). Principal component analysis of the dynamic response measured by fMRI: a
+generalized linear systems framework. Magnetic Resonance Imaging, 17(6), 795-815</p>
+<p>2. Behzadi, Y., Restom, K., Liau, J., &amp; Liu, T. T. (2007). A component based noise correction method (CompCor) for BOLD and perfusion
+based fMRI. Neuroimage, 37(1), 90-101</p>
+<p>3. Benjamini, Y., &amp; Hochberg, Y. (1995). Controlling the false discovery rate: a practical and powerful approach to multiple testing.
+Journal of the Royal statistical society: series B (Methodological), 57(1), 289-300.</p>
+<ol class="arabic simple" start="4">
+<li><p>Bullmore, E. T., Suckling, J., Overmeyer, S., Rabe-Hesketh, S., Taylor, E., &amp; Brammer, M. J.</p></li>
+</ol>
+<p>(1999). Global, voxel, and cluster tests, by theory and permutation, for a difference between two groups of structural MR images of
+the brain. IEEE transactions on medical imaging, 18(1), 32-42.</p>
+<p>5. Calhoun, V. D., Adali, T., Pearlson, G. D., &amp; Pekar, J. J. (2001). A method for making group inferences from functional MRI data
+using independent component analysis. Human brain mapping, 14(3), 140-151</p>
+<ol class="arabic simple" start="6">
+<li><p>Chumbley, J., Worsley, K., Flandin, G., &amp; Friston, K. (2010). Topological FDR for neuroimaging.</p></li>
+</ol>
+<p>Neuroimage, 49(4), 3057-3064.</p>
+<ol class="arabic simple" start="7">
+<li><p>Ciric, R., Wolf, D. H., Power, J. D., Roalf, D. R., Baum, G. L., Ruparel, K., ... &amp; Gur, R. C. (2017).</p></li>
+</ol>
+<p>Benchmarking of participant-level confound regression strategies for the control of motion artifact in studies of functional
+connectivity. Neuroimage, 154, 174-187</p>
+<p>8. Deshpande, G., LaConte, S., Peltier, S., &amp; Hu, X. (2009). Integrated local correlation: a new measure of local coherence in fMRI
+data. Human brain mapping, 30(1), 13-23</p>
+<ol class="arabic simple" start="9">
+<li><p>Esteban, O., Markiewicz, C. J., Blair, R. W., Moodie, C. A., Isik, A. I., Erramuzpe, A., ... &amp; Oya, H.</p></li>
+</ol>
+<p>(2019). fMRIPrep: a robust preprocessing pipeline for functional MRI. Nature methods, 16(1), 111-</p>
+<ol class="arabic simple" start="116">
+<li></li>
+</ol>
+<p>10. Friston, K. J., Buechel, C., Fink, G. R., Morris, J., Rolls, E., &amp; Dolan, R. J. (1997). Psychophysiological and modulatory
+interactions in neuroimaging. Neuroimage, 6(3), 218-229</p>
+<p>11. Goelman, G. 2004. Radial correlation contrast: a functional connectivity MRI contrast to map changes in local neuronal
+communication. Neuroimage, 23(4), 1432-1439</p>
+<p>12. Hallquist, M. N., Hwang, K., &amp; Luna, B. (2013). The nuisance of nuisance regression: spectral misspecification in a common
+approach to resting-state fMRI preprocessing reintroduces noise and obscures functional connectivity. Neuroimage, 82, 208-225</p>
+<p>13. Jafri, M. J., Pearlson, G. D., Stevens, M., &amp; Calhoun, V. D. (2008). A method for functional network connectivity among spatially
+independent resting-state components in schizophrenia. Neuroimage, 39(4), 1666-1681.</p>
+<ol class="arabic simple" start="14">
+<li><p>Jin, X., Liang, X., &amp; Gong, G. (2020). Functional integration between the two brain hemispheres:</p></li>
+</ol>
+<p>evidence from the homotopic functional connectivity under resting state. Frontiers in Neuroscience, 14</p>
+<p>15. Martuzzi, R., Ramani, R., Qiu, M., Shen, X., Papademetris, X., &amp; Constable, R. T. (2011). A wholebrain voxel based measure of
+intrinsic connectivity contrast reveals local changes in tissue connectivity with anesthetic without a priori assumptions on
+thresholds or regions of interest. Neuroimage, 58(4), 1044-1050</p>
+<p>16. McLaren, D. G., Ries, M. L., Xu, G., &amp; Johnson, S. C. (2012). A generalized form of context-dependent psychophysiological
+interactions (gPPI): a comparison to standard approaches. Neuroimage, 61(4), 1277-1286.</p>
+<ol class="arabic simple" start="17">
+<li><p>Nieto-Castanon, A. (2020). Handbook of fcMRI methods in CONN. Boston, MA: Hilbert Press</p></li>
+</ol>
+<p>18. Saad, Z. S., Reynolds, R. C., Jo, H. J., Gotts, S. J., Chen, G., Martin, A., &amp; Cox, R. W. (2013). Correcting brain-wide
+correlation differences in resting-state FMRI. Brain connectivity, 3(4), 339-352</p>
+<p>19. Smith, S. M., &amp; Nichols, T. E. (2009). Threshold-free cluster enhancement: addressing problems of smoothing, threshold dependence
+and localisation in cluster inference. Neuroimage, 44(1), 83-98.</p>
+<p>20. Whitfield-Gabrieli, S., &amp; Nieto-Castanon, A. (2012). Conn: a functional connectivity toolbox for correlated and anticorrelated
+brain networks. Brain connectivity, 2(3), 125-141</p>
+<p>21. Worsley, K. J., Marrett, S., Neelin, P., Vandal, A. C., Friston, K. J., &amp; Evans, A. C. (1996). A unified statistical approach for
+determining significant signals in images of cerebral activation. Human brain mapping, 4(1), 58-73.</p>
+<p>22. Yang, H., Long, X. Y., Yang, Y., Yan, H., Zhu, C. Z., Zhou, X. P., ... &amp; Gong, Q. Y. (2007). Amplitude of low frequency
+fluctuation within visual areas revealed by resting-state functional MRI. Neuroimage, 36(1), 144-152.</p>
+<p>23. Zalesky, A., Fornito, A., &amp; Bullmore, E. T. (2010). Network-based statistic: identifying differences in brain networks.
+Neuroimage, 53(4), 1197-1207.</p>
+<p>24. Zalesky, A., Fornito, A., &amp; Bullmore, E. T. (2012). On the use of correlation as a measure of network connectivity. Neuroimage,
+60(4), 2096-2106.</p>
+<p>25. Zou, Q. H., Zhu, C. Z., Yang, Y., Zuo, X. N., Long, X. Y., Cao, Q. J., ... &amp; Zang, Y. F. (2008). An improved approach to detection
+of amplitude of low-frequency fluctuation (ALFF) for resting-state fMRI: fractional ALFF. Journal of neuroscience methods, 172(1),
+137-141.</p>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">conn_tutorial</a></h1>
+
+
+
+
+
+
+
+
+<h3>Навигација</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CONN functional connectivity toolbox: RRID:SCR_009550, Version 22</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="претходна глава">conn_tutorial documentation</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Брза претрага</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Тражи" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Leopoldo.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/CONN_functional_connectivity_toolbox_V22.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

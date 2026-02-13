@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html lang="sp" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>c01 &#8212; документација An_Introduction_to_Statistical_Learning_Gareth 01</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=cb95fe6c"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Индекс" href="genindex.html" />
+    <link rel="search" title="Претрага" href="search.html" />
+    <link rel="next" title="c2 Statistical Learning" href="c02.html" />
+    <link rel="prev" title="An_Introduction_to_Statistical_Learning_Gareth documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="c01">
+<h1>c01<a class="headerlink" href="#c01" title="Link to this heading">¶</a></h1>
+<p>Statistical learning refers to a set of tools for modeling and understanding complex datasets. It is a recently developed area in
+statistics and blends with parallel developments in computer science and, in particular, machine learning. The ﬁeld encompasses many
+methods such as the lasso and sparse regression, classiﬁcation and regression trees, and boosting and support vector machines.</p>
+<p>With the explosion of “Big Data” problems, statistical learning has become a very hot ﬁeld in many scientiﬁc areas as well as
+marketing, ﬁnance, and other business disciplines. People with statistical learning skills are in high demand.</p>
+<p>One of the ﬁrst books in this area—The Elements of Statistical Learning (ESL) (Hastie, Tibshirani, and Friedman)—was published in
+2001, with a second edition in 2009. ESL has become a popular text not only in statistics but also in related ﬁelds. One of the
+reasons for ESL’s popularity is its relatively accessible style. But ESL is intended for individuals with advanced training in the
+mathematical sciences. An Introduction to Statistical Learning (ISL) arose from the perceived need for a broader and less technical
+treatment of these topics. In this new book, we cover many of the same topics as ESL, but we concentrate more on the applications of
+the methods and less on the mathematical details. We have created labs illustrating how to implement each of the statistical learning
+methods using the popular statistical software package R. These labs provide the reader with valuable hands-on experience.</p>
+<p>This book is appropriate for advanced undergraduates or master’s students in statistics or related quantitative ﬁelds or for
+individuals in other disciplines who wish to use statistical learning tools to analyze their data. It can be used as a textbook for a
+course spanning one
+or two semesters.</p>
+<p>We would like to thank several readers for valuable comments on preliminary drafts of this book: Pallavi Basu, Alexandra Chouldechova,
+Patrick Danaher, Will Fithian, Luella Fu, Sam Gross, Max Grazier G’Sell, Courtney Paulson, Xinghao Qiao, Elisa Sheng, Noah Simon, Kean
+Ming Tan, and Xin Lu Tan.</p>
+<p><strong>c01 Introduction</strong></p>
+<p><strong>An Overview of Statistical Learning</strong></p>
+<p>Statistical learning refers to a vast set of tools for understanding data. These tools can be classiﬁed as supervised or
+unsupervised. Broadly speaking, supervised statistical learning involves building a statistical model for predicting, or estimating,
+an output based on one or more inputs. Problems of this nature occur in ﬁelds as diverse as business, medicine, astrophysics, and
+public policy. With unsupervised statistical learning, there are inputs but no supervising output; nevertheless we can learn
+relationships and structure from such data. To provide an illustration of some applications of statistical learning, we brieﬂy
+discuss three real-world data sets that are considered in this book.</p>
+<p><strong>Wage Data</strong></p>
+<p>In this application (which we refer to as the Wage data set throughout this book), we examine a number of factors that relate to wages
+for a group of males from the Atlantic region of the United States. In particular, we wish to understand the association between an
+employee’s age and education, as well as the calendar year, on his wage. Consider, for example, the left-hand panel of Figure 1.1,
+which displays wage versus age for each of the individuals in the data set. There is evidence that wage increases with age but then
+decreases again after approximately age 60. The blue line, which provides an estimate of the average wage for a given age, makes this
+trend clearer.</p>
+<p>FIGURE 1.1. Wage data, which contains income survey information for males from the central Atlantic region of the United States. Left:
+wage as a function of age. On average, wage increases with age until about 60 years of age, at which point it begins to decline.
+Center: wage as a function of year. There is a slow but steady increase of approximately $10,000 in the average wage between 2003 and
+2009. Right: Boxplots displaying wage as a function of education, with 1 indicating the lowest level (no high school diploma) and 5
+the highest level (an advanced graduate degree). On average, wage increases with the level of education.</p>
+<p>Given an employee’s age, we can use this curve to predict his wage. However, it is also clear from Figure 1.1 that there is a
+signiﬁcant amount of variability associated with this average value, and so age alone is unlikely to provide an accurate prediction
+of a particular man’s wage.</p>
+<p>We also have information regarding each employee’s education level and the year in which the wage was earned. The center and
+right-hand panels of Figure 1.1, which display wage as a function of both year and education, indicate that both of these factors are
+associated with wage. Wages increase by approximately $10,000, in a roughly linear (or straight-line) fashion, between 2003 and 2009,
+though this rise is very slight relative to the variability in the data. Wages are also typically greater for individuals with higher
+education levels: men with the lowest education level (1) tend to have substantially lower wages than those with the highest education
+level (5). Clearly, the most accurate prediction of a given man’s wage will be obtained by combining his age, his education, and the
+year. In Chapter 3, we discuss linear regression, which can be used to predict wage from this data set. Ideally, we should predict
+wage in a way that accounts for the non-linear relationship between wage and age. In Chapter 7, we discuss a class of approaches for
+addressing this problem.</p>
+<p><strong>Stock Market Data</strong></p>
+<p>The Wage data involves predicting a continuous or quantitative output value. This is often referred to as a regression problem.
+However, in certain cases we may instead wish to predict a non-numerical value—that is, a categorical
+or qualitative output. For example, in Chapter 4 we examine a stock market data set that contains the daily movements in the Standard
+&amp; Poor’s 500 (S&amp;P) stock index over a 5-year period between 2001 and 2005. We refer to this as the Smarket data. The goal is to
+predict whether the index will increase or decrease on a given day using the past 5 days’ percentage changes in the index. Here the
+statistical learning problem does not involve predicting a numerical value. Instead it involves predicting whether a given day’s stock
+market performance will fall into the Up bucket or the Down bucket. This is known as a classiﬁcation problem. A model that could
+accurately predict the direction in which the market will move would be very useful!</p>
+<p>The left-hand panel of Figure 1.2 displays two boxplots of the previous day’s percentage changes in the stock index: one for the 648
+days for which the market increased on the subsequent day, and one for the 602 days for which the market decreased. The two plots look
+almost identical, suggesting that there is no simple strategy for using yesterday’s movement in the S&amp;P to predict today’s returns.
+The remaining panels, which display boxplots for the percentage changes 2 and 3 days previous to today, similarly indicate little
+association between past and present returns. Of course, this lack of pattern is to be expected: in the presence of strong
+correlations between successive days’ returns, one could adopt a simple trading strategy to generate proﬁts from the market.
+Nevertheless, in Chapter 4, we explore these data using several diﬀerent statistical learning methods. Interestingly, there are hints
+of some weak trends in the data that suggest that, at least for this 5-year period, it is possible to correctly predict the direction
+of movement in the market approximately 60% of the time (Figure 1.3).</p>
+<p>FIGURE 1.3. We ﬁt a quadratic discriminant analysis model to the subset of the Smarket data corresponding to the 2001–2004 time
+period, and predicted the probability of a stock market decrease using the 2005 data. On average, the predicted probability of
+decrease is higher for the days in which the market does decrease. Based on these results, we are able to correctly predict the
+direction of movement in the market 60% of the time.</p>
+<p><strong>Gene Expression Data</strong></p>
+<p>The previous two applications illustrate data sets with both input and output variables. However, another important class of problems
+involves situations in which we only observe input variables, with no corresponding output. For example, in a marketing setting, we
+might have demographic information for a number of current or potential customers. We may wish to understand which types of customers
+are similar to each other by grouping individuals according to their observed characteristics. This is known as a clustering problem.
+Unlike in the previous examples, here we are not trying to predict an output variable.</p>
+<p>We devote Chapter 10 to a discussion of statistical learning methods for problems in which no natural output variable is available. We
+consider the NCI60 data set, which consists of 6,830 gene expression measurements for each of 64 cancer cell lines. Instead of
+predicting a particular output variable, we are interested in determining whether there are groups, or clusters, among the cell lines
+based on their gene expression measurements. This is a diﬃcult question to address, in part because there are thousands of gene
+expression measurements per cell line, making it hard to visualize the data.</p>
+<p>The left-hand panel of Figure 1.4 addresses this problem by representing each of the 64 cell lines using just two numbers, Z 1 and Z 2
+. These are the ﬁrst two principal components of the data, which summarize the 6, 830 expression measurements for each cell line down
+to two numbers or dimensions. While it is likely that this dimension reduction has resulted in
+some loss of information, it is now possible to visually examine the data for evidence of clustering. Deciding on the number of
+clusters is often a diﬃcult problem. But the left-hand panel of Figure 1.4 suggests at least four groups of cell lines, which we have
+represented using separate colors. We can now examine the cell lines within each cluster for similarities in their types of cancer, in
+order to better understand the relationship between gene expression levels and cancer.</p>
+<p>FIGURE 1.4. Left: Representation of the NCI60 gene expression data set in a two-dimensional space, Z 1 and Z 2 . Each point
+corresponds to one of the 64 cell lines. There appear to be four groups of cell lines, which we have represented using di ﬀ erent
+colors. Right: Same as left panel except that we have represented each of the 14 di ﬀ erent types of cancer using a di ﬀ erent
+colored symbol. Cell lines corresponding to the same cancer type tend to be nearby in the two-dimensional space.</p>
+<p>In this particular data set, it turns out that the cell lines correspond to 14 diﬀerent types of cancer. (However, this information
+was not used to create the left-hand panel of Figure 1.4.) The right-hand panel of Figure 1.4 is identical to the left-hand panel,
+except that the 14 cancer types are shown using distinct colored symbols. There is clear evidence that cell lines with the same cancer
+type tend to be located near each other in this two-dimensional representation. In addition, even though the cancer information was
+not used to produce the left-hand panel, the clustering obtained does bear some resemblance to some of the actual cancer types
+observed in the right-hand panel. This provides some independent veriﬁcation of the accuracy of our clustering analysis.</p>
+<p><strong>A Brief History of Statistical Learning</strong></p>
+<p>Though the term statistical learning is fairly new, many of the concepts that underlie the ﬁeld were developed long ago. At the
+beginning of the nineteenth century, Legendre and Gauss published papers on the method
+of least squares, which implemented the earliest form of what is now known as linear regression. The approach was ﬁrst successfully
+applied to problems in astronomy. Linear regression is used for predicting quantitative values, such as an individual’s salary. In
+order to predict qualitative values, such as whether a patient survives or dies, or whether the stock market increases or decreases,
+Fisher proposed linear discriminant analysis in 1936. In the 1940s, various authors put forth an alternative approach, logistic
+regression. In the early 1970s, Nelder and Wedderburn coined the term generalized linear models for an entire class of statistical
+learning methods that include both linear and logistic regression as special cases.</p>
+<p>By the end of the 1970s, many more techniques for learning from data were available. However, they were almost exclusively linear
+methods, because ﬁtting non-linear relationships was computationally infeasible at the time. By the 1980s, computing technology had
+ﬁnally improved suﬃciently that non-linear methods were no longer computationally prohibitive. In mid 1980s Breiman, Friedman,
+Olshen and Stone introduced classiﬁcation and regression trees, and were among the ﬁrst to demonstrate the power of a detailed
+practical implementation of a method, including cross-validation for model selection. Hastie and Tibshirani coined the term
+generalized additive models in 1986 for a class of non-linear extensions to generalized linear models, and also provided a practical
+software implementation.</p>
+<p>Since that time, inspired by the advent of machine learning and other disciplines, statistical learning has emerged as a new subﬁeld
+in statistics, focused on supervised and unsupervised modeling and prediction. In recent years, progress in statistical learning has
+been marked by the increasing availability of powerful and relatively user-friendly software, such as the popular and freely available
+R system. This has the potential to continue the transformation of the ﬁeld from a set of techniques used and developed by
+statisticians and computer scientists to an essential toolkit for a much broader community.</p>
+<p><strong>This Book</strong></p>
+<p>The Elements of Statistical Learning (ESL) by Hastie, Tibshirani, and Friedman was ﬁrst published in 2001. Since that time, it has
+become an important reference on the fundamentals of statistical machine learning. Its success derives from its comprehensive and
+detailed treatment of many important topics in statistical learning, as well as the fact that (relative to many upper-level statistics
+textbooks) it is accessible to a wide audience. However, the greatest factor behind the success of ESL has been its topical nature. At
+the time of its publication, interest in the ﬁeld of statistical
+learning was starting to explode. ESL provided one of the ﬁrst accessible and comprehensive introductions to the topic.</p>
+<p>Since ESL was ﬁrst published, the ﬁeld of statistical learning has continued to ﬂourish. The ﬁeld’s expansion has taken two forms.
+The most obvious growth has involved the development of new and improved statistical learning approaches aimed at answering a range of
+scientiﬁc questions across a number of ﬁelds. However, the ﬁeld of statistical learning has also expanded its audience. In the
+1990s, increases in computational power generated a surge of interest in the ﬁeld from non-statisticians who were eager to use
+cutting-edge statistical tools to analyze their data. Unfortunately, the highly technical nature of these approaches meant that the
+user community remained primarily restricted to experts in statistics, computer science, and related ﬁelds with the training (and
+time) to understand and implement them.</p>
+<p>In recent years, new and improved software packages have signiﬁcantly eased the implementation burden for many statistical learning
+methods. At the same time, there has been growing recognition across a number of ﬁelds, from business to health care to genetics to
+the social sciences and beyond, that statistical learning is a powerful tool with important practical applications. As a result, the
+ﬁeld has moved from one of primarily academic interest to a mainstream discipline, with an enormous potential audience. This trend
+will surely continue with the increasing availability of enormous quantities of data and the software to analyze it.</p>
+<p>The purpose of An Introduction to Statistical Learning (ISL) is to facilitate the transition of statistical learning from an academic
+to a mainstream ﬁeld. ISL is not intended to replace ESL, which is a far more comprehensive text both in terms of the number of
+approaches considered and the depth to which they are explored. We consider ESL to be an important companion for professionals (with
+graduate degrees in statistics, machine learning, or related ﬁelds) who need to understand the technical details behind statistical
+learning approaches. However, the community of users of statistical learning techniques has expanded to include individuals with a
+wider range of interests and backgrounds. Therefore, we believe that there is now a place for a less technical and more accessible
+version of ESL.</p>
+<p>In teaching these topics over the years, we have discovered that they are of interest to master’s and PhD students in ﬁelds as
+disparate as business administration, biology, and computer science, as well as to quantitativelyoriented upper-division
+undergraduates. It is important for this diverse group to be able to understand the models, intuitions, and strengths and weaknesses
+of the various approaches. But for this audience, many of the technical details behind statistical learning methods, such as
+optimization algorithms and theoretical properties, are not of primary interest. We believe that these students do not need a deep
+understanding of these aspects in order to become informed users of the various methodologies, and
+in order to contribute to their chosen ﬁelds through the use of statistical learning tools.</p>
+<p>ISLR is based on the following four premises.</p>
+<p>1. Many statistical learning methods are relevant and useful in a wide range of academic and non-academic disciplines, beyond just the
+statistical sciences. We believe that many contemporary statistical learning procedures should, and will, become as widely available
+and used as is currently the case for classical methods such as linear regression. As a result, rather than attempting to consider
+every possible approach (an impossible task), we have concentrated on presenting the methods that we believe are most widely
+applicable.</p>
+<p>2. Statistical learning should not be viewed as a series of black boxes. No single approach will perform well in all possible
+applications. Without understanding all of the cogs inside the box, or the interaction between those cogs, it is impossible to select
+the best box. Hence, we have attempted to carefully describe the model, intuition, assumptions, and trade-oﬀs behind each of the
+methods that we consider.</p>
+<p>3. While it is important to know what job is performed by each cog, it is not necessary to have the skills to construct the machine
+inside the box! Thus, we have minimized discussion of technical details related to ﬁtting procedures and theoretical properties. We
+assume that the reader is comfortable with basic mathematical concepts, but we do not assume a graduate degree in the mathematical
+sciences. For instance, we have almost completely avoided the use of matrix algebra, and it is possible to understand the entire book
+without a detailed knowledge of matrices and vectors.</p>
+<p>4. We presume that the reader is interested in applying statistical learning methods to real-world problems. In order to facilitate
+this, as well as to motivate the techniques discussed, we have devoted a section within each chapter to R computer labs. In each lab,
+we walk the reader through a realistic application of the methods considered in that chapter. When we have taught this material in our
+courses, we have allocated roughly one-third of classroom time to working through the labs, and we have found them to be extremely
+useful. Many of the less computationally-oriented students who were initially intimidated by R’s command level interface got the hang
+of things over the course of the quarter or semester. We have used R because it is freely available and is powerful enough to
+implement all of the methods discussed in the book. It also has optional packages that can be downloaded to implement literally
+thousands of additional methods. Most importantly, R is the language of choice for academic statisticians, and new approaches often
+become available in
+R years before they are implemented in commercial packages. However, the labs in ISL are self-contained, and can be skipped if the
+reader wishes to use a diﬀerent software package or does not wish to apply the methods discussed to real-world problems.</p>
+<p><strong>Who Should Read This Book?</strong></p>
+<p>This book is intended for anyone who is interested in using modern statistical methods for modeling and prediction from data. This
+group includes scientists, engineers, data analysts, or quants, but also less technical individuals with degrees in non-quantitative
+ﬁelds such as the social sciences or business. We expect that the reader will have had at least one elementary course in statistics.
+Background in linear regression is also useful, though not required, since we review the key concepts behind linear regression in
+Chapter 3. The mathematical level of this book is modest, and a detailed knowledge of matrix operations is not required. This book
+provides an introduction to the statistical programming language R. Previous exposure to a programming language, such as MATLAB or
+Python, is useful but not required.</p>
+<p>We have successfully taught material at this level to master’s and PhD students in business, computer science, biology, earth
+sciences, psychology, and many other areas of the physical and social sciences. This book could also be appropriate for advanced
+undergraduates who have already taken a course on linear regression. In the context of a more mathematically rigorous course in which
+ESL serves as the primary textbook, ISL could be used as a supplementary text for teaching computational aspects of the various
+approaches.</p>
+<p><strong>Notation and Simple Matrix Algebra</strong></p>
+<p>Choosing notation for a textbook is always a diﬃcult task. For the most part we adopt the same notational conventions as ESL.</p>
+<p>We will use n to represent the number of distinct data points, or observations, in our sample. We will let p denote the number of
+variables that are available for use in making predictions. For example, the Wage data set consists of 12 variables for 3,000 people,
+so we have n = 3,000 observations and p = 12 variables (such as year, age, wage, and more). Note that throughout this book, we
+indicate variable names using colored font: Variable Name.</p>
+<p>In some examples, p might be quite large, such as on the order of thousands or even millions; this situation arises quite often, for
+example, in the analysis of modern biological data or web-based advertising data.</p>
+<p>In general, we will let x ij represent the value of the jth variable for the ith observation, where i = 1, 2, . . ., n and j = 1, 2, .
+. ., p. Throughout this book, i will be used to index the samples or observations (from 1 to n) and j will be used to index the
+variables (from 1 to p). We let X denote a n× p matrix whose (i, j)th element is x ij . That is,</p>
+<p>x 11 x 12 ... x1p  ⎛ x 21 x 22 . . . x 2p ⎞ ⎜ ⎟ X = ⎜ . . . . ⎟ . ⎜ . . . . . . . . ⎟ ⎝ x n1 x n2 . . . x np ⎠</p>
+<p>For readers who are unfamiliar with matrices, it is useful to visualize X as a spreadsheet of numbers with n rows and p columns.</p>
+<p>At times we will be interested in the rows of X, which we write as x 1 , x 2 , . . . , x n . Here x i is a vector of length p,
+containing the p variable measurements for the ith observation. That is,</p>
+<p>xi1  ⎛ x i2 ⎞ ⎜ ⎟ x i = ⎜ . ⎟ . ⎜ . . ⎟ ⎝ x ip ⎠</p>
+<p>(1.1)</p>
+<p>(Vectors are by default represented as columns.) For example, for the Wage data, x i is a vector of length 12, consisting of year,
+age, wage, and other values for the ith individual. At other times we will instead be interested in the columns of X, which we write
+as x 1 , x 2 , . . . , x p . Each is a vector of length n. That is,</p>
+<p>x1j  ⎛ x 2j ⎞ ⎜ ⎟ x j = ⎜ . ⎟ . ⎜ . . ⎟ ⎝ x nj ⎠</p>
+<p>For example, for the Wage data, x 1 contains the n = 3,000 values for year.</p>
+<p>Using this notation, the matrix X can be written as</p>
+<p>X = ( x 1 x 2 · · · x p ) ,</p>
+<p>or</p>
+<p>x1 T  ⎛ x 2 T ⎞ ⎜ ⎟ X = ⎜ . ⎟ . ⎜ . . ⎟ ⎝ x n T ⎠</p>
+<p>The T notation denotes the transpose of a matrix or vector. So, for example,</p>
+<p>x 11 x 21 ... xn1  ⎛ x 12 x 22 . . . x n2 ⎞ ⎜ ⎟ X T = ⎜ . . . ⎟ , ⎜ . . . . . . ⎟ ⎝ x 1p x 2p . . . x np ⎠</p>
+<p>while</p>
+<p>x i T = ( x i1 x i2 · · · x ip ) .</p>
+<p>We use yi to denote the ith observation of the variable on which we wish to make predictions, such as wage. Hence, we write the set
+of all n observations in vector form as</p>
+<p>y1  ⎛ y 2 ⎞ ⎜ ⎟ y = ⎜ . ⎟ . . ⎜ . ⎟ ⎝ y n ⎠</p>
+<p>Then our observed data consists of { (x 1 , y 1 ), (x 2 , y 2 ), . . . , (x n , y n ) } , where each x i is a vector of length p. (If
+p = 1, then x i is simply a scalar.)</p>
+<p>In this text, a vector of length n will always be denoted in lower case bold; e.g.</p>
+<p>a1  ⎛ a 2 ⎞ ⎜ ⎟ a = ⎜ . ⎟ . ⎜ . . ⎟ ⎝ a n ⎠</p>
+<p>However, vectors that are not of length n (such as feature vectors of length p, as in (1.1)) will be denoted in lower case normal
+font, e.g. a. Scalars will also be denoted in lower case normal font, e.g. a. In the rare cases in which these two uses for lower case
+normal font lead to ambiguity, we will clarify which use is intended. Matrices will be denoted using bold capitals, such as A. Random
+variables will be denoted using capital normal font, e.g. A, regardless of their dimensions.</p>
+<p>Occasionally we will want to indicate the dimension of a particular object. To indicate that an object is a scalar, we will use the
+notation a ∈ R. To indicate that it is a vector of length k, we will use a ∈ R k (or a ∈ Rn  if it is of length n). We will
+indicate that an object is a r × s matrix using A ∈ Rr×s .</p>
+<p>We have avoided using matrix algebra whenever possible. However, in a few instances it becomes too cumbersome to avoid it entirely. In
+these rare instances it is important to understand the concept of multiplying two matrices. Suppose that A ∈ R r×d and B ∈ R d×s .
+Then the product of A and B is denoted AB. The (i, j)th element of AB is computed by multiplying each element of the ith row of A by
+the corresponding
+element of the jth column of B. That is, (AB) ij = ∑ k=1 d a ik b kj . As an example, consider</p>
+<p>1 2 5 6 A = and B = . ( 3 4 ) ( 7 8 )</p>
+<p>Then</p>
+<p>1 2 5 6 1 × 5 + 2 × 7 1 × 6 + 2 × 8 19 22 AB = = = . ( 3 4 ) ( 7 8 ) ( 3 × 5 + 4 × 7 3 × 6 + 4 × 8 ) ( 43 50 )</p>
+<p>Note that this operation produces an r × s matrix. It is only possible to compute AB if the number of columns of A is the same as the
+number of rows of B.</p>
+<p><strong>Organization of This Book</strong></p>
+<p>Chapter 2 introduces the basic terminology and concepts behind statistical learning. This chapter also presents the K-nearest neighbor
+classiﬁer, a very simple method that works surprisingly well on many problems. Chapters 3 and 4 cover classical linear methods for
+regression and classiﬁcation. In particular, Chapter 3 reviews linear regression, the fundamental starting point for all regression
+methods. In Chapter 4 we discuss two of the most important classical classiﬁcation methods, logistic regression and linear
+discriminant analysis.</p>
+<p>A central problem in all statistical learning situations involves choosing the best method for a given application. Hence, in Chapter
+5 we introduce cross-validation and the bootstrap, which can be used to estimate the accuracy of a number of diﬀerent methods in
+order to choose the best one.</p>
+<p>Much of the recent research in statistical learning has concentrated on non-linear methods. However, linear methods often have
+advantages over their non-linear competitors in terms of interpretability and sometimes also accuracy. Hence, in Chapter 6 we consider
+a host of linear methods, both classical and more modern, which oﬀer potential improvements over standard linear regression. These
+include stepwise selection, ridge regression, principal components regression, partial least squares, and the lasso.</p>
+<p>The remaining chapters move into the world of non-linear statistical learning. We ﬁrst introduce in Chapter 7 a number of non-linear
+methods that work well for problems with a single input variable. We then show how these methods can be used to ﬁt non-linear
+additive models for which there is more than one input. In Chapter 8, we investigate tree-based methods, including bagging, boosting,
+and random forests. Support vector machines, a set of approaches for performing both linear and non-linear classiﬁcation,
+are discussed in Chapter 9. Finally, in Chapter 10, we consider a setting in which we have input variables but no output variable. In
+particular, we present principal components analysis, K-means clustering, and hierarchical clustering.</p>
+<p>At the end of each chapter, we present one or more R lab sections in which we systematically work through applications of the various
+methods discussed in that chapter. These labs demonstrate the strengths and weaknesses of the various approaches, and also provide a
+useful reference for the syntax required to implement the various methods. The reader may choose to work through the labs at his or
+her own pace, or the labs may be the focus of group sessions as part of a classroom environment. Within each R lab, we present the
+results that we obtained when we performed the lab at the time of writing this book. However, new versions of R are continuously
+released, and over time, the packages called in the labs will be updated. Therefore, in the future, it is possible that the results
+shown in the lab sections may no longer correspond precisely to the results obtained by the reader who performs the labs. As
+necessary, we will post updates to the labs on the book website.</p>
+<p>We use the symbol to denote sections or exercises that contain more challenging concepts. These can be easily skipped by readers who
+do not wish to delve as deeply into the material, or who lack the mathematical background.</p>
+<p><strong>Data Sets Used in Labs and Exercises</strong></p>
+<p>In this textbook, we illustrate statistical learning methods using applications from marketing, ﬁnance, biology, and other areas. The
+ISLR package available on the book website contains a number of data sets that are required in order to perform the labs and exercises
+associated with this book. One other data set is contained in the MASS library, and yet another is part of the base R distribution.
+Table 1.1 contains a summary of the data sets required to perform the labs and exercises. A couple of these data sets are also
+available as text ﬁles on the book website, for use in Chapter 2.</p>
+<p><strong>Book Website</strong></p>
+<p>The website for this book is located at</p>
+<p>www.StatLearning.com</p>
+<p>TABLE 1.1. A list of data sets needed to perform the labs and exercises in this textbook. All data sets are available in the ISLR
+library, with the exception of Boston (part of MASS) and USArrests (part of the base R distribution).</p>
+<p>It contains a number of resources, including the R package associated with this book, and some additional data sets.</p>
+<p><strong>Acknowledgements</strong></p>
+<p>A few of the plots in this book were taken from ESL: Figures 6.7, 8.3, and 10.12. All other plots are new to this book.</p>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">An_Introduction_to_Statistical_Learning_Gareth</a></h1>
+
+
+
+
+
+
+
+
+<h3>Навигација</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">c01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c02.html">c2 Statistical Learning</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="претходна глава">An_Introduction_to_Statistical_Learning_Gareth documentation</a></li>
+      <li>Next: <a href="c02.html" title="наредна глава">c2 Statistical Learning</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Брза претрага</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Тражи" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Leopoldo.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/c01.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
