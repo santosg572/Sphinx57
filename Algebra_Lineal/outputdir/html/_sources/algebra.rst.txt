@@ -30,6 +30,47 @@ El vector transpuesto de :math:`\mathbf{x}=(x_1, x_2, ... , x_n)` esta dado por:
    x_n
    \end{pmatrix}
 
-Una **matriz** en :math:`\mathbb{R}^m \times \mathbb{R}^n`
+Una **matriz** en :math:`\mathbb{R}^m \times \mathbb{R}^n` es definida como:
 
+.. math::
+
+   \begin{pmatrix}
+   a_{11} & a_{12} & \cdots  & a_{1n}  \\
+   a_{21} & a_{22} & \cdots  & a_{2n}  \\
+   \cdots & \cdots  & \ddots & \cdots  \\
+   a_{m1} & a_{m2} & \cdots  & a_{mn}  \\
+   \end{pmatrix}
+
+Dadas dos matrices **A** Y **B**  en :math:`\mathbb{R}^m \times \mathbb{R}^n` y c un escalar en :math:`\mathbb{R}` se definen las operaciones:
+
+.. math::
+
+   \mathbf{A+B} = \begin{pmatrix}
+   a_{11} & a_{12} & \cdots  & a_{1n}  \\
+   a_{21} & a_{22} & \cdots  & a_{2n}  \\
+   \cdots & \cdots  & \ddots & \cdots  \\
+   a_{m1} & a_{m2} & \cdots  & a_{mn}  \\
+   \end{pmatrix} + \begin{pmatrix}
+   b_{11} & b_{12} & \cdots  & b_{1n}  \\
+   b_{21} & b_{22} & \cdots  & b_{2n}  \\
+   \cdots & \cdots  & \ddots & \cdots  \\
+   b_{m1} & b_{m2} & \cdots  & b_{mn}  \\
+   \end{pmatrix} = \begin{pmatrix}
+   a_{11}+b_{11} & a_{12}+b_{12} & \cdots  & a_{1n}+b_{1n}  \\
+   a_{21}+b_{21} & a_{22}+b_{22} & \cdots  & a_{2n}+b_{2n}  \\
+   \cdots & \cdots  & \ddots & \cdots  \\
+   a_{m1}+b_{m1} & a_{m2}+b_{m2} & \cdots  & a_{mn}+b_{mn}  \\
+   \end{pmatrix}
+
+   c \mathbf{A} = a \begin{pmatrix}
+   a_{11} & a_{12} & \cdots  & a_{1n}  \\
+   a_{21} & a_{22} & \cdots  & a_{2n}  \\
+   \cdots & \cdots  & \ddots & \cdots  \\
+   a_{m1} & a_{m2} & \cdots  & a_{mn}  \\
+   \end{pmatrix} = \begin{pmatrix}
+   ca_{11} & ca_{12} & \cdots  & ca_{1n}  \\
+   ca_{21} & ca_{22} & \cdots  & ca_{2n}  \\
+   \cdots & \cdots  & \ddots & \cdots  \\
+   ca_{m1} & ca_{m2} & \cdots  & ca_{mn}  \\
+   \end{pmatrix}
 
