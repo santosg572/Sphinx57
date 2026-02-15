@@ -74,3 +74,35 @@ Dadas dos matrices **A** Y **B**  en :math:`\mathbb{R}^m \times \mathbb{R}^n` y 
    ca_{m1} & ca_{m2} & \cdots  & ca_{mn}  \\
    \end{pmatrix}
 
+La transpuesta de la matriz :math:`\mathbf{A}` es definida por:
+
+.. math::
+   
+   \mathbf{A}^T = \begin{pmatrix}
+   a_{11} & a_{21} & \cdots  & a_{m1}  \\
+   a_{12} & a_{22} & \cdots  & a_{m2}  \\   
+   \cdots & \cdots  & \ddots & \cdots  \\
+   a_{1n} & a_{2n} & \cdots  & a_{mn}  \\
+   \end{pmatrix} 
+
+Dadas dos matrices, :math:`\mathbf{A}` de tamaño :math:`m \times p` y :math:`\mathbf{B}`
+ de tamaño :math:`p \times n` se define la multiplicación :math:`\mathbf{A}` y :math:`\mathbf{B}` como:
+
+.. math::
+
+   \mathbf{A} \times \mathbf{B} = \begin{pmatrix}
+   a_{11} & a_{12} & \cdots  & a_{1p}  \\
+   a_{21} & a_{22} & \cdots  & a_{2p}  \\
+   \cdots & \cdots  & \ddots & \cdots  \\
+   a_{m1} & a_{m2} & \cdots  & a_{mp}  \\
+   \end{pmatrix} \begin{pmatrix}
+   b_{11} & b_{12} & \cdots  & b_{1n}  \\
+   b_{21} & b_{22} & \cdots  & b_{2n}  \\
+   \cdots & \cdots  & \ddots & \cdots  \\
+   b_{p1} & b_{p2} & \cdots  & b_{pn}  \\
+   \end{pmatrix} = \begin{pmatrix}
+   \sum_{i=1}^p a_{1i}b_{i1} & \sum_{i=1}^p a_{1i}b_{i2} & \cdots  & \sum_{i=1}^p a_{1i}b_{in}  \\
+   \sum_{i=1}^p a_{2i}b_{i1} & \sum_{i=1}^p a_{2i}b_{i2} & \cdots  & \sum_{i=1}^p a_{2i}b_{in}  \\
+   \cdots & \cdots  & \ddots & \cdots  \\
+   \sum_{i=1}^p a_{mi}b_{in} & \sum_{i=1}^p a_{mi}b_{in} & \cdots  & \sum_{i=1}^p a_{mi}b_{in}  \\
+   \end{pmatrix} 

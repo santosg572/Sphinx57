@@ -88,6 +88,35 @@ ca_{21} &amp; ca_{22} &amp; \cdots  &amp; ca_{2n}  \\
 \cdots &amp; \cdots  &amp; \ddots &amp; \cdots  \\
 ca_{m1} &amp; ca_{m2} &amp; \cdots  &amp; ca_{mn}  \\
 \end{pmatrix}\end{split}\end{aligned}\end{align} \]</div>
+<p>La transpuesta de la matriz <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> es definida por:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{A}^T = \begin{pmatrix}
+a_{11} &amp; a_{21} &amp; \cdots  &amp; a_{m1}  \\
+a_{12} &amp; a_{22} &amp; \cdots  &amp; a_{m2}  \\
+\cdots &amp; \cdots  &amp; \ddots &amp; \cdots  \\
+a_{1n} &amp; a_{2n} &amp; \cdots  &amp; a_{mn}  \\
+\end{pmatrix}\end{split}\]</div>
+<dl class="simple">
+<dt>Dadas dos matrices, <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> de tamaño <span class="math notranslate nohighlight">\(m \times p\)</span> y <span class="math notranslate nohighlight">\(\mathbf{B}\)</span></dt><dd><p>de tamaño <span class="math notranslate nohighlight">\(p \times n\)</span> se define la multiplicación <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> y <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> como:</p>
+</dd>
+</dl>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{A} \times \mathbf{B} = \begin{pmatrix}
+a_{11} &amp; a_{12} &amp; \cdots  &amp; a_{1p}  \\
+a_{21} &amp; a_{22} &amp; \cdots  &amp; a_{2p}  \\
+\cdots &amp; \cdots  &amp; \ddots &amp; \cdots  \\
+a_{m1} &amp; a_{m2} &amp; \cdots  &amp; a_{mp}  \\
+\end{pmatrix} \begin{pmatrix}
+b_{11} &amp; b_{12} &amp; \cdots  &amp; b_{1n}  \\
+b_{21} &amp; b_{22} &amp; \cdots  &amp; b_{2n}  \\
+\cdots &amp; \cdots  &amp; \ddots &amp; \cdots  \\
+b_{p1} &amp; b_{p2} &amp; \cdots  &amp; b_{pn}  \\
+\end{pmatrix} = \begin{pmatrix}
+\sum_{i=1}^p a_{1i}b_{i1} &amp; \sum_{i=1}^p a_{1i}b_{i2} &amp; \cdots  &amp; \sum_{i=1}^p a_{1i}b_{in}  \\
+\sum_{i=1}^p a_{2i}b_{i1} &amp; \sum_{i=1}^p a_{2i}b_{i2} &amp; \cdots  &amp; \sum_{i=1}^p a_{2i}b_{in}  \\
+\cdots &amp; \cdots  &amp; \ddots &amp; \cdots  \\
+\sum_{i=1}^p a_{mi}b_{in} &amp; \sum_{i=1}^p a_{mi}b_{in} &amp; \cdots  &amp; \sum_{i=1}^p a_{mi}b_{in}  \\
+\end{pmatrix}\end{split}\]</div>
 </section>
 
 
