@@ -16,4 +16,4 @@ documentation for details.
    :caption: Contents:
 
    series
-   ejercicios
+   ejercicios_series
