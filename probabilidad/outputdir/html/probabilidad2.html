@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TEMA 6: PROBABILIDAD &#8212; probabilidad 01 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=82a30901"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="probabilidad" href="probabilidad.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="tema-6-probabilidad">
+<h1>TEMA 6: PROBABILIDAD<a class="headerlink" href="#tema-6-probabilidad" title="Link to this heading">¶</a></h1>
+<ol class="arabic simple">
+<li><p>Introducción.</p></li>
+</ol>
+<p>1.1. Experimento aleatorio</p>
+<p>1.2. Espacio muestral</p>
+<p>1.3. Sucesos</p>
+<ol class="arabic simple" start="2">
+<li><p>Probabilidad.</p></li>
+</ol>
+<p>2.1. Regla de Laplace.</p>
+<p>2.2. Probabilidad frecuentista.</p>
+<ol class="arabic simple" start="3">
+<li><p>Probabilidad Condicionada.</p></li>
+<li><p>Dependencia e Independencia de Sucesos</p></li>
+<li><p>Teorema de la Probabilidad Total y Teorema de Bayes.</p></li>
+</ol>
+<p><strong>1. Introducción.</strong></p>
+<p>Muchos fenómenos que habitualmente observamos en la ciencia, y particularmente en el campo de la biología, la oceanografía, la psicología,
+la sociología, etc., tienen una fuerte componente aleatoria (aleatorio significa incierto, que depende de la suerte o el azar).</p>
+<p><strong>Ejemplos:</strong></p>
+<ul class="simple">
+<li><p>Cuando alimentamos a un pez de un cultivo con una dieta determinada, en general no podemos predecir con seguridad el peso final que va a</p></li>
+</ul>
+<p>alcanzar el pez.</p>
+<ul class="simple">
+<li><p>Si estamos interesados en estudiar una variable, como por ejemplo la talla en los sujetos de una población, tendremos que tomar una</p></li>
+</ul>
+<p>muestra aleatoria de la misma, dado que casi nunca es posible estudiar a toda la población. Los resultados del estudio, evidentemente,
+dependerán de la muestra seleccionada (muestras distintas producirán resultados distintos, aunque se espera que sean siempre parecidos a lo
+que se habría obtenido de haber podido observar la población completa), y por tanto, también tendrán naturaleza aleatoria.</p>
+<p><strong>Un poco de Filosofía:</strong></p>
+<ul class="simple">
+<li><p>En el primero de los ejemplos anteriores es cierto que el peso final del pez no es una cantidad completamente aleatoria y quizás se puede</p></li>
+</ul>
+<p>predecir aproximadamente en función de la especie, las condiciones iniciales del pez, el tiempo de cultivo, etc. Una forma habitual de
+realizar esta predicción es observar que, por ejemplo, todos los peces de esa especie criados en esas condiciones tienen un peso medio de 3
+kg. En tal caso sabemos a priori que un pez escogido arbitrariamente entre todos éstos pesará aproximadamente 3 kg. Ahora bien su peso
+exacto será realmente 3 + ε kg., donde ε es una cantidad (positiva o negativa) en la que se incluye el efecto combinado de muchísimas
+variables de las que se desconoce la forma exacta en que afectan al peso del animal (incluido el mero azar que ha dado lugar a que el pez
+unos días haya comido más, otros menos, que haya enfermado, que haya sido dominante o haya sido dominado, etc). Esta combinación de
+pequeños efectos impredecibles es la que da lugar en última instancia al valor ε que, a efectos prácticos, es completamente aleatorio.</p>
+<ul class="simple">
+<li><p>En el segundo ejemplo se pretende evaluar el comportamiento de una variable en una población a través de la información recogida en una</p></li>
+</ul>
+<p>muestra elegida al azar. La razón principal para elegir muestras al azar es evitar en la medida de lo posible la introducción de sesgos
+(aún involuntarios) por parte del investigador. Al hacer una evaluación global de una variable, usualmente es preciso sintetizar la
+información utilizando su valor medio, varianza, distribución de frecuencias, etc. Dado que de lo que disponemos es de una muestra, estos
+valores se calcularán sobre ésta, y no sobre la población. Si µ y σ 2 son, respectivamente, la media y la varianza (desconocidas pero
+fijas) de la población, y x y s 2 son esas cantidades calculadas en la muestra (y por tanto conocidas, aunque normalmente varían de una
+muestra a otra), podemos esperar que:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\bar{x} = \mu + \epsilon_1\\s^2 = \sigma^2 + \epsilon_2\end{aligned}\end{align} \]</div>
+<p>donde <span class="math notranslate nohighlight">\(\varepsilon_1\)</span> y <span class="math notranslate nohighlight">\(\varepsilon_2\)</span> son cantidades que dependen de la muestra escogida y que son aleatorias precisamente
+porque la muestra se ha escogido al
+azar.</p>
+<p>El hecho de que el resultado de un fenómeno aleatorio sea incierto, no quiere decir que no se pueda hacer una predicción. Lo que sucede es
+que la predicción habrá que hacerla en términos de probabilidad:</p>
+<ul class="simple">
+<li><p>A la hora de predecir el peso de un pez concreto, deberemos sustituir la afirmación segura: “Al haberse cultivado de esta forma, este pez</p></li>
+</ul>
+<p>pesará 3 kg.” por una afirmación probabilística: “Al haberse cultivado de esta forma, este pez pesará 3 kg, si bien con una probabilidad
+del 95% puede ocurrir que el peso oscile 300 gr. arriba, 300 gr, abajo.”</p>
+<ul class="simple">
+<li><p>A la hora de aproximar la talla media de los individuos de una población (que no ha podido ser observada íntegramente sino que se ha</p></li>
+</ul>
+<p>observado una muestra aleatoria), deberemos sustituir la afirmación segura: “La talla media de los individuos de esta población es de 60
+cm.” por una afirmación probabilística: “La talla media de los individuos de esta población es 60 cm., si bien con una probabilidad del 90%
+puede ocurrir que la talla media oscile 10 cm. por encima o por debajo de esta cantidad.”</p>
+<p><strong>2. PROBABILIDAD</strong></p>
+<p><strong>Concepto intuitivo de Probabilidad.</strong></p>
+<p>El concepto de la probabilidad no es ajeno al campo de la ciencia: cuando los resultados de nuestros experimentos no pueden predecirse con
+exactitud, es importante disponer al menos de una medida del grado de certidumbre con que puede ocurrir cada uno de sus posibles
+resultados. Esa medida es precisamente lo que llamamos probabilidad.</p>
+<p><strong>Ejemplos:</strong></p>
+<p>1. Cuando lanzamos una moneda al aire no sabemos si va a salir cara o cruz. No obstante, si la moneda está bien construida, podemos esperar
+que la mitad de las veces que la lancemos salga cara y la otra mitad cruz. Decimos de esta manera que la probabilidad de sacar cara es de
+un 50% y la de sacar cruz otro 50%.</p>
+<p>Aunque aquí hemos expresado la probabilidad en tanto por ciento, en la práctica es más frecuente expresar la probabilidad como proporción
+(en tanto por 1): esto es, la probabilidad de sacar cara es 0.5, y la de sacar cruz es también 0.5.</p>
+<p>2. Se ha observado que entre las tortugas de determinada especie sólo el 10% de las puestas se realiza de día, mientras que el restante 90%
+se lleva a cabo tras la puesta del sol. Si seguimos a una tortuga de esta especie elegida arbitrariamente aunque a priori no sabemos si
+anidará de día o de noche, sí que podemos decir que las probabilidades de cada una de estas situaciones son, respectivamente, del 10% y del
+90%, o expresadas en tanto por uno, de 0.1 y 0.9.</p>
+<p>Nótese que en estos dos ejemplos, la forma de asignar probabilidades a los resultados posibles ha sido distinta. En el caso de la moneda
+hemos empleado un razonamiento abstracto (Si la moneda está bien hecha, las probabilidades de cara y cruz son 50% y 50% respectivamente),
+mientras que en el caso de las tortugas hemos debido hacer observaciones previas (se ha observado que el 10% de las puestas se hace de día
+y el 90% de noche)</p>
+<p>Para definir correctamente el concepto de probabilidad debemos definir los siguientes conceptos previos.</p>
+<p><strong>Experimento aleatorio.</strong></p>
+<p>Es aquel cuyo resultado es incierto o depende del azar. Su opuesto sería un experimento determinista, cuyo resultado es predecible con
+anterioridad a la realización del experimento.</p>
+<p><strong>Espacio muestral.</strong></p>
+<p>Se llama espacio muestral asociado a un experimento aleatorio al conjunto de posibles resultados elementales del experimento.
+Representaremos habitualmente el espacio muestral por E.</p>
+<p><strong>Ejemplo:</strong> Al lanzar un dado, el conjunto de posibles resultados elementales del experimento es</p>
+<div class="math notranslate nohighlight">
+\[E = \{ 1,2,3,4,5,6 \}.\]</div>
+<p><strong>Suceso elemental.</strong></p>
+<p>Cualquier elemento del espacio muestral.</p>
+<p><strong>Sucesos</strong></p>
+<p>Un suceso es cualquier colección de sucesos elementales (esto es, cualquier subconjunto de E.)</p>
+<p><strong>Ejemplo:</strong> Sea E = {1,2,3,4,5,6} el espacio muestral del experimento “lanzar un dado” . Si S es el conjunto de todos los sucesos de dicho
+espacio muestral, tenemos:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\mathbf{S} = \{ \O, E, \{1\}, ... ,\{6\}, ... ,\{1,3\},\{4,6\}, ... ,\{2,4,6\},\{1,3,5\},\\\{1,2,3\},\{4,5,6\}, ..., \{2,3,4,5\}, ...\}\end{aligned}\end{align} \]</div>
+<p>Algunos sucesos especiales son:</p>
+<ul class="simple">
+<li><p><strong>Suceso seguro:</strong> Es aquel que podremos predecir que con seguridad ocurrirá al realizar el experimento aleatorio. Contendrá pues todos</p></li>
+</ul>
+<p>los
+sucesos elementales, por lo que es el propio espacio muestral E.</p>
+<p>Ejemplo: Al lanzar un dado al azar, el Suceso Seguro es “Obtener un número del 1 a 6” = E.</p>
+<ul class="simple">
+<li><p><strong>Suceso imposible:</strong> Es aquel que podremos predecir que con seguridad no ocurrirá. Como conjunto no contendrá a ningún suceso elemental,</p></li>
+</ul>
+<p>por
+lo que se trata del conjunto vacío, el cual representaremos por ∅.</p>
+<p>Ejemplo: Al lanzar un dado al azar, el Suceso “Obtener un número mayor que 6” es un suceso imposible.</p>
+<ul class="simple">
+<li><p><strong>Suceso contrario:</strong> Dado un suceso A, el suceso contrario lo representaremos por A c ó A y está formado por todos los sucesos</p></li>
+</ul>
+<p>elementales
+que no están en A. La ocurrencia de A supone, por tanto, la no ocurrencia de A , y viceversa.</p>
+<p>Ejemplo: Al lanzar un dado al azar, si A = “Obtener un número par”, entonces A = “Obtener número impar”.</p>
+<ul class="simple">
+<li><p><strong>Inclusión de sucesos:</strong> Se dice que un suceso A está incluido en otro suceso B (es decir, A ⊂ B), si siempre que ocurre A, ocurre</p></li>
+</ul>
+<p>también
+B. Es decir todos los elementos de A son también elementos de B.</p>
+<p>Ejemplo: Al lanzar un dado al azar, sea A = Suceso “Obtener un cinco”, y sea B = Suceso “Obtener número impar”. Se tiene, pues que, A = {5}
+⊂ B = {1,3,5}.</p>
+<ul class="simple">
+<li><p><strong>Unión de sucesos:</strong> Dados dos sucesos A y B, se llama unión de sucesos, al nuevo suceso A ∪B, que consiste en que ocurra alguno de los</p></li>
+</ul>
+<p>dos. Por tanto, A ∪B es la reunión de todos los sucesos elementales de A con los sucesos elementales de B.</p>
+<p>Ejemplo: Al lanzar un dado al azar, sea A =Suceso “Obtener un número par”, y B = Suceso “Obtener número mayor a tres” = {4,5,6}. Entonces,
+A∪B = Suceso “Obtener número par o mayor a tres” = {2,4,5,6}.</p>
+<ul class="simple">
+<li><p><strong>Intersección de sucesos:</strong> Dados dos sucesos A y B, se llama intersección de sucesos, al nuevo suceso A∩B, que consiste en que ocurran</p></li>
+</ul>
+<p>ambos a la vez. Por tanto, A∩B es el conjunto los sucesos elementales que pertenecen a ambos conjuntos a la vez.</p>
+<p>Ejemplo: Al lanzar un dado al azar, sea A=Suceso “Obtener un número par”, y B = Suceso “Obtener número mayor a tres” = {4,5,6}. Entonces,
+<span class="math notranslate nohighlight">\(A \cap B\)</span> = Suceso “Obtener número par mayor a tres” = {4,6}.</p>
+<ul class="simple">
+<li><p><strong>Diferencia de sucesos:</strong> Dados dos sucesos A y B, se llama diferencia del suceso A menos el B, al suceso A-B, formado por todos los</p></li>
+</ul>
+<p>sucesos
+elementales de A que no estén en B.</p>
+<p>Ejemplo: Al lanzar un dado al azar, sea A=Suceso “Obtener un número par”, y B = Suceso “Obtener número mayor a tres” = {4,5,6}. Entonces,
+A-B = A∩B c = Suceso “Obtener número par no mayor a tres” = {2}.</p>
+<ul class="simple">
+<li><p><strong>Sucesos incompatibles:</strong> Dados dos sucesos A y B, se dicen que son incompatibles si no pueden ocurrir simultáneamente. Por tanto, si A</p></li>
+</ul>
+<p>y B
+son incompatibles se tiene que A∩B = ∅.</p>
+<p>Ejemplo: Al lanzar un dado al azar, sea A=Suceso “Obtener un número par”={2,4,6}, y B = Suceso “Obtener número impar” = {1,3,5}. Entonces,
+<span class="math notranslate nohighlight">\(A \cap B = \O\)</span>.</p>
+<p><strong>Definición formal de probabilidad:</strong></p>
+<p>Formalmente, si representamos por S el conjunto de todos los sucesos de un espacio muestral E, una medida de probabilidad es una función
+definida para todos los elementos de S y que toma valores en el intervalo [0,1], es decir,</p>
+<p>P: S ⎯⎯→[0,1]</p>
+<p>A⎯⎯⎯⎯⎯</p>
+<blockquote>
+<div><p>y que verifica las siguientes condiciones:</p>
+</div></blockquote>
+<ol class="arabic simple">
+<li><p>El suceso seguro tiene probabilidad 1: P(E)=1</p></li>
+<li><p>Si A y B son dos sucesos incompatibles (<span class="math notranslate nohighlight">\(A \cap B = \O\)</span>), entonces:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[P(A \cap B)= P(A) + P(B)\]</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">probabilidad</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="probabilidad.html">probabilidad</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">TEMA 6: PROBABILIDAD</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="probabilidad.html" title="previous chapter">probabilidad</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, leopoldo.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/probabilidad2.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

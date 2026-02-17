@@ -145,8 +145,6 @@ memoria expone los axiomas de que los errores positivos y negativos son igualmen
 probables, y que hay ciertos límites asignables dentro de los cuales se supone que caen 
 todos los errores; se discuten los errores continuos y se da una curva de la probabilidad.
 
-
-
 Pierre-Simon Laplace (1774) hizo el primer intento para deducir una regla para la 
 combinación de observaciones a partir de los principios de la teoría de probabilidad. 
 Representó la ley de la probabilidad de error con una curva 
