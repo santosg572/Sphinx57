@@ -11,7 +11,21 @@ and contingency table data (in ROI-to-ROI results explorer), as well as the abil
 public domain dedication license, describing in detail the specific preprocessing, denoising, 1st - and 2nd - level analyses steps 
 performed on each individual CONN project (available in Tools.WriteMethods).
 
-Overview
+:color:`Resumen: CONN es un software multiplataforma basado en Matlab para el cálculo, la visualización y el análisis de la conectividad 
+funcional 
+en fMRI (fcMRI). La versión 22 incorpora diversas actualizaciones y adiciones a versiones anteriores. Algunos de los principales 
+procedimientos y herramientas nuevas incluyen nuevos análisis interactivos que exploran todo el conectoma funcional del cerebro, con un 
+enfoque en las descripciones de puntos en común, así como la heterogeneidad de los patrones de conectividad funcional entre sujetos y 
+condiciones experimentales (similar a AFNI instacorr pero entre todos los sujetos de un estudio; disponible en la pestaña de resumen de 
+fc-MVPA de segundo nivel), nuevas opciones de preprocesamiento para normalizar volúmenes anatómicos y funcionales en presencia de lesiones 
+anatómicas (disponibles en Setup.Preprocessing), nuevas visualizaciones para conectividad ROI a ROI y datos de tablas de contingencia (en 
+el explorador de resultados ROI a ROI), así como la capacidad de crear texto automatizado, distribuido bajo una licencia de dedicación de 
+dominio público, que describe en detalle los pasos específicos de preprocesamiento, eliminación de ruido y análisis de primer y segundo 
+nivel realizados en cada proyecto CONN individual (disponibles en Tools.WriteMethods).<blue>`
+
+
+**Overview**
+
 
 CONN is a Matlab-based cross-platform software for the computation, display, and analysis of functional connectivity in fMRI (fcMRI). 
 Connectivity measures include seed-to-voxel connectivity maps, ROI-to-ROI connectivity matrices, graph properties of connectivity 
@@ -19,9 +33,24 @@ networks, generalized psychophysiological interaction models (gPPI), intrinsic c
 inter-hemispheric correlation, independent component analyses (ICA), functional connectivity multivariate pattern analyses (fc-MVPA), 
 and dynamic component analyses (dyn-ICA).
 
+:color:`CONN es un software multiplataforma basado en Matlab para el cálculo, la visualización y el análisis de la conectividad funcional 
+en fMRI 
+(fcMRI). Las medidas de conectividad incluyen mapas de conectividad de semilla a vóxel, matrices de conectividad ROI a ROI, propiedades 
+gráficas de redes de conectividad, modelos generalizados de interacción psicofisiológica (gPPI), conectividad intrínseca, correlación 
+local, correlación global, correlación interhemisférica, análisis de componentes independientes (ICA), análisis de patrones multivariados 
+de conectividad funcional (fc-MVPA) y análisis de componentes dinámicos (dyn-ICA).<blue>`
+
+
 CONN is available for resting state data (rsfMRI) as well as task-related designs. It covers the entire pipeline from raw fMRI data to 
 hypothesis testing, including spatial coregistration, ART-based scrubbing, aCompCor strategy for control of physiological and movement 
 confounds, first-level connectivity estimation, and second-level random-effect analyses and hypothesis testing.
+
+:color:`CONN está disponible para datos de estado de reposo (rsfMRI), así como para diseños relacionados con tareas. Abarca todo el 
+proceso, desde 
+los datos de fMRI sin procesar hasta la comprobación de hipótesis, incluyendo el corregistro espacial, la depuración basada en ART, la 
+estrategia aCompCor para el control de factores de confusión fisiológicos y de movimiento, la estimación de conectividad de primer nivel y 
+los análisis de efectos aleatorios y la comprobación de hipótesis de segundo nivel.<blue>`
+
 
 Note: a standalone version of CONN for linux64 systems (precompiled including both SPM and CONN) that does not require Matlab 
 installed or a Matlab license can be downloaded from www.nitrc.projects/conn.
@@ -31,7 +60,15 @@ display fonts are too small click on Tools->GUI settings to change the GUI font 
 CONN sessions and across toolbox updates); When using VNC to connect remotely to Linux machines type in Matlab’s command window opengl 
 software right after starting Matlab if you experience VNC crashes when displaying 3d renderings or when printing;
 
-General
+:color:`Notas específicas del sistema operativo: En Mac OS/X use “ctrl-clic” en lugar de “clic derecho” para traer menús contextuales a la 
+GUI de 
+CONN; Si las fuentes de visualización de la GUI predeterminadas son demasiado pequeñas, haga clic en Herramientas->Configuración de GUI 
+para cambiar el tamaño de fuente de la GUI (su elección de tamaños de fuente se mantendrá en todas las sesiones de CONN y en todas las 
+actualizaciones de la caja de herramientas); Cuando use VNC para conectarse de forma remota a máquinas Linux, escriba en la ventana de 
+comandos de Matlab el software opengl inmediatamente después de iniciar Matlab si experimenta fallas de VNC al mostrar representaciones en 
+3D o al imprimir;<blue>`
+
+**General**
 
 In order to perform connectivity analyses using this toolbox you will need:
 
@@ -47,6 +84,15 @@ DMN, dorsal attention network, executive control network, etc.-, as well as a co
 and 15 subcortical areas from the FSL Harvard-Oxford Atlas as well as 26 cerebellar areas from the AAL atlas. See the 
 conn/utils/otherrois/ folder for additional/optional ROI files, including Brodmann areas, large-voxel parcellations, etc.
 
+:color:`Definiciones de ROI. Una serie de archivos que definen las semillas de interés. Las ROI pueden definirse a partir de imágenes de 
+máscara, 
+archivos de texto que definen una lista de posiciones MNI o imágenes de múltiples etiquetas. La caja de herramientas también proporciona 
+una serie de regiones de interés predefinidas que se cargan automáticamente. Estas incluyen áreas de semilla útiles para investigar la 
+conectividad en estado de reposo (regiones que caracterizan la DMN, la red de atención dorsal, la red de control ejecutivo, etc.), así como 
+una parcelación cerebral completa que incluye 91 áreas corticales y 15 áreas subcorticales del Atlas FSL Harvard-Oxford, así como 26 áreas 
+cerebelosas del atlas AAL. Consulte la carpeta conn/utils/otherrois/ para obtener archivos ROI adicionales/opcionales, incluyendo áreas de 
+Brodmann, parcelaciones de vóxeles grandes, etc.<blue>`
+
 tip: To try out the toolbox in the absence of any data, select Help. Sample Data in the CONN gui in order to automatically download 
 and process the NYU test-retest dataset
 
@@ -56,13 +102,26 @@ Setup: Defines basic experiment information, data locations, regions of interest
 models. Optionally, perform functional and anatomical preprocessing steps if necessary, including realignment, slice-timing 
 correction, coregistration/normalization, segmentation, outlier identification, and smoothing.
 
+:color:`Configuración: Define la información básica del experimento, la ubicación de los datos, las regiones de interés (semillas), las 
+covariables 
+temporales y los modelos de segundo nivel. Opcionalmente, realice pasos de preprocesamiento funcional y anatómico si es necesario, 
+incluyendo realineación, corrección de la temporización de cortes, corregistro/normalización, segmentación, identificación de valores 
+atípicos y suavizado.<blue>`
+
 Denoising: Define, explore, and remove possible confounds in the BOLD signal, including motion, physiological and other noise sources.
 
 Analyses: Perform first-level analyses. Define the seeds of interest and explore the functional connectivity of different sources 
 separately for each subject. Define ICA, voxel-to-voxel analyses, dynamic analyses, etc.
 
+:color:`Eliminación de ruido: definir, explorar y eliminar posibles confusiones en la señal BOLD, incluidas fuentes de ruido de movimiento, 
+fisiológico y de otro tipo.<blue>`
+
 Results: Perform second-level analyses. Define group analyses and perform population-level inferences from the resulting connectivity 
 measures of each first-level analysis.
+
+:color:`Análisis: Realice análisis de primer nivel. Defina las semillas de interés y explore la conectividad funcional de diferentes 
+fuentes por 
+separado para cada sujeto. Defina ICA, análisis vóxel a vóxel, análisis dinámicos, etc.<blue>`
 
 Each of these steps can be defined interactively using the toolbox GUI or programmatically using scripts and conn_batch functionality. 
 In addition, and both when using the GUI or batch processes, all of the analyses can be performed locally on a single computer, or 
@@ -71,6 +130,17 @@ Scheduler (OGS/GE) and other Grid Engine implementations, PBS/Torque, LSF, and S
 describe the experiment definition and analysis steps when using the GUI on a local computer in more detail. See 
 Help.Documentation.Info:batch processing for additional information on batch scripts, or see Help.Documentation.Info:grid computing as 
 well as Tools.Grid settings for additional information on cluster environments.
+
+:color:`Cada uno de estos pasos se puede definir de forma interactiva mediante la interfaz gráfica de usuario (GUI) de la caja de 
+herramientas o 
+mediante programación mediante scripts y la función conn_batch. Además, tanto al usar la GUI como los procesos por lotes, todos los 
+análisis se pueden realizar localmente en un solo equipo o distribuirse entre varios equipos en un entorno de clúster. Actualmente, CONN es 
+compatible con Sun Grid Engine (SGE), Open Grid Scheduler (OGS/GE) y otras implementaciones de Grid Engine, así como con los sistemas de 
+colas de lotes PBS/Torque, LSF y Slurm. Las siguientes secciones describen con más detalle los pasos de definición y análisis de 
+experimentos al usar la GUI en un equipo local. Consulte Help.Documentation.Info:batch processing para obtener más información sobre 
+scripts por lotes, o Help.Documentation.Info:grid computing y Tools.Grid settings para obtener más información sobre entornos de 
+clúster.<blue>`
+
 
 General help resources In the CONN GUI select Help.Search to easily search through a database of user questions/answers, select 
 Help.Updates to check and update CONN to the latest available release, select Help.Documentation for general documentation, and 

@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'conn_tutorial'
+project = 'analisis-de-conectividad'
 copyright = '2026, Leopoldo'
 author = 'Leopoldo'
 release = '01'
@@ -14,7 +14,7 @@ release = '01'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinxcontrib.textstyle']
+extensions = []
 
 templates_path = ['_templates']
 exclude_patterns = []
@@ -29,3 +29,5 @@ html_static_path = ['_static']
 html_css_files = [
     'custom.css',
 ]
+
+
