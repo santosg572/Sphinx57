@@ -29,32 +29,23 @@ la sociología, etc., tienen una fuerte componente aleatoria (aleatorio signific
 
 **Ejemplos:**
 
-• Cuando alimentamos a un pez de un cultivo con una dieta determinada, en general no podemos predecir con seguridad el peso final que va a 
-alcanzar el pez.
+• Cuando alimentamos a un pez de un cultivo con una dieta determinada, en general no podemos predecir con seguridad el peso final que va a alcanzar el pez.
 
-• Si estamos interesados en estudiar una variable, como por ejemplo la talla en los sujetos de una población, tendremos que tomar una 
-muestra aleatoria de la misma, dado que casi nunca es posible estudiar a toda la población. Los resultados del estudio, evidentemente, 
-dependerán de la muestra seleccionada (muestras distintas producirán resultados distintos, aunque se espera que sean siempre parecidos a lo 
-que se habría obtenido de haber podido observar la población completa), y por tanto, también tendrán naturaleza aleatoria.
+• Si estamos interesados en estudiar una variable, como por ejemplo la talla en los sujetos de una población, tendremos que tomar una muestra aleatoria de la misma, dado que casi nunca es posible estudiar a toda la población. Los resultados del estudio, evidentemente, dependerán de la muestra seleccionada (muestras distintas producirán resultados distintos, aunque se espera que sean siempre parecidos a lo que se habría obtenido de haber podido observar la población completa), y por tanto, también tendrán naturaleza aleatoria.
 
 **Un poco de Filosofía:**
 
 • En el primero de los ejemplos anteriores es cierto que el peso final del pez no es una cantidad completamente aleatoria y quizás se puede 
-predecir aproximadamente en función de la especie, las condiciones iniciales del pez, el tiempo de cultivo, etc. Una forma habitual de 
-realizar esta predicción es observar que, por ejemplo, todos los peces de esa especie criados en esas condiciones tienen un peso medio de 3 
-kg. En tal caso sabemos a priori que un pez escogido arbitrariamente entre todos éstos pesará aproximadamente 3 kg. Ahora bien su peso 
-exacto será realmente 3 + ε kg., donde ε es una cantidad (positiva o negativa) en la que se incluye el efecto combinado de muchísimas 
-variables de las que se desconoce la forma exacta en que afectan al peso del animal (incluido el mero azar que ha dado lugar a que el pez 
-unos días haya comido más, otros menos, que haya enfermado, que haya sido dominante o haya sido dominado, etc). Esta combinación de 
+predecir aproximadamente en función de la especie, las condiciones iniciales del pez, el tiempo de cultivo, etc. Una forma habitual de  realizar esta predicción es observar que, por ejemplo, todos los peces de esa especie criados en esas condiciones tienen un peso medio de 3 
+kg. En tal caso sabemos a priori que un pez escogido arbitrariamente entre todos éstos pesará aproximadamente 3 kg. Ahora bien su peso  
+exacto será realmente 3 + ε kg., donde ε es una cantidad (positiva o negativa) en la que se incluye el efecto combinado de muchísimas  
+variables de las que se desconoce la forma exacta en que afectan al peso del animal (incluido el mero azar que ha dado lugar a que el pez  
+unos días haya comido más, otros menos, que haya enfermado, que haya sido dominante o haya sido dominado, etc). Esta combinación de  
 pequeños efectos impredecibles es la que da lugar en última instancia al valor ε que, a efectos prácticos, es completamente aleatorio.
 
-• En el segundo ejemplo se pretende evaluar el comportamiento de una variable en una población a través de la información recogida en una 
-muestra elegida al azar. La razón principal para elegir muestras al azar es evitar en la medida de lo posible la introducción de sesgos 
-(aún involuntarios) por parte del investigador. Al hacer una evaluación global de una variable, usualmente es preciso sintetizar la 
-información utilizando su valor medio, varianza, distribución de frecuencias, etc. Dado que de lo que disponemos es de una muestra, estos 
-valores se calcularán sobre ésta, y no sobre la población. Si µ y σ 2 son, respectivamente, la media y la varianza (desconocidas pero 
-fijas) de la población, y x y s 2 son esas cantidades calculadas en la muestra (y por tanto conocidas, aunque normalmente varían de una 
-muestra a otra), podemos esperar que:
+• En el segundo ejemplo se pretende evaluar el comportamiento de una variable en una población a través de la información recogida en una muestra elegida al azar. La razón principal para elegir muestras al azar es evitar en la medida de lo posible la introducción de sesgos (aún involuntarios) por parte del investigador. Al hacer una evaluación global de una variable, usualmente es preciso sintetizar la 
+información utilizando su valor medio, varianza, distribución de frecuencias, etc. Dado que de lo que disponemos es de una muestra, estos valores se calcularán sobre ésta, y no sobre la población. Si µ y σ 2 son, respectivamente, la media y la varianza (desconocidas pero 
+fijas) de la población, y x y s 2 son esas cantidades calculadas en la muestra (y por tanto conocidas, aunque normalmente varían de una muestra a otra), podemos esperar que:
 
 .. math::
 
@@ -69,12 +60,10 @@ azar.
 El hecho de que el resultado de un fenómeno aleatorio sea incierto, no quiere decir que no se pueda hacer una predicción. Lo que sucede es 
 que la predicción habrá que hacerla en términos de probabilidad:
 
-• A la hora de predecir el peso de un pez concreto, deberemos sustituir la afirmación segura: “Al haberse cultivado de esta forma, este pez 
-pesará 3 kg.” por una afirmación probabilística: “Al haberse cultivado de esta forma, este pez pesará 3 kg, si bien con una probabilidad 
+• A la hora de predecir el peso de un pez concreto, deberemos sustituir la afirmación segura: “Al haberse cultivado de esta forma, este pez  pesará 3 kg.” por una afirmación probabilística: “Al haberse cultivado de esta forma, este pez pesará 3 kg, si bien con una probabilidad 
 del 95% puede ocurrir que el peso oscile 300 gr. arriba, 300 gr, abajo.”
 
-• A la hora de aproximar la talla media de los individuos de una población (que no ha podido ser observada íntegramente sino que se ha 
-observado una muestra aleatoria), deberemos sustituir la afirmación segura: “La talla media de los individuos de esta población es de 60 
+• A la hora de aproximar la talla media de los individuos de una población (que no ha podido ser observada íntegramente sino que se ha  observado una muestra aleatoria), deberemos sustituir la afirmación segura: “La talla media de los individuos de esta población es de 60 
 cm.” por una afirmación probabilística: “La talla media de los individuos de esta población es 60 cm., si bien con una probabilidad del 90% 
 puede ocurrir que la talla media oscile 10 cm. por encima o por debajo de esta cantidad.”
 
