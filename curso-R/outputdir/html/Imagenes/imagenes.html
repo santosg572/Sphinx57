@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Análisis de Imágenes &#8212; Introducción al Lenguaje de Programación &#34;R&#34; 01 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <script src="../_static/documentation_options.js?v=82a30901"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Listas y DataFrame’s" href="../listas_dadaframes/listas-dataframe.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="analisis-de-imagenes">
+<h1>Análisis de Imágenes<a class="headerlink" href="#analisis-de-imagenes" title="Link to this heading">¶</a></h1>
+<p><strong>Ejemplos 1</strong></p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">())</span><span class="w">  </span><span class="c1"># limpio la memoria de R</span>
+
+<span class="nf">library</span><span class="p">(</span><span class="n">jpeg</span><span class="p">)</span>
+
+<span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="w">       </span><span class="c1"># tamaño de la matriz cuadrada</span>
+
+<span class="n">img</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">matrix</span><span class="p">(</span><span class="nf">runif</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">n</span><span class="p">,</span><span class="n">min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="n">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">255</span><span class="p">),</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="n">n</span><span class="p">))</span><span class="w"> </span><span class="c1"># crea ima inagen de tamaño nxn</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">min</span><span class="p">(</span><span class="n">img</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">max</span><span class="p">(</span><span class="n">img</span><span class="p">))</span>
+
+<span class="nf">image</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">gray.colors</span><span class="p">(</span><span class="m">256</span><span class="p">))</span>
+
+<span class="nf">writeJPEG</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;img.jpg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Ejemplo 2</strong></p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">())</span>
+
+<span class="nf">library</span><span class="p">(</span><span class="n">jpeg</span><span class="p">)</span>
+
+<span class="n">img</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">readJPEG</span><span class="p">(</span><span class="s">&#39;img.jpg&#39;</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+<span class="nf">image</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">gray.colors</span><span class="p">(</span><span class="m">256</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Introducción al Lenguaje de Programación "R"</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Regresion_lineal.html">Regresión Lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../funciones_rep_sample.html">Funciones <strong>rep</strong> y <strong>sample</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../funciones_probabilidad.html">Funciones de Probabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Estructuras_Control.html">Estructuras de Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ejemplo_string.html">Ejercicio String</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../listas_dadaframes/listas-dataframe.html">Listas y DataFrame’s</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Análisis de Imágenes</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../listas_dadaframes/listas-dataframe.html" title="previous chapter">Listas y DataFrame’s</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Leopoldo.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/Imagenes/imagenes.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

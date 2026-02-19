@@ -15,4 +15,6 @@ Introducción al Lenguaje de Programación "R"
    funciones_probabilidad
    Estructuras_Control
    ejemplo_string
+   listas_dadaframes/listas-dataframe
+   Imagenes/imagenes
 

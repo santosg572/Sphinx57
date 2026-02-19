@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Listas y DataFrame’s &#8212; Introducción al Lenguaje de Programación &#34;R&#34; 01 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <script src="../_static/documentation_options.js?v=82a30901"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Ejercicio String" href="../ejemplo_string.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="listas-y-dataframe-s">
+<h1>Listas y DataFrame’s<a class="headerlink" href="#listas-y-dataframe-s" title="Link to this heading">¶</a></h1>
+<p><strong>Listas</strong></p>
+<p>Una lista es una estructura de datos que puede guardar cualquier tipo de datos.</p>
+<p>Ejemplos</p>
+<ol class="arabic simple">
+<li></li>
+</ol>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">()</span>
+<span class="nf">typeof</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nf">class</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li></li>
+</ol>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="n">y</span>
+<span class="n">y</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span>
+<span class="n">y</span><span class="p">[[</span><span class="m">1</span><span class="p">]][</span><span class="m">3</span><span class="p">]</span>
+<span class="nf">length</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li></li>
+</ol>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="m">2</span><span class="p">))</span>
+<span class="n">z</span>
+<span class="n">z</span><span class="p">[[</span><span class="m">2</span><span class="p">]]</span>
+<span class="n">z</span><span class="p">[[</span><span class="m">3</span><span class="p">]][,</span><span class="m">2</span><span class="p">]</span>
+<span class="n">z</span><span class="p">[[</span><span class="m">3</span><span class="p">]][</span><span class="m">3</span><span class="p">,]</span>
+
+<span class="nf">ls</span><span class="p">()</span><span class="w">                         </span><span class="c1"># lista lo que esta en memoria</span>
+<span class="nf">save</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="o">=</span><span class="s">&quot;z.RData&quot;</span><span class="p">)</span><span class="w">              </span><span class="c1"># salva a disco la variable &quot;z&quot; que esta en memoria</span>
+</pre></div>
+</div>
+<p><strong>DataFrame’s</strong></p>
+<p>Un DataFrame es una estructura de datos parecida a una hoja de calculo en excel, tiene
+columnas (variables) y tienen un nombre cada variable, el header de las variables. La longitud de las
+variables deben ser de la misma longitud.</p>
+<p><strong>Ejemplos</strong></p>
+<ol class="arabic simple">
+<li></li>
+</ol>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="nf">round</span><span class="p">(</span><span class="nf">runif</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">min</span><span class="o">=</span><span class="m">40</span><span class="p">,</span><span class="w"> </span><span class="n">max</span><span class="o">=</span><span class="m">60</span><span class="p">)))</span>
+<span class="n">x</span>
+<span class="nf">typeof</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nf">class</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Sacando elementos del dataframe</strong></p></li>
+</ol>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">nombres</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&#39;Juan&#39;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+<span class="n">peso</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="o">=</span><span class="m">57</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="m">7</span><span class="p">))</span>
+<span class="n">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">runif</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">min</span><span class="o">=</span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="n">max</span><span class="o">=</span><span class="m">70</span><span class="p">))</span>
+
+<span class="n">sujetos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">nombres</span><span class="p">,</span><span class="w"> </span><span class="n">peso</span><span class="p">,</span><span class="w"> </span><span class="n">edad</span><span class="p">)</span>
+
+<span class="nf">write.csv</span><span class="p">(</span><span class="n">sujetos</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;sujetos.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Leyendo el archivo ‘sujetos.csv’</strong></p></li>
+</ol>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">())</span>
+<span class="n">datos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&#39;sujetos.csv&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">datos</span><span class="p">))</span>
+
+<span class="n">nombres</span>
+
+<span class="n">datos</span><span class="p">[,</span><span class="m">2</span><span class="p">]</span>
+
+<span class="n">datos</span><span class="p">[</span><span class="m">5</span><span class="p">,]</span>
+
+<span class="nf">attach</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+
+<span class="n">nombres</span>
+</pre></div>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Introducción al Lenguaje de Programación "R"</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Regresion_lineal.html">Regresión Lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../funciones_rep_sample.html">Funciones <strong>rep</strong> y <strong>sample</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../funciones_probabilidad.html">Funciones de Probabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Estructuras_Control.html">Estructuras de Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ejemplo_string.html">Ejercicio String</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Listas y DataFrame’s</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../ejemplo_string.html" title="previous chapter">Ejercicio String</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Leopoldo.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/listas_dadaframes/listas-dataframe.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
