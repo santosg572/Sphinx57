@@ -16,4 +16,17 @@ documentation for details.
    :caption: Contents:
 
    Psychology/abstract-Psychology-2026.rst 
+   abstract-DiffusionT-set.rst
+   abstract-Lotka-Volt-set.rst
+   abstract-RaspberryP-set.rst
+   abstract-afniTitleA-set.rst
+   abstract-arduinoTit-set.rst
+   abstract-artificial-set.rst
+   abstract-connTitleA-set.rst
+   abstract-emotionali-set.rst
+   abstract-fmriTitleA-set.rst
+   abstract-freesurfer-set.rst
+   abstract-giftedTitl-set.rst
+   abstract-parkinsonT-set.rst
+   abstract-twinsTitle-set.rst
 

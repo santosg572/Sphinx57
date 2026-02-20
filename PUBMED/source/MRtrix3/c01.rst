@@ -1,0 +1,404 @@
+MRtrix3: A fast, ﬂexible and open software framework for medical image processing and visualisation
+===================================================================================================
+
+MRtrix3 is an open-source, cross-platform software package for medical image processing, analysis and visualisation, 
+with a particular emphasis on the investigation of the brain using diffusion MRI. It is implemented using a fast, 
+modular and ﬂexible general-purpose code framework for image data access and manipulation, enabling efﬁcient 
+development of new applications, whilst retaining high computational performance and a consistent command-line 
+interface between applications. In this article, we provide a high-level overview of the features of the MRtrix3 
+framework and general-purpose image processing applications provided with the software.
+
+1. Introduction
+
+The use of medical imaging technologies such as Magnetic Resonance Imaging (MRI) has rapidly expanded over the last 
+decades, sparking the development of dedicated digital image analysis techniques tailored to these often large imaging 
+datasets (3 and even higher dimensional) (Dhawan, 2011). These methods include artefact correction, anatomy 
+segmentation, quantitative feature extraction, and spatial image registration which allows for comparison of features 
+in subjects over time, between (groups of) subjects and across populations. Development of medical image analysis 
+techniques is largely driven by the academic research community, and many such packages are now freely available, 
+including: FSL (Jenkinson et al., 2012), FreeSurfer (Fischl, 2012), SPM (Ashburner, 2012), AFNI (Cox, 1996), DTI Studio 
+(Jiang et al., 2006), DSI Studio (“DSI Studio” 2019), Camino (Cook et al., 2006), ExploreDTI (Leemans et al., 2009), 
+MITK (Nolden et al., 2013), ITK (Yoo et al., 2002), ANTs (Avants et al., 2009), MIRTK (“MIRTK” 2019), DiPy 
+(Garyfallidis et al., 2014), and many others. Such open software platforms have the potential to enable the translation 
+of novel method developments to, e.g., MRI hardware vendors, clinicians and the biomedical research community.
+
+MRtrix3 has been designed as an open-source, modular software
+
+platform for medical image analysis and visualisation. This includes a lightweight framework for application 
+development that facilitates efﬁcient image access and manipulation, convenient multi-threading primitives, and 
+support for a broad range of image ﬁle formats. End-user applications provided with MRtrix3 include general-purpose 
+image conversion and manipulation tools and the visualisation tool MRView tailored to multi-dimensional (3D þ ) medical 
+image data. All components are designed with a strong focus on performance and memory efﬁciency, which are essential 
+features for dealing with these often very large datasets. Computationally demanding quantitative imaging algorithms 
+often require run times on the order of minutes (or hours), which may easily become days (or weeks) if performance is 
+not optimised to deal with this speciﬁcally. In addition, MRtrix3 offers support for external modules that can be 
+built and distributed independently.
+
+MRtrix3 was historically developed with a particular emphasis on investigating brain white matter using 
+diffusion-weighted MRI (dMRI), a medical imaging modality that can act as an indirect probe of neural microstructure, 
+by measuring local hindrance of water diffusion (Johansen-Berg and Behrens, 2013; Jones, 2010). It derives from the now 
+deprecated MRtrix 0.2.x software package (Tournier et al., 2012), which was itself started circa 2003, when few 
+packages existed for the
+
+analysis of diffusion MRI data. It has evolved massively since, both in terms of the underlying codebase, and in terms 
+of the scope of the functionality provided. The platform incorporates a number of features tailored to the 
+orientational nature of dMRI data within each imaging voxel, such as a representation using spherical harmonics basis 
+functions, and a bespoke ﬁle format for 3D streamlines. MRtrix3 also provides a wide range of dMRI analysis methods, 
+outlined in the Diffusion analyses section below. Thanks to these features, MRtrix3 has primarily gained support in the 
+dMRI community. However, its architecture facilitates image processing in general, and MRtrix3 also offers image 
+analysis methods less speciﬁc to dMRI such as image ﬁltering and calculation, statistics, image denoising (Veraart et 
+al., 2016) and Gibbs ringing suppression (Kellner et al., 2016), intensity normalisation (Raffelt et al., 2017a) and 
+diffeomorphic image registration (Raffelt et al., 2011).
+
+In this paper, we describe the guiding principles underlying the design and implementation of MRtrix3. We outline the 
+main aspects of the software architecture, particularly the image access and multithreading primitives, as well as the 
+build system and related developer tools. Finally, we showcase the visualisation capabilities in MRView and give a 
+brief overview of the currently supported tools for general-purpose image processing and dMRI analysis.
+
+2. Guiding principles
+
+2.1. Reproducible neuroscience
+
+With a growing number of neuroimaging studies and the increasing prevalence of advanced data analysis in radiology 
+practice, reproducibility becomes ever more important. Publishing open and reproducible analysis pipelines enables 
+neuroscientiﬁc research to replicate pilot results on larger datasets, and also facilitates comparing sensitivity and 
+speciﬁcity of various methods. In addition, publicly available software can help the clinical translation of novel 
+analysis techniques.
+
+The MRtrix3 collective believes that reproducible neuroscience relies ﬁrst and foremost on open source software. 
+Publishing source code, tracking versions, and documenting improvements and bug ﬁxes, is vital to ensure full 
+transparency on what was done in a study. We are therefore fully committed to keeping MRtrix3 open source and tracking 
+the version history using Git. The software is published under the terms of the open source Mozilla Public Licence 2.0, 
+1 which permits third-party modiﬁcation, distribution and commercial use as long as the source code is disclosed 
+(although individual commands may be published under different copyright licences as required by the original authors). 
+Furthermore, MRtrix3 also incorporates continuous integration testing to detect and avoid adverse effects of code 
+changes between versions.
+
+In addition, MRtrix3 provides the requisite functionalities for handling data in the Brain Imaging Data Structure 
+(BIDS), 2 a recently proposed standard for organising and sharing neuroimaging data (Gorgolewski et al., 2016). These 
+include importing and exporting dMRI gradient encoding and other metadata in JSON and FSL bvecs / bvals format, 
+ultimately enabling integrating MRtrix3 commands in BIDS Apps (Gorgolewski et al., 2017).
+
+Finally, MRtrix3 also offers automatic history tracking in the output ﬁle header, archiving the pipeline of operations 
+used to generate each output image, as well as the exact version tag of each invoked command.
+
+User documentation is available in the inline help page of each command and also on a dedicated documentation website 3 
+that includes additional background information, tutorials and pipelines. The documentation is kept up to date with the 
+current release and can be retrieved for older versions. Major updates and new software releases are also announced on 
+the main website and blog.4 
+
+Another key beneﬁt to open development is the interaction between users and developers as one community. To foster 
+these interactions MRtrix3 provides an online forum, 5 where a growing number of users post questions, receive support, 
+and have scientiﬁc discussions. Furthermore, users and developers can report and track technical issues through 
+Github, 6 and suggest new features for future releases. Github is also the platform where both internal and external 
+developer contributions are discussed and managed.
+
+3. Design aspects
+
+MRtrix3 has been designed from the outset to facilitate the development of high-performance applications concerned with 
+the processing and analysis of medical image datasets, and to offer a consistent and simple command-line interface. It 
+focuses primarily on command-line applications to provide a wide range of functionalities that can be combined and 
+scripted to form complex automated workﬂows. It relies on modern standards and technologies, particularly C þþ 11 7 
+and OpenGL8  3.3, yet strives to limit the number of external dependencies to a small and well-supported set, available 
+across a broad range of platforms; currently these include Python 9 (for building the software and using scripts), zlib 
+10 (for access to compressed images), Eigen 3 11 (for high-performance linear algebra support), and Qt 12 (version 4 or 
+5, for graphical user interface support). All of these dependencies are available across a wide range of platforms, 
+allowing MRtrix3 to run natively on most ﬂavours of Unix, including GNU/Linux and macOS as well as a range of 
+high-performance computing (HPC) environments, and Microsoft Windows via the MSYS2 13 project or Windows Subsystem for 
+Linux (WSL).14 
+
+Most of the functionality is written using C þþ templates, providing high runtime performance by allowing the compiler 
+to optimise away any redundant overhead. Motivated by a heavy focus on multidimensional image access, simple yet 
+powerful constructs for multi-threaded operations are provided. The framework provides native access to and seamless 
+interaction between a range of image ﬁle formats commonly used in the medical imaging community, including native 
+support for DICOM 15 (read-only), Analyze, 16 NIfTI1, 17 NIfTI2, 18 MGH, 19 and MRtrix3’s own dedicated image formats20 
+, as well as compressed
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+https://mrtrix.readthedocs.io.
+
+http://www.mrtrix.org.
+
+http://community.mrtrix.org.
+
+https://github.com/mrtrix3. http://www.open-std.org/jtc1/sc22/wg21/docs/standards. https://www.opengl.org/.
+
+https://www.python.org/.
+
+https://zlib.net/.
+
+http://eigen.tuxfamily.org/.
+
+https://www.qt.io/.
+
+https://www.msys2.org/. https://docs.microsoft.com/en-us/windows/wsl/about. https://www.dicomstandard.org/. 
+https://rportal.mayo.edu/bir/ANALYZE75.pdf. https://nifti.nimh.nih.gov/nifti-1/.
+
+18
+
+https://nifti.nimh.nih.gov/nifti-2/. https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/MghFormat. 
+https://mrtrix.readthedocs.io/en/3.0_rc3/getting_started/image_data.htm l#mrtrix-image-formats-mih-mif.
+
+versions thereof.
+
+MRtrix introduces a few additional ﬁle formats to handle various types of data, notably image data, and streamlines 
+data. These MRtrixspeciﬁc formats were designed to address limitations in the formats available at the time and 
+provide additional beneﬁts including:
+
+● Ability to store arbitrary key-value entries in the header, which enables storage of diffusion gradient and phase 
+encoding schemes or any other metadata deemed of interest, avoiding a potential source of error due to mixing data 
+stored across multiple ﬁles (e.g. bvecs/bvals ﬁles);
+
+● Tracking of the command history;
+
+● Ability to store data with arbitrary strides (discussed below and in Appendix A);
+
+● Streamlines data stored in scanner space, removing any dependencies on external reference images.
+
+We note that the beneﬁts listed above are still relevant today, and for this reason, we still advocate the use of 
+these formats to our users. Both formats are documented with reference MATLAB 21 code available for use. MRtrix3 also 
+provides the tckconvert conversion tool to import & export streamlines data between formats.
+
+While most MRtrix3 commands consist of compiled binary executables, some are written in Python, and typically invoke 
+other MRtrix3 executables to perform more complex tasks. Moreover, a number of scripts invoke commands from 3rd party 
+software packages such as FSL (Jenkinson et al., 2012) or ANTs (Avants et al., 2009), providing convenience wrappers to 
+perform specialised tasks (see the Image Processing tools and analyses section below for details).
+
+3.1. Image access
+
+Functionality for image input/output is provided by the core MRtrix3 library, so that all MRtrix3 applications can read 
+and write all supported image formats directly: there is no requirement to convert the data to and from speciﬁc image 
+formats. All MRtrix3 applications consistently use the same coordinate system, which is identical to the scanner 
+reference frame in the NIfTI standard. MRtrix3 handles coordinates consistently across ﬁle formats and in addition, 
+the native MRtrix3 image format allows automated handling and storage of coordinate system dependent information such 
+as the dMRI gradient table in the image header to ensure this information remains consistent throughout the analysis 
+pipeline.
+
+We do however note that while MRtrix3 supports these formats, there can still be issues regarding interoperability 
+between software packages, relating primarily to the conventions assumed regarding the interpretation of the 
+information stored, for example: orientations, tensor components, spherical harmonics coefﬁcients, and other types of 
+information (e.g. what coordinate system is assumed when storing eigenvectors, etc.). Until common standards are agreed 
+by the community, users will need to handle any issues arising from these differences manually.
+
+3.1.1. Optimised data access Access to image data is automatically optimised using a variety of techniques to ensure 
+near-optimal performance across a range of operating conditions. The various strategies employed are outlined in this 
+section.
+
+By default, image access is achieved via memory-mapping with on-the-ﬂy data type conversion. However, when the stored 
+data type matches the data type requested by the application, MRtrix3 commands will automatically use “direct IO” 
+access, where data are accessed as a native array in memory, thus avoiding the overhead of the function calls
+
+otherwise necessary for the conversion. When desired, applications can also explicitly request “direct IO” access to 
+the data (e.g. as shown in Fig. 1): this is particularly beneﬁcial for applications that will access image data 
+repeatedly, for example, multi-pass algorithms, patch-based operations, interpolation, etc. To achieve this, the data 
+are loaded directly into RAM in the desired data type, unless they are already stored as such (in which case 
+memory-mapping already provides “direct IO” access). Furthermore, while image writing is also typically done using 
+memory mapping, there are cases where doing so incurs a loss of performance. This is particularly relevant when 
+operating on networked ﬁle systems where random writes to memory-mapped regions can result in heavy network usage. In 
+this case, MRtrix3 uses an alternative delayed write-back strategy, with the backend holding the data in RAM and 
+automatically committing the data to storage when the image is closed.
+
+MRtrix3 also has a ﬂexible concept of strides, allowing the multidimensional image data to be stored in RAM (or ﬁle 
+when the image format supports it) in any reasonable order (see Appendix A for details). It is for example entirely 
+possible to have the data stored in a volume-contiguous manner (for 4D ﬁles), meaning that the data for all volumes of 
+a given imaging voxel are co-located in RAM (see Fig. A1). This allows for efﬁcient access and maximises CPU cache 
+reuse, in some cases improving performance considerably. Developers can specify these strides when accessing images 
+with a particular purpose in mind (e.g., voxel-wise processing of 4D ﬁles), and the MRtrix3 backend will load and 
+re-order the image data in RAM if necessary, but still use “direct IO” access via memory-mapping where possible to 
+avoid needless data copies. Images can be stored in any stride ordering supported by the chosen ﬁle format. Of the 
+supported formats, only MRtrix3’s own formats support arbitrary stride ordering, a feature that offers distinct 
+performance advantages when processing different types of data, particularly by allowing volume-contiguous storage.
+
+3.1.2. DICOM handling MRtrix3 includes its own fast DICOM import handling, allowing all MRtrix3 applications to 
+seamlessly support DICOM images as input. The DICOM import code handles data stored using the recent DICOM multiframe 
+standard, as well as the standard multi-ﬁle storage, including Siemens mosaics. If present, it will also extract the 
+diffusion MRI encoding information for 3 major vendors (Siemens, GE, Philips), and make it available to the application 
+as part of the image header. Other types of information are also extracted if found, including the EPI phase encoding 
+direction and slice timings.
+
+DICOM images can be provided as a single .dcm ﬁle, or more commonly, as a folder containing the multiple DICOM ﬁles 
+that make up the full DICOM series. The import code will scan through all ﬁles in the folder, recursing into any 
+subfolders encountered, and collate all the information into a hierarchy by patient/study/series/images. If the folder 
+contains a single DICOM series, the data are loaded as a single dataset directly with no further interaction required; 
+otherwise, the user will be presented with a listing of the contents and required to select the desired series.
+
+3.2. Performance and piping
+
+3.2.1. Unix pipes MRtrix3 allows temporary images to be created in RAM for use as scratch buffers within applications 
+and also passed between applications via Unix pipes. This allows the software to be used in ﬂexible, powerful 
+combinations, for example:
+
+Rather than passing the full image data through the pipe, temporary images are created to hold the data, and only the 
+ﬁlename is passed through the pipe. This helps to ensure optimal performance since the data can be accessed via 
+memory-mapping at both ends of the pipe, eliminating any needless data copies, and keeping RAM usage to a minimum.
+
+3.2.2. Multi-threading Multi-threading is a type of computer execution technique supported by modern hardware that 
+allows a program to run across multiple threads of execution concurrently. Each thread executes independently while 
+sharing its resources and coordinating with the other threads in the process. In MRtrix3, almost all commands have been 
+multi-threaded, by default running with the maximum utilization of CPU processors to achieve high computing 
+performance.
+
+In MRtrix3, multi-threaded processing is principally achieved through the use of one of two Application Programming 
+Interfaces (APIs):
+
+1. Image processing: When subsets (e.g. voxels, slices, volumes) of an image (or set of images) can be processed 
+independently, the ThreadedLoop construct performs a multi-threaded traversal of the image(s), with the only requisite 
+that the programmer deﬁne the function to be executed for each image location; this is shown in Fig. 2 and utilised in 
+Appendix B. Concurrent threads will typically process adjacent rows of data; this is done to ensure optimal performance 
+by maximising cache reuse, minimising disk seek latency, and maintaining a sufﬁciently ﬁne level of granularity to 
+avoid idle CPU cores. By default, the order of traversal of the image axes is set by the strides
+
+of the image, although this can be speciﬁed explicitly by the developer if desired. Moreover, the developer can 
+control which images are to be looped over simultaneously, which axes to iterate over, and of these, which are to be 
+processed within each thread (a single row by default). 2. General processing: For tasks not native to an image grid, 
+the more general run_queue () construct enables multi-threaded processing through the use of data queue structures; an 
+example of this is shown in Fig. 3. Classes deﬁned by the programmer read and/or write data from these queues via 
+functors, with the requisite mutual exclusion locking between threads handled by the back-end of the API. The type(s) 
+of data passed between these threads are also templated and therefore entirely under programmer control. For smaller 
+data/processing tasks, instances of these data can be aggregated in batches so as to mitigate the overhead of 
+inter-thread communication.
+
+3.2.3. Use in high-performance computing environments MRtrix3 can run in HPC environments: it can be installed either 
+system-wide by system administrators, or into individual user accounts by users themselves, and provides control over 
+aspects such as the number of threads and temporary ﬁle locations at the system-wide, userspeciﬁc and 
+command-speciﬁc level. To ease installation on older HPC systems with an outdated compiler or other dependencies, 
+MRtrix3 provides the option to compile static builds that can be produced on a separate, up to date workstation, and 
+transferred across to HPC once compiled.
+
+While support for virtualization via containers is outside the scope of
+
+the MRtrix3 project, there are a number of external projects providing precisely this kind of functionality, for 
+instance, the MRtrix3_connectome BIDS application. 22 Docker 23 and Singularity 24 containers are also
+
+available.
+
+One outstanding issue with the use of MRtrix3 in HPC or cloud environments is the lack of reliable remote display 
+capability. This is due to MRtrix3 using the OpenGL 3.3 speciﬁcation, which is currently not (or at best poorly) 
+supported for X11 remote rendering. At time of writing there are no simple solutions for this limitation.
+
+3.3. Developer tools
+
+MRtrix3 is developed using modern software practices with transparency in mind. Software version control is managed 
+using Git, hosted openly on Github. 25 Issues are tracked and discussed publicly on GitHub. 26 Most MRtrix3 commands 
+have tests to ensure the output remains consistent with expectations throughout the development cycle. Test data are 
+hosted on a separate Git repository 27 to keep the main source code repository small and lightweight. Continuous 
+integration testing is managed by TravisCI 28 (for Linux and macOS) and AppVeyor29  (for Microsoft Windows).
+
+MRtrix3 is designed to minimise the amount of effort required to develop complete image processing applications, as 
+illustrated in Figs. 1–3. Developers have access to a range of classes for seamless access to images and other types of 
+data, facilities for multi-threading operations over images and for parallel processing of streams of data, image 
+ﬁlters and other convenience methods. The core API documentation is available online30 , and is generated directly 
+from the code using Doxygen.31 
+
+The development tools and build system are demonstrated in Appendix B (other examples are available in the developer 
+documentation32 ). The example binary command in B.1 also illustrates the image access and multi-threading primitives 
+provided in the MRtrix3 libraries.
+
+3.3.1. Integrated command-line interface and documentation MRtrix3 provides a framework for simultaneously documenting, 
+specifying and retrieving command-line arguments and options, all centralised within a single function for each 
+application. This includes authorship and copyright information, a general description of the command and speciﬁc 
+descriptions of the arguments and options, and any relevant references. This information is used to generate the 
+application’s online help page, and at runtime to display its help page, to automatically check the validity of the 
+arguments, and to retrieve these arguments and options at any point in the code. See the code example in Appendix B for 
+an illustration of this framework.
+
+3.3.2. Build system The software includes a bespoke system to manage conﬁguring and building the software. It is 
+comprised of two Python scripts: ’conﬁgure’ and ’build’. The former detects various aspects of the operating 
+environment (OS, availability of C þþ 11 compliant compiler and required libraries, etc). The build script scans the 
+code to build a full dependency tree based on simple rules about ﬁle location and naming conventions, identiﬁes 
+outdated targets, assembles a list of tasks required to bring the targets up to date, and then launches the relevant 
+commands in the right order and in parallel for fast build times. This allows the code to be modiﬁed without requiring 
+any other changes (for example, to external Makeﬁles): a new command can simply be dropped into the right folder, and 
+its corresponding binary will be compiled the next time build is invoked.
+
+3.3.3. External contributions MRtrix3 encourages users to contribute their own methods to the software and recognises 
+their need to distribute these however they see ﬁt. Therefore, the MRtrix3 build system provides a convenient 
+primitive
+
+25
+
+https://github.com/MRtrix3/mrtrix3/. https://github.com/MRtrix3/mrtrix3/issues. https://github.com/MRtrix3/test_data 
+https://travis-ci.org/MRtrix3/mrtrix3. https://ci.appveyor.com/project/MRtrix3/mrtrix3. 
+http://www.mrtrix.org/developer-documentation/. http://www.doxygen.org/. 
+http://www.mrtrix.org/developer-documentation/examples.html.
+
+for external modules that enables developers to build their own applications, linked to the core MRtrix3 library and 
+leveraging its image access and multi-threading primitives. These external modules can be distributed separately under 
+any open source license or may be integrated into a future MRtrix3 release. In either case, developers are given full 
+credit for their work through embedding of author information, references, and copyright statement, within the code and 
+resulting command help page and documentation.
+
+3.3.4. Python scripts While piping of images (as described in Unix pipes (section 3.2.1)) can be used to chain several 
+MRtrix3 commands into composite applications, MRtrix3 also contains a dedicated Python scripting library to aid the 
+development of more complex applications and processing pipelines involving multiple MRtrix3 (or other) commands. In 
+contrast to projects such as DiPy (Garyfallidis et al., 2014), this library does not provide functionality to 
+manipulate raw image data within Python itself, but provides functionality to invoke and manage external 
+high-performance executables to perform the actual computations. Features of the scripting library include: standard 
+command-line options; help page formatting and documentation generation consistent with MRtrix3 binary commands; 
+scratch directory management; and the ability to continue from any point in a previous execution for long or 
+computationally demanding pipelines. The application module and library functions on which these scripts are built are 
+additionally designed to be both accessible and functional for researchers looking to construct their own processing 
+pipelines from existing commands and to interface with external tools, with features described in “3.3.3 External 
+contributions” applicable to such scripts just as for C þþ binaries. An example of such a script is provided in 
+Appendix B.
+
+4. MRView
+
+The MRtrix3 viewer, MRView, was written to be cross-platform, high performance, convenient to use, and extensible. To 
+meet these aims, MRView uses the high-performance industry-standard OpenGL 33 3.3 API to leverage the graphics 
+capabilities of modern systems, and the widely supported and open-source Qt toolkit 34 to manage the interface elements 
+(widgets). It is also designed from the outset for interactive use from the command-line. This allows users to rapidly 
+experiment with new ideas, develop and debug pipelines, and inspect the output of processing commands. Two aspects of 
+its design play a role in supporting this: ﬁrst, MRView accepts input from Unix pipes (as illustrated in the example 
+in section 3.2.1); and second, it is quick to launch and display (through a number of design decisions, including the 
+use of memory-mapping for “lazy loading” and delayed initialisation of interface elements until the point of use). See 
+the MRtrix3 website for demonstration videos.35 
+
+An important aspect of MRView is its ability to load multiple images concurrently, allowing fast switching between them 
+via the menu or the PageUp/PageDown keys. In combination with the optimisations mentioned above, this allows 
+interactive use in otherwise demanding workﬂows, such as loading a long list of images into the viewer concurrently 
+and inspecting them with interactive framerates, even when the data are held on network ﬁle shares. This type of 
+action is useful to quickly scan through the results of a processing step over all participants in a large study (to 
+check the quality of the image masks, for example).
+
+MRView is also capable of displaying slice-wise information at arbitrary oblique cuts through the data. This is 
+particularly useful to
+
+33
+
+34
+
+35
+
+https://www.opengl.org/. https://www.qt.io/. http://www.mrtrix.org/videos.
+
+
