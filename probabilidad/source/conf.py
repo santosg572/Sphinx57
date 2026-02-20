@@ -14,6 +14,9 @@ release = '01'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
+def setup(app):
+    app.add_css_file('my_theme.css')
+
 extensions = []
 
 templates_path = ['_templates']

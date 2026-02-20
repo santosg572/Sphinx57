@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>PROBABILIDAD &#8212; probabilidad 01 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=11b6a698" />
+    <script src="_static/documentation_options.js?v=82a30901"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="TEMA 6: PROBABILIDAD" href="probabilidad2.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="probabilidad">
+<h1>PROBABILIDAD<a class="headerlink" href="#probabilidad" title="Link to this heading">¶</a></h1>
+<ol class="arabic simple">
+<li><p>Introducción.</p></li>
+</ol>
+<p>1.1. Experimento aleatorio</p>
+<p>1.2. Espacio muestral</p>
+<p>1.3. Sucesos</p>
+<ol class="arabic simple" start="2">
+<li><p>Probabilidad.</p></li>
+</ol>
+<p>2.1. Regla de Laplace.</p>
+<p>2.2. Probabilidad frecuentista.</p>
+<ol class="arabic simple" start="3">
+<li><p>Probabilidad Condicionada.</p></li>
+<li><p>Dependencia e Independencia de Sucesos</p></li>
+<li><p>Teorema de la Probabilidad Total y Teorema de Bayes.</p></li>
+</ol>
+<p><strong>1. Introducción.</strong></p>
+<p>Muchos fenómenos que habitualmente observamos en la ciencia, y particularmente en el campo de la biología, la
+oceanografía, la psicología, la sociología, etc., tienen una fuerte componente aleatoria (aleatorio significa incierto,
+que depende de la suerte o el azar).</p>
+<p><strong>Ejemplos:</strong></p>
+<ul class="simple">
+<li><p>Cuando alimentamos a un pez de un cultivo con una dieta determinada, en general no podemos predecir con seguridad el</p></li>
+</ul>
+<p>peso final que va a alcanzar el pez.</p>
+<ul class="simple">
+<li><p>Si estamos interesados en estudiar una variable, como por ejemplo la talla en los sujetos de una población, tendremos</p></li>
+</ul>
+<p>que tomar una muestra aleatoria de la misma, dado que casi nunca es posible estudiar a toda la población. Los
+resultados del estudio, evidentemente, dependerán de la muestra seleccionada (muestras distintas producirán resultados
+distintos, aunque se espera que sean siempre parecidos a lo que se habría obtenido de haber podido observar la
+población completa), y por tanto, también tendrán naturaleza aleatoria.</p>
+<p><strong>Un poco de Filosofía:</strong></p>
+<ul class="simple">
+<li><p>En el primero de los ejemplos anteriores es cierto que el peso final del pez no es una cantidad completamente</p></li>
+</ul>
+<p>aleatoria y quizás se puede predecir aproximadamente en función de la especie, las condiciones iniciales del pez, el
+tiempo de cultivo, etc. Una forma habitual de realizar esta predicción es observar que, por ejemplo, todos los peces de
+esa especie criados en esas condiciones tienen un peso medio de 3 kg. En tal caso sabemos a priori que un pez escogido
+arbitrariamente entre todos éstos pesará aproximadamente 3 kg. Ahora bien su peso exacto será realmente 3 + ε kg.,
+donde ε es una cantidad (positiva o negativa) en la que se incluye el efecto combinado de muchísimas variables de las
+que se desconoce la forma exacta en que afectan al peso del animal (incluido el mero azar que ha dado lugar a que el
+pez unos días haya comido más, otros menos, que haya enfermado, que haya sido dominante o haya sido dominado, etc).
+Esta combinación de pequeños efectos impredecibles es la que da lugar en última instancia al valor ε que, a efectos
+prácticos, es completamente aleatorio.</p>
+<ul class="simple">
+<li><p>En el segundo ejemplo se pretende evaluar el comportamiento de una variable en una población a través de la</p></li>
+</ul>
+<p>información recogida en una muestra elegida al azar. La razón principal para elegir muestras al azar es evitar en la
+medida de lo posible la introducción de sesgos (aún involuntarios) por parte del investigador. Al hacer una evaluación
+global de una variable, usualmente es preciso sintetizar la información utilizando su valor medio, varianza,
+distribución de frecuencias, etc. Dado que de lo que disponemos es de una muestra, estos valores se calcularán sobre
+ésta, y no sobre la población. Si <span class="math notranslate nohighlight">\(\mu\)</span> y <span class="math notranslate nohighlight">\(\sigma^2\)</span> son, respectivamente, la media y la varianza
+(desconocidas pero fijas) de la
+población, y <span class="math notranslate nohighlight">\(\bar{x}\)</span> y <span class="math notranslate nohighlight">\(s^2\)</span> son esas cantidades calculadas en la muestra (y por tanto conocidas, aunque
+normalmente varían de
+una muestra a otra), podemos esperar que:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\bar{x} = \mu + \epsilon_1\\s^2 = \sigma^2 + \elsilon_2\end{aligned}\end{align} \]</div>
+<p>donde <span class="math notranslate nohighlight">\(\epsilon_1\)</span> y <span class="math notranslate nohighlight">\(\epsilon_2\)</span> son cantidades que dependen de la muestra escogida y que son
+aleatorias precisamente porque la muestra
+se ha escogido al azar.</p>
+<p>El hecho de que el resultado de un fenómeno aleatorio sea incierto, no quiere decir que no se pueda hacer una
+predicción. Lo que sucede es que la predicción habrá que hacerla en términos de probabilidad:</p>
+<ul class="simple">
+<li><p>A la hora de predecir el peso de un pez concreto, deberemos sustituir la afirmación segura: “Al haberse cultivado de</p></li>
+</ul>
+<p>esta forma, este pez pesará 3 kg.” por una afirmación probabilística: “Al haberse cultivado de esta forma, este pez
+pesará 3 kg, si bien con una probabilidad del 95% puede ocurrir que el peso oscile 300 gr. arriba, 300 gr, abajo.”</p>
+<ul class="simple">
+<li><p>A la hora de aproximar la talla media de los individuos de una población (que no ha podido ser observada íntegramente</p></li>
+</ul>
+<p>sino que se ha observado una muestra aleatoria), deberemos sustituir la afirmación segura: “La talla media de los
+individuos de esta población es de 60 cm.” por una afirmación probabilística: “La talla media de los individuos de esta
+población es 60 cm., si bien con una probabilidad del 90% puede ocurrir que la talla media oscile 10 cm. por encima o
+por debajo de esta cantidad.”</p>
+<p><strong>2. PROBABILIDAD</strong></p>
+<p><strong>Concepto intuitivo de Probabilidad.</strong></p>
+<p>El concepto de la probabilidad no es ajeno al campo de la ciencia: cuando los resultados de nuestros experimentos no
+pueden predecirse con exactitud, es importante disponer al menos de una medida del grado de certidumbre con que puede
+ocurrir cada uno de sus posibles resultados. Esa medida es precisamente lo que llamamos probabilidad.</p>
+<p><strong>Ejemplos:</strong></p>
+<p>1. Cuando lanzamos una moneda al aire no sabemos si va a salir cara o cruz. No obstante, si la moneda está bien
+construida, podemos esperar que la mitad de las veces que la lancemos salga cara y la otra mitad cruz. Decimos de esta
+manera que la probabilidad de sacar cara es de un 50% y la de sacar cruz otro 50%.</p>
+<p>Aunque aquí hemos expresado la probabilidad en tanto por ciento, en la práctica es más frecuente expresar la
+probabilidad como proporción (en tanto por 1): esto es, la probabilidad de sacar cara es 0.5, y la de sacar cruz es
+también 0.5.</p>
+<p>2. Se ha observado que entre las tortugas de determinada especie sólo el 10% de las puestas se realiza de día, mientras
+que el restante 90% se lleva a cabo tras la puesta del sol. Si seguimos a una tortuga de esta especie elegida
+arbitrariamente aunque a priori no sabemos si anidará de día o de noche, sí que podemos decir que las probabilidades de
+cada una de estas situaciones son, respectivamente, del 10% y del 90%, o expresadas en tanto por uno, de 0.1 y 0.9.</p>
+<p>Nótese que en estos dos ejemplos, la forma de asignar probabilidades a los resultados posibles ha sido distinta. En el
+caso de la moneda hemos empleado un razonamiento abstracto (Si la moneda está bien hecha, las probabilidades de cara y
+cruz son 50% y 50% respectivamente), mientras que en el caso de las tortugas hemos debido hacer observaciones previas
+(se ha observado que el 10% de las puestas se hace de día y el 90% de noche)</p>
+<p>Para definir correctamente el concepto de probabilidad debemos definir los siguientes conceptos previos.</p>
+<p><strong>Experimento aleatorio.</strong></p>
+<p>Es aquel cuyo resultado es incierto o depende del azar. Su opuesto sería un experimento determinista, cuyo resultado es
+predecible con anterioridad a la realización del experimento.</p>
+<p><strong>Espacio muestral.</strong></p>
+<p>Se llama espacio muestral asociado a un experimento aleatorio al conjunto de posibles resultados elementales del
+experimento. Representaremos habitualmente el espacio muestral por E.</p>
+<p><strong>Ejemplo:</strong> Al lanzar un dado, el conjunto de posibles resultados elementales del experimento es</p>
+<p>E = {1,2,3,4,5,6}.</p>
+<p><strong>Suceso elemental.</strong></p>
+<p>Cualquier elemento del espacio muestral.</p>
+<p><strong>Sucesos</strong></p>
+<p>Un suceso es cualquier colección de sucesos elementales (esto es, cualquier subconjunto de E.)</p>
+<p><strong>Ejemplo:</strong> Sea E = {1,2,3,4,5,6} el espacio muestral del experimento “lanzar un dado” . Si S es el conjunto de todos
+los
+sucesos de dicho espacio muestral, tenemos:</p>
+<div class="math notranslate nohighlight">
+\[S = \{ \O, E, \{1\}, ... , \{6\}, ... , \{1,3\}, \{4,6 \}, ... ,\{2,4,6\}, \{1,3,5\}, \{1,2,3\}, \{4,5,6\}, ...,\]</div>
+<p>{2,3,4,5}, …}</p>
+<p>Algunos sucesos especiales son:</p>
+<ul class="simple">
+<li><p><strong>Suceso seguro:</strong> Es aquel que podremos predecir que con seguridad ocurrirá al realizar el experimento aleatorio.</p></li>
+</ul>
+<p>Contendrá pues todos los sucesos elementales, por lo que es el propio espacio muestral E.</p>
+<p>Ejemplo: Al lanzar un dado al azar, el Suceso Seguro es “Obtener un número del 1 a 6” = E.</p>
+<ul class="simple">
+<li><p><strong>Suceso imposible:</strong> Es aquel que podremos predecir que con seguridad no ocurrirá. Como conjunto no contendrá a</p></li>
+</ul>
+<p>ningún
+suceso elemental, por lo que se trata del conjunto vacío, el cual representaremos por ∅.</p>
+<p>Ejemplo: Al lanzar un dado al azar, el Suceso “Obtener un número mayor que 6” es un suceso imposible.</p>
+<ul class="simple">
+<li><p><strong>Suceso contrario:</strong> Dado un suceso A, el suceso contrario lo representaremos por A c ó A y está formado por todos</p></li>
+</ul>
+<p>los
+sucesos elementales que no están en A. La ocurrencia de A supone, por tanto, la no ocurrencia de A , y viceversa.</p>
+<p>Ejemplo: Al lanzar un dado al azar, si A = “Obtener un número par”, entonces <span class="math notranslate nohighlight">\(\bar{A}\)</span> = “Obtener número impar”.</p>
+<ul class="simple">
+<li><p><strong>Inclusión de sucesos:</strong> Se dice que un suceso A está incluido en otro suceso B (es decir, <span class="math notranslate nohighlight">\(A  \subset B\)</span>), si</p></li>
+</ul>
+<p>siempre que
+ocurre A, ocurre también B. Es decir todos los elementos de A son también elementos de B.</p>
+<p>Ejemplo: Al lanzar un dado al azar, sea A = Suceso “Obtener un cinco”, y sea B = Suceso “Obtener número impar”. Se
+tiene, pues que, <span class="math notranslate nohighlight">\(A = \{5\}  \subset B = \{1,3,5\}\)</span>.</p>
+<ul class="simple">
+<li><p><strong>Unión de sucesos</strong>: Dados dos sucesos A y B, se llama unión de sucesos, al nuevo suceso A ∪B, que consiste en que</p></li>
+</ul>
+<p>ocurra alguno de los dos. Por tanto, A ∪B es la reunión de todos los sucesos elementales de A con los sucesos
+elementales de B.</p>
+<p>Ejemplo: Al lanzar un dado al azar, sea A =Suceso “Obtener un número par”, y B = Suceso “Obtener número mayor a tres” =
+{4,5,6}. Entonces, A∪B = Suceso “Obtener número par o mayor a tres” = {2,4,5,6}.</p>
+<ul class="simple">
+<li><p><strong>Intersección de sucesos</strong>: Dados dos sucesos A y B, se llama intersección de sucesos, al nuevo suceso :math:<a href="#id1"><span class="problematic" id="id2">`</span></a>A</p></li>
+</ul>
+<p>cap B`, que
+consiste en que ocurran ambos a la vez. Por tanto, A∩B es el conjunto los sucesos elementales que pertenecen a ambos
+conjuntos a la vez.</p>
+<p>Ejemplo: Al lanzar un dado al azar, sea A=Suceso “Obtener un número par”, y B = Suceso “Obtener número mayor a tres” =
+{4,5,6}. Entonces, <span class="math notranslate nohighlight">\(A \cap B\)</span> = Suceso “Obtener número par mayor a tres” = {4,6}.</p>
+<ul class="simple">
+<li><p><strong>Diferencia de sucesos</strong>: Dados dos sucesos A y B, se llama diferencia del suceso A menos el B, al suceso A-B,</p></li>
+</ul>
+<p>formado
+por todos los sucesos elementales de A que no estén en B.</p>
+<p>Ejemplo: Al lanzar un dado al azar, sea A=Suceso “Obtener un número par”, y B = Suceso “Obtener número mayor a tres” =
+{4,5,6}. Entonces, <span class="math notranslate nohighlight">\(A-B = A \cap B^c\)</span> = Suceso “Obtener número par no mayor a tres” = {2}.</p>
+<ul class="simple">
+<li><p><strong>Sucesos incompatibles</strong>: Dados dos sucesos A y B, se dicen que son incompatibles si no pueden ocurrir</p></li>
+</ul>
+<p>simultáneamente.
+Por tanto, si A y B son incompatibles se tiene que <span class="math notranslate nohighlight">\(A \capB = \O\)</span>.</p>
+<p>Ejemplo: Al lanzar un dado al azar, sea A=Suceso “Obtener un número par”={2,4,6}, y B = Suceso “Obtener número impar” =
+{1,3,5}. Entonces, <span class="math notranslate nohighlight">\(A \cap B = \O\)</span>.</p>
+<p><strong>Definición formal de probabilidad:</strong></p>
+<p>Formalmente, si representamos por S el conjunto de todos los sucesos de un espacio muestral E, una medida de
+probabilidad es una función definida para todos los elementos de S y que toma valores en el intervalo [0,1], es decir,</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}  P: S ⎯⎯⎯⎯⎯→[0,1]\\  A⎯⎯⎯⎯⎯\\y que verifica las siguientes condiciones:\end{aligned}\end{align} \]</div>
+<ol class="arabic simple">
+<li><p>El suceso seguro tiene probabilidad 1: P(E)=1</p></li>
+<li><p>Si A y B son dos sucesos incompatibles (<span class="math notranslate nohighlight">\(A \cap B = \O\)</span>), entonces:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[P(A \cup B)= P(A) + P(B)\]</div>
+<p>De esta definición pueden deducirse las siguientes propiedades:</p>
+<ol class="arabic simple">
+<li><p>El suceso imposible tiene probabilidad 0: <span class="math notranslate nohighlight">\(P(\O) = 0\)</span></p></li>
+<li><p>Para cualesquiera dos sucesos A y B: P(A∪B)= P(A) + P(B) - P(A∩B)</p></li>
+<li><p>Si A1 , A2 , … , An , son n sucesos incompatibles dos a dos</p></li>
+</ol>
+<p>(es decir, A i ∩ A j = ∅, con i≠j), entonces:</p>
+<p>P(A 1 ∪ A 2 ∪… ∪ An ) = P(A1 ) + P(A2 ) + … + P(An )</p>
+<ol class="arabic simple" start="4">
+<li><p>P( A ) = 1- P(A)</p></li>
+<li><p>Si A ⊂ B ⇒ P(B-A) = P(B) – P(A)</p></li>
+</ol>
+<p>128</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A. Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<p>Propiedades de las operaciones con conjuntos o sucesos</p>
+<p>1.-</p>
+<p>2.-</p>
+<p>3.-</p>
+<p>4.-</p>
+<p>5.-</p>
+<p>6.-</p>
+<p>«</p>
+<p>A</p>
+<p>«</p>
+<p>B=B</p>
+<p>A</p>
+<p>»</p>
+<p>A</p>
+<p>»</p>
+<p>B=B</p>
+<p>A</p>
+<p>«</p>
+<p>A</p>
+<p>A=A</p>
+<p>»</p>
+<p>A</p>
+<p>A=A</p>
+<p>«</p>
+<p>A</p>
+<p>E=E</p>
+<p>»</p>
+<p>A</p>
+<p>E=A</p>
+<p>7.- A « A =E 8.- A» A = ∆ 9.- A « ∆ =A 10.- A» ∆ = ∆ 11.- A « (B»C)= (A « B)»(A»C)</p>
+<p>12.- A»( B « C)= (A»B) « (A»C)</p>
+<p>13.- A – B = A» B 14.- A – B = A - ( A»B)</p>
+<p>Leyes de Morgan</p>
+<p>1.-</p>
+<p>2.-</p>
+<p>( A ∪ B ) = A ∩ B</p>
+<p>( A ∩ B ) = A ∪ B</p>
+<p>Cardinalidad N(A « B)= n(A)+ n(B) - n(A»B)</p>
+<p>N(A « B « C)= n(A) + n(B) + n(C) - n(A»B) - n(A»C) - n(B»C) +n(A»B»C)</p>
+<p>E</p>
+<p>B</p>
+<p>A</p>
+<p>C González J.J., Guerra N., Quintana M.P. y Santana A.</p>
+<p>129 Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<p>Asignación de probabilidades a sucesos de un espacio muestral.</p>
+<p>La determinación de la probabilidad de un suceso se puede fundamentar en uno de los siguientes criterios:</p>
+<p>2.1 Asignación mediante la Regla de Laplace.</p>
+<p>Consideremos un espacio muestral finito con n elementos que suponemos equiprobables (es decir, todos tienen la misma
+probabilidad de ocurrir).</p>
+<ul class="simple">
+<li><p>La probabilidad de que ocurra cada elemento será entonces 1/n.</p></li>
+</ul>
+<blockquote>
+<div><p>Si un suceso A está compuesto por k elementos del espacio muestral, su probabilidad es:</p>
+</div></blockquote>
+<p>P( A) =</p>
+<p>k n</p>
+<p>=</p>
+<p>nº de casos favorables nº de casos posibles</p>
+<p>Ejemplo: Sea E={1,2,3,4,5,6} el espacio muestral que se obtiene al realizar el experimento aleatorio “Lanzar un dado”.
+Se tiene que:</p>
+<p>1 P(1) = P(2) = P(3) = P(4) = P(5) = P(6)=</p>
+<p>6</p>
+<p>2</p>
+<p>P(Obtener multiplo de 3) = P({3,6}) =</p>
+<p>6</p>
+<p>P(No obtener multiplo de 3) = P({1,2,4,5}) =</p>
+<p>4 = 1 6</p>
+<p>P({3,6})</p>
+<p>130</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A. Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<p>La regla de Laplace puede generalizarse a espacios muestrales continuos, siempre que todos los sucesos elementales en
+dichos espacios sean equiprobables. En esta situación, no es posible contar cuántos son los casos favorables ni los
+posibles (pues el espacio muestral es continuo y por tanto no numerable); habrá de determinarse, con la medida adecuada
+al espacio que se considere, cuanto miden respectivamente el conjunto de casos favorables y el conjunto de casos
+posibles, esto es:</p>
+<p>µ ( A) Medida del conjunto de casos favorables a A = µ ( E ) Medida del conjunto total de casos posibles Ejemplo 1:
+Imaginemos una pared y a alguien con los ojos vendados que tira un dardo a la pared, en la que se ha colocado un cuadro
+después de vendarle los ojos. ¿Cuál es la probabilidad de que acierte en el cuadro al lanzar el dardo?</p>
+<p>P ( A) =</p>
+<p>E</p>
+<p>A</p>
+<p>µ ( A) Area( A) P ( A) = = µ ( E ) Area ( E )</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A.</p>
+<p>131 Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<p>Nótese que para que funcione la asignación de Laplace todos los puntos de la pared deben tener la misma probabilidad de
+ser alcanzados por el dardo (cosa que ocurre si el lanzador tira a ciegas y no sabe dónde está el cuadro). Si el
+lanzador fuera experto, y lanzara con los ojos abiertos, la probabilidad de acertar en el cuadro A sería mucho mayor
+que la que hemos obtenido en el cálculo anterior.</p>
+<p>El resultado de 500 lanzamientos podría ser algo parecido a lo que se muestra en los siguientes gráficos:</p>
+<p>Tirador experto Tirador inexperto Ojos abiertos: Ojos vendados:</p>
+<p>0</p>
+<p>5</p>
+<p>10</p>
+<p>15</p>
+<p>0</p>
+<p>5</p>
+<p>10</p>
+<p>15</p>
+<p>x</p>
+<p>x</p>
+<p>Alta probabilidad de acertar en el cuadro. La densidad de puntos (aciertos con los dardos) es mucho mayor sobre el
+cuadro que fuera de él: es mucho más probable acertar dentro del cuadro que fuera.</p>
+<p>Baja probabilidad de acertar en el cuadro. La densidad de puntos es uniforme sobre toda la pared. Todos los puntos de
+la pared tienen la misma probabilidad de ser alcanzados.</p>
+<p>y</p>
+<p>y</p>
+<p>0</p>
+<p>5</p>
+<p>10</p>
+<p>15</p>
+<p>15</p>
+<p>20</p>
+<p>20</p>
+<p>0</p>
+<p>5</p>
+<p>10</p>
+<p>132</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A. Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<p>2.2 Asignación mediante Frecuencias Relativas.</p>
+<p>En muchas ocasiones no es factible asignar probabilidades según la regla de Laplace, por no ser equiprobables los
+sucesos elementales. Para asignar probabilidades a estos sucesos en tales casos podemos recurrir a la observación:
+realizamos el experimento aleatorio muchas veces y asignamos como probabilidad de un suceso A la frecuencia relativa
+(proporción de veces) con que ocurre el mismo.</p>
+<p>Esta definición sólo tiene sentido si la frecuencia relativa con que ocurre un suceso tiende a estabilizarse a medida
+que el experimento aleatorio se realiza más y más veces. Afortunadamente en la práctica es eso lo que ocurre, y por
+tanto podemos correctamente definir la probabilidad de un suceso A como:</p>
+<p>P(A)= lim</p>
+<p>n →∞</p>
+<p>nA  n</p>
+<p>donde n es el número de veces que se ha realizado el experimento y n A el número de veces que el resultado del
+experimento ha sido el suceso A.</p>
+<p>NOTA: Si el suceso A es cierta característica de los sujetos de una población (por ejemplo “ser rubio”), la
+probabilidad calculada según esta definición converge a la proporción de individuos de la población con esa
+característica, esto es:</p>
+<p>n A NA  P(A)= lim → n →∞ n N</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A.</p>
+<p>133 Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<p>Ejemplo: En una pista de bolos se colocan 11 casillas alineadas, se lanza una pelota pequeña, ¿Cuál es la probabilidad
+de acertar en la casilla central?</p>
+<p>Caso1: Si lanza un inexperto al hacer un lanzamiento podría caer por igual en cualquier casilla y tras muchos
+lanzamientos se podría tener un histograma del tipo:</p>
+<p>Caso 2: Si lanza un experto tras muchos lanzamientos se podría tener un histograma del tipo:</p>
+<p>En ambos casos, la probabilidad de acertar en una casilla determinada se puede calcular como el límite de la frecuencia
+relativa con que se acierta en esa casilla a medida que el número de tiradas va aumentando. En el primer caso la
+distribución de frecuencias (y por tanto de probabilidad) tiende a ser uniforme (igualmente repartida entre todas las
+casillas), mientras que en el segundo caso tiene una forma acampanada (más probabilidad en el centro que en los
+extremos)</p>
+<p>134</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A. Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<ol class="arabic simple" start="3">
+<li><p>PROBABILIDAD CONDICIONADA.</p></li>
+</ol>
+<p>Si dos sucesos A y B están relacionados, la ocurrencia o no de A afecta a la probabilidad de ocurrencia de B.</p>
+<p>Ejemplo: Al lanzar un dado, sean los sucesos A = “Obtener número Par” B = “Obtener número mayor a tres” Tenemos, por
+tanto, A ={2,4,6} y B ={4,5,6}</p>
+<ul class="simple">
+<li><p>Si no se tiene ninguna otra información, la probabilidad de</p></li>
+</ul>
+<p>N B 3 que ocurra el suceso B es P( B) = = = 05. . N 6</p>
+<ul class="simple">
+<li><p>Si se dispone de la información de que al lanzar el dado ha ocurrido el suceso A (ha salido un número par), la</p></li>
+</ul>
+<p>probabilidad de que ocurra B es:</p>
+<p>P bB A g</p>
+<p>casos favorables a B sabiendo que ha ocurrido A 2 = = = .066 casos posibles sabiendo que ha ocurrido A 3</p>
+<p>(Nótese como la probabilidad de B ha cambiado cuando se sabe que ha ocurrido A).</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A.</p>
+<p>135 Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<p>Observemos cómo hemos calculado esta probabilidad condicionada:</p>
+<p>P b B A g</p>
+<p>=</p>
+<p>casos favorables a B sabiendo que ha ocurrido A casos posibles sabiendo que ha ocurrido A</p>
+<p>=</p>
+<p>N c l4 , 6 q h N b B ∩ A g N b B ∩ A g N P b B ∩ A g = = = = N c l2 , 4 , 6 q h N b A g N b A g N P b A g</p>
+<p>Apoyándonos en esta idea, definimos el concepto de probabilidad condicionada del siguiente modo:</p>
+<p>Se define la PROBABILIDAD CONDICIONADA de que ocurra un suceso B, dado que ha ocurrido otro suceso A,</p>
+<p>como:</p>
+<p>P b B A g = P b B P( ∩ A) A g</p>
+<p>(Esta expresión viene a ser equivalente a calcular la probabilidad de B cuando el espacio muestral queda reducido sólo
+al suceso A, que es la condición que se ha producido).</p>
+<p>136</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A. Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<ol class="arabic simple" start="4">
+<li><p>DEPENDENCIA E INDEPENDENCIA DE SUCESOS</p></li>
+</ol>
+<p>Un suceso B es independiente de un suceso A si la probabilidad de B no cambia cuando se cuenta con la información de
+que ha ocurrido A, esto es, si:</p>
+<p>P(B) = P(B|A)</p>
+<p>Propiedades importantes: Si B es independiente de A, entonces:</p>
+<ol class="lowerroman simple">
+<li></li>
+</ol>
+<p>P(A</p>
+<p>∩</p>
+<ol class="upperalpha simple" start="2">
+<li></li>
+</ol>
+<p>=</p>
+<p>P(A)</p>
+<p>·</p>
+<p>P(B)</p>
+<ol class="lowerroman simple" start="2">
+<li><p>P(A|B) = P(A), es decir A es independiente de B</p></li>
+</ol>
+<p>En general, si A1 , A2 , … , A n son sucesos mutuamente independientes, de la primera propiedad anterior se sigue
+que:</p>
+<p>P(A 1 ∩ A 2 ∩… ∩ An ) = P(A1 ) · P(A2 ) · … · P(An )</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A.</p>
+<p>137 Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<p>Ejemplo:</p>
+<p>Consideremos el experimento consistente en extraer dos cartas de una baraja española y sean los sucesos:</p>
+<p>A= Obtener un oro en la primera extracción.</p>
+<p>B= Obtener un oro en la segunda extracción.</p>
+<p>Calcular la probabilidad de que ocurra B sabiendo que ha ocurrido A.</p>
+<ol class="loweralpha simple">
+<li><p>Si al observar la primera carta no se repone al mazo de cartas, ambos sucesos son dependientes y:</p></li>
+</ol>
+<p>10 9 P ( A) = ; P b B A g = 40 39 Como P b B B g A g P b A ∩ ⇒= P b A ∩ B g = P ( A) ⋅ P b B A g = 10 ⋅ 9 P ( A)
+40 39</p>
+<p>b) Si tras observar la primera carta ésta se repone al mazo, y a continuación se extrae la segunda carta, ambos sucesos
+son independientes y:</p>
+<p>P b B A g = 10 40</p>
+<p>=</p>
+<p>P</p>
+<p>(</p>
+<p>B</p>
+<p>)</p>
+<p>40</p>
+<p>10 P ( A) = ;</p>
+<p>P b A ∩ B g = P( A) ⋅ P b B A g = P( A) ⋅ P( B) = 10 40 ⋅ 10 40</p>
+<p>138</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A. Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<ol class="arabic simple" start="5">
+<li><p>TEOREMA DE LA PROBABILIDAD TOTAL.</p></li>
+</ol>
+<p>Los siguientes teoremas son de especial interés para resolver problemas relacionados con las probabilidades
+condicionales. Su enunciado requiere el concepto de sistema completo de sucesos que definimos a continuación:</p>
+<p>Sistema completo de sucesos: En un espacio muestral E, se dice que n sucesos A1 , A 2 , …, A n forman un sistema
+completo si A i ∩ A j = ∅, para cualquier par de conjuntos (son incompatibles dos a dos) y E = A 1 ∪ A 2 ∪… ∪ A
+n (la reunión de todos es el suceso seguro). Por tanto, dado un sistema completo de sucesos, ocurre uno y sólo uno de
+los sucesos que lo forman.</p>
+<p>Teorema de la Probabilidad Total: Sea A1 , A 2 , …, A n un sistema completo de sucesos y sea B un suceso. Se tiene
+entonces que:</p>
+<p>n P( B) = ∑ P bB  i =1</p>
+<p>A i g P b A i g</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A.</p>
+<p>139 Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<p>Ejemplo 1:</p>
+<p>Una fábrica de coches fabrica tres tipos de coches A1 , A 2 y A3 , con una proporción de cada tipo de 4/10, 5/10, 1/10.</p>
+<p>Además la probabilidad de que un coche de tipo A 1 se averíe durante el primer año es 0.07, la de que se averíe uno del
+tipo A 2 es 0.04 y del tipo A 3 es 0.09.</p>
+<p>¿Cuál es la probabilidad de que ocurra el suceso B = “Un coche producido en esa fábrica tenga una avería antes de un
+año”?</p>
+<p>El espacio muestral E es la producción total de la fábrica, por tanto</p>
+<p>E=A1 ∪A2 ∪A3</p>
+<p>P ( B ) = P ( B ∩ E ) = P ( B ∩ ( A 1 ∪ A 2 ∪ A 3 ) ) =</p>
+<p>= P ( ( B ∩ A 1 ) ∪ ( B ∩ A 2 ) ∪ ( B ∩ A 3 ) ) =</p>
+<p>= P ( B ∩ A 1 ) + P ( B ∩ A 2 ) + P ( B ∩ A 3 ) =</p>
+<p>= P ( B | A 1 ) P( A 1 ) + P ( B | A 2 ) P( A 2 ) + P ( B | A 3 ) P( A 3 ) =</p>
+<p>4 5 1 = 0.07· + 0.04· + 0.09· = 0.057</p>
+<p>10</p>
+<p>10</p>
+<p>10</p>
+<p>140</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A. Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<p>Teorema de Bayes.</p>
+<p>En muchas ocasiones se dispone de una descomposición del espacio muestral en un sistema completo de sucesos A1 , A2 ,
+…, An , cuyas probabilidades P(Ai ) se conocen, en principio, para todos los A i (Probabilidades a priori).
+Supongamos que los Ai  no son directamente observables y que nos interesa calcular la probabilidad de que haya ocurrido
+concretamente el suceso Aj .</p>
+<p>Si es posible realizar un experimento que produzca un resultado B, cuyas probabilidades condicionales P(B / Ai )
+(verosimilitudes) también se conocen para todos los Ai , entonces el siguiente teorema permite usar la información
+aportada por B para calcular la probabilidad de que haya ocurrido Aj , esto es, la probabilidad P(A j / B)
+(probabilidad a posteriori)</p>
+<p>Teorema de Bayes: Sea A1 , A 2 , …, A n un sistema completo de sucesos y sea B un suceso que cumple que B ∩ A i ≠
+∅. Se tiene entonces:</p>
+<p>P d A j i P d B A j B iP d A j i = n ∑ P b B A i g P b A i g i =1</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A.</p>
+<p>141 Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<p>La demostración de este teorema es sencilla:</p>
+<p>A j B P( B ∩ A j ) P( B | A j )·P( A j ) P( ∩ ) P(Aj <a href="#id3"><span class="problematic" id="id4">|</span></a>B) = = = P( B ) n n ∑ P( B ∩ A i ) ∑ P( B | A i )·P( A i ) i
+=1 i =1</p>
+<p>Ejemplo 1:</p>
+<p>Supongamos que en cierta población consideramos los siguientes grupos de personas en función de su edad: A1</p>
+<p>=Niño; A2 =Adulto; A 3 =Anciano. Sabemos qué proporción</p>
+<p>representa cada uno de estos grupos de edad en la población, y conocemos también la incidencia de la gripe en cada
+grupo:</p>
+<p>P(Niño)=0.25 P(Adulto)=0.55 P(Anciano)=0.2</p>
+<p>P(Gripe | Niño)=0.4 P(Gripe | Adulto)=0.35 P(Gripe | Anciano)=0.6</p>
+<p>Entre las personas que proporción de ancianos?</p>
+<p>tienen gripe, ¿cuál es la</p>
+<p>Esta pregunta se puede reformular en términos de probabilidad del siguiente modo: Calcular P(Anciano | Gripe).
+Utilizando el teorema de Bayes:</p>
+<p>∩ P(G)</p>
+<p>P(Anc P(Anc|G) =</p>
+<ol class="upperalpha simple" start="7">
+<li></li>
+</ol>
+<p>=</p>
+<p>=</p>
+<p>P(G|Anc)• P(Anc)</p>
+<p>P(G| N)• P(N) + P(G|Ad)• P(Ad) + P(G|Anc)• P(Anc)</p>
+<p>0,6 * 0,2 ,012 = = = 0,2909 0,4 * 0,25 + 0,35 * 0,55 + 0,6 * 0,2 0,4125</p>
+<p>=</p>
+<p>142</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A. Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<p>Ejemplo 2:</p>
+<p>Consideremos una prueba diagnóstica para la detección de determinado tipo de cáncer. Para que ésta sea aceptable ha de
+tener alta sensibilidad y alta especificidad. Estos conceptos se definen del siguiente modo (se entiende que dar
+positivo en la prueba significa que ésta detecta la presencia del cáncer):</p>
+<p>P F H</p>
+<p>Sensibilidad = Especificidad =</p>
+<p>La prueba dé positivo</p>
+<p>K I</p>
+<p>P F H</p>
+<p>El individuo está enfermo La prueba dé negativo El idividuo está</p>
+<p>sano I K</p>
+<p>Como las pruebas diagnósticas no son exactas, puede ocurrir que den positivo en individuos sanos (falsos positivos) y
+negativo en individuos enfermos (falsos negativos). Se definen también:</p>
+<p>Coeficiente falso-positivo = 1 – Especificidad</p>
+<p>Coeficiente falso-negativo = 1- Sensibilidad</p>
+<p>Si llamamos:</p>
+<p>C = “padecer cáncer” T = “dar positivo en la prueba diagnóstica”</p>
+<p>Podemos expresar:</p>
+<p>Sensibilidad = P(T | C ) Coeficiente falso-positivo = Especificidad = P(T | C ) Coeficiente falso-negativo =</p>
+<p>P(T | C )</p>
+<p>P(T | C )</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A.</p>
+<p>143 Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<p>Supongamos que se desea saber si una persona elegida arbitrariamente de una población padece cáncer. Si p C es la
+proporción de enfermos de cáncer en esa población, a priori la probabilidad de que esa persona en particular tenga
+cáncer puede tomarse como P(C) = pC .</p>
+<p>Para mejorar su información, el médico le realiza una prueba diagnóstica cuya sensibilidad y especificidad se conocen.
+Supongamos que el resultado de la prueba es positivo. El médico (y más aún el presunto enfermo) debe ahora preguntarse:</p>
+<p>¿cuál es la probabilidad de que el paciente esté realmente enfermo sabiendo que ha dado positivo en la prueba?.</p>
+<p>Esta probabilidad se calcula mediante el teorema de Bayes de la siguiente forma:</p>
+<p>P (C ∩ T ) P(T | C ) P(C ) P (C | T ) = = P (T ) P(T | C ) P(C ) + P(T | C ) P(C )</p>
+<p>Si la prueba preguntarse:</p>
+<p>hubiese</p>
+<p>resultado</p>
+<p>negativa,</p>
+<p>interesaría</p>
+<p>¿cuál es la probabilidad de que el paciente esté realmente sano sabiendo que ha dado negativo en la prueba?.</p>
+<p>Esta probabilidad se calcula también mediante el teorema de Bayes:</p>
+<p>P (C ∩ T ) P(T | C ) P(C ) P (C | T ) = = P (T ) P(T | C ) P(C ) + P(T | C ) P(C )</p>
+<p>144</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A. Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<p>Ejemplo: (Falso-positivo)</p>
+<p>En una población se sabe por datos históricos que una de cada 1000 personas padece cierta enfermedad. Existe un test
+para detectar esta enfermedad de manera que:</p>
+<p>P(Test − | Enf ) = P(T | E ) = 0.001 ⎫ P (T | E ) = 0.999 ⎫ ⎬ ⇒ ⎬ P(Test + | Sano) = P(T | S ) = 0.01 ⎭ P (T | S
+) = 0.99 ⎭</p>
+<p>¿Cuál es la probabilidad estar enfermo si el test da positivo, esto es, cuánto vale P ( E | T ) ?</p>
+<p>Se sabe que la probabilidad de que una persona este enferma es:</p>
+<p>999 ⇒</p>
+<p>P</p>
+<p>(</p>
+<p>E</p>
+<p>)</p>
+<p>=</p>
+<p>P</p>
+<p>(</p>
+<p>S</p>
+<p>)</p>
+<p>=</p>
+<p>1</p>
+<p>P(E ) =</p>
+<p>1000</p>
+<p>1000</p>
+<p>P ( E ∩ T ) P (T | E ) P ( E ) P( E | T ) = = = P (T ) P (T | E ) P ( E ) + P(T | S ) P( S )</p>
+<p>=</p>
+<p>0.999·</p>
+<p>1 0.999· 1000</p>
+<p>1000 = 1000 999 +</p>
+<p>= 0.999 0.01·</p>
+<ul class="simple">
+<li></li>
+</ul>
+<p>9.99</p>
+<p>1</p>
+<p>0.999</p>
+<p>0.000999 = = 0.091</p>
+<p>1000</p>
+<p>1000</p>
+<p>0.01089</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A.</p>
+<p>145 Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<p>Ejemplo: En una época del año se sabe por datos históricos que la probabilidad de que el agua de un río esté
+contaminada es 0.2. Se dispone de un Test para analizar el agua y se sabe que este test, cuando hay contaminación la
+detecta en un 95% de los casos, y cuando no hay contaminación también da positivo en un 7% de los casos.</p>
+<p>Calcular la probabilidad de que habiendo dado negativo haya realmente contaminación.</p>
+<p>146</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A. Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<p>Combinatoria</p>
+<p>Estudia y recuenta las diferentes formas en que se puede realizar la ordenación o agrupamiento de un determinado número
+de objetos siguiendo ciertas condiciones. Estos recuentos están íntimamente relacionados con el cálculo de
+probabilidades, pues son los que permiten determinar en muchos casos el número de casos favorables y de casos posibles.</p>
+<p>Factorial:</p>
+<p>Sea n un número natural. Se define el factorial de n como:</p>
+<p>n! = n·(n - 1)·(n - 2)·…·3·2·1</p>
+<p>Nota: 0! = 1</p>
+<p>Variaciones sin repetición (de n objetos tomados de r en r):</p>
+<p>Son todas las formas de ordenar (importa el orden) n objetos en grupos de r objetos, con r ≤ n , sin que los objetos
+se repitan.</p>
+<p>n! Vn r = (n − r )!</p>
+<p>Ejemplo: ¿Cuántas clavess de 4 letras distintas pueden escribirse utilizando 6 letras distintas?</p>
+<p>6! 6! 6·5·4·3·2·1 V 6 4 = = = = 180 (6 − 4)! 2! 2·1</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A.</p>
+<p>147 Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<p>Variaciones con repetición (de n objetos tomados de r en r):</p>
+<p>Son todas las formas de ordenar (importa el orden) n objetos en grupos de r objetos, pudiendo repetir objetos. La r
+puede ser mayor, menor o igual que la n.</p>
+<p>VR n r = nr</p>
+<p>Ejemplo: ¿Cuántas claves de 12 letras pueden formarse con las letras de la palabra COMPUTER?</p>
+<p>VR 8 12 = 8 12 = 68.719.476.736</p>
+<p>Permutaciones (de n objetos):</p>
+<p>Son todas las formas de ordenar n objetos sin repetirlos.</p>
+<p>P n = n !</p>
+<p>Es obvio que:</p>
+<p>P n = Vn n</p>
+<p>Ejemplo: ¿De cuántas formas se pueden ordenar 5 libros distintos en una estantería?</p>
+<p>P 5 = 5! = 5·4·3·2·1 = 120</p>
+<p>148</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A. Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<p>Permutaciones con repetición:</p>
+<p>Son todas las formas de ordenar n objetos (importa el orden), entre los cuales hay sólo k distintos, el primero de
+ellos repetido n 1 veces, el segundo n 2 veces, …, y el k-ésimo n k veces, con n 1 + n 2 + … + n k = n :</p>
+<p>n! P n n ,n 2 ,…,n k = 1 n 1 !n 2 !…n k !</p>
+<p>Ejemplo: ¿Cuántas palabras distintas pueden escribirse con las letras de la palabra RELEER?</p>
+<p>n ! 6! 6·5·4·3·2·1 P 6 2,3,1 = = = = 60 n 1 !n 2 !n 3 ! 2!3!1! 2·1·3·2·1·1</p>
+<p>Combinaciones sin repetición: (de n objetos tomados de r en r):</p>
+<p>Son todas las formas de agrupar n objetos en grupos de r objetos, 0 ≤ r ≤ n , sin que importe el orden, y sin repetir
+objetos.</p>
+<p>⎛ n ⎞ n! C n r = ⎜ ⎟ = ⎝ r ⎠ r !(n − r )!</p>
+<p>Ejemplo: ¿De cuántas formas se pueden elegir 3 representantes para el claustro de un grupo formado por 40 alumnos?</p>
+<p>C40 3 =</p>
+<p>40! 3!(40 − 3)!</p>
+<p>=</p>
+<p>40!</p>
+<p>3!37!</p>
+<p>=</p>
+<p>40·39·38 3·2·1</p>
+<p>= 40·13·19 = 9980</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A.</p>
+<p>149 Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<p>Combinaciones con repetición: (de n objetos tomados de r en r)</p>
+<p>Son todas las formas de agrupar n objetos en grupos de r objetos, sin que importe el orden, y pudiendo repetir objetos.</p>
+<p>⎛ n + r − 1 ⎞ CR n r = C r n+r −1 = ⎜ ⎟ ⎝ r ⎠</p>
+<p>Ejemplo: ¿De cuántas formas se pueden escoger 12 cartulinas de colores (pudiendo escogerse colores repetidos) en un
+almacén donde hay cartulinas de 20 colores distintos?</p>
+<p>⎛ 31 ⎞ 31! 31! CR 20 12 = C 31 12 = ⎜ ⎟ = = = 141.120.525 ⎝ 12 ⎠ 12! ( 31 − 12 ) ! 12!19!</p>
+<p>150</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A. Métodos Estadísticos</p>
+<p>Tema6: Probabilidad.</p>
+<p>Cuadro Resumen</p>
+<p>Número de objetos</p>
+<p>n n n n= n 1 +n 2 +… +np</p>
+<p>n n</p>
+<p>Número de objetos por Agrupación</p>
+<p>1</p>
+<p>≤</p>
+<p>r</p>
+<p>≤</p>
+<p>n</p>
+<p>r ≥1</p>
+<p>n n</p>
+<p>1</p>
+<p>≤</p>
+<p>r</p>
+<p>≤</p>
+<p>n</p>
+<p>r ≥1</p>
+<p>Importa el orden</p>
+<p>Sí Sí Sí Sí</p>
+<p>No No</p>
+<p>Se pueden repetir</p>
+<p>No Sí No</p>
+<p>n 1 , n 2 ,…, np</p>
+<p>No Sí</p>
+<p>Número de agrupaciones posibles</p>
+<p>n! Vn r = (n − r )!</p>
+<p>VRn r</p>
+<p>=</p>
+<p>nr</p>
+<p>P n = n !</p>
+<p>=</p>
+<p>n!</p>
+<p>P n n1 ,n 2 ,…,nk</p>
+<p>n 1 ! !… !</p>
+<p>n2</p>
+<p>nk</p>
+<p>n n! ⎛ C n r = ⎜ ⎟ = ⎝ r ⎠ r !(n − r )!</p>
+<p>⎞</p>
+<p>⎛ n + r − 1 ⎞ CR n r = ⎜ ⎟ ⎝ r ⎠</p>
+<p>González J.J., Guerra N., Quintana M.P. y Santana A.</p>
+<p>151</p>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">probabilidad</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="probabilidad.html">probabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="probabilidad2.html">TEMA 6: PROBABILIDAD</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PROBABILIDAD</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="probabilidad2.html" title="previous chapter">TEMA 6: PROBABILIDAD</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, leopoldo.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/temaprobabilidad.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,4 +1,7 @@
 p {
   font-size: 25px;
 }
+.wy-nav-content {
+    max-width: 1200px !important;
+}
 
