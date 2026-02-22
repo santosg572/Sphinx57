@@ -7,12 +7,14 @@
 
     <title>PROBABILIDAD &#8212; probabilidad 01 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
-    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=11b6a698" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="_static/my_theme.css?v=453c0eeb" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=e68f7f36" />
     <script src="_static/documentation_options.js?v=82a30901"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="TEMA 6: PROBABILIDAD" href="probabilidad2.html" />
@@ -35,18 +37,16 @@
             
   <section id="probabilidad">
 <h1>PROBABILIDAD<a class="headerlink" href="#probabilidad" title="Link to this heading">¶</a></h1>
-<ol class="arabic simple">
-<li><p>Introducción.</p></li>
-</ol>
+<ol class="arabic">
+<li><p>Introducción.</p>
 <p>1.1. Experimento aleatorio</p>
 <p>1.2. Espacio muestral</p>
 <p>1.3. Sucesos</p>
-<ol class="arabic simple" start="2">
-<li><p>Probabilidad.</p></li>
-</ol>
+</li>
+<li><p>Probabilidad.</p>
 <p>2.1. Regla de Laplace.</p>
 <p>2.2. Probabilidad frecuentista.</p>
-<ol class="arabic simple" start="3">
+</li>
 <li><p>Probabilidad Condicionada.</p></li>
 <li><p>Dependencia e Independencia de Sucesos</p></li>
 <li><p>Teorema de la Probabilidad Total y Teorema de Bayes.</p></li>
@@ -163,10 +163,9 @@ sucesos de dicho espacio muestral, tenemos:</p>
 suceso elemental, por lo que se trata del conjunto vacío, el cual representaremos por ∅.</p>
 <p>Ejemplo: Al lanzar un dado al azar, el Suceso “Obtener un número mayor que 6” es un suceso imposible.</p>
 <ul class="simple">
-<li><p><strong>Suceso contrario:</strong> Dado un suceso A, el suceso contrario lo representaremos por A c ó A y está formado por todos</p></li>
+<li><p><strong>Suceso contrario:</strong> Dado un suceso A, el suceso contrario lo representaremos por <span class="math notranslate nohighlight">\(A^c\)</span> ó <span class="math notranslate nohighlight">\(\bar{A}\)</span> y está formado por todos</p></li>
 </ul>
-<p>los
-sucesos elementales que no están en A. La ocurrencia de A supone, por tanto, la no ocurrencia de A , y viceversa.</p>
+<p>los sucesos elementales que no están en A. La ocurrencia de A supone, por tanto, la no ocurrencia de <span class="math notranslate nohighlight">\(\bar{A}\)</span>, y viceversa.</p>
 <p>Ejemplo: Al lanzar un dado al azar, si A = “Obtener un número par”, entonces <span class="math notranslate nohighlight">\(\bar{A}\)</span> = “Obtener número impar”.</p>
 <ul class="simple">
 <li><p><strong>Inclusión de sucesos:</strong> Se dice que un suceso A está incluido en otro suceso B (es decir, <span class="math notranslate nohighlight">\(A  \subset B\)</span>), si</p></li>
@@ -176,108 +175,57 @@ ocurre A, ocurre también B. Es decir todos los elementos de A son también elem
 <p>Ejemplo: Al lanzar un dado al azar, sea A = Suceso “Obtener un cinco”, y sea B = Suceso “Obtener número impar”. Se
 tiene, pues que, <span class="math notranslate nohighlight">\(A = \{5\}  \subset B = \{1,3,5\}\)</span>.</p>
 <ul class="simple">
-<li><p><strong>Unión de sucesos</strong>: Dados dos sucesos A y B, se llama unión de sucesos, al nuevo suceso A ∪B, que consiste en que</p></li>
+<li><p><strong>Unión de sucesos</strong>: Dados dos sucesos A y B, se llama unión de sucesos, al nuevo suceso <span class="math notranslate nohighlight">\(A \cup B\)</span>, que consiste en que</p></li>
 </ul>
-<p>ocurra alguno de los dos. Por tanto, A ∪B es la reunión de todos los sucesos elementales de A con los sucesos
+<p>ocurra alguno de los dos. Por tanto, <span class="math notranslate nohighlight">\(A \cup B\)</span> es la reunión de todos los sucesos elementales de A con los sucesos
 elementales de B.</p>
 <p>Ejemplo: Al lanzar un dado al azar, sea A =Suceso “Obtener un número par”, y B = Suceso “Obtener número mayor a tres” =
-{4,5,6}. Entonces, A∪B = Suceso “Obtener número par o mayor a tres” = {2,4,5,6}.</p>
+{4,5,6}. Entonces, <span class="math notranslate nohighlight">\(A \cup B\)</span> = Suceso “Obtener número par o mayor a tres” = {2,4,5,6}.</p>
 <ul class="simple">
-<li><p><strong>Intersección de sucesos</strong>: Dados dos sucesos A y B, se llama intersección de sucesos, al nuevo suceso :math:<a href="#id1"><span class="problematic" id="id2">`</span></a>A</p></li>
+<li><p><strong>Intersección de sucesos</strong>: Dados dos sucesos A y B, se llama intersección de sucesos, al nuevo suceso <span class="math notranslate nohighlight">\(A \cap B\)</span>, que</p></li>
 </ul>
-<p>cap B`, que
-consiste en que ocurran ambos a la vez. Por tanto, A∩B es el conjunto los sucesos elementales que pertenecen a ambos
+<p>consiste en que ocurran ambos a la vez. Por tanto, <span class="math notranslate nohighlight">\(A \cap B\)</span> es el conjunto los sucesos elementales que pertenecen a ambos
 conjuntos a la vez.</p>
 <p>Ejemplo: Al lanzar un dado al azar, sea A=Suceso “Obtener un número par”, y B = Suceso “Obtener número mayor a tres” =
 {4,5,6}. Entonces, <span class="math notranslate nohighlight">\(A \cap B\)</span> = Suceso “Obtener número par mayor a tres” = {4,6}.</p>
 <ul class="simple">
 <li><p><strong>Diferencia de sucesos</strong>: Dados dos sucesos A y B, se llama diferencia del suceso A menos el B, al suceso A-B,</p></li>
 </ul>
-<p>formado
-por todos los sucesos elementales de A que no estén en B.</p>
+<p>formado por todos los sucesos elementales de A que no estén en B.</p>
 <p>Ejemplo: Al lanzar un dado al azar, sea A=Suceso “Obtener un número par”, y B = Suceso “Obtener número mayor a tres” =
 {4,5,6}. Entonces, <span class="math notranslate nohighlight">\(A-B = A \cap B^c\)</span> = Suceso “Obtener número par no mayor a tres” = {2}.</p>
 <ul class="simple">
 <li><p><strong>Sucesos incompatibles</strong>: Dados dos sucesos A y B, se dicen que son incompatibles si no pueden ocurrir</p></li>
 </ul>
-<p>simultáneamente.
-Por tanto, si A y B son incompatibles se tiene que <span class="math notranslate nohighlight">\(A \capB = \O\)</span>.</p>
+<p>simultáneamente. Por tanto, si A y B son incompatibles se tiene que <span class="math notranslate nohighlight">\(A \cap B = \O\)</span>.</p>
 <p>Ejemplo: Al lanzar un dado al azar, sea A=Suceso “Obtener un número par”={2,4,6}, y B = Suceso “Obtener número impar” =
 {1,3,5}. Entonces, <span class="math notranslate nohighlight">\(A \cap B = \O\)</span>.</p>
 <p><strong>Definición formal de probabilidad:</strong></p>
-<p>Formalmente, si representamos por S el conjunto de todos los sucesos de un espacio muestral E, una medida de
-probabilidad es una función definida para todos los elementos de S y que toma valores en el intervalo [0,1], es decir,</p>
+<p>Formalmente, si representamos por <strong>S</strong> el conjunto de todos los sucesos de un espacio muestral <strong>E</strong>, una medida de
+probabilidad es una función definida para todos los elementos de <strong>S</strong> y que toma valores en el intervalo [0,1], es decir,</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}  P: S ⎯⎯⎯⎯⎯→[0,1]\\  A⎯⎯⎯⎯⎯\\y que verifica las siguientes condiciones:\end{aligned}\end{align} \]</div>
+\[ \begin{align}\begin{aligned}  P: S \to [0,1]\\  A \to P(A)\\y que verifica las siguientes condiciones:\end{aligned}\end{align} \]</div>
 <ol class="arabic simple">
 <li><p>El suceso seguro tiene probabilidad 1: P(E)=1</p></li>
-<li><p>Si A y B son dos sucesos incompatibles (<span class="math notranslate nohighlight">\(A \cap B = \O\)</span>), entonces:</p></li>
+<li><p>Si A y B son dos sucesos incompatibles (<span class="math notranslate nohighlight">\(A \cup B = \O\)</span>), entonces:</p></li>
 </ol>
 <div class="math notranslate nohighlight">
-\[P(A \cup B)= P(A) + P(B)\]</div>
+\[P(A \cap B)= P(A) + P(B)\]</div>
 <p>De esta definición pueden deducirse las siguientes propiedades:</p>
 <ol class="arabic simple">
 <li><p>El suceso imposible tiene probabilidad 0: <span class="math notranslate nohighlight">\(P(\O) = 0\)</span></p></li>
-<li><p>Para cualesquiera dos sucesos A y B: P(A∪B)= P(A) + P(B) - P(A∩B)</p></li>
-<li><p>Si A1 , A2 , … , An , son n sucesos incompatibles dos a dos</p></li>
+<li><p>Para cualesquiera dos sucesos A y B: <span class="math notranslate nohighlight">\(P(A \cup B)= P(A) + P(B) - P(A \cap B)\)</span></p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(A_1, A_2, ... , A_n\)</span>, son n sucesos incompatibles dos a dos (es decir, <span class="math notranslate nohighlight">\(A_i \cap A_j = \O\)</span>, con <span class="math notranslate nohighlight">\(i \neq j\)</span>), entonces:</p></li>
 </ol>
-<p>(es decir, A i ∩ A j = ∅, con i≠j), entonces:</p>
-<p>P(A 1 ∪ A 2 ∪… ∪ An ) = P(A1 ) + P(A2 ) + … + P(An )</p>
+<div class="math notranslate nohighlight">
+\[P(A_1 \cup A_2 \cup ... \cup A_n ) = P(A_1) + P(A_2 ) + ... + P(A_n )\]</div>
 <ol class="arabic simple" start="4">
-<li><p>P( A ) = 1- P(A)</p></li>
-<li><p>Si A ⊂ B ⇒ P(B-A) = P(B) – P(A)</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(\bar{A}) = 1- P(A)\)</span></p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(A \subset B \to P(B-A) = P(B) – P(A)\)</span></p></li>
 </ol>
-<p>128</p>
-<p>González J.J., Guerra N., Quintana M.P. y Santana A. Métodos Estadísticos</p>
-<p>Tema6: Probabilidad.</p>
-<p>Propiedades de las operaciones con conjuntos o sucesos</p>
-<p>1.-</p>
-<p>2.-</p>
-<p>3.-</p>
-<p>4.-</p>
-<p>5.-</p>
-<p>6.-</p>
-<p>«</p>
-<p>A</p>
-<p>«</p>
-<p>B=B</p>
-<p>A</p>
-<p>»</p>
-<p>A</p>
-<p>»</p>
-<p>B=B</p>
-<p>A</p>
-<p>«</p>
-<p>A</p>
-<p>A=A</p>
-<p>»</p>
-<p>A</p>
-<p>A=A</p>
-<p>«</p>
-<p>A</p>
-<p>E=E</p>
-<p>»</p>
-<p>A</p>
-<p>E=A</p>
-<p>7.- A « A =E 8.- A» A = ∆ 9.- A « ∆ =A 10.- A» ∆ = ∆ 11.- A « (B»C)= (A « B)»(A»C)</p>
-<p>12.- A»( B « C)= (A»B) « (A»C)</p>
-<p>13.- A – B = A» B 14.- A – B = A - ( A»B)</p>
-<p>Leyes de Morgan</p>
-<p>1.-</p>
-<p>2.-</p>
-<p>( A ∪ B ) = A ∩ B</p>
-<p>( A ∩ B ) = A ∪ B</p>
-<p>Cardinalidad N(A « B)= n(A)+ n(B) - n(A»B)</p>
-<p>N(A « B « C)= n(A) + n(B) + n(C) - n(A»B) - n(A»C) - n(B»C) +n(A»B»C)</p>
-<p>E</p>
-<p>B</p>
-<p>A</p>
-<p>C González J.J., Guerra N., Quintana M.P. y Santana A.</p>
-<p>129 Métodos Estadísticos</p>
-<p>Tema6: Probabilidad.</p>
-<p>Asignación de probabilidades a sucesos de un espacio muestral.</p>
+<p><strong>Asignación de probabilidades a sucesos de un espacio muestral.</strong></p>
 <p>La determinación de la probabilidad de un suceso se puede fundamentar en uno de los siguientes criterios:</p>
-<p>2.1 Asignación mediante la Regla de Laplace.</p>
+<p><strong>2.1 Asignación mediante la Regla de Laplace.</strong></p>
 <p>Consideremos un espacio muestral finito con n elementos que suponemos equiprobables (es decir, todos tienen la misma
 probabilidad de ocurrir).</p>
 <ul class="simple">
@@ -286,30 +234,23 @@ probabilidad de ocurrir).</p>
 <blockquote>
 <div><p>Si un suceso A está compuesto por k elementos del espacio muestral, su probabilidad es:</p>
 </div></blockquote>
-<p>P( A) =</p>
-<p>k n</p>
-<p>=</p>
-<p>nº de casos favorables nº de casos posibles</p>
+<p>. math:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">P</span><span class="p">(</span> <span class="n">A</span><span class="p">)</span> <span class="o">=</span> \<span class="n">frac</span><span class="p">{</span><span class="n">k</span><span class="p">}{</span><span class="n">n</span><span class="p">}</span> <span class="o">=</span> \<span class="n">frac</span><span class="p">{</span><span class="n">n</span><span class="o">^</span><span class="n">º</span> \<span class="n">text</span><span class="p">{</span><span class="n">de</span> <span class="n">casos</span> <span class="n">favorables</span><span class="p">}}{</span><span class="n">n</span><span class="o">^</span><span class="n">º</span> \<span class="n">text</span><span class="p">{</span> <span class="n">de</span> <span class="n">casos</span> <span class="n">posibles</span><span class="p">}}</span>
+</pre></div>
+</div>
 <p>Ejemplo: Sea E={1,2,3,4,5,6} el espacio muestral que se obtiene al realizar el experimento aleatorio “Lanzar un dado”.
 Se tiene que:</p>
-<p>1 P(1) = P(2) = P(3) = P(4) = P(5) = P(6)=</p>
-<p>6</p>
-<p>2</p>
-<p>P(Obtener multiplo de 3) = P({3,6}) =</p>
-<p>6</p>
-<p>P(No obtener multiplo de 3) = P({1,2,4,5}) =</p>
-<p>4 = 1 6</p>
-<p>P({3,6})</p>
-<p>130</p>
-<p>González J.J., Guerra N., Quintana M.P. y Santana A. Métodos Estadísticos</p>
-<p>Tema6: Probabilidad.</p>
+<p>P(1) = P(2) = P(3) = P(4) = P(5) = P(6)= :math:{1}{6}</p>
+<p>P(Obtener multiplo de 3) = P({3,6}) = <span class="math notranslate nohighlight">\(\frac{2}{6}\)</span></p>
+<p>P(No obtener multiplo de 3) = P({1,2,4,5}) = <span class="math notranslate nohighlight">\(\frac{4}{6}\)</span> = 1 - P({3,6})</p>
 <p>La regla de Laplace puede generalizarse a espacios muestrales continuos, siempre que todos los sucesos elementales en
 dichos espacios sean equiprobables. En esta situación, no es posible contar cuántos son los casos favorables ni los
 posibles (pues el espacio muestral es continuo y por tanto no numerable); habrá de determinarse, con la medida adecuada
 al espacio que se considere, cuanto miden respectivamente el conjunto de casos favorables y el conjunto de casos
 posibles, esto es:</p>
-<p>µ ( A) Medida del conjunto de casos favorables a A = µ ( E ) Medida del conjunto total de casos posibles Ejemplo 1:
-Imaginemos una pared y a alguien con los ojos vendados que tira un dardo a la pared, en la que se ha colocado un cuadro
+<div class="math notranslate nohighlight">
+\[P(A) \frac{\mu(A)}{\mu(E)} = \frac{\text{Medida del conjunto de casos favorables a A}{Medida del conjunto total de casos posibles}}\]</div>
+<p>Ejemplo 1: Imaginemos una pared y a alguien con los ojos vendados que tira un dardo a la pared, en la que se ha colocado un cuadro
 después de vendarle los ojos. ¿Cuál es la probabilidad de que acierte en el cuadro al lanzar el dardo?</p>
 <p>P ( A) =</p>
 <p>E</p>
@@ -524,7 +465,7 @@ aportada por B para calcular la probabilidad de que haya ocurrido Aj , esto es, 
 <p>141 Métodos Estadísticos</p>
 <p>Tema6: Probabilidad.</p>
 <p>La demostración de este teorema es sencilla:</p>
-<p>A j B P( B ∩ A j ) P( B | A j )·P( A j ) P( ∩ ) P(Aj <a href="#id3"><span class="problematic" id="id4">|</span></a>B) = = = P( B ) n n ∑ P( B ∩ A i ) ∑ P( B | A i )·P( A i ) i
+<p>A j B P( B ∩ A j ) P( B | A j )·P( A j ) P( ∩ ) P(Aj <a href="#id1"><span class="problematic" id="id2">|</span></a>B) = = = P( B ) n n ∑ P( B ∩ A i ) ∑ P( B | A i )·P( A i ) i
 =1 i =1</p>
 <p>Ejemplo 1:</p>
 <p>Supongamos que en cierta población consideramos los siguientes grupos de personas en función de su edad: A1</p>
@@ -766,7 +707,16 @@ almacén donde hay cartulinas de 20 colores distintos?</p>
 
 
 
-<h3>Navigation</h3>
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="probabilidad.html">probabilidad</a></li>
@@ -782,16 +732,6 @@ almacén donde hay cartulinas de 20 colores distintos?</p>
   </ul></li>
 </ul>
 </div>
-<search id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</search>
-<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -808,8 +748,8 @@ almacén donde hay cartulinas de 20 colores distintos?</p>
       &#169;2026, leopoldo.
       
       |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
-      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
       <a href="_sources/temaprobabilidad.rst.txt"

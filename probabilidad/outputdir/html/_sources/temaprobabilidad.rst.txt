@@ -3,17 +3,17 @@ PROBABILIDAD
 
 1. Introducción.
 
-1.1. Experimento aleatorio
+   1.1. Experimento aleatorio
 
-1.2. Espacio muestral
+   1.2. Espacio muestral
 
-1.3. Sucesos
+   1.3. Sucesos
 
 2. Probabilidad.
 
-2.1. Regla de Laplace.
+   2.1. Regla de Laplace.
 
-2.2. Probabilidad frecuentista.
+   2.2. Probabilidad frecuentista.
 
 3. Probabilidad Condicionada.
 
@@ -161,9 +161,8 @@ suceso elemental, por lo que se trata del conjunto vacío, el cual representarem
 
 Ejemplo: Al lanzar un dado al azar, el Suceso “Obtener un número mayor que 6” es un suceso imposible.
 
-- **Suceso contrario:** Dado un suceso A, el suceso contrario lo representaremos por A c ó A y está formado por todos 
-los 
-sucesos elementales que no están en A. La ocurrencia de A supone, por tanto, la no ocurrencia de A , y viceversa.
+- **Suceso contrario:** Dado un suceso A, el suceso contrario lo representaremos por :math:`A^c` ó :math:`\bar{A}` y está formado por todos 
+los sucesos elementales que no están en A. La ocurrencia de A supone, por tanto, la no ocurrencia de :math:`\bar{A}`, y viceversa.
 
 Ejemplo: Al lanzar un dado al azar, si A = “Obtener un número par”, entonces :math:`\bar{A}` = “Obtener número impar”.
 
@@ -174,56 +173,53 @@ ocurre A, ocurre también B. Es decir todos los elementos de A son también elem
 Ejemplo: Al lanzar un dado al azar, sea A = Suceso “Obtener un cinco”, y sea B = Suceso “Obtener número impar”. Se 
 tiene, pues que, :math:`A = \{5\}  \subset B = \{1,3,5\}`.
 
-- **Unión de sucesos**: Dados dos sucesos A y B, se llama unión de sucesos, al nuevo suceso A ∪B, que consiste en que 
-ocurra alguno de los dos. Por tanto, A ∪B es la reunión de todos los sucesos elementales de A con los sucesos 
+- **Unión de sucesos**: Dados dos sucesos A y B, se llama unión de sucesos, al nuevo suceso :math:`A \cup B`, que consiste en que 
+ocurra alguno de los dos. Por tanto, :math:`A \cup B` es la reunión de todos los sucesos elementales de A con los sucesos 
 elementales de B.
 
 Ejemplo: Al lanzar un dado al azar, sea A =Suceso “Obtener un número par”, y B = Suceso “Obtener número mayor a tres” = 
-{4,5,6}. Entonces, A∪B = Suceso “Obtener número par o mayor a tres” = {2,4,5,6}.
+{4,5,6}. Entonces, :math:`A \cup B` = Suceso “Obtener número par o mayor a tres” = {2,4,5,6}.
 
-- **Intersección de sucesos**: Dados dos sucesos A y B, se llama intersección de sucesos, al nuevo suceso :math:`A 
-\cap B`, que 
-consiste en que ocurran ambos a la vez. Por tanto, A∩B es el conjunto los sucesos elementales que pertenecen a ambos 
+- **Intersección de sucesos**: Dados dos sucesos A y B, se llama intersección de sucesos, al nuevo suceso :math:`A \cap B`, que 
+consiste en que ocurran ambos a la vez. Por tanto, :math:`A \cap B` es el conjunto los sucesos elementales que pertenecen a ambos 
 conjuntos a la vez.
 
 Ejemplo: Al lanzar un dado al azar, sea A=Suceso “Obtener un número par”, y B = Suceso “Obtener número mayor a tres” = 
 {4,5,6}. Entonces, :math:`A \cap B` = Suceso “Obtener número par mayor a tres” = {4,6}.
 
 - **Diferencia de sucesos**: Dados dos sucesos A y B, se llama diferencia del suceso A menos el B, al suceso A-B, 
-formado 
-por todos los sucesos elementales de A que no estén en B.
+formado por todos los sucesos elementales de A que no estén en B.
 
 Ejemplo: Al lanzar un dado al azar, sea A=Suceso “Obtener un número par”, y B = Suceso “Obtener número mayor a tres” = 
 {4,5,6}. Entonces, :math:`A-B = A \cap B^c` = Suceso “Obtener número par no mayor a tres” = {2}.
 
 - **Sucesos incompatibles**: Dados dos sucesos A y B, se dicen que son incompatibles si no pueden ocurrir 
-simultáneamente. 
-Por tanto, si A y B son incompatibles se tiene que :math:`A \capB = \O`.
+simultáneamente. Por tanto, si A y B son incompatibles se tiene que :math:`A \cap B = \O`.
 
 Ejemplo: Al lanzar un dado al azar, sea A=Suceso “Obtener un número par”={2,4,6}, y B = Suceso “Obtener número impar” = 
 {1,3,5}. Entonces, :math:`A \cap B = \O`.
 
 **Definición formal de probabilidad:**
 
-Formalmente, si representamos por S el conjunto de todos los sucesos de un espacio muestral E, una medida de 
-probabilidad es una función definida para todos los elementos de S y que toma valores en el intervalo [0,1], es decir,
+Formalmente, si representamos por **S** el conjunto de todos los sucesos de un espacio muestral **E**, una medida de 
+probabilidad es una función definida para todos los elementos de **S** y que toma valores en el intervalo [0,1], es decir,
 
 .. math::
 
-   P: S ⎯⎯⎯⎯⎯→[0,1]
+   P: S \to [0,1]
 
-   A⎯⎯⎯⎯⎯
+   A \to P(A)
 
  y que verifica las siguientes condiciones:
 
 
 1. El suceso seguro tiene probabilidad 1: P(E)=1
 
-2. Si A y B son dos sucesos incompatibles (:math:`A \cap B = \O`), entonces:
+2. Si A y B son dos sucesos incompatibles (:math:`A \cup B = \O`), entonces:
 
 .. math::
 
-   P(A \cup B)= P(A) + P(B)
+   P(A \cap B)= P(A) + P(B)
 
 
 De esta definición pueden deducirse las siguientes propiedades:
@@ -231,119 +227,23 @@ De esta definición pueden deducirse las siguientes propiedades:
 
 1) El suceso imposible tiene probabilidad 0: :math:`P(\O) = 0`
 
-2) Para cualesquiera dos sucesos A y B: P(A∪B)= P(A) + P(B) - P(A∩B)
+2) Para cualesquiera dos sucesos A y B: :math:`P(A \cup B)= P(A) + P(B) - P(A \cap B)`
 
-3) Si A1 , A2 , ... , An , son n sucesos incompatibles dos a dos
+3) Si :math:`A_1, A_2, ... , A_n`, son n sucesos incompatibles dos a dos (es decir, :math:`A_i \cap A_j = \O`, con :math:`i \neq j`), entonces:
 
-(es decir, A i ∩ A j = ∅, con i≠j), entonces:
+.. math::
 
-P(A 1 ∪ A 2 ∪... ∪ An ) = P(A1 ) + P(A2 ) + ... + P(An )
+   P(A_1 \cup A_2 \cup ... \cup A_n ) = P(A_1) + P(A_2 ) + ... + P(A_n )
 
-4) P( A ) = 1- P(A)
+4) :math:`P(\bar{A}) = 1- P(A)`
 
-5) Si A ⊂ B ⇒ P(B-A) = P(B) – P(A)
+5) Si :math:`A \subset B \to P(B-A) = P(B) – P(A)`
 
-128
-
-González J.J., Guerra N., Quintana M.P. y Santana A. Métodos Estadísticos
-
-Tema6: Probabilidad.
-
-Propiedades de las operaciones con conjuntos o sucesos
-
-1.-
-
-2.-
-
-3.-
-
-4.-
-
-5.-
-
-6.-
-
-«
-
-A
-
-«
-
-B=B
-
-A
-
-»
-
-A
-
-»
-
-B=B
-
-A
-
-«
-
-A
-
-A=A
-
-»
-
-A
-
-A=A
-
-«
-
-A
-
-E=E
-
-»
-
-A
-
-E=A
-
-7.- A « A =E 8.- A» A = ∆ 9.- A « ∆ =A 10.- A» ∆ = ∆ 11.- A « (B»C)= (A « B)»(A»C)
-
-12.- A»( B « C)= (A»B) « (A»C)
-
-13.- A – B = A» B 14.- A – B = A - ( A»B)
-
-Leyes de Morgan
-
-1.-
-
-2.-
-
-( A ∪ B ) = A ∩ B
-
-( A ∩ B ) = A ∪ B
-
-Cardinalidad N(A « B)= n(A)+ n(B) - n(A»B)
-
-N(A « B « C)= n(A) + n(B) + n(C) - n(A»B) - n(A»C) - n(B»C) +n(A»B»C)
-
-E
-
-B
-
-A
-
-C González J.J., Guerra N., Quintana M.P. y Santana A.
-
-129 Métodos Estadísticos
-
-Tema6: Probabilidad.
-
-Asignación de probabilidades a sucesos de un espacio muestral.
+**Asignación de probabilidades a sucesos de un espacio muestral.**
 
 La determinación de la probabilidad de un suceso se puede fundamentar en uno de los siguientes criterios:
 
-2.1 Asignación mediante la Regla de Laplace.
+**2.1 Asignación mediante la Regla de Laplace.**
 
 Consideremos un espacio muestral finito con n elementos que suponemos equiprobables (es decir, todos tienen la misma 
 probabilidad de ocurrir).
@@ -352,38 +252,19 @@ probabilidad de ocurrir).
 
  Si un suceso A está compuesto por k elementos del espacio muestral, su probabilidad es:
 
-P( A) =
+. math::
 
-k n
-
-=
-
-nº de casos favorables nº de casos posibles
+  P( A) = \frac{k}{n} = \frac{n^º \text{de casos favorables}}{n^º \text{ de casos posibles}}
 
 Ejemplo: Sea E={1,2,3,4,5,6} el espacio muestral que se obtiene al realizar el experimento aleatorio “Lanzar un dado”. 
 Se tiene que:
 
-1 P(1) = P(2) = P(3) = P(4) = P(5) = P(6)=
+P(1) = P(2) = P(3) = P(4) = P(5) = P(6)= :math:{1}{6}
 
-6
 
-2
+P(Obtener multiplo de 3) = P({3,6}) = :math:`\frac{2}{6}`
 
-P(Obtener multiplo de 3) = P({3,6}) =
-
-6
-
-P(No obtener multiplo de 3) = P({1,2,4,5}) =
-
-4 = 1 6
-
-P({3,6})
-
-130
-
-González J.J., Guerra N., Quintana M.P. y Santana A. Métodos Estadísticos
-
-Tema6: Probabilidad.
+P(No obtener multiplo de 3) = P({1,2,4,5}) = :math:`\frac{4}{6}` = 1 - P({3,6})
 
 La regla de Laplace puede generalizarse a espacios muestrales continuos, siempre que todos los sucesos elementales en 
 dichos espacios sean equiprobables. En esta situación, no es posible contar cuántos son los casos favorables ni los 
@@ -391,8 +272,11 @@ posibles (pues el espacio muestral es continuo y por tanto no numerable); habrá
 al espacio que se considere, cuanto miden respectivamente el conjunto de casos favorables y el conjunto de casos 
 posibles, esto es:
 
-µ ( A) Medida del conjunto de casos favorables a A = µ ( E ) Medida del conjunto total de casos posibles Ejemplo 1: 
-Imaginemos una pared y a alguien con los ojos vendados que tira un dardo a la pared, en la que se ha colocado un cuadro 
+.. math::
+
+   P(A) \frac{\mu(A)}{\mu(E)} = \frac{\text{Medida del conjunto de casos favorables a A}{Medida del conjunto total de casos posibles}}
+
+Ejemplo 1: Imaginemos una pared y a alguien con los ojos vendados que tira un dardo a la pared, en la que se ha colocado un cuadro 
 después de vendarle los ojos. ¿Cuál es la probabilidad de que acierte en el cuadro al lanzar el dardo?
 
 P ( A) =
