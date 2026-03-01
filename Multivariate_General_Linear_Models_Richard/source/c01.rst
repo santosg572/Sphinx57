@@ -1,0 +1,54 @@
+c01. Introduction and review of univariate general linear models
+=================================================================
+
+* multiple regression analysis
+* is to study the relationship between the variables
+
+account for
+
+* fitting regression models to data allows the analyst the ability to account for or explain variation in a
+criterion variable as a function of one or more predictor variables.
+
+* the general linear model is an extension of regression models to accommodate both qualitative
+and quantitative predictor variables.
+
+subsumes
+
+* the regression model is flexible enough to handle many different realizations of predictor variables, including
+interactions between continuous predictor variables, between categorical predictor variables,
+and between combinations of continuous and categorical predictor variables.
+
+breadth
+
+coverage
+
+afforded
+
+* introduce the multivariate version of the general linear nodel and to illustrate several of its applications
+
+**Review of Univariate Linear Model Analysis**
+
+* The main goal of the linear model is to evaluate relationships in order to explain variability in a response
+variable as a function of some specified model and an error of prediction:
+
+.. math::
+
+   \text{Response = Model + Error}
+
+* Univariate regression models can be expressed mathematically as a regression function,
+
+,, math::
+
+   Y = \beta_0 + \beta_1 X_1 + \epsilon
+
+for a simple model with a single predictor variable. 
+
+* For a more complex model with multiple predictors, we may write
+
+.. math::
+
+   Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + ... + \beta_q X_q + \epsilon
+
+disturbance or error term
+
+
