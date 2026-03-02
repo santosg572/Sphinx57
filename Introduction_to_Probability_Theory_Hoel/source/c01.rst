@@ -1,0 +1,13 @@
+1. Probability Spaces
+
+* Probability theory is the branch of mathematics that is concerned with random (or chance) phenomena.
+
+* Many phenomena have the property that their repeated observation under a specified set of conditios invariably leads to the same outcome.
+
+* A familiar example of this type is the tossing of a coing.
+
+a seemingly erratic and unpredictable manner
+
+to make any worthwhile statements
+
+* Experience has shown that many 
