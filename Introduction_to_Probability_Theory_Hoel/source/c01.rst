@@ -1,4 +1,5 @@
 1. Probability Spaces
+=====================
 
 * Probability theory is the branch of mathematics that is concerned with random (or chance) phenomena.
 
@@ -10,4 +11,28 @@ a seemingly erratic and unpredictable manner
 
 to make any worthwhile statements
 
-* Experience has shown that many 
+* Experience has shown that many nondeterministic phenomena exhibit a statistical regularity that makes them subject to study.
+
+* This may be illustrated by considering coin tossing again.
+
+* It appears as if the proportion of heads in n tosses would converge to p if we let n approach infinity.
+
+* We thing of this limiting proportion p as the "probability" that the coin will land heads up in a single toss.
+
+* More generally the statement that a certain experimental outcome has probability p can be interpreted as meaning that if
+the experiment is repeated a large number of times, that outcome would be observed "about" 100p percent of the time.
+
+* this interpretation of probabilities is called the relative frequency interpretation,
+
+* we will use the relative frequency interpretation of probabilities only as an intuitive motivation for the definitions and
+theorems we will be developing throuhout the book.
+
+1.1 Examples of random phenomena
+
+Example 1. A box has s balls, labeled 1, 2, ..., s but otherwise indentical. Consider the following
+experiment. The balls are mixed up well in the box and a person reaches into the box and draws a ball. The 
+number of the ball is noted and the ball is returned
+
+
+
+
