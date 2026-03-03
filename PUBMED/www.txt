@@ -1,3 +1,0 @@
-(parkinson[Title]) AND (("2025/01/01"[Date - Publication] : "3000"[Date - Publication]))
-
-
