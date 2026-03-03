@@ -11,4 +11,54 @@ a seemingly erratic and unpredictable manner
 
 to make any worthwhile statements
 
-* Experience has shown that many 
+* Experience has shown that many nondeterministic phenomena exhibit a statistical regularity that makes them subject to study.
+
+* This may be illustrated by considering coin tossing again.
+
+* It appears as if the proportion of heads in n tosses would converge to p if we let n approach infinity.
+
+* We thing of this limiting proportion p as the "probability" that the coin will land heads up in a single toss.
+
+* More generally the statement that a certain experimental outcome has probability p can be interpreted as meaning that if
+the experiment is repeated a large number of times, that outcome would be observed "about" 100p percent of the time.
+
+* this interpretation of probabilities is called the relative frequency interpretation,
+
+* we will use the relative frequency interpretation of probabilities only as an intuitive motivation for the definitions and
+theorems we will be developing throuhout the book.
+
+1.1 Examples of random phenomena
+
+Example 1. A box has s balls, labeled 1, 2, ..., s but otherwise indentical. Consider the following
+experiment. The balls are mixed up well in the box and a person reaches into the box and draws a ball. The 
+number of the ball is noted and the ball is returned to the box. The outcome of the experiment is the number on the ball selected. About
+this experiment we can make no nontrivial prediction.
+
+* trials - repeticion del experimento
+
+* As the number of trials gets large we woould expect the relative frequencies :math:`N_n(1)/n, ..., N_n(s)/n``to settle down to some 
+fixed numbers
+:math:`p_1, p_2, ...,p_s` (which according to our intuition in this case should all be 1/s)
+
+* We will now make a mathematical model of the experiment of drawing a ball from the box. To do this, we first a set :math:`\Omega`having 
+s points that we place into one-to-one correspondence with the possible outcomes
+of the experiment. In this correspondence exactly one of :math:`\Omega` will be associated with the outcome that the ball labeled k is
+selected. Call that point :math:`w_k`. To the point :math:`w_k` we associate the number :math:`p_k=1/s` and call it the
+probability of :math:`w_k`. We observe at once that :math:`0 \leq p_k \leq 1` and that :math:`p_1 + ... + p_s = 1`
+
+* Suppose now that in addition to being numbered from 1 to s the first r balls are colored red and the remaining s-r are colored black.
+ 
+* A moment's thought shows that the relative frequency of red balls drawn among n repetitions of the experiment is just the sum of 
+therelative frequencies :math:`N_n(k)/n` over those of k that correspond of a red ball.
+
+* Let us see how we can reflect this fact in our model. Let A be the subset of :math:`\Omega` consisting of those points :math:`w_k`
+such that ball k is red. The A has exactly r points. We call A an **event**. 
+
+* To say the event A occurs means that the outcome of the experiment is represented by some point in A.
+
+**Definition 2** A probability measure P on a :math:`\sigma`-field of subsets :math:`\mathscr{A}`
+
+
+
+
+
