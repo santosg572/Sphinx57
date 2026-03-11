@@ -79,6 +79,34 @@ A probability space, denoted by :math:`(\Omega, \mathscr{A}, P)`, is a set :math
 
 **1.3 Properties of probabilities**
 
-We assume that we are given 
+We assume that we are given somw probability space :math:`(\Omega, \mathscr{A}, P)` and that all sets under are events, i.e.
+members of :math:`\mathscr{A}`.
+
+For any set A, :math:`A \cap A^c = \Omega` and thus for any two sets A and B we have the decomposition of B.
+
+1) :math:`B = \Omega \cap B = (A \cup A^c) \cap B = (A \cap B) \cup (A^c \cap B)`
+
+2) :math:`P(B) = P(A \cap B) + P(A^c \cap B)`
+
+3) By setting :math:`B = \Omega``and recalling that :math:`P(\Omega) = 1`, then :math:`P(A^c)=1-P(A)`
+
+4) In particular :math:`P(\O) = 1 - P(\Omega)`, so that :math:`P(\O) = 0`
+
+5) Suppose that :math:`A \subset B`. Then :math:`A \cap B = A``, then :math:`P(B) = P(A) + P(A^c \cap B)` and :math:`P(B) \geq 
+P(A)`
+
+6) :math:`P(A \cup B) = P(A) + P(B) - P(A \cap B)`
+
+7) :math:`P(A \cup B) \geq   P(A) + P(B)`
+
+
+**1.4 Conditional probability**
+
+- If the ball drawn frm the box is known to be red, what is the probability that it was the red ball labeled 1?
+
+**Definition 3** 
+
+
+
 
 
