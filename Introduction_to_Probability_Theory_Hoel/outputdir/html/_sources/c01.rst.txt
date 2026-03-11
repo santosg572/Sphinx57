@@ -27,7 +27,7 @@ the experiment is repeated a large number of times, that outcome would be observ
 * we will use the relative frequency interpretation of probabilities only as an intuitive motivation for the definitions and
 theorems we will be developing throuhout the book.
 
-1.1 Examples of random phenomena
+**1.1 Examples of random phenomena**
 
 Example 1. A box has s balls, labeled 1, 2, ..., s but otherwise indentical. Consider the following
 experiment. The balls are mixed up well in the box and a person reaches into the box and draws a ball. The 
@@ -56,9 +56,20 @@ such that ball k is red. The A has exactly r points. We call A an **event**.
 
 * To say the event A occurs means that the outcome of the experiment is represented by some point in A.
 
-**Definition 2** A probability measure P on a :math:`\sigma`-field of subsets :math:`\mathscr{A}`
+**Definition 2** A probability measure P on a :math:`\sigma`-field of subsets :math:`\mathscr{A}` of a set :math:`\Omega` is a real-valued
+function having domain :math:`\mathscr{A}` satisfying the following properties:
+
+(i) :math:`P(\Omega)=1`
+
+(ii) :math:`P(A) \geq 0` for all :math:`A \in \mathscr{A}`
+
+(iii) If :math:`A_n` n=1,2,3,..., are mutually disjoint sets in :math:`\mathscr{A}`, then
+
+.. math::
+
+   P(\cap_{n=1}^{\infty} A_n) = \sum_{n=1}^{\infty} P(A_n)
 
 
-
+A probability space, denoted by :math:`(\Omega, \mathscr{A}, P), is a set :
 
 

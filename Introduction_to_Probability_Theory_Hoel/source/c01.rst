@@ -70,6 +70,15 @@ function having domain :math:`\mathscr{A}` satisfying the following properties:
    P(\cap_{n=1}^{\infty} A_n) = \sum_{n=1}^{\infty} P(A_n)
 
 
-A probability space, denoted by :math:`(\Omega, \mathscr{A}, P), is a set :
+A probability space, denoted by :math:`(\Omega, \mathscr{A}, P)`, is a set :math:`\Omega`, a :math:`\sigma`-field of subsets 
+:math:`\mathscr{A}`, and a probability measure P defined on :math:`\mathscr{A}`.
+
+- isotpe desintegration experiment
+
+- whatever
+
+**1.3 Properties of probabilities**
+
+We assume that we are given 
 
 
