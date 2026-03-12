@@ -1,0 +1,636 @@
+~Preface
+
+While writing any book on any topic, the ﬁrst question that has to be confronted is: Why one more book on this topic? Our 
+justiﬁcation: we have taught the material in the book for several years to students of Master of Science degree program 
+in Statistics at the University of Mysore. A student with only a basic knowledge of Linear Algebra, Probability Theory and 
+Statistics, and wanting to understand the basic concepts of Linear Models, Linear Estimation, Testing of Linear 
+Hypotheses, basics of Design and Analysis of Experiments and the standard Models, will ﬁnd this book useful. The book is 
+targeted at beginners. Proofs are given in detail to help the uninitiated. We expect the reader to get motivated by the 
+basics in the book and refer advanced literature on the topics to learn more. This book is intended as a leisurely bridge 
+to advanced topics. With a surge in interest in Data Science, Big Data and whatnot, we wish that this rigorous treatment 
+will kindle interest in the reader to explore advanced topics.
+
+The ﬁrst two chapters consist of the basic theory of Linear Models covering estimability, Gauss-Markov theorem, 
+conﬁdence interval estimation and testing of linear hypotheses. The later chapters consist of the general theory of 
+design and analysis of general complete/incomplete Block Designs, Completely Randomized Design, Randomized Block Design, 
+Balanced Incomplete Block Design, Partially Balanced Incomplete Block Design, general Row-Column Designs with Latin Square 
+Design and Youden Square Design as particular cases, symmetric Factorial Experiments with factors at two/three levels 
+including Partial and Complete Confounding, Missing Plot Technique, Analysis of Covariance Models, Split-Plot and 
+Split-Block Designs. The material covered in these chapters should give a fairly good idea of the design and analysis of 
+statistical experiments. Every chapter ends with some exercises which are intended as practice exercises to understand the 
+theory discussed in the chapter. The ﬁrst exercise of every chapter encourages readers to provide missing steps, or 
+deliberately left out steps, in some of the discussions in the chapter. Exercises in the ﬁrst two chapters and some in 
+later~
+
+~chapters are original and the data accompanying many exercises may be from other books on this subject. Since the 
+references to these could not be ascertained, we take this opportunity to gratefully acknowledge all the authors and 
+publishers for some of the numerical data used here. Since the book is intended as a ﬁrst course, historical references 
+and citations are not given, even for the quotes at the beginning of every chapter except for the names of the authors of 
+the quotes. R-codes are given at the end of every chapter after Exercises. These should help the reader to explore the 
+material in R, an open-source software. The book ends with Bibliography which contains a list of books for further 
+reading, and a subject index.
+
+The approach used is algebraic and is aimed at a beginner who has some exposure to Linear Algebra, Probability Theory and 
+Statistics. The material can be covered in a one semester course. Before retiring from active service in the year 2003 as 
+Professor of Statistics, Prof. N. R. Mohan had taught the material here for more than twenty ﬁve years to several 
+students of the M.Sc. Statistics program of the University of Mysore. Subsequently, the undersigned, his student, has 
+taught this subject for more than twenty years. Though we started writing this book several years ago, after ﬁnishing 
+drafts of a few chapters, the book did not see the light of the day. Upon the insistence of Professor Mohan’s wife, this 
+compilation has been done for wider dissemination.
+
+My sincere gratitude to Mrs. Geeta Mohan for pushing me towards completing the book and to Mrs. Padmashri Ambekar, 
+daughter of Prof. N. R. Mohan, for help with the publication. My sincere thanks to Dr. A. S. Praveena for the R-codes in 
+the book and for all help received while preparing this book for publication and to Mr. Shamim Ahmad, Senior Editor, 
+Springer India, for facilitating the process of publication, and for tolerating my many e-mail queries. I fully own 
+responsibility for any errors and omissions. I will be grateful for your comments and criticisms.~
+
+~Chapter 1
+
+Linear Estimation
+
+Everything should always be made as simple as possible, but not simpler
+
+– A. Einstein
+
+In many modeling problems, a response variable is modeled as a function of one or more independent or explanatory 
+variables. The linear function of the explanatory variables along with a random error term has been found useful and 
+applicable to many problems, for example, the weight of a newborn human baby as a function of the circumference of her 
+head or shoulder, the price of crude oil as a function of currency exchange rates, the length of elongation of a weighing 
+spring as a function of the loaded weight, and whatnot. Many such and similar problems are modeled using a linear model. 
+In fact, all linear regression models are full-rank linear models. This chapter discusses linear estimation in a linear 
+model. The subsequent chapter discusses the other aspect of such modeling, which is linear hypotheses. The material 
+discussed in the ﬁrst two chapters are applied to speciﬁc models in later chapters. R-codes for the topics discussed in 
+this chapter are given at the end of Chap.2.
+
+1.1 Gauss–Markov Model
+
+Consideran n × 1 randomvector Y = (Y 1 . . . Y n ) ′ ofrandomvariables Y 1 , . . . , Y n , with expectation
+
+E(Y) := (E(Y 1 ) . . . E(Y n )) ′ = Aθ,~
+
+~and dispersion matrix
+
+V (Y) := E((Y − E(Y))(Y − E(Y)) ′ ) = σ 2 I n ,
+
+where θ = ( θ 1 . . . θ p ) is a p × 1 vector of real-valued parameters θ 1 , . . . , θ p , which are unknown, A is an n × 
+p matrix of known entries called the design matrix, σ 2 > 0 is unknown. Throughout, we shall denote the identity matrix of 
+order n by I n or by I if its order is clear from the context, and the transpose of B, a vector or a matrix, by B ′ . Note 
+that the expected value of Y i is a known linear function of the same set of p unknown parameters θ 1 , . . . , θ p , i = 
+1, . . . , n, Y 1 , . . . , Y n are pairwise uncorrelated and that each Y i has the same unknown variance σ 2 > 0. The 
+last property is referred to as homoscedasticity, meaning equal variances, the opposite of heteroscedasticity. Note also 
+that if we write Y = Aθ + , where  = ( 1 . . .  n ) ′ is assumed to be the random error, then E() = 0 and, V () = σ 2 I, 
+called the error variance. In this chapter, we will have no more assumptions about the probability distribution of Y. 
+However, we assume n ≥ p throughout the book. The discussion about models where n < p is outside the scope of this book.
+
+′
+
+The triple ( Y, Aθ, σ 2 I ) is called a Gauss–Markov model or a linear model. Observe that the design matrix speciﬁes the 
+model completely. By the rank of the model, we mean the rank of the design matrix A. The model is called a full-rank model 
+if Rank(A) = p ; otherwise, it is called a less-than-full-rank model. We shall reserve the symbol s to denote the rank of 
+A so that 1 ≤ s ≤ p ≤ n.
+
+The model given above is the natural model for the random variables associated with many experiments, and the parameters θ 
+1 , . . . , θ p represent the unknown quantities of interest to the experimenter. In most cases, the very purpose of 
+conducting the experiment is to obtain estimates of and conﬁdence intervals for linear functions of θ 1 , . . . , θ p , 
+and also to test hypotheses involving these parameters. In this chapter, we discuss the problem of estimation. Our search 
+for the best estimators of linear functions of the parameters θ 1 , . . . , θ p , best in a sense to be clariﬁed later, 
+will be conﬁned to the class of estimators which are linear functions of Y 1 , . . . , Y n . With the minimal assumptions 
+that we have on the distribution of Y, we will not be able to admit nonlinear estimators to compete.
+
+In what follows, y = (y 1 . . . y n ) ′ denotes a realization of Y.
+
+1.2 Estimability
+
+A linear parametric function (lpf) a ′ θ = a 1 θ 1 + · · · + a p θ p , a = (a 1 . . . a p ) ′ ∈ R p , the p-dimensional 
+Euclidean space, is said to be estimable if there exists a linear function c ′ Y = c 1 Y 1 + · · · + c n Y n of Y 1 , . . 
+. , Y n , such that E(c ′ Y) = a ′ θ for all θ = (θ 1 . . . θ p ) ′ ∈ R p , for some c = (c 1 . . . c n ) ′ ∈ R n . In 
+other words, a ′ θ is estimable if c ′ Y is an unbiased estimator of a ′ θ. In this case, a ′ θ is called an estimable 
+linear parametric function (elpf) and c ′ Y is called a linear unbiased~
+
+~estimator of a ′ θ. As is evident from the examples that follow, not every lpf need be estimable in a Gauss–Markov model.
+
+The following theorem, which can be stated in several equivalent forms, gives a criterion for an lpf to be estimable.
+
+Theorem 1.2.1 A necessary and sufﬁcient condition for an lpf a ′ θ = a 1 θ 1 + · · · + a p θ p to be estimable is that
+
+Rank(A) = Rank(A ′
+
+:
+
+a),
+
+(1.2.1)
+
+where (A ′ : a) denotes the matrix A ′ augmented with a.
+
+Proof If a ′ θ is estimable, by deﬁnition, there exists a c ′ Y = c 1 Y 1 + · · · + c n Yn  such that a ′ θ = E(c ′ Y) = 
+c ′ E(Y) = c ′ Aθ for all θ ∈ R p . Hence A ′ c = a and this implies (1.2.1). Conversely, if (1.2.1) holds, then A ′ c = 
+a for some vector c ∈ R n , and c ′ Y is unbiased for a ′ θ. Hence a ′ θ is estimable.
+
+Corollary 1.2.2 An lpf a ′ θ is estimable iff
+
+Rank(A ′ A) = Rank(A ′ A : a).
+
+(1.2.2)
+
+Proof If a ′ θ is estimable, then (1.2.1) holds. Since
+
+Rank(A ′ A) ≤ Rank(A ′ A : a)
+
+A0n×1  = Rank(A ′ : a) ( 0 1 )
+
+′ ≤ Rank(A : a) = Rank(A)
+
+= Rank(A ′ A),
+
+it follows that (1.2.2) holds. Conversely, if (1.2.2) holds, then there exists a vector d such that A ′ Ad = a. Then the 
+linear estimator d ′ A ′ Y is unbiased for a ′ θ since E ( d ′ A ′ Y ) = d ′ A ′ E(Y) = d ′ A ′ Aθ = a ′ θ and a ′ θ is 
+estimable.
+
+Remark 1.2.3 The conditions (1.2.1) and (1.2.2) are, respectively, equivalent to a ∈ C(A ′ ) and a ∈ C(A ′ A), where 
+C(B) denotes the column space of the matrix B.
+
+Remark 1.2.4 The conditions (1.2.1) and (1.2.2) are necessary and sufﬁcient for the consistency of the linear equations A 
+′ c = a and A ′ Ad = a, respectively.
+
+Corollary 1.2.5 If a 1 ′ θ = a 11 θ 1 + · · · + a 1p θ p and a 2 ′ θ = a 21 θ 1 + · · · + a 2p θp  are estimable and c 1 
+and c 2 are scalars, then c 1 a 1 ′ θ + c 2 a 2 ′ θ is also estimable.
+
+The proof follows easily from the deﬁnition of estimability (see Exercise1.1).
+
+Lemma 1.2.6 Every lpf in a Gauss–Markov model is estimable iff it is a full-rank model.~
+
+~Proof Suppose a ′ θ is estimable for every a ∈ R p . Then θ 1 , . . . , θ p are estimable. Write θ i = J i ′ θ, i = 1, . 
+. . , p, where J i denotes the ith column of I p . By Corollary1.2.2, p ≥ Rank(A ′ A)= Rank(A ′ A : J 1 : · · · : J p ) 
+≥ Rank(J 1 . . . J p ) = Rank(I p ) = p and hence Rank(A ′ A) = Rank(A) = p, proving the necessity. If Rank(A) = p, then 
+Rank(A ′ A : a) = p for every a ∈ R p and a ′ θ is estimable. Remark 1.2.7 Aθ and A ′ Aθ are estimable, that is, every 
+component of these two vectors is an elpf. The claims follow easily from the deﬁnition of an elpf since
+
+E(Y) = Aθ and E(A ′ Y) = A ′ Aθ.
+
+Remark 1.2.8 Let V = { b ∈ R p : A ′ Ab = 0 } . Then V is a vector space of dimension p − s and is orthogonal to C(A ′ 
+A). It is easy to see that if b ∈ V, then b ′ θ is not estimable. However, if b ′ θ is not estimable, it does not follow 
+that b ∈ V.
+
+Let B p×(p−s) denote the matrix whose columns constitute a basis for the vector space V in Remark1.2.8. Note that A ′ AB 
+= 0 and AB = 0. The following theorem gives yet another criterion for the estimability of an lpf.
+
+Theorem 1.2.9 Let B p×(p−s) be a matrix such that AB = 0 and Rank(B) = p − s. Then an lpf a ′ θ is estimable iff a ′ B = 
+0.
+
+Proof If a ′ θ is estimable, then by Remark1.2.3, a ∈ C(A ′ A). This implies that a ′ b = 0 for any b ∈ V and hence a ′ 
+B = 0. Suppose now that a ′ B = 0. Then a ∈ C(A ′ A) and a ′ θ is estimable by Remark1.2.3.
+
+Note that the columns of the matrix B in Theorem1.2.9 constitute a basis for the vector space V in Remark1.2.8 and hence B 
+is not unique. In fact, if B ∗ is any nonsingular matrix of order p − s and B 1 = BB ∗ , then a ′ B = 0 iff a ′ B 1 = 
+0.
+
+Theorem1.2.9 is particularly useful when we want to examine several lpf’s for estimability in a given Gauss–Markov model. 
+Note that when compared to the veriﬁcation of condition (1.2.1) or (1.2.2) for estimability, the veriﬁcation of the 
+condition a ′ B = 0 is trivial. Our attempt will be to ﬁnd a B satisfying the conditions of Theorem1.2.9 for each 
+Gauss–Markov model that we introduce later. In the following remark, a method of ﬁnding the B matrix is described.
+
+Remark 1.2.10 Let (A ′ A) − be a generalized inverse (g-inverse) of A ′ A, that is, A ′ A = A ′ A(A ′ A) − A ′ A. It 
+follows from the deﬁnition of a g-inverse that (A ′ A) − A ′ A and I p − (A ′ A) − A ′ A areidempotent.Since s = 
+Rank(A ′ A) = Rank ′ ′ ( A ′ A(A ′ A) − A ′ A ) ≤ Rank ( (A ′ A) − A ′ A ) ≤ Rank(A A),we have Rank(A A) = Rank ( (A ′ 
+A) − A ′ A ) . Hence Rank ( I p −(A ′ A)− A ′ A ) = trace ( I p −(A ′ A) − A ′ A ) = p − trace ( (A ′ A) − A ′ A ) 
+= p − s. Further, (A ′ A) ( I p − (A ′ A) − A ′ A ) = 0. So one can choose the matrix B as the one obtained by deleting 
+all the s linearly dependent columns in I p − (A ′ A) − A ′ A.
+
+Linear parametric functions a 1 ′ θ, . . . , a m ′ θ are said to be independent (orthogonal) if the associated vectors a 1 
+, . . . , a m are linearly independent (orthogonal), ′ where a i = ( a i1 . . . a ip ) , i = 1, . . . , m.~
+
+~Lemma 1.2.11 In any given set of elpf’s, the maximum number of independent elpf’s is not more than s.
+
+Proof If possible, let a 1 ′ θ, . . . , a m ′ θ be independent elpf’s with m > s. By Theorem1.2.1, s = Rank(A) = Rank ( A 
+′ : a 1 : · · · : a m ) ≥ Rank (a 1 . . . a m ) = m. This contradiction establishes the claim.
+
+Note that, by Remark1.2.7, Aθ has n elpf’s of which only s are independent. An lpf a ′ θ is called a contrast or a 
+comparison in θ if a 1 + · · · + a p = 0.
+
+Example 1.2.12 Let Y 1 , Y 2 , Y 3 , Y 4 , and Y 5 be pairwise uncorrelated random variables with common variance σ 2 > 0 
+and expectations given by
+
+E(Y 1 ) = θ 1 − θ 2 + θ 4 ,
+
+E(Y 2 ) = θ 1 + θ 2 + θ 3 ,
+
+E(Y 3 ) = 2θ 2 + θ 3 − θ 4 ,
+
+E(Y 4 ) = θ 1 + 3θ 2 + 2θ 3 − θ 4 ,
+
+E(Y 5 ) = 2θ 1 + θ 3 + θ 4 .
+
+In this model, n = 5, p = 4, and the design matrix is
+
+1 −1 0 1 ⎛ 1 1 1 0 ⎞ ⎜ ⎟ A = ⎜ ⎜ 0 2 1 −1 ⎟ ⎟ . ⎜ 1 3 2 −1 ⎟ ⎝ 2 0 1 1 ⎠
+
+We shall obtain a criterion for a ′ θ = a 1 θ 1 + a 2 θ 2 + a 3 θ 3 + a 4 θ 4 to be estimable in this model as well as the 
+rank of the model, simultaneously. We use the fact that the elementary transformations will not alter the rank of a 
+matrix. We have
+
+1 1 0 1 2a1  ⎛ −1 1 2 3 0 a 2 ⎞ ′ Rank(A : a) = Rank ⎜ ⎜ ⎟ ⎟ 0 1 1 2 1a3  ⎝ 1 0 −1 −1 1 a 4 ⎠
+
+11012a1  ⎛ 0 2 2 4 2 a 1 + a 2 ⎞ = Rank ⎜ ⎜ ⎟ ⎟ 01121a3  ⎝ 0 1 1 2 1 a 1 − a 4 ⎠
+
+11012a1  ⎛ 0 2 2 4 2 a 1 + a 2 ⎞ = Rank ⎜ ⎜ ⎟ ⎟ 0 0 0 0 0 a 1 + a 2 − 2a3  ⎝ 0 0 0 0 0 (a 1 + a 2 ) − 2(a 1 − a 
+4 ) ⎠
+
+= Rank(A)~
+
+~= 2 iff a 1 + a 2 − 2a 3 = 0 and a 1 − a 2 − 2a 4 = 0.
+
+By Theorem1.2.1, a ′ θ is estimable iff
+
+a 1 + a 2 − 2a 3 = 0 and a 1 − a 2 − 2a 4 = 0,
+
+1 1 −2 0 . Note that AB = 0 and B is the ( 1 −1 0 −2 ) matrix satisfying the conditions of Theorem1.2.9. By 
+postmultiplying B by the 1/2 1/2 nonsingular matrix ,we get another pair of equivalent conditions on a ( 1/2 −1/2 ) as
+
+that is, a ′ B = 0 with B ′ =
+
+a 1 − a 3 − a 4 = 0 and a 2 − a 3 + a 4 = 0.
+
+Example 1.2.13 LetY = ( Y 11 . . . Y 1n 1 Y 21 . . . Y 2n 2 . . . Y v1 . . . Y vn v ) ′ = ( Y 1 ′ Y 2 ′ . . . Y v ′ ) ′ 
+with Y i = ( Y i1 . . . Y in i ) , and Y i j , j = 1, . . . , n i , i = 1, . . . , v, be pairwise uncorrelated random 
+variables with common variance σ 2 > 0 and expectations E(Y i j ) = ′ ′ ′ μ + α i . We write E(Y) = Aθ with θ = ( μ α ) , 
+α = (α 1 . . . α v ) , and
+
+′
+
+I n 1 I n 1 O n 1 ×1 .. On 1 ×1  ⎛ I n 2 O n 2 ×1 I n 2 . . O n 2 ×1 ⎞ A = ⎜ ⎜ ⎟ ⎟ , . . . .. . ⎝ I n v O n v ×1 O 
+n v ×1 . . I n v ⎠
+
+where I m or I, if m is clear from the context, denotes the m-component column vector with each component equal to 1 and O 
+m×n denotes the null matrix of order m × n which will be written as 0 if m = 1 = n or if m and n are clear from the 
+context. In this model, n = n 1 + · · · + n v , p = v + 1, and
+
+n n1 n 2 . .nv  ⎛ n 1 n 1 0 . . 0 ⎞ ⎜ ⎟ n I ′ N s = Rank(A ′ A)= Rank ⎜ ⎜ n 2 0 n 2 0 . 0 ⎟ ⎟ = Rank = Rank(N) = 
+v, NI N ) ⎜ . . . . . . ⎟ ( ⎝ n v 0 0 . . n v ⎠
+
+since the ﬁrst row (column) of A ′ A is the sum of the remaining rows (columns), where N = diag(n 1 , . . . , n v ) is 
+the diagonal matrix. To obtain a criterion for the estimability of a ′ θ = a 0 μ + a 1 ′ α = a 0 μ + a 11 α 1 + · · · + a 
+1v α v , we look for conditions on a = (a 0 a 1 ′ ) ′ that satisfy (1.2.2). Recalling that the ﬁrst column of A ′ A is 
+the sum of the remaining columns and that multiplication by a nonsingular matrix does not alter the rank, we get~
+
+~Rank ( A ′ A : a ) = Rank ( N I N a 1 )
+
+I ′ N a0  = Rank ( N a 1 )
+
+−1 I v ′ I ′ N a0  = Rank ( 0 v×1 I v ) ( N a 1 )
+
+0 −a 0 + I ′ a1  = Rank ( N a 1 )
+
+= Rank(N)
+
+= Rank(A ′ A)
+
+iff −a 0 + I ′ a 1 = 0. Thus a ′ θ = a 0 μ + a 1 ′ α is estimable iff a 0 = ∑ i=1 v a 1i or a ′ B = 0, where B = (−1 I 
+v ′ ) ′ . Note that AB = 0.
+
+In this model, note that none of the individual parameters μ , α 1 , . . . , α v , is estimable and that an lpf a 1 ′ α of 
+α alone is estimable iff I ′ a 1 = 0, that is, a 1 ′ α is a contrast in α.
+
+Remark 1.2.14 We have the above model for the random variables associated with experiments employing a Completely 
+Randomized Design, abbreviated as CRD. In CRD, v treatments are randomly allocated to n homogeneous plots, grouped into v 
+groups, such that the ith treatment is allotted to all the plots in the ith group with n i plots. We will discuss designs 
+in later chapters.
+
+1.3 Least Squares Estimate
+
+We have seen in the last section that in a Gauss–Markov model, not every lpf need be estimable unless the model is a 
+full-rank model. Since unbiasedness is one of the criteria which is insisted upon almost always, we will search for the 
+best estimates of elpf’s only, best in some sense to be made precise later. Further, as mentioned earlier, this search 
+will be conﬁned to the class of linear estimates only. For this purpose, we need the least squares estimate of θ.
+
+As mentioned in Sect.1.1, y = (y 1 . . . y n ) ′ is a realization of Y. Any value of ˆ θ, say θ ˆ = θ(y), for which
+
+S(y, θ) = (y − Aθ) ′ (y − Aθ)
+
+(1.3.1)
+
+is least, is called a least squares estimate of θ. Differentiating S(y, θ) partially with respect to θ 1 , . . . , θ p and 
+equating the derivatives to zero, we get what is known as the normal equation, written as the matrix equation
+
+A ′ Aθ = A ′ y.
+
+(1.3.2)~
+
+~We claim that the normal equation (1.3.2) is consistent, that is, Rank(A ′ A) = Rank(A ′ A : A ′ y). This follows since 
+Rank(A ′ A) ≤ Rank(A ′ A : A ′ y) = Rank(A ′ (A : y)) ≤ Rank(A ′ ) = Rank(A ′ A). Thus, the normal equation (1.3.2) is 
+guaranteed to have at least one solution.
+
+When the Gauss–Markov model is a full-rank model, A ′ A is nonsingular and (1.3.2) has the unique solution given by θ ˆ = 
+(A ′ A) −1 A ′ y. Otherwise, it has inﬁnite solutions.Togetasolutionof(1.3.2)inthiscase,wecanproceedasfollows.Wedelete 
+all those p − s linearly dependent rows of A ′ A and the corresponding entries in A ′ y. We replace the deleted rows with 
+any p − s rows so that the resulting matrix is nonsingular and we replace the corresponding entries in A ′ y with zeroes. 
+The new matrix equation so obtained will then have a unique solution θ ˆ = (A ′ A) − A ′ y, where (A ′ A) − is a 
+g-inverse of A ′ A.
+
+Lemma 1.3.1 Any solution of the normal equation (1.3.2) is a least squares estimate of θ.
+
+Proof Let
+
+ˆ θ be a solution of (1.3.2). Then
+
+′ (y A (y A S(y, θ) = θ) ˆ + A( θ ˆ − θ) θ) ˆ + A( θ ˆ − θ) ( ) ( )
+
+= (y − A θ) ˆ ′ (y − A θ) ˆ + 2( θ ˆ − θ) ′ A ′ (y − A θ) ˆ + ( θ ˆ − θ) ′ A ′ A( θ ˆ − θ)
+
+= (y − A θ) ˆ ′ (y − A θ) ˆ + ( θ ˆ − θ) ′ A ′ A( θ ˆ − θ)
+
+′ ˆ ≥ (y − A θ) ˆ (y − A θ)
+
+ˆ = S(y, θ),
+
+since ( ˆ θ−θ) ′ A ′ (y− A ˆ θ)=(θ ˆ − θ) ′ (A ′ y − A ′ A θ) ˆ = 0 and ( θ ˆ − θ) ′ A ′ A( θ ˆ − θ) ≥ 0. ˆ Hence 
+S(y, θ) is least at θ = θ, any solution of the normal equation.
+
+In view of this lemma, we will use the phrases ‘a least squares estimate of θ’ and ‘a solution of the normal equation 
+(1.3.2)’ interchangeably.
+
+Whenever it is convenient, we will call the ith equation in (1.3.2) as the equation corresponding to θ i and the ith 
+column (row) of A ′ A as that of θ i , i = 1, . . . , p.
+
+Remark 1.3.2 Let the Gauss–Markov model be less-than-full-rank model and let ˜θ θ ˆ and be any two distinct solutions of 
+the normal equation (1.3.2). Then A ′ A( θ ˆ −
+
+˜θ ′ ˜θ ˜θ ˆ θ) ˆ θ) ˆ − (y − A ) ′ ′ θ′  ˜θ ) = 0 and ˜θ (y − A (y ˜θ − A (y − A ) = (y y − A ′ y) − (y ′ y ′ A ′ 
+y) = ( − θ) ′ ˆ A ′ y = ( − θ) ′ ˆ A ′ A θ ˆ = 0. Therefore, the value of S(y, θ) at any
+
+solution of the normal equation (1.3.2) is the same, as it should be.
+
+ˆ If θ ˆ is any solution of the normal equation (1.3.2), then S(y, θ) ˆ = y ′ y − θ ′ A ′ y is called the residual sum of 
+squares or the error sum of squares or sum of squares for error (SSE).~
+
+~Let (A ′ A) − be a g-inverse of A ′ A, the usual inverse if s = p. Then θ ˆ = ˆ (A ′ A) − A ′ y is a solution of the 
+normal equation (1.3.2). Substituting this in S(y, θ), we get
+
+SSE = S(y, θ) ˆ = y ′ y − y ′ A(A ′ A) − A ′ y
+
+= y ′ ( I − A(A ′ A) − A ′ ) y
+
+(1.3.3)
+
+where
+
+= y ′ My,
+
+(1.3.4)
+
+M
+
+=
+
+I
+
+−
+
+A(A′ 
+
+A)− 
+
+A′ 
+
+.
+
+The vector y − A θ ˆ = My is called the residual vector. Lemma 1.3.3 The matrix M in (1.3.4) possesses the following 
+properties: (i) M A = 0, (ii) M = M ′ = M 2 , and (iii) Rank(M) = n − s.
+
+Proof Let G = M A = A(I − (A ′ A) − A ′ A). Then G ′ G = (I − (A ′ A) − A ′ A) ′ A ′ A (I − (A ′ A) − A ′ A) = 0 
+using the deﬁnition of g-inverse of A ′ A. Therefore, G is a null matrix and M A = 0. Now M 2 = M − M A(A ′ A) − A ′ = 
+M and so M is idempotent. Further, M M ′ = (I − A(A ′ A) − A ′ )M ′ = M ′ = M since M M ′ is symmetric. Thus M is 
+symmetric. It was shown in Remark1.2.10 that (A ′ A) − A ′ A is idempotent and has rank s. This and a property of trace 
+of a matrix gives Rank(M) = trace(M)
+
+= n − trace ( A(A ′ A) − A ′ )
+
+= n − trace ( (A ′ A) − A ′ A )
+
+= n − Rank ( (A ′ A) − A ′ A )
+
+= n − s.
+
+
+Remark 1.3.4 By Lemma1.3.3(i), we have E(MY) = 0.
+
+ˆ θ) The ratio S(y,
+
+= SSE is called the mean squares for error (MSE). We will n−s show in the next lemma that MSE is an unbiased estimate of 
+σ 2 .
+
+n−s
+
+ˆ θ) Lemma 1.3.5 An unbiased estimate of σ 2 is MSE = S(Y,
+
+n−s
+
+= SSE . n−s
+
+Proof To prove the lemma, consider a solution From (1.3.3) and Lemma1.3.3, we have
+
+ˆ θ(Y) of the normal equation (1.3.2).
+
+S(Y, ˆ θ(Y)) = Y ′ MY = (Y − Aθ) ′ M (Y − Aθ) = trace ( M (Y − Aθ) (Y − Aθ) ′ ) .
+
+In the last step, we have used a property of trace of a matrix. So
+
+E(S(Y, ˆ θ(Y))) = trace(E(M (Y − Aθ) (Y − Aθ) ′ ))~
+
+~= trace ( M E((Y − Aθ) (Y − Aθ) ′ ) )
+
+= trace ( σ 2 M )
+
+= σ 2 Rank(M)
+
+= (n − s)σ2 
+
+using Lemma1.3.3 and a property of trace of a matrix once again. The claim follows from this.
+
+Example 1.3.6 Consider the Gauss–Markov model in Example1.2.12. Let y = (y 1 y 2 y 3 y 4 y 5 ) ′ be an observation on Y. 
+We have
+
+7 3 5 2 y 1 + y 2 + y 4 + 2y 5 x1  ⎛ 3 15 9 −6 ⎞ ⎛ −y 1 + y 2 + 2y 3 + 3y 4 ⎞ ⎛ x 2 ⎞ A ′ A = ⎜ ⎜ ⎟ ⎟ , and A 
+′ y = ⎜ ⎜ ⎟ ⎟ = ⎜ ⎜ ⎟ ⎟ = x, say. 5 9 7 −2 y 2 + y 3 + 2y 4 + y 5 x3  ⎝ 2 −6 −2 4 ⎠ ⎝ y 1 − y 3 − y 4 + y 
+5 ⎠ ⎝ x 4 ⎠
+
+The normal equation A ′ A
+
+θ ˆ = A
+
+′
+
+y can be written explicitly as
+
+7 θ 1 ˆ + 3 θ 2 ˆ + 5 θ 3 ˆ + 2 θ 4 ˆ = x 1 ,
+
+3 θ 1 ˆ + 15 θ 2 ˆ + 9 θ 3 ˆ − 6 θ 4 ˆ = x 2 ,
+
+5 θ 1 ˆ + 9 θ 2 ˆ + 7 θ 3 ˆ − 2 θ 4 ˆ = x 3 ,
+
+2 θ 1 ˆ − 6 θ 2 ˆ − 2 θ 3 ˆ + 4 θ 4 ˆ = x 4 .
+
+Since s = 2 < p, the above normal equation has inﬁnite solutions. To get a solution, we have to delete two dependent 
+equations. Observe that the sum of the ﬁrst and the second equation is twice the third equation and, the ﬁrst equation 
+minus the second equation is twice the fourth equation. In this case, therefore, any two equations can be declared as 
+dependent and can be deleted. First, let us delete the last two equations and replace them with
+
+θ 3 ˆ = 0 and θ 4 ˆ = 0,
+
+to get the four new equations as
+
+7 θ 1 ˆ + 3 θ 2 ˆ = x 1 ,
+
+3 θ 1 ˆ + 15 θ 2 ˆ = x 2 ,
+
+θ 3 ˆ = 0,
+
+θ 4 ˆ = 0,~
+
+~⎛ 3 15 0 0 ⎟ ⎞ ⎜ θ 2⎟ ⎜ ⎛ x 2⎞ ⎟ or in the matrix form as ⎜ ⎟ ⎜ ˆ ⎟ = ⎜ ⎟ . Notice that the matrix above 0 
+0 1 0 ⎜ θ 3 ⎟ 0 ˆ ⎝ 0 0 0 1 ⎠ ⎝ θ 4 ⎠ ⎝ 0 ⎠
+
+is nonsingular. Solving the two equations in and θ 2 ˆ = −3x 1 + 7x 2 and hence
+
+ˆ θ1 
+
+and
+
+ˆ θ2 
+
+above, we get
+
+ˆ θ1 
+
+−x2  = 5x 1 32
+
+96
+
+5x 1 −x 2 5 − 32 1 0 0 32 32 x1  ⎛ −3x 1 + 7x 2 ⎞ ⎛ 7 ⎞ ⎛ ⎞ x2  ⎜ ⎟ ⎜ − 32 1 0 0 ⎟ θ ˆ = ⎜ 96 ⎟ = ⎜ 96 ⎟ 
+⎜ ⎜ ⎟ ⎟ = (A ′ A) − x = (A ′ A) − A ′ y, ⎜ 0 ⎟ ⎜ 0 0 0 0 ⎟ x3  x4  ⎝ 0 ⎠ ⎝ 0 0 0 0 ⎠ ⎝ ⎠
+
+where
+
+5 − 32 1 00 32 ⎛ − 32 1 7 0 0 ⎞ (A ′ A) − = ⎜ ⎜ 96 ⎟ ⎟ 0 0 00 ⎝ 0 0 0 0 ⎠
+
+is a g−inverse of A ′ A.
+
+To get another least squares estimate of θ, let us delete the second and the third equations in the normal equation above 
+and replace them with
+
+θ 1 ˆ = 0 and θ 3 ˆ = 0,
+
+to get the four new equations as
+
+3 θ 2 ˆ ∗ + 2 θ 4 ˆ ∗ = x 1 ,
+
+−6 θ 2 ∗ ˆ + 4 θ 4 ˆ ∗ = x 4 ,
+
+∗ θ 1 = 0,
+
+∗ θ 3 = 0,
+
+0 3 0 2 θ ∗ 1 x1  ⎛ ⎞ ⎜ ⎛ 1 0 0 0 ⎟ ⎞ ⎜ θ ∗ 2 ⎟ ⎜ ⎛ 0 ⎟ ⎞ or in the matrix form as ⎜ ⎟ ⎜ ⎟ = ⎜ ⎟ . 
+Notice that the choice of the 0 0 1 0 ⎜ θ ∗ 3 ⎟ 0 ⎝ 0 −6 0 4 ⎠ ⎝ θ ∗ 4 ⎠ ⎝ x 4 ⎠
+
+two equations
+
+θ 1 ˆ = 0 and θ 3 ˆ = 0~
+
+~has given us the above nonsingular matrix. Solving the two equations in + above, we get θ ∗ 2 = 2x 1 12 −x 4 and θ ∗ 4 
+= 2x 1 8 x 4 and hence
+
+ˆ θ∗ 
+
+2
+
+and
+
+ˆ θ∗ 
+
+4
+
+0 000 0 x1  ∗ ⎛ 2x 1 −x 4 ⎞ ⎛ 1 0 0 − 12 1 ⎞ ⎛ x 2 ⎞ θ ˆ = ⎜ ⎜ 12 ⎟ ⎟ = ⎜ ⎜ 6 ⎟ ⎟ ⎜ ⎜ ⎟ ⎟ = (A ′ A) + 
+x = (A ′ A) + A ′ y, 0 000 0 x3  2x 1 + x 4 1 1 ⎝ 8 ⎠ ⎝ 4 0 0 8 ⎠ ⎝ x 4 ⎠
+
+where
+
+000 0 ⎛ 1 0 0 − 12 1 ⎞ (A ′ A) + = ⎜ ⎜ 6 ⎟ ⎟ 000 0 1 1 ⎝ 4 0 0 8 ⎠
+
+is another g-inverse of A ′ A. Note that the g-inverse (A ′ A) + is not symmetric even though A ′ A is symmetric. The SSE 
+in this model is
+
+1 SSE = y ′ y − θ ′ ˆ A ′ y = y ′ y − θ ∗′ ˆ A ′ y = y ′ y − − 6x 1 x 2 + 7x 2 2 ) , 15x1 2  96 (
+
+where x 1 = y1 
+
++ y 2 + y 4 + 2y 5 and x 2 = −y 1 + y 2 + 2y 3 + 3y 4 . Example 1.3.7 Here we will consider the Gauss–Markov model in 
+Example1.2.13. ′ Let y = ( y 11 . . . y 1n 1 y 21 . . . y 2n 2 . . . y v1 . . . y vn v ) be an observation on Y. In this n 
+I ′ N model, A ′ A = ′ y = (y .. y 1. . . . y v. ) ′ , where n = n 1 + · · · + and A ( N I N )
+
+n v = I ′ N I, N = diag(n 1 , . . . , n v ), y .. = ∑ i=1 v ∑ j=1 n i y i j = ∑ i=1 v y i. and y i. =
+
+′ ′ ∑ j=1 n i y i j ,i = 1, . . . , v. Let y ∗. = (y 1. . . . y v. ) . Thenthenormalequation A A A ′ y can be written as
+
+n μ ˆ + I ′ N α ˆ = y .. ,
+
+N I μ ˆ + N α ˆ = y ∗. .
+
+θ ˆ =
+
+Note that y .. = I ′ y ∗. and the top equation above corresponding to μ is dependent as it is the sum of the remaining α 
+equations. Since s = v and p = v + 1, we need to add an equation upon deleting the top equation. We can take μ ˆ = 0 to 
+get α ˆ = N −1 y ∗. . Then
+
+ˆ μ 0 0 0 1×v y..  = θ ˆ = = = (A ′ A) − A ′ y, ˆ ( α ) ( N −1 y ∗. ) ( 0 v×1 N −1 ) ( y ∗. )
+
+where (A ′ A) − =
+
+0 01×v  ( 0 v×1 N−1 
+
+)
+
+is a g-inverse of A ′ A. The SSE in this case is~
+
+~SSE = y y − A ′ ∑ ∑ yi j 2 y = y y − y N −1 y ∗. = − ∑ n i . i=1 j=1 i=1
+
+Remark 1.3.8 Estimability can be quickly understood by solving Exercise1.2 and understanding the Gauss–Markov theorem in 
+the next section.
+
+1.4 Best Linear Unbiased Estimates
+
+Let a ′ θ be an lpf in a Gauss–Markov model. By deﬁnition, it is nonestimable if it does not have a linear unbiased 
+estimator. Suppose now that a ′ θ is an elpf. If it has two linear unbiased estimators c 1 ′ Y and c 2 ′ Y, then λc 1 ′ Y 
++ (1 − λ)c 2 ′ Y is also a linear unbiased estimator of a ′ θ for every real number λ and hence a ′ θ has inﬁnite number 
+of linear unbiased estimators. Thus unbiasedness alone will not always get us a unique estimator for an elpf. Therefore, 
+we have to impose a second criterion in the hope of getting a unique estimator. It turns out that the estimator having the 
+minimum variance in the class of linear unbiased estimators is unique.
+
+A linear function c ′ Y of Y is said to be the best linear unbiased estimator (blue) of an elpf a ′ θ if c ′ Y is unbiased 
+for a ′ θ and has the least variance among all such linear unbiased estimators.
+
+The following celebrated Gauss–Markov theorem claims that the blue exists for every elpf in any Gauss–Markov model.
+
+Theorem 1.4.1 (Gauss–Markov Theorem) Let a ′ θ be an elpf in a Gauss–Markov ˆ ˆ model (Y, Aθ, σ 2 I). The blue of a ′ θ is 
+a ′ θ where θ is a least squares estimate of θ, that is, a solution of the normal equation (1.3.2). The variance of the 
+blue is a ′ (A ′ A) − aσ 2 , where (A ′ A) − is a g-inverse of A ′ A. The blue is unique.
+
+Remark 1.4.2 As we have observed in Sect.1.3, when s = p, θ ˆ = (A ′ A) −1 A ′ y ˆ ˆ is unique and so is a ′ θ. When s < 
+p also, a ′ θ remains the same no matter which solution of the normal equation (1.3.2) is used. Further, the variance a ′ 
+(A ′ A) − aσ 2 also remains the same whatever be the g-inverse (A ′ A) − . To ˆ ˆ establish these facts, let θ and θ ∗ 
+be two solutions of the normal equation (1.3.2). Since a ′ θ is estimable, by Remark1.2.4, there exists a vector d such 
+that
+
+A ′ Ad = a. Then a ′ θ ˆ − a ′ θ ∗ ˆ = d ′ A ′ A θ ˆ − θ ∗ ˆ ( A ′ y − A ′ y ) = 0. Let now = d′  ( )
+
+(A ′ A) − and (A ′ A) + be two g-inverses of A ′ A so that A ′ A(A ′ A) ± A ′ A = A ′ A. Then a ′ (A ′ A) − a − a ′ (A 
+′ A) + a = d ′ A ′ A ( (A ′ A) − − (A ′ A) + ) A ′ Ad = 0.
+
+Proof of Theorem 1.4.1 Since a ′ θ is estimable, by Remark1.2.4, A ′ Ad = a for some vector d. Using this, we write a ′ θ 
+ˆ = d ′ A ′ A θ ˆ = d ′ A ′ Y and E(a ′ ˆ θ(Y)) = E(d ′ A ′ Y) = d ′ A ′ Aθ = a ′ θ. Hence a ′ θ is a linear unbiased 
+estimate. Let c ′ Y be an unbiased estimator of a ′ θ so that a = A ′ c. Its variance is V (c ′ Y) =
+
+E ( c ′ Y − c ′ Aθ ) 2 = E ( c ′ (Y − Aθ)(Y − Aθ) ′ c ) = σ 2 c ′ c and hence V (a ′ ˆ θ(Y)) =~
+
+ 
+      
